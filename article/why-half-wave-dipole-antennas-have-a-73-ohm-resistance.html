@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Half-Wave Dipole Antennas Have a 73 Ohm Resistance - electronics</title>
+    <meta name="description" content="A resonant half-wave dipole antenna in free space presents a radiation resistance of approximately 73 ohms due to the fundamental physics of electromagnetic wave propagation and the geometry of the antenna itself. This article provides a quick overview of">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-half-wave-dipole-antennas-have-a-73-ohm-resistance">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Half-Wave Dipole Antennas Have a 73 Ohm Resistance - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-half-wave-dipole-antennas-have-a-73-ohm-resistance" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="A resonant half-wave dipole antenna in free space presents a radiation resistance of approximately 73 ohms due to the fundamental physics of electromagnetic wave propagation and the geometry of the antenna itself. This article provides a quick overview of" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-half-wave-dipole-antennas-have-a-73-ohm-resistance">Why
+Half-Wave Dipole Antennas Have a 73 Ohm Resistance</h1>
+<p>A resonant half-wave dipole antenna in free space presents a
+radiation resistance of approximately 73 ohms due to the fundamental
+physics of electromagnetic wave propagation and the geometry of the
+antenna itself. This article provides a quick overview of how current
+and voltage distributions along a half-wavelength wire interact with the
+intrinsic impedance of free space. By calculating the total power
+radiated into the surrounding environment and relating it to the input
+current at the center feed point, engineers and physicists consistently
+arrive at the standard 73.13-ohm value.</p>
+<p>To understand where the 73-ohm figure comes from, you first need to
+understand radiation resistance. Unlike standard electrical resistance,
+which converts electrical energy into heat, radiation resistance is a
+virtual resistance. It represents the transfer of energy from the
+antenna into free space as electromagnetic radio waves. It is defined as
+the value of a hypothetical resistor that would dissipate the same
+amount of power as the antenna radiates when driven by the same
+current.</p>
+<p>When an alternating current is fed into the center of a half-wave
+dipole, it creates standing waves of current and voltage along the two
+quarter-wave elements. Because the ends of the wire are open circuits,
+the current must drop to zero at the tips. Consequently, the current
+reaches its maximum value right at the center feed point. Conversely,
+the voltage is at its maximum at the tips and drops to a minimum (though
+not entirely zero) at the center. Because Impedance (<span
+class="math inline">\(Z\)</span>) equals Voltage (<span
+class="math inline">\(V\)</span>) divided by Current (<span
+class="math inline">\(I\)</span>), the center of the dipole exhibits a
+relatively low impedance.</p>
+<p>The next critical factor is the impedance of free space, which is
+approximately 377 ohms. This value is a universal physical constant
+derived from the permeability and permittivity of a vacuum. It dictates
+the ratio of the electric field to the magnetic field in an
+electromagnetic wave traveling through empty space. The dipole antenna
+acts as a transformer, coupling the electrical energy on the feedline to
+this 377-ohm environment.</p>
+<p>To find the exact radiation resistance, physicists calculate the
+total power the antenna radiates in all directions. A half-wave dipole
+does not radiate equally in a sphere; instead, it radiates in a
+doughnut-shaped pattern (toroid) perpendicular to the wire. By using
+Poynting's theorem, you can integrate the radiated power density over a
+giant imaginary sphere surrounding the antenna in the far-field.</p>
+<p>Because the current along the dipole follows a sinusoidal
+distribution, the mathematical integration of this power over the entire
+sphere involves complex calculus, specifically utilizing cosine
+integrals. When you solve the integral for the total radiated power
+(<span class="math inline">\(P\)</span>) of an infinitely thin half-wave
+dipole in free space, the equation simplifies to:</p>
+<p><span class="math inline">\(P = I_{rms}^2 \times 73.13\)</span></p>
+<p>In basic electronics, power is calculated as the root-mean-square
+current squared, multiplied by resistance (<span class="math inline">\(P
+= I_{rms}^2 \times R\)</span>). By comparing the two equations, it
+becomes clear that the radiation resistance (<span
+class="math inline">\(R\)</span>) at the center feed point is 73.13
+ohms.</p>
+<p>In practical radio electronics, this 73-ohm value is only entirely
+accurate for an infinitely thin wire suspended in a complete vacuum,
+infinitely far from the ground. Furthermore, an exact physical half-wave
+wire actually has a slight inductive reactance of about +42.5 ohms,
+making the total impedance <span class="math inline">\(73 +
+j42.5\)</span> ohms. To make the antenna purely resonant (eliminating
+the reactance), engineers shorten the physical wire by about 5 percent.
+This slight shortening reduces the radiation resistance to roughly 68 to
+70 ohms, which is why 75-ohm and 50-ohm coaxial cables are the standard
+feedlines used in radio communication today.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-half-wave-dipole-antennas-have-a-73-ohm-resistance';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

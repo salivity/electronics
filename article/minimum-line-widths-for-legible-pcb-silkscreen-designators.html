@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimum Line Widths for Legible PCB Silkscreen Designators - electronics</title>
+    <meta name="description" content="Maintaining legible component reference designators on printed circuit boards (PCBs) requires adhering to strict minimum line width and character height rules based on the manufacturing method. For standard Liquid Photoimageable (LPI) epoxy silkscreen, th">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/minimum-line-widths-for-legible-pcb-silkscreen-designators">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Minimum Line Widths for Legible PCB Silkscreen Designators - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/minimum-line-widths-for-legible-pcb-silkscreen-designators" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Maintaining legible component reference designators on printed circuit boards (PCBs) requires adhering to strict minimum line width and character height rules based on the manufacturing method. For standard Liquid Photoimageable (LPI) epoxy silkscreen, th" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="minimum-line-widths-for-legible-pcb-silkscreen-designators">Minimum
+Line Widths for Legible PCB Silkscreen Designators</h1>
+<p>Maintaining legible component reference designators on printed
+circuit boards (PCBs) requires adhering to strict minimum line width and
+character height rules based on the manufacturing method. For standard
+Liquid Photoimageable (LPI) epoxy silkscreen, the absolute minimum line
+width for legibility is 4 mils (0.10 mm), though 5 to 6 mils (0.127 mm
+to 0.15 mm) is the industry standard for reliable clarity. Direct Legend
+Printing (DLP), an inkjet-based technology, allows for finer tolerances,
+achieving legible results down to 3 mils (0.075 mm), while manual epoxy
+screen printing requires at least 6 to 8 mils (0.15 mm to 0.20 mm) to
+prevent ink bleeding and text blurring.</p>
+<h3 id="lpi-epoxy-silkscreen-minimums">LPI Epoxy Silkscreen
+Minimums</h3>
+<p>Liquid Photoimageable (LPI) silkscreen is the most common method used
+in modern PCB fabrication. It uses a photographic process to expose and
+develop epoxy ink across the entire board.</p>
+<ul>
+<li><strong>Standard Line Width:</strong> 5 mils to 6 mils (0.127 mm to
+0.152 mm). This guarantees crisp edges and prevents the ink from flaking
+off during the development process.</li>
+<li><strong>Absolute Minimum Line Width:</strong> 4 mils (0.10 mm).
+Lines thinner than 4 mils often lack sufficient surface area to adhere
+properly to the solder mask, causing the text to wash away or become
+broken during manufacturing.</li>
+<li><strong>Minimum Character Height:</strong> 30 mils to 35 mils (0.76
+mm to 0.89 mm). At a 4-mil or 5-mil stroke width, characters shorter
+than 30 mils will have their internal loops (such as in the letters "A",
+"B", "8", and "0") fill in with ink, rendering them unreadable.</li>
+</ul>
+<h3 id="direct-legend-printing-inkjet-minimums">Direct Legend Printing
+(Inkjet) Minimums</h3>
+<p>Direct Legend Printing (DLP) uses specialized inkjet printers to
+apply acrylic or UV-curable ink directly onto the PCB surface from
+digital CAD data. Because it does not rely on mesh screens or
+photographic films, it achieves higher precision.</p>
+<ul>
+<li><strong>Standard Line Width:</strong> 4 mils (0.10 mm). This width
+provides high contrast and durability without risking ink spread.</li>
+<li><strong>Absolute Minimum Line Width:</strong> 3 mils (0.075 mm).
+High-end inkjet systems can reliably print 3-mil lines, making this
+method ideal for high-density interconnect (HDI) boards with tightly
+packed 0201 or 01005 metric components.</li>
+<li><strong>Minimum Character Height:</strong> 20 mils to 25 mils (0.50
+mm to 0.635 mm). Because inkjet droplets are precisely controlled,
+smaller text resists bleeding into itself, keeping reference designators
+legible at reduced scales.</li>
+</ul>
+<h3 id="manual-screen-printing-epoxy-minimums">Manual Screen Printing
+(Epoxy) Minimums</h3>
+<p>Traditional manual silkscreen pushes epoxy ink through a polyester or
+stainless-steel mesh stencil using a squeegee. This is the least precise
+method and is typically reserved for low-cost, low-density boards.</p>
+<ul>
+<li><strong>Standard Line Width:</strong> 7 mils to 8 mils (0.178 mm to
+0.20 mm).</li>
+<li><strong>Absolute Minimum Line Width:</strong> 6 mils (0.15 mm).
+Anything thinner than 6 mils cannot reliably pass through the mesh
+openings of the stencil, resulting in incomplete characters.</li>
+<li><strong>Minimum Character Height:</strong> 40 mils to 50 mils (1.0
+mm to 1.27 mm). The heavy deposition of wet epoxy causes significant ink
+slump (spreading), requiring large characters so the text remains
+discernible after thermal curing.</li>
+</ul>
+<h3 id="crucial-aspect-ratios-and-spacing-rules">Crucial Aspect Ratios
+and Spacing Rules</h3>
+<p>Line width alone does not guarantee legibility; the relationship
+between the stroke width, character height, and surrounding PCB features
+dictates the final quality.</p>
+<ul>
+<li><strong>Width-to-Height Ratio:</strong> Maintain a stroke
+width-to-character height ratio of approximately 1:6 or 1:7. For
+example, a 5-mil line width pairs best with a 30-mil to 35-mil character
+height. Using a 6-mil line width on a 25-mil tall character will result
+in a bold, unreadable blob.</li>
+<li><strong>Color Considerations:</strong> White ink provides the
+highest contrast and uses smaller pigment particles, allowing for the
+minimum line widths listed above. Yellow works similarly well. Black
+ink—often used on white solder masks—tends to bleed more, requiring you
+to add 1 mil to the minimum line width.</li>
+<li><strong>Pad and Via Clearance:</strong> Keep all silkscreen lines at
+least 5 mils to 6 mils (0.127 mm to 0.15 mm) away from exposed copper
+pads and via holes. If a designator encroaches on a pad, the
+fabricator's automated software will "clip" (erase) that portion of the
+text to ensure solderability, cutting off parts of the letters and
+ruining legibility.</li>
+<li><strong>Surface Flatness:</strong> Avoid placing small reference
+designators over transitions, such as the edge of a copper trace under
+the solder mask or over plugged vias. The uneven topography causes epoxy
+pooling and inkjet droplet deflection, distorting fine line widths.</li>
+</ul></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/minimum-line-widths-for-legible-pcb-silkscreen-designators';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

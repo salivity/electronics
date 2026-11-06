@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Semiconductor Curve Tracers Plot Transistor Family Curves - electronics</title>
+    <meta name="description" content="This article explains the operational mechanics of semiconductor curve tracers in failure-analysis electronics. Specifically, it details how these instruments simultaneously sweep collector voltage and step base current to generate characteristic transist">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-semiconductor-curve-tracers-plot-transistor-family-curves">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Semiconductor Curve Tracers Plot Transistor Family Curves - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-semiconductor-curve-tracers-plot-transistor-family-curves" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains the operational mechanics of semiconductor curve tracers in failure-analysis electronics. Specifically, it details how these instruments simultaneously sweep collector voltage and step base current to generate characteristic transist" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="how-semiconductor-curve-tracers-plot-transistor-family-curves">How
+Semiconductor Curve Tracers Plot Transistor Family Curves</h1>
+<p>This article explains the operational mechanics of semiconductor
+curve tracers in failure-analysis electronics. Specifically, it details
+how these instruments simultaneously sweep collector voltage and step
+base current to generate characteristic transistor family curves.
+Finally, it examines how engineers interpret these visual plots to
+pinpoint specific silicon degradation, leakage pathways, and
+catastrophic junction failures.</p>
+<h3 id="the-mechanics-of-the-collector-voltage-sweep">The Mechanics of
+the Collector Voltage Sweep</h3>
+<p>To map the output characteristics of a bipolar junction transistor
+(BJT), a curve tracer must evaluate how collector current (<span
+class="math inline">\(I_C\)</span>) responds to changes in
+collector-emitter voltage (<span class="math inline">\(V_{CE}\)</span>).
+The instrument achieves this through a collector supply circuit that
+generates a continuously varying voltage sweep, typically takes the form
+of a rectified sine wave or a precision sawtooth waveform.</p>
+<p>This voltage is applied directly between the collector and emitter
+terminals of the Device Under Test (DUT). The voltage starts at zero,
+increases to a user-defined peak value, and returns to zero. In the
+curve tracer's display system, this sweeping <span
+class="math inline">\(V_{CE}\)</span> is routed to the horizontal
+(X-axis) amplifier. Simultaneously, a current-sensing resistor in series
+with the collector measures the resulting <span
+class="math inline">\(I_C\)</span>, routing this value to the vertical
+(Y-axis) amplifier. A single sweep of the collector voltage produces one
+trace on the screen, representing the transistor's behavior under a
+single, static input condition.</p>
+<h3 id="stepping-the-base-current">Stepping the Base Current</h3>
+<p>A single trace is insufficient for comprehensive characterization;
+engineers need to see how the transistor behaves across its entire
+operational range. To achieve this, the curve tracer uses a staircase
+generator to supply a stepped current (<span
+class="math inline">\(I_B\)</span>) to the base terminal of the
+transistor.</p>
+<p>Instead of holding the base current constant, the instrument injects
+a precise, discrete level of current into the base for the duration of
+one complete collector voltage sweep. Once the collector voltage sweep
+returns to zero, the staircase generator increments the base current to
+the next predefined step. This synchronization is critical: the base
+current steps up <em>only</em> when the collector voltage is at zero,
+preventing thermal shock or transient switching damage to the DUT.</p>
+<h3 id="generating-the-family-of-curves">Generating the Family of
+Curves</h3>
+<p>When the collector sweep and base step generators operate in tandem,
+they create a "family" of curves. For example, if the instrument is
+configured for five steps of base current, the collector voltage will
+sweep from zero to its peak five separate times.</p>
+<p>During the first sweep, the base current is at step one, drawing the
+lowest trace on the display. During the second sweep, the base current
+increments to step two, causing the transistor to conduct more heavily
+and drawing a second trace higher up on the vertical <span
+class="math inline">\(I_C\)</span> axis. Because this cycle repeats
+rapidly—often tied to the 50 Hz or 60 Hz mains frequency or a fast
+internal oscillator—the persistence of the display (or digital memory
+buffer) makes all the traces appear simultaneously. The result is a
+complete map displaying the saturation region, the active linear region,
+and the cutoff region of the transistor.</p>
+<h3 id="application-in-failure-analysis-electronics">Application in
+Failure-Analysis Electronics</h3>
+<p>In failure analysis, comparing a suspect transistor's family of
+curves against a known-good specification quickly reveals physical
+defects inside the semiconductor package:</p>
+<ul>
+<li><strong>Open Bonds or Cracked Die:</strong> If the collector voltage
+sweeps across the X-axis but no vertical deflection occurs regardless of
+the base current step, the collector or base path has failed open.</li>
+<li><strong>Collector-Emitter Shorts:</strong> If the trace shoots
+vertically up the Y-axis immediately as <span
+class="math inline">\(V_{CE}\)</span> leaves zero—independent of the
+base steps—the junction is shorted, behaving like a low-value
+resistor.</li>
+<li><strong>Degraded Gain (<span
+class="math inline">\(h_{FE}\)</span>):</strong> The vertical spacing
+between the stepped traces represents the transistor's current gain. If
+the lines are compressed closely together or vary wildly in spacing, the
+silicon has suffered thermal degradation or contamination, resulting in
+nonlinear gain.</li>
+<li><strong>Junction Leakage (<span
+class="math inline">\(I_{CEO}\)</span>):</strong> By observing the
+bottom-most trace (where base current is stepped to zero), an analyst
+can measure leakage. If this baseline trace slopes upward or sits
+elevated above the zero-current axis, the transistor is leaking current
+between the collector and emitter.</li>
+<li><strong>Soft Breakdown:</strong> At the far right of the X-axis
+(high <span class="math inline">\(V_{CE}\)</span>), the traces should
+remain relatively flat until they hit the avalanche breakdown voltage,
+where they turn sharply upward. If the curves begin curving upward
+prematurely with a gradual slope, the device is suffering from "soft
+breakdown," often caused by surface contamination or channeling defects
+in the silicon.</li>
+</ul></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-semiconductor-curve-tracers-plot-transistor-family-curves';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

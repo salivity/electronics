@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Coaxial Cable Diameter Ratios Set 50-Ohm Impedance - electronics</title>
+    <meta name="description" content="The characteristic impedance of a coaxial cable in radio frequency (RF) electronics is fundamentally determined by its physical geometry and the insulating material inside it. Specifically, the ratio between the outer shield&#39;s inner diameter and the cente">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-coaxial-cable-diameter-ratios-set-50-ohm-impedance">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Coaxial Cable Diameter Ratios Set 50-Ohm Impedance - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-coaxial-cable-diameter-ratios-set-50-ohm-impedance" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The characteristic impedance of a coaxial cable in radio frequency (RF) electronics is fundamentally determined by its physical geometry and the insulating material inside it. Specifically, the ratio between the outer shield&#39;s inner diameter and the cente" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-coaxial-cable-diameter-ratios-set-50-ohm-impedance">How
+Coaxial Cable Diameter Ratios Set 50-Ohm Impedance</h1>
+<p>The characteristic impedance of a coaxial cable in radio frequency
+(RF) electronics is fundamentally determined by its physical geometry
+and the insulating material inside it. Specifically, the ratio between
+the outer shield's inner diameter and the center conductor's outer
+diameter dictates the balance of capacitance and inductance along the
+transmission line. To achieve the industry-standard 50-ohm impedance,
+engineers calculate a precise diameter ratio combined with the
+dielectric constant of the insulator, ensuring optimal power handling
+and minimal signal Attenuation. This article explains the physics,
+mathematical formulas, and practical engineering choices behind setting
+the 50-ohm impedance using coaxial diameter ratios.</p>
+<h2 id="the-physics-of-characteristic-impedance">The Physics of
+Characteristic Impedance</h2>
+<p>Characteristic impedance (<span class="math inline">\(Z_0\)</span>)
+is not a measure of DC resistance, which changes with cable length.
+Instead, it is the opposition a transmission line presents to an
+alternating current (RF signal) as it propagates down the line. This
+impedance is determined by the ratio of the cable's inductance per unit
+length (<span class="math inline">\(L\)</span>) to its capacitance per
+unit length (<span class="math inline">\(C\)</span>), expressed as:</p>
+<p><span class="math inline">\(Z_0 = \sqrt{\frac{L}{C}}\)</span></p>
+<p>Both inductance and capacitance are directly controlled by the
+physical dimensions of the conductors:</p>
+<ul>
+<li><strong>Capacitance (<span
+class="math inline">\(C\)</span>):</strong> The inner conductor and
+outer shield act like the plates of a cylindrical capacitor. Bringing
+them closer together (decreasing the diameter ratio) increases the
+capacitance, which lowers the impedance.</li>
+<li><strong>Inductance (<span
+class="math inline">\(L\)</span>):</strong> The magnetic field generated
+by the current exists in the space between the inner conductor and the
+outer shield. Moving the conductors further apart (increasing the
+diameter ratio) gives the magnetic field more space to form, increasing
+inductance and raising the impedance.</li>
+</ul>
+<p>Because the physical spacing affects both <span
+class="math inline">\(L\)</span> and <span
+class="math inline">\(C\)</span> simultaneously, the characteristic
+impedance becomes strictly dependent on the <em>ratio</em> of the
+diameters rather than the absolute size of the cable.</p>
+<h2 id="the-coaxial-impedance-formula">The Coaxial Impedance
+Formula</h2>
+<p>To calculate the exact impedance of a coaxial cable, RF engineers use
+the following logarithmic formula:</p>
+<p><span class="math inline">\(Z_0 = \frac{138}{\sqrt{\varepsilon_r}}
+\times \log_{10}\left(\frac{D}{d}\right)\)</span></p>
+<p>Where:</p>
+<ul>
+<li><strong><span class="math inline">\(Z_0\)</span></strong> is the
+characteristic impedance in ohms (<span
+class="math inline">\(\Omega\)</span>).</li>
+<li><strong><span class="math inline">\(D\)</span></strong> is the
+inside diameter of the outer shield.</li>
+<li><strong><span class="math inline">\(d\)</span></strong> is the
+outside diameter of the inner conductor.</li>
+<li><strong><span class="math inline">\(\varepsilon_r\)</span></strong>
+is the relative permittivity (dielectric constant) of the insulating
+material between the conductors.</li>
+</ul>
+<p>This formula proves that as long as the insulator material (<span
+class="math inline">\(\varepsilon_r\)</span>) remains the same, a
+massive rigid coaxial line used in a cell tower and a microscopic coax
+used inside a smartphone will both have a 50-ohm impedance if their
+<span class="math inline">\(D/d\)</span> ratio is identical.</p>
+<h2 id="calculating-the-ratio-for-50-ohms">Calculating the Ratio for 50
+Ohms</h2>
+<p>The exact ratio required to hit 50 ohms changes depending on the
+dielectric material used to separate the inner conductor from the outer
+shield. Different materials alter the speed of the RF wave and the
+capacitance between the conductors.</p>
+<h3 id="1-air-dielectric-varepsilon_r-approx-10">1. Air Dielectric
+(<span class="math inline">\(\varepsilon_r \approx 1.0\)</span>)</h3>
+<p>In high-power transmission lines where air is the primary insulator,
+the dielectric constant is 1.0. To find the required ratio for 50
+ohms:</p>
+<p><span class="math inline">\(50 = \frac{138}{\sqrt{1}} \times
+\log_{10}\left(\frac{D}{d}\right)\)</span></p>
+<p><span class="math inline">\(\frac{50}{138} = 0.3623 =
+\log_{10}\left(\frac{D}{d}\right)\)</span></p>
+<p><span class="math inline">\(\frac{D}{d} = 10^{0.3623} \approx
+2.3\)</span></p>
+<p>For an air-dielectric coaxial cable, the inner surface of the outer
+shield must be <strong>2.3 times larger</strong> than the outer surface
+of the center conductor to create a 50-ohm environment.</p>
+<h3 id="2-solid-polyethylene-pe-dielectric-varepsilon_r-approx-225">2.
+Solid Polyethylene (PE) Dielectric (<span
+class="math inline">\(\varepsilon_r \approx 2.25\)</span>)</h3>
+<p>Standard cables like RG-58 or RG-213 use solid polyethylene, which
+has a dielectric constant of about 2.25. Because the plastic increases
+capacitance, the conductors must be spaced further apart to raise the
+impedance back up to 50 ohms.</p>
+<p><span class="math inline">\(50 = \frac{138}{\sqrt{2.25}} \times
+\log_{10}\left(\frac{D}{d}\right)\)</span></p>
+<p><span class="math inline">\(50 = \frac{138}{1.5} \times
+\log_{10}\left(\frac{D}{d}\right)\)</span></p>
+<p><span class="math inline">\(50 = 92 \times
+\log_{10}\left(\frac{D}{d}\right)\)</span></p>
+<p><span class="math inline">\(\frac{50}{92} = 0.5435 =
+\log_{10}\left(\frac{D}{d}\right)\)</span></p>
+<p><span class="math inline">\(\frac{D}{d} = 10^{0.5435} \approx
+3.5\)</span></p>
+<p>For solid PE cables, the outer shield diameter must be <strong>3.5
+times larger</strong> than the inner conductor.</p>
+<h3 id="3-solid-ptfe-teflon-dielectric-varepsilon_r-approx-21">3. Solid
+PTFE (Teflon) Dielectric (<span class="math inline">\(\varepsilon_r
+\approx 2.1\)</span>)</h3>
+<p>Using the same math for PTFE, a common material in high-frequency,
+low-loss cables, the required <span class="math inline">\(D/d\)</span>
+ratio comes out to approximately <strong>3.35</strong>.</p>
+<h2 id="why-50-ohms-is-the-rf-standard">Why 50 Ohms is the RF
+Standard</h2>
+<p>The 50-ohm value is not arbitrary; it is a calculated engineering
+compromise derived directly from testing different <span
+class="math inline">\(D/d\)</span> ratios in air-filled coaxial lines
+during the 1930s:</p>
+<ul>
+<li><strong>Maximum Power Handling (~30 Ohms):</strong> If the center
+conductor is made thicker (a <span class="math inline">\(D/d\)</span>
+ratio of 1.65 in air), the cable can handle maximum voltage and power
+without arcing. This occurs at 30 ohms.</li>
+<li><strong>Lowest Signal Loss (~77 Ohms):</strong> If the center
+conductor is made thinner (a <span class="math inline">\(D/d\)</span>
+ratio of 3.59 in air), the cable experiences the lowest possible signal
+attenuation over distance. This occurs at 77 ohms (the reason 75-ohm
+cable is used for low-power, long-distance video and cable TV).</li>
+</ul>
+<p>For general RF electronics, which require both transmitting high
+power and receiving weak signals with low loss, the arithmetic mean
+between 30 ohms and 77 ohms is 53.5 ohms. Early engineers rounded this
+to 50 ohms, locking in the standard <span
+class="math inline">\(D/d\)</span> ratios used in RF manufacturing
+today.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-coaxial-cable-diameter-ratios-set-50-ohm-impedance';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Timer Peripherals Generate PWM for LEDs and Motors - electronics</title>
+    <meta name="description" content="Timer peripherals in microcontrollers generate Pulse-Width Modulation (PWM) signals by utilizing internal counters and comparators to rapidly switch digital output pins between high and low states. This article provides a comprehensive overview of how the">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-timer-peripherals-generate-pwm-for-le-ds-and-motors">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Timer Peripherals Generate PWM for LEDs and Motors - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-timer-peripherals-generate-pwm-for-le-ds-and-motors" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Timer peripherals in microcontrollers generate Pulse-Width Modulation (PWM) signals by utilizing internal counters and comparators to rapidly switch digital output pins between high and low states. This article provides a comprehensive overview of how the" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-timer-peripherals-generate-pwm-for-leds-and-motors">How
+Timer Peripherals Generate PWM for LEDs and Motors</h1>
+<p>Timer peripherals in microcontrollers generate Pulse-Width Modulation
+(PWM) signals by utilizing internal counters and comparators to rapidly
+switch digital output pins between high and low states. This article
+provides a comprehensive overview of how these hardware timers configure
+frequency and duty cycle, the specific mechanisms behind compare match
+registers, and how the resulting variable duty-cycle signals effectively
+control the brightness of LEDs and the speed of electric motors without
+overburdening the main processor.</p>
+<h2 id="the-core-mechanism-of-timer-peripherals">The Core Mechanism of
+Timer Peripherals</h2>
+<p>At the heart of PWM generation is the hardware timer peripheral.
+Unlike software-generated delays that block the central processing unit
+(CPU), a timer peripheral operates independently in the background. It
+relies on three primary components to create a PWM signal:</p>
+<ol type="1">
+<li><strong>The Counter Register:</strong> This register increments (or
+decrements) continuously based on a clock source. The speed at which it
+counts is determined by the microcontroller's system clock divided by a
+programmable prescaler.</li>
+<li><strong>The Auto-Reload Register (Period Register):</strong> This
+defines the maximum value the counter can reach before resetting to
+zero. This value sets the total period, and consequently the frequency,
+of the PWM signal.</li>
+<li><strong>The Capture/Compare Register:</strong> This holds a specific
+threshold value that sits between zero and the Auto-Reload value. It
+dictates the exact moment the output signal changes state, which
+establishes the duty cycle.</li>
+</ol>
+<h2 id="generating-the-variable-duty-cycle">Generating the Variable Duty
+Cycle</h2>
+<p>A PWM signal consists of a repeating cycle where the voltage is high
+(on) for a fraction of the time and low (off) for the remainder. The
+percentage of time the signal remains high during one complete period is
+called the duty cycle.</p>
+<p>The timer peripheral generates this signal through a continuous
+comparison process:</p>
+<ul>
+<li><strong>Cycle Start:</strong> When the timer counter starts at zero,
+the microcontroller sets the corresponding physical output pin to a
+logic HIGH state.</li>
+<li><strong>Compare Match:</strong> As the counter increments with each
+clock tick, comparator hardware constantly checks if the counter value
+equals the value stored in the Capture/Compare Register. When a match
+occurs, the hardware immediately forces the output pin to a logic LOW
+state.</li>
+<li><strong>Period Reset:</strong> The counter continues to increment
+until it hits the value in the Auto-Reload Register. At this point, an
+overflow condition occurs. The counter resets back to zero, the output
+pin is driven HIGH again, and the cycle repeats.</li>
+</ul>
+<p>To make the duty cycle variable, the microcontroller's software
+simply writes a new value to the Capture/Compare Register. If the
+Auto-Reload Register is set to 100, setting the Compare Register to 25
+results in a 25% duty cycle. Changing the Compare Register to 80
+dynamically shifts the signal to an 80% duty cycle on the next
+cycle.</p>
+<h2 id="dimming-leds-with-pwm">Dimming LEDs with PWM</h2>
+<p>Light Emitting Diodes (LEDs) are current-driven semiconductor
+devices. Attempting to dim an LED by reducing its analog voltage results
+in poor control, color shifting, and sudden drop-offs when the voltage
+falls below the diode's forward voltage threshold.</p>
+<p>Timer-generated PWM solves this by turning the LED fully on and fully
+off at a frequency too fast for the human eye to detect—typically above
+100 Hz, though frequencies in the kilohertz range are commonly used to
+eliminate any perceptible flicker.</p>
+<p>Because the human eye integrates light over time, it perceives the
+average power delivered to the LED rather than the rapid flashing. When
+the timer peripheral decreases the Compare Register value, the "on" time
+shrinks. A 10% duty cycle means the LED is only lit for one-tenth of
+each cycle, tricking the brain into seeing a dimly lit LED, while a 90%
+duty cycle appears nearly at full brightness.</p>
+<h2 id="driving-motors-with-pwm">Driving Motors with PWM</h2>
+<p>Electric motors, particularly brushed DC motors, require significant
+current to overcome inertia and maintain rotation. Using a variable
+resistor to control motor speed wastes massive amounts of energy as
+heat. PWM provides a high-efficiency alternative by using the timer
+output to switch a power transistor (such as a MOSFET) fully on or fully
+off.</p>
+<p>When driving a motor, the physical mass of the rotor and the
+inductance of the motor windings act as a natural low-pass filter.</p>
+<ul>
+<li><strong>Mechanical Inertia:</strong> The rotor cannot instantly
+start and stop thousands of times per second. Instead, it responds to
+the average voltage applied over time. A 50% duty cycle from a 12V
+supply results in the motor behaving as if it is connected to a
+continuous 6V source.</li>
+<li><strong>Inductive Smoothing:</strong> The motor's coils resist rapid
+changes in current. During the "on" phase of the PWM cycle, energy
+builds up in the magnetic field of the windings. During the "off" phase,
+this magnetic field collapses and continues to push current through the
+circuit (Typically routed through a flyback diode), smoothing out the
+current flow.</li>
+</ul>
+<p>For motors, timer peripherals are usually configured to generate PWM
+frequencies between 15 kHz and 25 kHz. If the frequency is set too low
+(within the human hearing range of 20 Hz to 20 kHz), the magnetic forces
+inside the motor will cause the windings to vibrate audibly, resulting
+in an annoying whining sound. By adjusting the timer's prescaler and
+Auto-Reload Register, engineers push the PWM frequency into the
+ultrasonic range, ensuring silent and efficient motor speed control.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-timer-peripherals-generate-pwm-for-le-ds-and-motors';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

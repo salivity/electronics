@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacked Microvia Reliability Risks Under Thermal Cycling - electronics</title>
+    <meta name="description" content="This article examines the critical reliability risks that arise when copper-filled stacked microvias in multilayer electronics are subjected to repeated thermal expansion cycles. As high-density interconnect (HDI) printed circuit boards (PCBs) become incr">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/stacked-microvia-reliability-risks-under-thermal-cycling">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Stacked Microvia Reliability Risks Under Thermal Cycling - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/stacked-microvia-reliability-risks-under-thermal-cycling" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article examines the critical reliability risks that arise when copper-filled stacked microvias in multilayer electronics are subjected to repeated thermal expansion cycles. As high-density interconnect (HDI) printed circuit boards (PCBs) become incr" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="stacked-microvia-reliability-risks-under-thermal-cycling">Stacked
+Microvia Reliability Risks Under Thermal Cycling</h1>
+<p>This article examines the critical reliability risks that arise when
+copper-filled stacked microvias in multilayer electronics are subjected
+to repeated thermal expansion cycles. As high-density interconnect (HDI)
+printed circuit boards (PCBs) become increasingly compact, stacked
+microvias are frequently used to route signals vertically across
+multiple layers. However, cyclical temperature fluctuations expose these
+structures to severe mechanical stress due to material property
+mismatches. Below, we explore the primary failure mechanisms—including
+interfacial delamination, copper fatigue, and dielectric cracking—and
+how they lead to intermittent or catastrophic circuit failure.</p>
+<h2 id="coefficient-of-thermal-expansion-cte-mismatch">Coefficient of
+Thermal Expansion (CTE) Mismatch</h2>
+<p>The root cause of almost all thermal cycling failures in stacked
+microvias is the mismatch in the Coefficient of Thermal Expansion (CTE)
+between the copper and the surrounding dielectric material
+(resin/fiberglass). Along the vertical Z-axis, the dielectric material
+expands and contracts at a rate significantly higher than that of the
+electroplated copper—often three to four times higher, especially when
+temperatures exceed the dielectric's glass transition temperature
+(Tg).</p>
+<p>When stacked microvias are filled with solid copper, they form a
+rigid vertical pillar spanning multiple layers. As the PCB heats up, the
+surrounding laminate expands upward and downward much faster than the
+rigid copper column, placing immense tensile stress on the microvia
+stack. When the board cools, the laminate contracts, subjecting the
+stack to compressive stress.</p>
+<h2 id="interfacial-pullout-and-separation">Interfacial Pullout and
+Separation</h2>
+<p>The weakest point in a stacked microvia structure is the interface
+between the bottom of the upper microvia and the top target pad (capture
+pad) of the lower microvia. Because stacked microvias place multiple
+copper-to-copper interfaces in a single vertical line, the mechanical
+stress concentrates heavily at these junctions.</p>
+<p>Repeated thermal expansion cycles pull these interfaces apart,
+leading to interfacial separation or "via pullout." This issue is
+frequently exacerbated by imperfect manufacturing processes. If
+minuscule amounts of organic residue from laser drilling remain on the
+target pad (due to inadequate desmear processes), the electroless copper
+seed layer cannot form a strong metallurgical bond with the underlying
+pad. Under thermal stress, this weak boundary cleanly separates,
+resulting in an open circuit.</p>
+<h2 id="barrel-fatigue-and-corner-cracking">Barrel Fatigue and Corner
+Cracking</h2>
+<p>Continuous alternating between tensile and compressive stress during
+thermal cycling causes metal fatigue within the copper itself. Unlike
+staggered microvias, which distribute vertical stress across separated
+XY coordinates, stacked microvias concentrate the Z-axis strain directly
+through a single vertical column.</p>
+<p>Over time, the ductility of the electroplated copper is exhausted.
+Micro-voids within the copper fill begin to coalesce, leading to fatigue
+cracks. These cracks typically initiate at the corners of the microvia
+or along the walls of the microvia barrel, eventually propagating
+horizontally through the entire copper fill and severing the electrical
+connection.</p>
+<h2 id="dielectric-cracking-and-pad-cratering">Dielectric Cracking and
+Pad Cratering</h2>
+<p>When a stacked microvia is filled with copper, its high rigidity
+prevents it from absorbing the mechanical energy generated during
+thermal cycling. If the copper-to-copper bonds within the stack are
+strong enough to resist separation, the stress is transferred directly
+into the surrounding dielectric material and the copper pads anchoring
+the stack.</p>
+<p>This transferred stress can exceed the fracture toughness of the
+resin system, causing radial cracks in the dielectric layer—a phenomenon
+similar to pad cratering. Once the dielectric cracks, it creates a
+pathway for moisture and contaminants to enter, which can lead to
+conductive anodic filament (CAF) growth and short-circuiting between
+adjacent conductors.</p>
+<h2 id="intermittent-electrical-failures">Intermittent Electrical
+Failures</h2>
+<p>One of the most dangerous risks associated with thermally stressed
+stacked microvias is the occurrence of intermittent failures. During the
+heating phase of a thermal cycle, the expanding dielectric pulls a
+cracked or delaminated microvia apart, breaking the electrical
+connection. However, as the electronic device cools down, the dielectric
+contracts and presses the separated copper surfaces back together,
+restoring electrical continuity.</p>
+<p>Because the circuit appears functional at room temperature during
+standard diagnostic testing, these thermally induced intermittent opens
+are notoriously difficult to detect and troubleshoot, posing severe
+risks for mission-critical aerospace, automotive, and medical
+electronics.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/stacked-microvia-reliability-risks-under-thermal-cycling';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

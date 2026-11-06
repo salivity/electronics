@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximum UART Clock Drift Tolerance Before Framing Errors - electronics</title>
+    <meta name="description" content="In asynchronous UART serial communication, the maximum total clock drift tolerance between a transmitter and a receiver is typically between 3.3% and 5% before framing errors corrupt data. Because UART lacks a shared clock line, both devices rely on indep">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/maximum-uart-clock-drift-tolerance-before-framing-errors">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Maximum UART Clock Drift Tolerance Before Framing Errors - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/maximum-uart-clock-drift-tolerance-before-framing-errors" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In asynchronous UART serial communication, the maximum total clock drift tolerance between a transmitter and a receiver is typically between 3.3% and 5% before framing errors corrupt data. Because UART lacks a shared clock line, both devices rely on indep" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="maximum-uart-clock-drift-tolerance-before-framing-errors">Maximum
+UART Clock Drift Tolerance Before Framing Errors</h1>
+<p>In asynchronous UART serial communication, the maximum total clock
+drift tolerance between a transmitter and a receiver is typically
+between 3.3% and 5% before framing errors corrupt data. Because UART
+lacks a shared clock line, both devices rely on independent internal
+oscillators to time the transmission and sampling of bits. If the clock
+frequencies of the two devices diverge beyond the calculated tolerance
+threshold, the receiver will sample the incoming voltage levels at the
+wrong moments. This article breaks down the exact mathematics of UART
+bit timing, how oversampling affects error margins, and the real-world
+factors that reduce the allowable clock drift in electronic designs.</p>
+<h3 id="how-uart-timing-and-synchronization-work">How UART Timing and
+Synchronization Work</h3>
+<p>Universal Asynchronous Receiver-Transmitter (UART) communication
+transmits data in frames. The most common configuration is 8N1: one
+start bit, eight data bits, no parity bit, and one stop bit, totaling 10
+bits per frame.</p>
+<p>The communication line normally sits at a high voltage level (idle).
+When the transmitter is ready to send data, it pulls the line low to
+create the start bit. The receiver detects this falling edge and uses it
+as a synchronization point. From that moment on, the receiver relies
+entirely on its own internal clock to count out the time intervals
+required to sample the center of each subsequent bit, ending with the
+stop bit.</p>
+<h3 id="the-ideal-5-clock-drift-calculation">The Ideal 5% Clock Drift
+Calculation</h3>
+<p>To remain error-free, the receiver must sample the final bit in the
+frame (the stop bit) before the bit period ends or before the next bit
+begins. Ideally, the receiver aims to sample each bit precisely at its
+midpoint (50% of the bit period).</p>
+<p>In a 10-bit frame (8N1), the timing calculation begins at the falling
+edge of the start bit:</p>
+<ul>
+<li><strong>Distance to the center of the Start Bit:</strong> 0.5 bit
+periods.</li>
+<li><strong>Distance from the center of the Start Bit to the center of
+the Stop Bit:</strong> 9.0 bit periods.</li>
+<li><strong>Total time elapsed to sample the Stop Bit:</strong> 9.5 bit
+periods.</li>
+</ul>
+<p>For the stop bit to be read correctly, the cumulative timing error
+over those 9.5 bit periods cannot drift by more than half a bit period
+(0.5 bits) in either direction (too fast or too slow).</p>
+<p>The ideal maximum tolerance is calculated as: Maximum Drift = (0.5
+bit periods) / (9.5 bit periods) = 0.0526, or
+<strong>5.26%</strong>.</p>
+<p>However, this 5.26% figure assumes perfect start-bit detection and
+infinite sampling resolution, which do not exist in practical digital
+hardware.</p>
+<h3 id="the-impact-of-16x-oversampling">The Impact of 16x
+Oversampling</h3>
+<p>Real-world UART receivers use an oversampling clock—most commonly
+running at 16 times the baud rate—to detect the start bit and locate the
+center of the data bits.</p>
+<p>Because the receiver checks the line only once every 1/16th of a bit
+period, there is an immediate uncertainty when detecting the falling
+edge of the start bit. The receiver might detect the edge immediately,
+or it might detect it up to 1/16th of a bit period (0.0625 bits)
+late.</p>
+<p>Furthermore, many UART peripherals sample three consecutive ticks
+around the center of the bit (ticks 7, 8, and 9 out of 16) and take a
+majority vote to filter out noise. This reduces the available margin of
+error from 8/16ths (0.5) of a bit down to 7/16ths (0.4375) or 6/16ths
+(0.375) of a bit.</p>
+<p>Recalculating the tolerance with 16x oversampling and majority
+voting:</p>
+<ul>
+<li><strong>Worst-case available margin:</strong> 6/16ths of a bit
+(0.375 bit periods).</li>
+<li><strong>Total time to the last sample in the Stop Bit:</strong> 9.5
+bit periods (152 ticks).</li>
+<li><strong>Practical Maximum Drift:</strong> 0.375 / 9.5 = 0.0394, or
+<strong>3.94%</strong>.</li>
+</ul>
+<p>If a UART frame includes a parity bit (making an 11-bit frame), the
+total time extends to 10.5 bit periods, further reducing the maximum
+tolerance to roughly <strong>3.57%</strong>.</p>
+<h3 id="shared-error-budget-between-transmitter-and-receiver">Shared
+Error Budget Between Transmitter and Receiver</h3>
+<p>The calculated tolerance (roughly 3.5% to 4% in practical hardware)
+represents the <strong>total combined drift</strong> allowed between the
+two communicating devices. It is not the allowance for a single
+device.</p>
+<p>If the transmitter's clock is running 2% fast, and the receiver's
+clock is running 2% slow, the combined relative drift is 4%. This
+scenario will push a standard 8N1 UART link to the absolute brink of
+failure, resulting in framing errors (where the stop bit is not detected
+as high) and corrupted data bits. Therefore, engineers generally
+restrict each individual device to half of the total budget—meaning a
+single microcontroller's clock should not deviate by more than
+<strong>±1.5% to ±2%</strong> from the target baud rate.</p>
+<h3 id="real-world-factors-that-further-reduce-tolerance">Real-World
+Factors That Further Reduce Tolerance</h3>
+<p>Several physical factors eat into the timing margin, requiring even
+tighter clock accuracy in production electronics:</p>
+<ol type="1">
+<li><strong>Baud Rate Generator Rounding:</strong> Microcontrollers
+divide their main system clock (e.g., 16 MHz) down to match the desired
+baud rate (e.g., 115200 bps). Often, the math does not divide evenly,
+resulting in a permanent base frequency error before temperature or
+component tolerances are even considered.</li>
+<li><strong>Capacitive Slew Rate:</strong> Long cables or
+high-capacitance traces cause the voltage transitions (rising and
+falling edges) to slope rather than change instantly. This shifts the
+point at which the receiver registers a logic high or logic low,
+effectively shrinking the valid sampling window.</li>
+<li><strong>Oscillator Selection:</strong> Ceramic resonators and
+internal RC oscillators drift significantly with changes in ambient
+temperature and supply voltage, sometimes exceeding ±3% on their own.
+For reliable UART communication, especially at high baud rates or
+extreme temperatures, quartz crystal oscillators (which typically have a
+stability of ±0.005% to ±0.05%) are preferred.</li>
+</ol></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/maximum-uart-clock-drift-tolerance-before-framing-errors';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

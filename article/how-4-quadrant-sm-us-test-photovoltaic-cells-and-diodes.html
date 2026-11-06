@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How 4-Quadrant SMUs Test Photovoltaic Cells and Diodes - electronics</title>
+    <meta name="description" content="This article provides a comprehensive breakdown of how four-quadrant source measure units (SMUs) operate to characterize photovoltaic cells and diodes. It explains the fundamentals of the four-quadrant operational matrix, details the internal electronic m">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-4-quadrant-sm-us-test-photovoltaic-cells-and-diodes">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How 4-Quadrant SMUs Test Photovoltaic Cells and Diodes - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-4-quadrant-sm-us-test-photovoltaic-cells-and-diodes" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a comprehensive breakdown of how four-quadrant source measure units (SMUs) operate to characterize photovoltaic cells and diodes. It explains the fundamentals of the four-quadrant operational matrix, details the internal electronic m" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-4-quadrant-smus-test-photovoltaic-cells-and-diodes">How
+4-Quadrant SMUs Test Photovoltaic Cells and Diodes</h1>
+<p>This article provides a comprehensive breakdown of how four-quadrant
+source measure units (SMUs) operate to characterize photovoltaic cells
+and diodes. It explains the fundamentals of the four-quadrant
+operational matrix, details the internal electronic mechanisms that
+allow an SMU to simultaneously source voltage while sinking current, and
+outlines how these capabilities are directly applied to extract critical
+performance parameters from semiconductor devices.</p>
+<h3 id="understanding-the-four-quadrant-matrix">Understanding the
+Four-Quadrant Matrix</h3>
+<p>Standard power supplies typically operate in only one quadrant: they
+output positive voltage and positive current to power a device. A
+four-quadrant SMU, however, acts as both a precision power supply and a
+dynamic electronic load, mixed with a high-resolution digital
+multimeter.</p>
+<p>The four quadrants are defined by the polarity of the voltage and
+current at the device terminals:</p>
+<ul>
+<li><strong>Quadrant I (+V, +I):</strong> Positive voltage and positive
+current. The SMU delivers power to the device (sourcing).</li>
+<li><strong>Quadrant II (-V, +I):</strong> Negative voltage and positive
+current. The SMU absorbs power from the device (sinking).</li>
+<li><strong>Quadrant III (-V, -I):</strong> Negative voltage and
+negative current. The SMU delivers power to the device in reverse
+polarity (sourcing).</li>
+<li><strong>Quadrant IV (+V, -I):</strong> Positive voltage and negative
+current. The SMU absorbs power from the device (sinking).</li>
+</ul>
+<h3 id="the-mechanics-of-sourcing-voltage-and-sinking-current">The
+Mechanics of Sourcing Voltage and Sinking Current</h3>
+<p>To simultaneously source voltage and sink current, the SMU operates
+in Quadrant II or Quadrant IV. Internally, a four-quadrant SMU utilizes
+a bidirectional, bipolar output stage, typically built around a linear
+Class-AB amplifier combined with precision feedback loops.</p>
+<p>When an SMU is programmed to source a specific positive voltage
+across an active device—such as an illuminated solar cell—the device
+itself generates a current that wants to flow out of its positive
+terminal and into the SMU's positive terminal.</p>
+<p>Here is how the SMU handles this simultaneously:</p>
+<ol type="1">
+<li><strong>Voltage Clamping:</strong> The SMU's internal operational
+amplifier uses a voltage-control feedback loop to lock the output
+terminals at the exact programmed voltage.</li>
+<li><strong>Current Absorption (Sinking):</strong> Because the external
+device is pushing current into the SMU, the voltage at the terminal
+naturally tries to rise above the programmed setpoint. The SMU’s
+feedback loop immediately detects this micro-increase. To maintain the
+exact voltage setpoint, the output stage transistors adjust their bias
+to draw the incoming current inside the SMU, routing it safely to the
+internal power supply return (ground) or dissipating it as heat across
+internal power transistors.</li>
+<li><strong>Simultaneous Measurement:</strong> As this current is drawn
+into the SMU to keep the voltage stable, it passes through precision
+internal shunt resistors or feedback ammeters. This allows the SMU to
+measure the exact amount of current it is sinking while holding the
+sourced voltage steady.</li>
+</ol>
+<h3 id="characterizing-photovoltaic-pv-cells">Characterizing
+Photovoltaic (PV) Cells</h3>
+<p>Photovoltaic cells are active devices when exposed to light, meaning
+they generate power rather than consume it. To characterize a solar
+cell, engineers must sweep the voltage across the cell and measure the
+resulting current to generate an I-V (Current-Voltage) curve.</p>
+<p>During this test, the SMU operates primarily in <strong>Quadrant IV
+(+V, -I)</strong>:</p>
+<ul>
+<li><strong>Short-Circuit Current (<span
+class="math inline">\(I_{sc}\)</span>):</strong> The SMU sources 0 V
+(acting as a short circuit) and sinks the maximum current generated by
+the illuminated cell.</li>
+<li><strong>Maximum Power Point (<span
+class="math inline">\(P_{max}\)</span>):</strong> The SMU sweeps the
+sourced positive voltage upward. As it does, it continuously sinks the
+current coming from the cell and measures it. The point where the
+product of sourced voltage and sunk current is highest represents the
+cell's maximum efficiency.</li>
+<li><strong>Open-Circuit Voltage (<span
+class="math inline">\(V_{oc}\)</span>):</strong> The SMU continues
+increasing the sourced positive voltage until the voltage matches the
+cell's internal potential. At this exact point, current stops flowing (0
+A), and the SMU measures the open-circuit voltage.</li>
+</ul>
+<p>Without the ability to sink current while forcing a positive voltage,
+the SMU would not be able to hold the solar cell at the specific voltage
+biases required to map its power generation capabilities.</p>
+<h3 id="characterizing-diodes">Characterizing Diodes</h3>
+<p>Standard diodes, Zener diodes, and LEDs are passive devices, meaning
+they generally consume power. However, a complete characterization
+requires sweeping the device from deep reverse bias to forward
+conduction, utilizing <strong>Quadrants I and III</strong>.</p>
+<ul>
+<li><strong>Forward Bias (Quadrant I: +V, +I):</strong> The SMU sources
+a positive voltage and sources positive current into the diode's anode.
+The SMU measures the current to determine the forward voltage drop
+(<span class="math inline">\(V_f\)</span>) and series resistance.</li>
+<li><strong>Reverse Bias and Breakdown (Quadrant III: -V, -I):</strong>
+To test reverse leakage current and breakdown voltage, the SMU sources a
+negative voltage. This forces a small negative current to flow through
+the diode. Both voltage and current are negative, meaning the SMU is
+actively delivering power in reverse polarity.</li>
+<li><strong>Photodiodes (Quadrant IV or II):</strong> If the diode being
+tested is a photodiode exposed to light, it acts like a miniature solar
+cell. Engineers will apply a reverse bias or a small forward bias while
+the photodiode generates photocurrent. The SMU must then sink this
+generated current while maintaining the bias voltage to measure the
+photodiode's responsivity and quantum efficiency.</li>
+</ul></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-4-quadrant-sm-us-test-photovoltaic-cells-and-diodes';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

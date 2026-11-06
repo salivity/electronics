@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How ESCs Commutate Sensorless BLDC Motors Using Back-EMF - electronics</title>
+    <meta name="description" content="This article explains the technical process of how three-phase electronic speed controllers (ESCs) drive sensorless brushless DC (BLDC) motors in drone electronics. By monitoring Back Electromotive Force (Back-EMF) and detecting zero-crossing events on un">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-es-cs-commutate-sensorless-bldc-motors-using-back-emf">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How ESCs Commutate Sensorless BLDC Motors Using Back-EMF - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-es-cs-commutate-sensorless-bldc-motors-using-back-emf" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains the technical process of how three-phase electronic speed controllers (ESCs) drive sensorless brushless DC (BLDC) motors in drone electronics. By monitoring Back Electromotive Force (Back-EMF) and detecting zero-crossing events on un" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-escs-commutate-sensorless-bldc-motors-using-back-emf">How
+ESCs Commutate Sensorless BLDC Motors Using Back-EMF</h1>
+<p>This article explains the technical process of how three-phase
+electronic speed controllers (ESCs) drive sensorless brushless DC (BLDC)
+motors in drone electronics. By monitoring Back Electromotive Force
+(Back-EMF) and detecting zero-crossing events on unpowered motor
+windings, the ESC determines the exact rotor position without physical
+Hall effect sensors. The following sections break down the mechanics of
+three-phase trapezoidal commutation, the physics of Back-EMF, the
+detection of zero crossings, and the startup sequence required to
+initiate sensorless rotation.</p>
+<h2 id="three-phase-trapezoidal-commutation">Three-Phase Trapezoidal
+Commutation</h2>
+<p>Brushless DC motors used in drones rely on three sets of
+electromagnetic windings, known as phases (typically labeled A, B, and
+C), and a permanent magnet rotor. To make the rotor spin, the ESC must
+energize these phases in a specific sequence, creating a rotating
+magnetic field that pulls the rotor magnets along.</p>
+<p>In standard six-step trapezoidal commutation, the ESC drives current
+through only two of the three phases at any given microsecond. One phase
+is pulled high (connected to positive voltage), one phase is pulled low
+(connected to ground), and the third phase is left unpowered, or
+"floating." A complete electrical revolution consists of six distinct
+switching steps. Moving from one step to the next is called commutation.
+For the motor to run efficiently and produce maximum torque, the ESC
+must commutate at the exact moment the rotor reaches a specific angle
+relative to the stator windings.</p>
+<h2 id="understanding-back-emf">Understanding Back-EMF</h2>
+<p>Without physical sensors inside the motor to report the rotor's
+position, the ESC uses the motor itself as a sensor. As the permanent
+magnets on the rotor spin past the stator coils, they induce a voltage
+in those coils through electromagnetic induction. This induced voltage
+is called Back Electromotive Force (Back-EMF), as it opposes the main
+voltage applied by the ESC.</p>
+<p>Because standard commutation only powers two phases at a time, the
+third floating phase acts as a temporary voltage probe. While current
+flows through the two active phases to generate torque, the ESC's
+microcontroller monitors the voltage induced on the floating phase. As
+the rotor magnets pass the floating coil, the Back-EMF voltage on that
+phase rises or falls depending on the polarity of the passing
+magnet.</p>
+<h2 id="detecting-the-zero-crossing-event">Detecting the Zero-Crossing
+Event</h2>
+<p>The core of sensorless commutation is finding the "zero-crossing"
+point on the floating phase. In a three-phase motor, the three windings
+are electrically connected at a central point, creating a virtual
+neutral voltage. This virtual neutral voltage is mathematically equal to
+half of the battery supply voltage.</p>
+<p>As the rotor spins, the Back-EMF voltage on the floating phase
+transitions from high to low, or low to high, depending on the
+commutation step. The exact moment the voltage on the floating phase
+equals the virtual neutral voltage is called the zero crossing.</p>
+<p>The ESC detects this event using two primary methods:</p>
+<ul>
+<li><strong>Analog Comparators:</strong> Voltage dividers scale down the
+voltage from all three phases to create a physical reference point
+representing the virtual neutral. An analog comparator triggers an
+interrupt when the floating phase voltage crosses this reference.</li>
+<li><strong>Analog-to-Digital Converters (ADC):</strong> The
+microcontroller rapidly samples the voltage of the floating phase and
+calculates the zero crossing digitally by comparing it against half of
+the known bus voltage.</li>
+</ul>
+<h2 id="commutation-timing-and-filtering">Commutation Timing and
+Filtering</h2>
+<p>The zero-crossing event does not mean the ESC should switch phases
+immediately. In a three-phase motor, a full electrical cycle is 360
+degrees, meaning each of the six commutation steps lasts 60 electrical
+degrees. The zero crossing occurs precisely in the middle of a
+commutation step, when the rotor is 30 electrical degrees away from the
+optimal switching point.</p>
+<p>Once the ESC detects the zero crossing, it calculates the current
+rotational speed of the motor based on the time elapsed since the
+previous zero crossing. It then sets an internal timer to wait for the
+rotor to travel the remaining 30 electrical degrees. When that timer
+expires, the ESC switches the MOSFETs to the next step in the sequence,
+turning off one phase, turning on the previously floating phase, and
+leaving a new phase floating to monitor for the next zero crossing.</p>
+<p>To ensure accuracy, the ESC must filter out high-frequency electrical
+noise caused by Pulse Width Modulation (PWM), which is used to control
+the motor's speed. ESCs use hardware low-pass filters or software
+blanking—a technique where the microcontroller only samples the floating
+phase during the microscopic windows when the PWM signal is actively
+driving the circuit, ignoring the noisy switching transitions.</p>
+<h2 id="the-startup-sequence">The Startup Sequence</h2>
+<p>Back-EMF is directly proportional to the rotational speed of the
+motor. When a drone motor is completely stopped, there is no magnetic
+movement, meaning there is zero Back-EMF. Without Back-EMF, the ESC is
+blind to the rotor's position and cannot use zero-crossing detection to
+start the motor.</p>
+<p>To overcome this, the ESC executes a three-stage startup
+sequence:</p>
+<ol type="1">
+<li><strong>Alignment:</strong> The ESC briefly energizes a specific
+pair of phases to lock the rotor into a known starting position.</li>
+<li><strong>Open-Loop Ramp:</strong> The ESC begins commutating the
+phases blindly using a pre-programmed, accelerating timing table. It
+forces the magnetic field to rotate, dragging the rotor along with
+it.</li>
+<li><strong>Closed-Loop Transition:</strong> As the rotor gains speed
+during the open-loop ramp, it begins generating measurable Back-EMF.
+Once the voltage spikes are strong enough for the comparators to
+reliably detect several consecutive zero crossings, the ESC switches to
+closed-loop operation, handing control entirely over to the Back-EMF
+feedback loop.</li>
+</ol></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-es-cs-commutate-sensorless-bldc-motors-using-back-emf';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

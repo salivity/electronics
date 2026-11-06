@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Do Bifilar Toroidal Common-Mode Chokes Work? - electronics</title>
+    <meta name="description" content="Bifilar-wound toroidal common-mode chokes are essential electronic components designed to filter out unwanted electromagnetic interference while allowing desired electrical signals to pass through without degradation. This article explains the mechanics o">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-do-bifilar-toroidal-common-mode-chokes-work">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Do Bifilar Toroidal Common-Mode Chokes Work? - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-do-bifilar-toroidal-common-mode-chokes-work" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Bifilar-wound toroidal common-mode chokes are essential electronic components designed to filter out unwanted electromagnetic interference while allowing desired electrical signals to pass through without degradation. This article explains the mechanics o" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-do-bifilar-toroidal-common-mode-chokes-work">How Do Bifilar
+Toroidal Common-Mode Chokes Work?</h1>
+<p>Bifilar-wound toroidal common-mode chokes are essential electronic
+components designed to filter out unwanted electromagnetic interference
+while allowing desired electrical signals to pass through without
+degradation. This article explains the mechanics of these specialized
+inductors, detailing how their unique parallel winding technique and
+circular core geometry manipulate magnetic fields. By understanding how
+these components differentiate between opposing differential currents
+and identical common-mode currents, you will learn how they effectively
+block high-frequency noise while leaving power and data signals
+completely unimpeded.</p>
+<h3 id="understanding-the-two-types-of-currents">Understanding the Two
+Types of Currents</h3>
+<p>To understand how a common-mode choke operates, it is first necessary
+to distinguish between the two types of electrical currents flowing
+through a system:</p>
+<ul>
+<li><strong>Differential-Mode Current:</strong> This is the intended
+signal or power flowing through the circuit. It travels toward the load
+on one wire (the supply line) and returns in the exact opposite
+direction on the second wire (the return line). At any given instant,
+the currents on these two wires are equal in magnitude but opposite in
+phase.</li>
+<li><strong>Common-Mode Current:</strong> This is unwanted
+high-frequency electrical noise, often picked up from external
+electromagnetic interference or generated by switching power supplies.
+Unlike differential signals, common-mode noise travels in the exact same
+direction on both wires simultaneously and finds its return path through
+a shared ground plane or parasitic capacitance.</li>
+</ul>
+<h3 id="the-mechanics-of-the-toroidal-core-and-bifilar-winding">The
+Mechanics of the Toroidal Core and Bifilar Winding</h3>
+<p>The physical construction of the choke is what allows it to separate
+these two currents. The component relies on two distinct structural
+features:</p>
+<ol type="1">
+<li><strong>The Toroidal Core:</strong> A toroid is a doughnut-shaped
+core typically made of ferrite or powdered iron. This closed-loop
+geometry is highly efficient because it contains the magnetic field
+entirely within the core material, preventing magnetic flux leakage and
+maximizing inductance.</li>
+<li><strong>Bifilar Winding:</strong> Instead of winding two separate
+coils on opposite sides of the ring, a bifilar winding places both
+insulated wires directly side-by-side, winding them together onto the
+core at the exact same time. Because the wires are physically adjacent
+throughout every turn, they experience the exact same magnetic
+environment. This creates near-perfect magnetic coupling between the two
+lines.</li>
+</ol>
+<h3 id="passing-differential-signals-unimpeded">Passing Differential
+Signals Unimpeded</h3>
+<p>When your intended differential-mode signal enters the bifilar-wound
+choke, the current flows into the first wire and out of the second wire.
+According to the right-hand rule of electromagnetism, a current flowing
+through a wire generates a magnetic field around it.</p>
+<p>Because the two wires are wound together in the same physical
+orientation, the current flowing toward the load generates a magnetic
+flux inside the toroidal core in one direction (for example, clockwise).
+Simultaneously, the equal and opposite return current generates an
+identical magnetic flux in the opposite direction
+(counter-clockwise).</p>
+<p>Because the bifilar winding keeps the wires tightly coupled, these
+two opposing magnetic fields occupy the exact same space inside the core
+and completely cancel each other out. With zero net magnetic flux in the
+core, the choke produces no inductance against the differential current.
+Consequently, the choke acts like a simple piece of wire, and the
+desired signal passes through unimpeded.</p>
+<h3 id="blocking-high-frequency-common-mode-noise">Blocking
+High-Frequency Common-Mode Noise</h3>
+<p>When high-frequency common-mode noise enters the choke, the physics
+change entirely. Because common-mode currents travel in the same
+direction on both wires at the same time, the magnetic fields they
+generate inside the toroidal core also point in the same direction.</p>
+<p>Instead of canceling out, the magnetic fluxes from both wires add
+together, creating a strong combined magnetic field within the ferrite
+core. This net magnetic flux induces a massive amount of inductance.</p>
+<p>In electronics, the opposition to alternating current offered by an
+inductor is called inductive reactance (<span
+class="math inline">\(X_L\)</span>), which is calculated using the
+formula <span class="math inline">\(X_L = 2\pi fL\)</span> (where <span
+class="math inline">\(f\)</span> is frequency and <span
+class="math inline">\(L\)</span> is inductance). Because both the
+inductance (<span class="math inline">\(L\)</span>) created by the
+additive fields and the frequency (<span
+class="math inline">\(f\)</span>) of the noise are very high, the choke
+presents an extremely high impedance (resistance to AC) exclusively to
+the common-mode current.</p>
+<p>Additionally, the ferrite material of the toroid becomes lossy at
+high frequencies. Instead of just reflecting the noise back toward the
+source, the core absorbs a significant portion of the high-frequency
+magnetic energy and dissipates it as a microscopic, harmless amount of
+heat. The noise is effectively blocked and eliminated, leaving only the
+clean differential signal to continue down the circuit.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-do-bifilar-toroidal-common-mode-chokes-work';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

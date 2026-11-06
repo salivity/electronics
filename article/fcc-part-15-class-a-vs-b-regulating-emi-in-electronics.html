@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FCC Part 15 Class A vs B: Regulating EMI in Electronics - electronics</title>
+    <meta name="description" content="This article provides a quick overview of how the Federal Communications Commission (FCC) Part 15 rules regulate unintentional radio-frequency (RF) emissions from digital clocks and switched-mode power supplies (SMPS). It explains why these internal elect">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/fcc-part-15-class-a-vs-b-regulating-emi-in-electronics">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="FCC Part 15 Class A vs B: Regulating EMI in Electronics - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/fcc-part-15-class-a-vs-b-regulating-emi-in-electronics" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a quick overview of how the Federal Communications Commission (FCC) Part 15 rules regulate unintentional radio-frequency (RF) emissions from digital clocks and switched-mode power supplies (SMPS). It explains why these internal elect" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="fcc-part-15-class-a-vs-b-regulating-emi-in-electronics">FCC Part
+15 Class A vs B: Regulating EMI in Electronics</h1>
+<p>This article provides a quick overview of how the Federal
+Communications Commission (FCC) Part 15 rules regulate unintentional
+radio-frequency (RF) emissions from digital clocks and switched-mode
+power supplies (SMPS). It explains why these internal electronic
+components generate electromagnetic interference (EMI) and breaks down
+the specific regulatory differences between Class A limits for
+commercial environments and the stricter Class B limits for residential
+spaces. Finally, it covers the conducted and radiated emission testing
+standards that hardware manufacturers must meet to legally market their
+electronics in the United States.</p>
+<h2 id="understanding-unintentional-radiators">Understanding
+Unintentional Radiators</h2>
+<p>Under FCC Part 15 rules, most modern electronic devices are
+classified as unintentional radiators. These are devices that
+intentionally generate radio-frequency energy for internal
+operations—such as processing data or converting power—but are not
+designed to broadcast that energy wirelessly through the air or over
+power lines.</p>
+<p>By definition, any device utilizing digital logic that operates at
+frequencies above 9 kHz falls under these regulations. The primary goal
+of FCC Part 15 is to ensure that the unintentional RF noise generated
+inside a device does not escape at levels high enough to disrupt
+licensed radio services, emergency broadcasts, cellular networks, or
+nearby consumer appliances.</p>
+<h2 id="how-digital-clocks-and-smps-generate-rf-emissions">How Digital
+Clocks and SMPS Generate RF Emissions</h2>
+<p>Digital clocks and switched-mode power supplies are the two primary
+culprits of unintentional EMI in modern electronics.</p>
+<p>Digital clocks generate square-wave signals to synchronize
+microprocessors and logic circuits. While a clock might operate at a
+fundamental frequency of 50 MHz, the rapid transition between low and
+high voltage states (fast rise and fall times) creates harmonic
+frequencies. These harmonics extend far into the hundreds of megahertz
+or gigahertz, turning circuit board traces into tiny, unintentional
+antennas that radiate RF noise.</p>
+<p>Switched-mode power supplies (SMPS) convert electrical power
+efficiently by rapidly switching transistors on and off, typically at
+frequencies between 50 kHz and several megahertz. This high-speed
+switching of high currents and voltages generates significant
+lower-frequency noise. While SMPS noise can radiate through the air, its
+primary issue is pushing RF interference backward into the AC power
+grid, polluting the building's electrical wiring.</p>
+<h2 id="fcc-part-15-class-a-vs-class-b-environments">FCC Part 15 Class A
+vs. Class B Environments</h2>
+<p>The FCC divides unintentional radiators into two categories based on
+where the equipment is intended to be used: Class A and Class B.</p>
+<p><strong>Class A Devices</strong> are marketed exclusively for use in
+commercial, industrial, or business environments. Because industrial and
+office buildings typically have greater physical separation between
+equipment and fewer susceptible consumer receivers (like televisions and
+AM/FM radios) nearby, Class A emission limits are more relaxed.</p>
+<p><strong>Class B Devices</strong> are marketed for use in residential
+environments, even if they are also used in businesses. Examples include
+personal computers, smart home hubs, and phone chargers. Because homes
+place electronics in close proximity to broadcast receivers and shared
+wall outlets, Class B limits are significantly stricter. In general,
+Class B limits are roughly 10 decibels (dB) more stringent than Class A
+limits, meaning a Class B device is only allowed to emit about one-third
+of the electromagnetic field strength of a Class A device.</p>
+<h2 id="conducted-vs-radiated-emission-limits">Conducted vs. Radiated
+Emission Limits</h2>
+<p>To control the specific types of noise generated by SMPS and digital
+clocks, the FCC enforces two distinct measurement thresholds: conducted
+emissions and radiated emissions.</p>
+<h3 id="conducted-emissions-150-khz-to-30-mhz">Conducted Emissions (150
+kHz to 30 MHz)</h3>
+<p>Conducted limits primarily regulate the noise generated by
+switched-mode power supplies. Testing measures the amount of RF voltage
+the device feeds back into the public AC power lines, using a Line
+Impedance Stabilization Network (LISN).</p>
+<ul>
+<li><strong>Class A limits</strong> allow up to 79 dBµV (decibels
+relative to one microvolt) in the lower frequency band (150 kHz to 500
+kHz) and 73 dBµV from 500 kHz to 30 MHz (quasi-peak).</li>
+<li><strong>Class B limits</strong> drop the allowable noise to a
+sliding scale of 66 to 56 dBµV in the lower band, and cap emissions at
+60 dBµV from 5 MHz to 30 MHz.</li>
+</ul>
+<p>To pass these limits, engineers must design input line filters (using
+inductors and capacitors) into the SMPS to trap the switching noise
+before it exits the power cord.</p>
+<h3 id="radiated-emissions-30-mhz-and-above">Radiated Emissions (30 MHz
+and Above)</h3>
+<p>Radiated limits primarily regulate the high-frequency harmonic noise
+escaping from digital clocks and high-speed data lines. Testing is
+conducted in an semi-anechoic chamber or Open Area Test Site (OATS),
+where an antenna measures the electric field strength escaping the
+device through the air.</p>
+<ul>
+<li><strong>Class A limits</strong> are normally measured at a distance
+of 10 meters and allow field strengths ranging from 39 dBµV/m (at 30
+MHz) up to 49.5 dBµV/m (above 960 MHz).</li>
+<li><strong>Class B limits</strong> are normally measured at a closer
+distance of 3 meters. Despite the closer measurement distance, the
+limits are still tightly restricted from 40 dBµV/m (at 30 MHz) to 54
+dBµV/m (above 960 MHz). When mathematically adjusted to the same
+measurement distance, Class B allows drastically less radiated
+energy.</li>
+</ul>
+<h2 id="engineering-for-compliance">Engineering for Compliance</h2>
+<p>To meet FCC Part 15 Class A or Class B limits, commercial electronics
+manufacturers must actively suppress emissions from clocks and power
+supplies at the board level. For digital clocks, engineers often use
+Spread Spectrum Clocking (SSC), which slightly varies the clock
+frequency continuously so energy does not peak at a single harmonic.
+They also rely on proper printed circuit board (PCB) grounding,
+decoupling capacitors, and metallic Faraday shielding over noisy
+components. By combining these techniques with proper SMPS filtering,
+devices can operate reliably without violating federal radio-frequency
+spectrum regulations.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/fcc-part-15-class-a-vs-b-regulating-emi-in-electronics';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPC-A-610 Class 1 vs Class 3 Solder Fillet and Barrel Fill - electronics</title>
+    <meta name="description" content="This article provides a direct comparison between IPC-A-610 Class 1 and Class 3 electronics assemblies, specifically focusing on the requirements for solder fillet wetting angles and plated through-hole (PTH) barrel fill percentages. Understanding these s">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/ipc-a-610-class-1-vs-class-3-solder-fillet-and-barrel-fill">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="IPC-A-610 Class 1 vs Class 3 Solder Fillet and Barrel Fill - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/ipc-a-610-class-1-vs-class-3-solder-fillet-and-barrel-fill" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a direct comparison between IPC-A-610 Class 1 and Class 3 electronics assemblies, specifically focusing on the requirements for solder fillet wetting angles and plated through-hole (PTH) barrel fill percentages. Understanding these s" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="ipc-a-610-class-1-vs-class-3-solder-fillet-and-barrel-fill">IPC-A-610
+Class 1 vs Class 3 Solder Fillet and Barrel Fill</h1>
+<p>This article provides a direct comparison between IPC-A-610 Class 1
+and Class 3 electronics assemblies, specifically focusing on the
+requirements for solder fillet wetting angles and plated through-hole
+(PTH) barrel fill percentages. Understanding these specific geometric
+and volumetric thresholds is essential for manufacturers and inspectors
+determining whether a printed circuit board assembly meets the baseline
+criteria for general consumer goods or the stringent demands of
+high-reliability, mission-critical applications.</p>
+<h2 id="defining-ipc-a-610-classes">Defining IPC-A-610 Classes</h2>
+<p>Before analyzing the specific solder metrics, it is necessary to
+define the operational environments of the two classes:</p>
+<ul>
+<li><strong>Class 1 (General Electronic Products):</strong> Includes
+consumer products suitable for applications where the major requirement
+is the function of the completed assembly. Cosmetics and extreme
+longevity are secondary.</li>
+<li><strong>Class 3 (High Performance/Harsh Environment Electronic
+Products):</strong> Includes equipment where continued high performance
+or performance-on-demand is critical. Equipment downtime cannot be
+tolerated, end-use environments may be uncommonly harsh, and the
+equipment must function when required, such as in life support,
+aerospace, or military systems.</li>
+</ul>
+<h2 id="plated-through-hole-pth-barrel-fill-percentages">Plated
+Through-Hole (PTH) Barrel Fill Percentages</h2>
+<p>Vertical fill (barrel fill) measures how much of the plated
+through-hole cylinder is filled with solder during wave, selective, or
+hand soldering processes. This metric is a primary separator between
+Class 1 and Class 3 reliability.</p>
+<h3 id="standard-vertical-fill">Standard Vertical Fill</h3>
+<ul>
+<li><strong>Class 1 Requirement:</strong> Requires a minimum of
+<strong>50% vertical barrel fill</strong>. Up to 50% of the barrel can
+remain void of solder, provided the lead and land show evidence of
+wetting on the solder destination side or source side as required.</li>
+<li><strong>Class 3 Requirement:</strong> Requires a minimum of
+<strong>75% vertical barrel fill</strong>. A maximum of 25% of the
+barrel height can remain unfilled.</li>
+</ul>
+<h3 id="thermal-relief-and-heavy-ground-planes">Thermal Relief and Heavy
+Ground Planes</h3>
+<p>When a through-hole component lead is connected to a heat-sinking
+layer (like an internal ground or power plane) without thermal relief,
+achieving full barrel fill is more difficult. IPC-A-610 adjusts the
+requirements for these specific instances:</p>
+<ul>
+<li><strong>Class 1 Requirement:</strong> Minimum <strong>50% vertical
+fill</strong> remains the standard.</li>
+<li><strong>Class 3 Requirement:</strong> The requirement is relaxed
+from 75% down to a minimum of <strong>50% vertical fill</strong>,
+provided there is 360-degree wetting on the solder source side and the
+lead is wetted.</li>
+</ul>
+<h3 id="circumferential-wetting">Circumferential Wetting</h3>
+<p>Alongside vertical fill, circumferential wetting (the coverage around
+the lead and barrel wall) also separates the classes:</p>
+<ul>
+<li><strong>Class 1:</strong> Requires a minimum of <strong>180
+degrees</strong> of circumferential wetting and fillet formation on the
+solder source side.</li>
+<li><strong>Class 3:</strong> Requires a minimum of <strong>270
+degrees</strong> of circumferential wetting on the primary side
+(destination side) and <strong>330 degrees</strong> on the secondary
+side (solder source side).</li>
+</ul>
+<h2 id="solder-fillet-wetting-angles">Solder Fillet Wetting Angles</h2>
+<p>The wetting angle (or contact angle) is the angle formed between the
+solder fillet and the termination pad or component lead. It indicates
+the metallurgical bond quality. A smaller angle indicates better wetting
+and flow, while a larger angle (&gt;90 degrees) indicates poor wetting,
+cold solder, or contamination.</p>
+<h3 id="the-90-degree-threshold">The 90-Degree Threshold</h3>
+<p>Unlike barrel fill, IPC-A-610 does not assign different numerical
+degree limits to Class 1 versus Class 3 for the wetting angle itself.
+Instead, the standard uses a universal baseline for acceptable wetting
+across all classes:</p>
+<ul>
+<li><strong>Target Condition:</strong> The ideal solder fillet appears
+smooth and concave, tapering seamlessly to the copper land and component
+lead. This typically represents a wetting angle between <strong>15
+degrees and 45 degrees</strong>.</li>
+<li><strong>Acceptable Condition (Class 1, 2, and 3):</strong> The
+wetting angle must <strong>not exceed 90 degrees</strong>. A convex
+fillet is acceptable only if the solder is caused by excess solder
+volume, does not obscure the lead contour (where required), and the
+wetting angle at the very edge of the solder toe remains less than 90
+degrees.</li>
+<li><strong>Defect Condition (Class 1, 2, and 3):</strong> A wetting
+angle that <strong>exceeds 90 degrees</strong> ( creating a "balled"
+appearance at the interface) indicates non-wetting or dewetting. This is
+a defect in both Class 1 and Class 3, EXCEPT when the contour of the
+solder extends over the edge of the land (solder resist interface),
+where a &gt;90-degree angle is naturally formed by the containment of
+the pad boundary.</li>
+</ul>
+<h3 id="how-fillet-geometry-separates-class-1-and-class-3">How Fillet
+Geometry Separates Class 1 and Class 3</h3>
+<p>While the 90-degree maximum wetting angle applies to both classes,
+the <em>extent</em> of the fillet (heel and toe heights) where this
+wetting angle must be maintained differs drastically for Surface Mount
+Technology (SMT):</p>
+<ul>
+<li><strong>Gull Wing Leads (Minimum Heel Fillet Height):</strong>
+<ul>
+<li><strong>Class 1:</strong> Requires a wetted fillet, which may not
+extend very high up the lead.</li>
+<li><strong>Class 3:</strong> The solder fillet must extend up the heel
+of the lead to a minimum height equal to the <strong>solder thickness
+plus 100% of the lead thickness (G + T)</strong>, or up to the knee of
+the lead, whichever is less.</li>
+</ul></li>
+<li><strong>Rectangular/Chip Components (End Joint Width and
+Height):</strong>
+<ul>
+<li><strong>Class 1:</strong> Requires a visibly wetted fillet; minimum
+end overlap is just 50% of the component termination width.</li>
+<li><strong>Class 3:</strong> Requires a minimum end joint width of 75%
+of the component termination. Furthermore, the fillet height must reach
+at least the <strong>solder thickness plus 25% of the component height
+(G + 25% H)</strong> or 0.5 mm, whichever is less.</li>
+</ul></li>
+</ul>
+<h2 id="summary-of-key-separators">Summary of Key Separators</h2>
+<p>To quickly differentiate a Class 1 assembly from a Class 3 assembly
+during inspection:</p>
+<ol type="1">
+<li><strong>PTH Barrel Fill:</strong> Class 1 passes at 50% fill; Class
+3 requires 75% fill.</li>
+<li><strong>Wetting Angles:</strong> Both classes fail if the wetting
+angle exceeds 90 degrees due to poor wetting. Both classes require
+concave fillets as the baseline.</li>
+<li><strong>Fillet Volume/Height:</strong> Class 3 requires the
+&lt;90-degree wetted fillet to climb significantly higher up the
+component lead or termination (up to 100% of lead thickness on gull
+wings) compared to Class 1, which only requires the presence of a
+properly wetted joint at the base.</li>
+</ol></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/ipc-a-610-class-1-vs-class-3-solder-fillet-and-barrel-fill';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Place a GaAs LNA Directly After the Antenna? - electronics</title>
+    <meta name="description" content="This article explains why a Gallium Arsenide (GaAs) Low Noise Amplifier (LNA) must be placed immediately after the antenna to establish the system noise floor in receiver electronics. When a radio frequency signal is captured by an antenna, it is extremel">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-place-a-ga-as-lna-directly-after-the-antenna">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Place a GaAs LNA Directly After the Antenna? - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-place-a-ga-as-lna-directly-after-the-antenna" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains why a Gallium Arsenide (GaAs) Low Noise Amplifier (LNA) must be placed immediately after the antenna to establish the system noise floor in receiver electronics. When a radio frequency signal is captured by an antenna, it is extremel" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-place-a-gaas-lna-directly-after-the-antenna">Why Place a
+GaAs LNA Directly After the Antenna?</h1>
+<p>This article explains why a Gallium Arsenide (GaAs) Low Noise
+Amplifier (LNA) must be placed immediately after the antenna to
+establish the system noise floor in receiver electronics. When a radio
+frequency signal is captured by an antenna, it is extremely weak and
+susceptible to degradation. Placing a GaAs LNA as the very first active
+component maximizes the signal-to-noise ratio by boosting the desired
+signal while introducing minimal internal noise. This strategic
+placement utilizes Friis's formula for noise, ensuring that the higher
+noise figures of downstream components—such as mixers, filters, and
+analog-to-digital converters—do not corrupt the system's overall
+sensitivity.</p>
+<h2 id="the-physics-of-the-system-noise-floor">The Physics of the System
+Noise Floor</h2>
+<p>In any radio frequency (RF) receiver, the system noise floor
+determines the minimum signal strength the receiver can successfully
+detect and process. Signals arriving at the antenna have often traveled
+vast distances, making them exceptionally weak and hovering just above
+the natural thermal noise floor.</p>
+<p>Once the signal enters the receiver hardware, every component it
+passes through—including cables, waveguides, filters, and mixers—does
+two things: it alters the signal strength, and it adds its own internal
+electronic noise. If the weak signal is not amplified immediately, the
+internal noise of the receiver will easily overwhelm it, rendering the
+data unrecoverable.</p>
+<h2 id="friiss-formula-and-the-first-stage-dominance">Friis's Formula
+and the First-Stage Dominance</h2>
+<p>To understand why the LNA must go first, engineers rely on Friis's
+formula for noise factor. The formula calculates the total noise factor
+(<span class="math inline">\(F_{total}\)</span>) of a cascaded system of
+components:</p>
+<p><span class="math display">\[F_{total} = F_1 + \frac{F_2 - 1}{G_1} +
+\frac{F_3 - 1}{G_1 G_2} + \dots\]</span></p>
+<p>In this equation, <span class="math inline">\(F\)</span> represents
+the noise factor of each stage, and <span
+class="math inline">\(G\)</span> represents the linear gain of each
+stage.</p>
+<p>The equation proves that the total noise of the entire receiver is
+dominated by the noise factor of the very first component (<span
+class="math inline">\(F_1\)</span>). Because the noise of the second
+stage (<span class="math inline">\(F_2\)</span>) is divided by the gain
+of the first stage (<span class="math inline">\(G_1\)</span>), having a
+high-gain, low-noise component at the very beginning effectively shrinks
+the noise contributions of every subsequent component to near zero.
+Therefore, the LNA sets the noise floor for the entire system.</p>
+<h2 id="the-danger-of-pre-lna-attenuation">The Danger of Pre-LNA
+Attenuation</h2>
+<p>If passive components like long coaxial cables or complex filter
+banks are placed between the antenna and the LNA, the system noise floor
+degrades rapidly. In RF engineering, any passive loss (attenuation)
+before the first amplifier adds directly, decibel for decibel, to the
+system's overall noise figure.</p>
+<p>Furthermore, passive loss reduces the gain (<span
+class="math inline">\(G_1\)</span>) to a fraction less than one.
+According to Friis's formula, dividing the second stage's noise by a
+fraction actually multiplies the noise of the downstream components. By
+placing the LNA directly at the antenna terminals, you eliminate
+pre-amplifier transmission loss and lock in the lowest possible noise
+floor before the signal has to travel down a cable to the rest of the
+receiver.</p>
+<h2 id="why-gallium-arsenide-gaas-is-essential">Why Gallium Arsenide
+(GaAs) is Essential</h2>
+<p>While placement is dictated by system architecture, the material of
+the LNA dictates its baseline performance (<span
+class="math inline">\(F_1\)</span> and <span
+class="math inline">\(G_1\)</span>). Gallium Arsenide (GaAs) is
+overwhelmingly chosen over standard silicon for the first-stage LNA for
+several physical reasons:</p>
+<ul>
+<li><strong>Superior Electron Mobility:</strong> Electrons move through
+a GaAs crystal lattice up to six times faster than they do through
+silicon. This allows GaAs transistors to switch much faster, making them
+ideal for high-frequency, microwave, and millimeter-wave
+applications.</li>
+<li><strong>Lower Parasitic Capacitance:</strong> GaAs substrates are
+semi-insulating, whereas silicon substrates are semi-conducting. This
+insulating property drastically reduces parasitic capacitance,
+preventing high-frequency signals from leaking into the substrate and
+being lost.</li>
+<li><strong>Reduced Thermal and Shot Noise:</strong> Because electrons
+move through GaAs with less resistance and scattering, the material
+generates significantly less internal thermal noise.</li>
+</ul>
+<p>By combining the physical properties of Gallium Arsenide with
+immediate post-antenna placement, the LNA provides a massive gain (<span
+class="math inline">\(G_1\)</span>) alongside a microscopic noise factor
+(<span class="math inline">\(F_1\)</span>). This combination locks in an
+ultra-low system noise floor, allowing the receiver to clearly resolve
+the faintest possible incoming signals.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-place-a-ga-as-lna-directly-after-the-antenna';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How a Thyristor Crowbar Circuit Protects Against Overvoltage - electronics</title>
+    <meta name="description" content="This article provides a clear breakdown of how a thyristor crowbar circuit protects sensitive electronic components from damaging overvoltage events. By examining the core components—including the Zener diode, the thyristor, and the fuse—you will learn ho">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-a-thyristor-crowbar-circuit-protects-against-overvoltage">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How a Thyristor Crowbar Circuit Protects Against Overvoltage - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-a-thyristor-crowbar-circuit-protects-against-overvoltage" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a clear breakdown of how a thyristor crowbar circuit protects sensitive electronic components from damaging overvoltage events. By examining the core components—including the Zener diode, the thyristor, and the fuse—you will learn ho" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="how-a-thyristor-crowbar-circuit-protects-against-overvoltage">How a
+Thyristor Crowbar Circuit Protects Against Overvoltage</h1>
+<p>This article provides a clear breakdown of how a thyristor crowbar
+circuit protects sensitive electronic components from damaging
+overvoltage events. By examining the core components—including the Zener
+diode, the thyristor, and the fuse—you will learn how this circuit
+detects excess voltage, deliberately creates a short circuit across the
+power rail, and forces a fuse to blow to isolate the power supply.</p>
+<h3 id="the-purpose-of-a-crowbar-circuit">The Purpose of a Crowbar
+Circuit</h3>
+<p>In electronics, an overvoltage fault occurs when the voltage in a
+circuit rises above its designed upper limit. If a power supply
+regulator fails, it can send high voltage directly into sensitive and
+expensive downstream components, destroying them instantly. A crowbar
+circuit prevents this by acting as an electrical safety valve. It gets
+its name because its action is the electronic equivalent of dropping a
+heavy metal crowbar directly across the positive and negative voltage
+rails to short-circuit the power supply.</p>
+<h3 id="core-components-of-the-circuit">Core Components of the
+Circuit</h3>
+<p>A standard crowbar circuit sits in parallel with the power supply
+output and relies on three primary components to function:</p>
+<ul>
+<li><strong>Fuse (or Circuit Breaker):</strong> Placed in series with
+the positive voltage input rail, before the crowbar mechanism.</li>
+<li><strong>Voltage Sensing Device:</strong> Typically a Zener diode,
+though specialized integrated circuits (ICs) like the TL431 are also
+used for higher precision.</li>
+<li><strong>Thyristor:</strong> Usually a Silicon Controlled Rectifier
+(SCR) or a TRIAC, wired directly across the positive power rail and
+ground.</li>
+</ul>
+<h3 id="step-1-normal-operation">Step 1: Normal Operation</h3>
+<p>During normal operation, the power supply outputs a safe, steady
+voltage (for example, 5V). The Zener diode is selected so that its
+breakdown voltage is slightly higher than the normal operating voltage
+(for example, 5.6V). Because the rail voltage is below 5.6V, the Zener
+diode blocks current from flowing through it. As a result, the gate of
+the thyristor receives no voltage, the thyristor remains off (acting as
+an open switch), and power flows normally to the load.</p>
+<h3 id="step-2-detecting-the-overvoltage-fault">Step 2: Detecting the
+Overvoltage Fault</h3>
+<p>If the power supply malfunctions and the voltage spikes past the safe
+limit, it quickly exceeds the breakdown voltage of the Zener diode. Once
+the voltage passes this threshold, the Zener diode enters "avalanche
+breakdown" and begins conducting electricity.</p>
+<h3 id="step-3-triggering-the-thyristor">Step 3: Triggering the
+Thyristor</h3>
+<p>The current flowing through the Zener diode is directed straight into
+the gate terminal of the thyristor. A thyristor is a latching
+semiconductor switch. Once a small current is applied to its gate, it
+switches on fully, allowing massive amounts of current to flow from its
+anode (connected to the positive rail) to its cathode (connected to
+ground).</p>
+<p>Crucially, a thyristor remains latched in this "on" state even if the
+gate current is removed. It will not turn off until the main current
+flowing through it drops to zero.</p>
+<h3 id="step-4-shorting-the-rail-and-blowing-the-fuse">Step 4: Shorting
+the Rail and Blowing the Fuse</h3>
+<p>When the thyristor turns on, it creates a near-zero resistance path
+directly between the positive power rail and ground. This deliberate
+short circuit does two things simultaneously:</p>
+<ol type="1">
+<li><strong>Clamps the Voltage:</strong> It immediately drags the
+voltage on the power rail down to roughly 1V (the forward voltage drop
+of the thyristor), instantly starving the downstream electronics of the
+dangerous high voltage.</li>
+<li><strong>Draws Massive Current:</strong> Because there is practically
+no resistance in the thyristor's path, a massive surge of current is
+pulled from the power supply.</li>
+</ol>
+<p>This sudden, massive spike in current flows directly through the fuse
+located at the start of the circuit. The current far exceeds the fuse's
+rating, causing the internal filament of the fuse to melt and break the
+circuit within milliseconds.</p>
+<p>Once the fuse blows, the power source is completely disconnected from
+the rest of the electronics. With the power cut, the current flowing
+through the thyristor drops to zero, resetting the thyristor. The
+downstream circuit is saved, requiring only a power supply repair and a
+fuse replacement to function again.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-a-thyristor-crowbar-circuit-protects-against-overvoltage';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

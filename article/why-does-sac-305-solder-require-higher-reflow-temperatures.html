@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Does SAC305 Solder Require Higher Reflow Temperatures? - electronics</title>
+    <meta name="description" content="This article explains why tin-silver-copper (SAC305) lead-free solder requires higher reflow peak temperatures than classic eutectic tin-lead (Sn63/Pb37) solder in electronics manufacturing. The primary reasons stem from the fundamental metallurgical prop">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-does-sac-305-solder-require-higher-reflow-temperatures">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Does SAC305 Solder Require Higher Reflow Temperatures? - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-does-sac-305-solder-require-higher-reflow-temperatures" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains why tin-silver-copper (SAC305) lead-free solder requires higher reflow peak temperatures than classic eutectic tin-lead (Sn63/Pb37) solder in electronics manufacturing. The primary reasons stem from the fundamental metallurgical prop" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-does-sac305-solder-require-higher-reflow-temperatures">Why
+Does SAC305 Solder Require Higher Reflow Temperatures?</h1>
+<p>This article explains why tin-silver-copper (SAC305) lead-free solder
+requires higher reflow peak temperatures than classic eutectic tin-lead
+(Sn63/Pb37) solder in electronics manufacturing. The primary reasons
+stem from the fundamental metallurgical properties of the alloys,
+specifically the higher melting point of pure tin compared to lead-mixed
+alloys, as well as the differences in wetting behavior and surface
+tension. By reading further, you will understand how alloy composition
+dictates thermal profiles and why the extra heat is necessary to form
+reliable intermetallic bonds in modern lead-free circuit boards.</p>
+<p>The most direct reason SAC305 requires a higher reflow temperature is
+its higher melting point, known as the liquidus temperature. Classic
+eutectic tin-lead solder consists of 63% tin and 37% lead, a specific
+ratio that melts cleanly at a single temperature of 183°C. When lead was
+removed from electronics due to environmental regulations like RoHS,
+manufacturers turned to SAC305, which consists of 96.5% tin, 3.0%
+silver, and 0.5% copper. Because pure tin melts at 232°C, an alloy made
+almost entirely of tin naturally inherits a much higher melting
+threshold. Adding small amounts of silver and copper lowers the melting
+point slightly, resulting in a SAC305 melting range of 217°C to 220°C.
+This is an immediate baseline increase of nearly 37°C before reflow
+profiling even begins.</p>
+<p>Melting the solder is only the first step; achieving a reliable
+mechanical and electrical bond requires going well above the melting
+point. In reflow soldering, the peak temperature must exceed the alloy's
+liquidus temperature to create a "superheat" zone. This excess heat is
+required to overcome the thermal mass of the printed circuit board and
+the electronic components, ensuring that the coldest spot on the board
+still reaches the melting point of the solder paste. For tin-lead
+solder, a peak temperature of 210°C to 225°C is sufficient. For SAC305,
+the peak temperature must be pushed to 235°C to 250°C to achieve the
+same thermal equilibrium across the assembly.</p>
+<p>Wetting capability and surface tension also dictate the need for
+higher heat in lead-free processes. Lead is an exceptional metal for
+soldering because it reduces the surface tension of molten tin, allowing
+the liquid solder to flow smoothly and spread easily across copper pads
+and component leads. SAC305 lacks lead, making the molten solder much
+more viscous with a higher surface tension. It resists spreading
+naturally. Increasing the peak reflow temperature lowers the viscosity
+of the molten SAC305 and accelerates the chemical reaction of the flux,
+forcing the lead-free solder to wet the surfaces adequately.</p>
+<p>Finally, the higher temperature is critical for forming the
+intermetallic compound (IMC) layer. A true solder joint is not just
+glue; it is a metallurgical bond formed when the tin in the solder
+reacts with the copper on the circuit board to create a thin copper-tin
+alloy layer. Because SAC305 has poorer wetting characteristics and a
+higher melting point, it requires elevated temperatures and precise time
+above liquidus (TAL) to drive the diffusion of tin and copper atoms.
+Without reaching a peak temperature of around 240°C to 250°C, the
+intermetallic layer will not form properly, resulting in "cold" solder
+joints that are brittle and prone to early failure.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-does-sac-305-solder-require-higher-reflow-temperatures';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

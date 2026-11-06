@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Audio Analyzers Measure THD+N Using Notch Filters and FFT - electronics</title>
+    <meta name="description" content="Audio analyzers evaluate the signal integrity of high-fidelity electronics by measuring Total Harmonic Distortion plus Noise (THD+N). This article provides a comprehensive overview of how these specialized instruments use ultra-precise analog notch filter">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-audio-analyzers-measure-thd-n-using-notch-filters-and-fft">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Audio Analyzers Measure THD+N Using Notch Filters and FFT - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-audio-analyzers-measure-thd-n-using-notch-filters-and-fft" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Audio analyzers evaluate the signal integrity of high-fidelity electronics by measuring Total Harmonic Distortion plus Noise (THD+N). This article provides a comprehensive overview of how these specialized instruments use ultra-precise analog notch filter" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="how-audio-analyzers-measure-thdn-using-notch-filters-and-fft">How
+Audio Analyzers Measure THD+N Using Notch Filters and FFT</h1>
+<p>Audio analyzers evaluate the signal integrity of high-fidelity
+electronics by measuring Total Harmonic Distortion plus Noise (THD+N).
+This article provides a comprehensive overview of how these specialized
+instruments use ultra-precise analog notch filters and Fast Fourier
+Transform (FFT) algorithms to isolate, digitize, and quantify
+microscopic levels of distortion and background noise in amplifiers,
+digital-to-analog converters, and preamplifiers.</p>
+<h2
+id="understanding-total-harmonic-distortion-plus-noise-thdn">Understanding
+Total Harmonic Distortion plus Noise (THD+N)</h2>
+<p>THD+N is the benchmark metric for evaluating the linearity and
+quietness of audio equipment. When a pure single-frequency sine wave
+(the fundamental frequency) passes through an electronic device,
+non-linearities in the circuitry generate unwanted multiples of that
+original frequency, known as harmonics. Simultaneously, the device's
+internal components introduce random electrical hiss and hum, referred
+to as the noise floor.</p>
+<p>THD+N is expressed as a percentage or in decibels (dB). It represents
+the ratio of the combined sum of all unwanted harmonic distortion and
+broadband noise to the level of the original fundamental test
+signal.</p>
+<h2 id="the-role-of-the-analog-notch-filter">The Role of the Analog
+Notch Filter</h2>
+<p>Measuring THD+N in modern high-fidelity equipment presents a massive
+dynamic range challenge. A top-tier audio device might produce
+distortion and noise that are 120 dB lower than the fundamental test
+signal. If an audio analyzer fed this combined signal directly into its
+internal Analog-to-Digital Converter (ADC), the massive voltage of the
+fundamental frequency would overwhelm the ADC, masking the microscopic
+distortion components inside the converter's own noise floor.</p>
+<p>To solve this, audio analyzers use a high-precision analog notch
+filter before the ADC stage:</p>
+<ol type="1">
+<li><strong>Signal Generation:</strong> The analyzer sends a pure sine
+wave, typically at 1 kHz, into the device under test (DUT).</li>
+<li><strong>Measurement of the Total Signal:</strong> The analyzer
+measures the total root-mean-square (RMS) voltage of the output signal
+coming from the DUT.</li>
+<li><strong>Fundamental Suppression:</strong> The signal is routed
+through a sharply tuned analog notch filter centered precisely at the 1
+kHz fundamental frequency. This filter attenuates the fundamental tone
+by 100 dB or more while leaving the rest of the frequency spectrum
+untouched.</li>
+<li><strong>Gain Ranging:</strong> With the massive fundamental tone
+removed, only the tiny residual harmonics and noise remain. The analyzer
+then amplifies this residual signal so it utilizes the full dynamic
+range of the analyzer's internal ADC.</li>
+</ol>
+<h2 id="how-fast-fourier-transform-fft-enhances-the-measurement">How
+Fast Fourier Transform (FFT) Enhances the Measurement</h2>
+<p>Traditionally, after the notch filter removed the fundamental
+frequency, an analog RMS voltmeter simply measured the total energy of
+whatever was left to calculate THD+N. Modern audio analyzers, however,
+pass this amplified residual signal into an ADC and apply a Fast Fourier
+Transform (FFT) algorithm.</p>
+<p>The FFT is a mathematical process that converts the digitized
+time-domain signal into the frequency domain. By combining the analog
+notch filter with digital FFT processing, the audio analyzer achieves
+two critical functions:</p>
+<h3 id="1-separating-harmonics-from-noise">1. Separating Harmonics from
+Noise</h3>
+<p>A standard THD+N reading lumps distortion and noise into a single
+number. It cannot tell an engineer whether a poor reading is caused by a
+noisy power supply or clipping transistors. The FFT breaks the residual
+signal into thousands of narrow frequency bins. This allows the analyzer
+to display the exact amplitude of the 2nd, 3rd, 4th, and higher-order
+harmonics separately from the broadband noise floor, allowing engineers
+to calculate pure THD without the noise component.</p>
+<h3 id="2-digital-notch-refinement">2. Digital Notch Refinement</h3>
+<p>Analog notch filters have physical limitations; their suppression
+bandwidth has a "skirt" that can slightly attenuate frequencies very
+close to the fundamental, or fail to completely remove a fundamental
+frequency that drifts slightly. Once the analog filter removes the bulk
+of the fundamental's energy to protect the ADC, the FFT acts as an
+infinitely sharp digital filter. The analyzer software can
+mathematically zero out the exact frequency bins of the fundamental
+tone, ensuring extreme measurement accuracy.</p>
+<h2 id="the-complete-hybrid-measurement-process">The Complete Hybrid
+Measurement Process</h2>
+<p>To achieve state-of-the-art measurements, modern audio analyzers
+execute a hybrid analog-digital workflow in fractions of a second:</p>
+<ul>
+<li><strong>Step 1:</strong> The analyzer generates an
+ultra-low-distortion sine wave and sends it through the high-fidelity
+component.</li>
+<li><strong>Step 2:</strong> The analyzer receives the output and
+records the RMS level of the complete signal (Fundamental + Harmonics +
+Noise).</li>
+<li><strong>Step 3:</strong> The analog notch filter locks onto the
+fundamental frequency and strips it away.</li>
+<li><strong>Step 4:</strong> A low-noise preamplifier boosts the
+remaining distortion and noise to an optimal level for
+digitization.</li>
+<li><strong>Step 5:</strong> The ADC digitizes the boosted residual
+signal, and the FFT algorithm maps the exact frequency spectrum.</li>
+<li><strong>Step 6:</strong> The analyzer calculates the RMS sum of the
+residual spectrum and divides it by the total signal level recorded in
+Step 2, outputting the final THD+N ratio alongside a detailed visual
+spectrum of the device's performance.</li>
+</ul></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-audio-analyzers-measure-thd-n-using-notch-filters-and-fft';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

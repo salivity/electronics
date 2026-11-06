@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How a Demultiplexer Routes Serial Data to Multiple Channels - electronics</title>
+    <meta name="description" content="This article explains the mechanics of a demultiplexer (DEMUX) and how it distributes a single serial data source across multiple selectable destination channels in electronic circuits. You will learn about the core components of a demultiplexer, includin">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-a-demultiplexer-routes-serial-data-to-multiple-channels">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How a Demultiplexer Routes Serial Data to Multiple Channels - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-a-demultiplexer-routes-serial-data-to-multiple-channels" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains the mechanics of a demultiplexer (DEMUX) and how it distributes a single serial data source across multiple selectable destination channels in electronic circuits. You will learn about the core components of a demultiplexer, includin" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-a-demultiplexer-routes-serial-data-to-multiple-channels">How
+a Demultiplexer Routes Serial Data to Multiple Channels</h1>
+<p>This article explains the mechanics of a demultiplexer (DEMUX) and
+how it distributes a single serial data source across multiple
+selectable destination channels in electronic circuits. You will learn
+about the core components of a demultiplexer, including the data input,
+selection lines, and output channels, as well as the internal logic
+gates that make data routing possible. Additionally, this guide covers
+how timing and address selection work together to convert a single
+stream of serial data into parallel outputs for various digital
+systems.</p>
+<h3 id="the-core-function-of-a-demultiplexer">The Core Function of a
+Demultiplexer</h3>
+<p>A demultiplexer, often abbreviated as DEMUX, is a combinational logic
+circuit designed to take a single input signal and route it to one of
+several digital output lines. It acts as a high-speed electronic rotary
+switch. While a multiplexer combines multiple inputs into one output, a
+demultiplexer performs the exact opposite operation, making it essential
+for serial-to-parallel data conversion.</p>
+<h3 id="key-components-of-a-demux">Key Components of a DEMUX</h3>
+<p>To understand how data distribution occurs, it is necessary to look
+at the three primary pin groups on a standard demultiplexer chip:</p>
+<ol type="1">
+<li><strong>Single Data Input:</strong> This is the entry point for the
+serial data stream. The signal consists of a continuous sequence of
+binary bits (1s and 0s) arriving one after another.</li>
+<li><strong>Control or Selection Lines:</strong> These inputs determine
+which output channel will receive the incoming data. The number of
+selection lines dictates the total number of available output channels.
+This follows the binary rule of <span
+class="math inline">\(2^n\)</span>, where <span
+class="math inline">\(n\)</span> is the number of selection lines. For
+example, 2 selection lines can control 4 outputs (<span
+class="math inline">\(2^2 = 4\)</span>), and 3 selection lines can
+control 8 outputs (<span class="math inline">\(2^3 = 8\)</span>).</li>
+<li><strong>Multiple Output Channels:</strong> These are the destination
+pathways. Only one output channel is active at any given moment, while
+all other outputs are held in an inactive state (typically logic low, or
+0).</li>
+</ol>
+<h3 id="how-selection-lines-route-the-data">How Selection Lines Route
+the Data</h3>
+<p>The distribution of the serial data relies on binary addressing
+applied to the selection lines. Inside the demultiplexer, an array of
+AND gates and NOT gates (inverters) decodes the binary address provided
+by the selection lines.</p>
+<p>Every output channel is connected to its own internal AND gate. Each
+of these AND gates receives the main serial data input, as well as a
+unique combination of the selection line signals.</p>
+<p>Consider a 1-to-4 demultiplexer with one data input (<span
+class="math inline">\(D\)</span>), two selection lines (<span
+class="math inline">\(S_1\)</span> and <span
+class="math inline">\(S_0\)</span>), and four outputs (<span
+class="math inline">\(Y_0, Y_1, Y_2, Y_3\)</span>):</p>
+<ul>
+<li><strong>State 00:</strong> When <span class="math inline">\(S_1 =
+0\)</span> and <span class="math inline">\(S_0 = 0\)</span>, the
+internal logic enables the AND gate connected to <span
+class="math inline">\(Y_0\)</span>. The serial data at <span
+class="math inline">\(D\)</span> passes directly through to <span
+class="math inline">\(Y_0\)</span>. Outputs <span
+class="math inline">\(Y_1, Y_2,\)</span> and <span
+class="math inline">\(Y_3\)</span> output a 0.</li>
+<li><strong>State 01:</strong> When <span class="math inline">\(S_1 =
+0\)</span> and <span class="math inline">\(S_0 = 1\)</span>, the path to
+<span class="math inline">\(Y_0\)</span> closes, and the AND gate for
+<span class="math inline">\(Y_1\)</span> is enabled. The data stream now
+flows exclusively to <span class="math inline">\(Y_1\)</span>.</li>
+<li><strong>State 10:</strong> When <span class="math inline">\(S_1 =
+1\)</span> and <span class="math inline">\(S_0 = 0\)</span>, the data is
+routed solely to output <span class="math inline">\(Y_2\)</span>.</li>
+<li><strong>State 11:</strong> When <span class="math inline">\(S_1 =
+1\)</span> and <span class="math inline">\(S_0 = 1\)</span>, the data is
+routed solely to output <span class="math inline">\(Y_3\)</span>.</li>
+</ul>
+<p>Because the active AND gate takes the serial data as one of its
+inputs, its output will mirror the exact state of the data line. If the
+data line is high (1), the selected output goes high. If the data line
+is low (0), the selected output goes low.</p>
+<h3
+id="distributing-continuous-serial-data-time-division-demultiplexing">Distributing
+Continuous Serial Data (Time-Division Demultiplexing)</h3>
+<p>To distribute a continuous serial data source—such as a communication
+line carrying interleaved data for four different devices—the selection
+lines must be synchronized with the incoming data stream. This process
+is known as Time-Division Demultiplexing.</p>
+<p>A system clock and a binary counter are typically connected to the
+selection lines of the demultiplexer. As the serial data arrives bit by
+bit (or packet by packet), the counter increments the binary address on
+the selection lines in strict synchronization with the data rate:</p>
+<ol type="1">
+<li>Bit 1 arrives at the data input while the counter sets the select
+lines to <code>00</code>. Bit 1 goes to Channel 0.</li>
+<li>Bit 2 arrives just as the counter increments the select lines to
+<code>01</code>. Bit 2 goes to Channel 1.</li>
+<li>Bit 3 arrives as the select lines change to <code>10</code>. Bit 3
+goes to Channel 2.</li>
+<li>Bit 4 arrives as the select lines change to <code>11</code>. Bit 4
+goes to Channel 3.</li>
+<li>The counter resets to <code>00</code> for Bit 5, sending it to
+Channel 0, and the cycle repeats.</li>
+</ol>
+<p>By switching the selection lines at the exact frequency of the
+incoming bits, the demultiplexer successfully unpacks a single
+high-speed serial stream into multiple slower, independent data
+channels.</p>
+<h3 id="holding-the-data-state">Holding the Data State</h3>
+<p>In standard combinational demultiplexers, once the selection lines
+switch to a new address, the previous output channel immediately drops
+back to a logic 0. In applications where the destination channels need
+to retain the value of the bit they just received while the DEMUX
+services other channels, an addressable latch is used. This variation of
+the demultiplexer includes internal memory elements (flip-flops) on each
+output, allowing the circuit to distribute serial data and hold those
+states simultaneously across all parallel outputs.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-a-demultiplexer-routes-serial-data-to-multiple-channels';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

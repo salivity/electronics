@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Body Model 100pF ESD Strike Simulation on Connector Pins - electronics</title>
+    <meta name="description" content="This article explains how the Human Body Model (HBM) simulates an electrostatic discharge (ESD) event onto external connector pins in electronic devices. By using a standardized circuit consisting of a 100-picofarad (100pF) capacitor and a 1,500-ohm resis">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/human-body-model-100-p-f-esd-strike-simulation-on-connector-pins">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Human Body Model 100pF ESD Strike Simulation on Connector Pins - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/human-body-model-100-p-f-esd-strike-simulation-on-connector-pins" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how the Human Body Model (HBM) simulates an electrostatic discharge (ESD) event onto external connector pins in electronic devices. By using a standardized circuit consisting of a 100-picofarad (100pF) capacitor and a 1,500-ohm resis" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="human-body-model-100pf-esd-strike-simulation-on-connector-pins">Human
+Body Model 100pF ESD Strike Simulation on Connector Pins</h1>
+<p>This article explains how the Human Body Model (HBM) simulates an
+electrostatic discharge (ESD) event onto external connector pins in
+electronic devices. By using a standardized circuit consisting of a
+100-picofarad (100pF) capacitor and a 1,500-ohm resistor, engineers can
+replicate the static electricity transferred from a person's fingertip
+to sensitive electronic components. The following sections break down
+the mechanics of the circuit, the test setup, the resulting discharge
+waveform, and how this simulation helps design robust protection for
+external interfaces.</p>
+<h2 id="the-core-components-of-the-hbm-circuit">The Core Components of
+the HBM Circuit</h2>
+<p>To accurately simulate a human touching an electronic connector, the
+HBM uses a simplified electrical network defined by standards such as
+JEDEC JS-001 and MIL-STD-883. The circuit relies on three main
+elements:</p>
+<ul>
+<li><strong>High-Voltage Power Supply:</strong> Charges the system to a
+predetermined voltage level, typically ranging from 500 volts to 8,000
+volts, representing the static buildup on a person.</li>
+<li><strong>100-Picofarad (100pF) Capacitor:</strong> Represents the
+electrical capacitance of an average standing human body. It stores the
+electrostatic charge before the strike occurs.</li>
+<li><strong>1,500-Ohm Resistor:</strong> Represents the electrical
+resistance of human skin and body tissue. It limits the current and
+dictates the decay rate of the electrical pulse during the
+discharge.</li>
+</ul>
+<h2 id="the-charging-and-discharging-process">The Charging and
+Discharging Process</h2>
+<p>The simulation occurs in two distinct phases controlled by a
+high-voltage relay switch.</p>
+<p>First, the relay connects the 100pF capacitor to the high-voltage
+power supply. The capacitor charges until it reaches the specified test
+voltage. This mimics a person accumulating static charge by walking
+across a carpet or sliding out of a car seat.</p>
+<p>Second, the relay switches positions, disconnecting the power supply
+and connecting the charged 100pF capacitor directly in series with the
+1,500-ohm resistor. The other end of the resistor is connected directly
+to the external connector pin of the device under test (DUT). The stored
+energy dumps rapidly through the resistor and into the connector pin,
+simulating the exact moment a finger makes contact with the metal
+interface.</p>
+<h2 id="the-hbm-current-waveform">The HBM Current Waveform</h2>
+<p>When the 100pF capacitor discharges through the 1,500-ohm resistor
+into a low-impedance connector pin, it produces a specific current
+waveform. This standardization ensures that tests are repeatable across
+different laboratories.</p>
+<ul>
+<li><strong>Rise Time:</strong> The current spikes rapidly, reaching its
+peak in 2 to 10 nanoseconds. This simulates the fast arc of electricity
+jumping from a finger to the metal pin.</li>
+<li><strong>Peak Current:</strong> For a standard 2,000-volt (2kV) HBM
+test, the peak current reaches approximately 1.33 amps (calculated
+roughly by dividing the 2,000V charge by the 1,500-ohm resistance).</li>
+<li><strong>Decay Time:</strong> As the 100pF capacitor depletes its
+stored energy through the resistor, the current exponentially decays.
+The total duration of the pulse lasts around 150 nanoseconds.</li>
+</ul>
+<h2 id="testing-external-connector-pins">Testing External Connector
+Pins</h2>
+<p>External connector pins—such as USB ports, HDMI interfaces, and power
+jacks—are the primary entry points for ESD strikes in real-world
+applications. To test these pins using the HBM simulation, engineers use
+specialized automated test equipment (ATE).</p>
+<ol type="1">
+<li><strong>Pin Grounding:</strong> One or more ground pins on the
+device are connected to the return path of the HBM tester.</li>
+<li><strong>Pin Stressing:</strong> The test probe contacts the specific
+external connector pin being evaluated.</li>
+<li><strong>Polarity Testing:</strong> The 100pF capacitor applies both
+positive and negative voltage strikes to the pin, as static charge on a
+human can be of either polarity.</li>
+<li><strong>Failure Analysis:</strong> After the strikes are delivered,
+the device is tested for functionality and leakage current. If the
+internal silicon has melted or the insulating oxide layers have
+punctured, the pin fails the HBM qualification.</li>
+</ol>
+<h2 id="hbm-vs-system-level-testing-on-external-pins">HBM vs.
+System-Level Testing on External Pins</h2>
+<p>While the 100pF and 1,500-ohm HBM circuit is the industry standard
+for testing individual integrated circuits (ICs) in a factory
+environment, external connector pins on finished products often face
+harsher conditions.</p>
+<p>Because external pins are exposed to the outside world, engineers
+also subject them to the IEC 61000-4-2 standard. The IEC model uses a
+larger 150pF capacitor and a much lower 330-ohm resistor to simulate a
+person holding a metal object (like a key or cable) discharging into a
+port. However, the 100pF HBM simulation remains the foundational
+benchmark for determining the baseline survival threshold of the silicon
+chips wired directly behind those external connector pins.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/human-body-model-100-p-f-esd-strike-simulation-on-connector-pins';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

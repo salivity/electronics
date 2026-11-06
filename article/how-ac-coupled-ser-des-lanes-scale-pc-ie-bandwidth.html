@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How AC-Coupled SerDes Lanes Scale PCIe Bandwidth - electronics</title>
+    <meta name="description" content="This article provides a comprehensive overview of how AC-coupled high-speed Serializer-Deserializer (SerDes) lanes scale bandwidth across successive PCI Express (PCIe) generations in modern computing electronics. It covers the fundamental role of SerDes a">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-ac-coupled-ser-des-lanes-scale-pc-ie-bandwidth">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How AC-Coupled SerDes Lanes Scale PCIe Bandwidth - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-ac-coupled-ser-des-lanes-scale-pc-ie-bandwidth" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a comprehensive overview of how AC-coupled high-speed Serializer-Deserializer (SerDes) lanes scale bandwidth across successive PCI Express (PCIe) generations in modern computing electronics. It covers the fundamental role of SerDes a" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-ac-coupled-serdes-lanes-scale-pcie-bandwidth">How AC-Coupled
+SerDes Lanes Scale PCIe Bandwidth</h1>
+<p>This article provides a comprehensive overview of how AC-coupled
+high-speed Serializer-Deserializer (SerDes) lanes scale bandwidth across
+successive PCI Express (PCIe) generations in modern computing
+electronics. It covers the fundamental role of SerDes architecture, the
+necessity of AC coupling for signal integrity, the evolution of encoding
+schemes, the transition from NRZ to PAM4 modulation, and the advanced
+equalization techniques required to achieve multi-gigabit data
+rates.</p>
+<h2 id="the-role-of-serdes-in-pci-express">The Role of SerDes in PCI
+Express</h2>
+<p>PCI Express relies on high-speed Serializer-Deserializer (SerDes)
+architecture to move data between processors, memory, and peripherals.
+Earlier computing buses used parallel connections, which suffered from
+clock skew—where signals on different traces arrive at slightly
+different times—limiting maximum clock speeds.</p>
+<p>SerDes overcomes this by converting parallel data inside a chip into
+a high-speed serial stream transmitted over a single differential pair
+of traces (a lane). At the receiving end, the SerDes converts the serial
+stream back into parallel data. Because the clock signal is embedded
+directly within the serial data stream and recovered by a Clock and Data
+Recovery (CDR) circuit, PCIe can scale frequencies significantly without
+worrying about timing skew across wide buses. Multiple SerDes lanes can
+be bonded together (x1, x4, x8, x16) to multiply total bandwidth
+linearly.</p>
+<h2 id="why-ac-coupling-is-essential">Why AC Coupling is Essential</h2>
+<p>Every PCIe SerDes lane uses AC coupling, achieved by placing tiny
+series capacitors along the transmit path. AC coupling serves three
+primary functions in scaling high-speed links:</p>
+<ol type="1">
+<li><strong>Common-Mode Voltage Isolation:</strong> Transmitters and
+receivers are often manufactured on different silicon process nodes and
+operate at different core voltages. AC coupling blocks the DC component
+of the signal, allowing a transmitter and receiver with entirely
+different DC voltage levels to communicate safely.</li>
+<li><strong>Signal Integrity:</strong> By stripping the DC offset, the
+receiver can establish its own optimal DC bias point, maximizing the
+performance of its internal amplifiers and equalizers.</li>
+<li><strong>Hot-Plug Protection:</strong> Capacitors provide electrical
+isolation that protects sensitive transceiver circuitry when cards are
+inserted or removed in enterprise server environments.</li>
+</ol>
+<p>To prevent the AC-coupling capacitors from accumulating a net charge
+(which causes baseline wander and bit errors), the transmitted data must
+be DC-balanced, meaning it contains an equal number of logical ones and
+zeros over time.</p>
+<h2 id="doubling-data-rates-frequencies-and-encoding">Doubling Data
+Rates: Frequencies and Encoding</h2>
+<p>A hallmark of PCI Express is its commitment to doubling the bandwidth
+per lane with each new generation while maintaining backward
+compatibility. Early generations achieved this through raw frequency
+scaling and more efficient encoding schemes.</p>
+<ul>
+<li><strong>PCIe 1.0 and 2.0:</strong> Utilized 8b/10b encoding, which
+mapped 8-bit data bytes into 10-bit symbols. While this guaranteed DC
+balance for the AC-coupled capacitors and provided enough signal
+transitions for the CDR circuit, it introduced a 20% bandwidth overhead.
+PCIe 1.0 operated at 2.5 GT/s (Gigatransfers per second), and PCIe 2.0
+doubled the clock rate to 5.0 GT/s.</li>
+<li><strong>PCIe 3.0, 4.0, and 5.0:</strong> To scale to 8.0 GT/s in
+PCIe 3.0 without immediately requiring exotic circuit board materials,
+the specification switched to 128b/130b encoding. This reduced the
+encoding overhead from 20% to approximately 1.5%, providing a massive
+jump in usable bandwidth. Data scrambling was introduced to maintain the
+DC balance required by the AC coupling capacitors. PCIe 4.0 and 5.0
+subsequently doubled the transfer rates to 16.0 GT/s and 32.0 GT/s
+respectively, pushing the limits of traditional copper traces.</li>
+</ul>
+<h2 id="the-shift-from-nrz-to-pam4-modulation">The Shift from NRZ to
+PAM4 Modulation</h2>
+<p>From PCIe 1.0 through PCIe 5.0, SerDes lanes relied on
+Non-Return-to-Zero (NRZ) signaling. NRZ uses two voltage levels to
+represent a logical 0 or 1, transmitting one bit per clock cycle.
+However, at the 64.0 GT/s target of PCIe 6.0, doubling the Nyquist
+frequency again under NRZ would cause severe signal attenuation
+(insertion loss) across standard printed circuit boards (PCBs), turning
+the signal into unreadable noise.</p>
+<p>To scale bandwidth to 64.0 GT/s (PCIe 6.0) and 128.0 GT/s (PCIe 7.0),
+the SerDes architecture transitioned to Pulse Amplitude Modulation
+4-level (PAM4). PAM4 uses four distinct voltage levels to transmit two
+bits of data per clock cycle (00, 01, 10, 11). This allows PCIe 6.0 to
+double the data rate over PCIe 5.0 while keeping the fundamental channel
+frequency the same.</p>
+<p>Because PAM4 packs four voltage levels into the same voltage swing
+previously used by two, the "eyes" of the signal are three times
+smaller, making the AC-coupled lane much more susceptible to noise. To
+compensate, PCIe 6.0 introduced lightweight Forward Error Correction
+(FEC) and Flow Control Unit (FLIT) encoding to detect and correct bit
+errors on the fly without adding significant latency.</p>
+<h2 id="combating-signal-loss-with-advanced-equalization">Combating
+Signal Loss with Advanced Equalization</h2>
+<p>As SerDes frequencies climb, the PCB traces and AC-coupling
+capacitors act as a low-pass filter, degrading high-frequency signals
+and causing Inter-Symbol Interference (ISI), where one bit bleeds into
+the next. Scaling bandwidth requires sophisticated equalization built
+directly into the SerDes silicon:</p>
+<ul>
+<li><strong>Transmitter De-emphasis/Pre-shoot:</strong> The transmitter
+intentionally alters the amplitude of bits following a transition to
+counteract the expected loss in the copper trace.</li>
+<li><strong>Continuous-Time Linear Equalization (CTLE):</strong> Located
+at the receiver, CTLE acts as a high-pass filter that boosts
+high-frequency components of the incoming signal relative to the low
+frequencies.</li>
+<li><strong>Decision Feedback Equalization (DFE):</strong> A non-linear
+equalizer in the receiver that uses the history of previously detected
+bits to calculate and subtract the ISI from the currently arriving
+bit.</li>
+</ul>
+<p>By combining AC-coupled differential signaling, efficient encoding,
+PAM4 modulation, and active silicon equalization, SerDes lanes
+successfully overcome the physical limitations of copper interconnects
+to double PCIe bandwidth generation after generation.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-ac-coupled-ser-des-lanes-scale-pc-ie-bandwidth';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Does a Buck-Boost Converter Invert Output Voltage? - electronics</title>
+    <meta name="description" content="This article explains why a conventional buck-boost converter produces an output voltage with the opposite polarity of its input voltage. By examining the circuit&#39;s topology, the physical behavior of inductors, and the two distinct operating states of the">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-does-a-buck-boost-converter-invert-output-voltage">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Does a Buck-Boost Converter Invert Output Voltage? - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-does-a-buck-boost-converter-invert-output-voltage" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains why a conventional buck-boost converter produces an output voltage with the opposite polarity of its input voltage. By examining the circuit&#39;s topology, the physical behavior of inductors, and the two distinct operating states of the" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-does-a-buck-boost-converter-invert-output-voltage">Why Does
+a Buck-Boost Converter Invert Output Voltage?</h1>
+<p>This article explains why a conventional buck-boost converter
+produces an output voltage with the opposite polarity of its input
+voltage. By examining the circuit's topology, the physical behavior of
+inductors, and the two distinct operating states of the switching cycle,
+you will understand how current flow direction forces this voltage
+inversion in power electronics.</p>
+<h2 id="the-core-component-layout">The Core Component Layout</h2>
+<p>To understand the polarity reversal, you must first look at how the
+components are arranged relative to the circuit's ground. A conventional
+inverting buck-boost converter consists of four primary components:</p>
+<ul>
+<li><strong>A Switch (usually a MOSFET):</strong> Placed in series with
+the input voltage source.</li>
+<li><strong>An Inductor:</strong> Connected in parallel between the
+switch node and the ground reference.</li>
+<li><strong>A Diode:</strong> Oriented to block current from flowing
+into the output while the switch is closed, meaning its anode points
+toward the load and its cathode connects to the switch-inductor
+node.</li>
+<li><strong>An Output Capacitor:</strong> Placed in parallel with the
+load to filter the output voltage.</li>
+</ul>
+<p>The orientation of the inductor and the diode is the ultimate reason
+the output voltage becomes negative relative to the common ground.</p>
+<h2 id="state-1-the-on-state-charging-the-inductor">State 1: The
+On-State (Charging the Inductor)</h2>
+<p>When the switch closes (turns on), the circuit enters the charging
+phase.</p>
+<ol type="1">
+<li>The positive input voltage source is connected directly across the
+inductor.</li>
+<li>Current flows from the positive input terminal, through the switch,
+and down through the inductor to the ground.</li>
+<li>As this downward current increases, the inductor stores energy in a
+magnetic field. At this moment, the top of the inductor is positive, and
+the bottom (ground side) is negative.</li>
+<li>Because the diode is reverse-biased by the positive input voltage,
+no current flows to the output load during this phase. The load is
+powered entirely by the energy previously stored in the output
+capacitor.</li>
+</ol>
+<h2 id="state-2-the-off-state-discharging-the-inductor">State 2: The
+Off-State (Discharging the Inductor)</h2>
+<p>When the switch opens (turns off), the input voltage source is
+completely disconnected from the rest of the circuit. This triggers the
+physical property of inductors that causes the voltage inversion.</p>
+<ol type="1">
+<li><strong>Inductor Current Continuity:</strong> A fundamental rule of
+inductors is that the current flowing through them cannot change
+instantaneously. Because current was flowing downward toward the ground
+during the On-State, it must continue flowing downward during the
+Off-State.</li>
+<li><strong>Back-EMF Generation:</strong> To keep the current flowing in
+the same downward direction without the input source, the collapsing
+magnetic field causes the inductor to reverse its own voltage polarity
+(generating Back-EMF). The bottom of the inductor (connected to ground)
+becomes the positive terminal, and the top node becomes negative.</li>
+<li><strong>Current Path Through the Load:</strong> Because the
+inductor's current is flowing down to the ground, it needs a closed loop
+to return to the top of the inductor. With the switch open, the only
+available path is through the output capacitor, the load, and the
+diode.</li>
+<li><strong>Reverse Current Flow:</strong> The inductor forces current
+out of its bottom terminal (ground), up through the parallel load and
+output capacitor, and through the now forward-biased diode back to the
+top of the inductor.</li>
+</ol>
+<h2 id="why-the-polarity-is-opposite">Why the Polarity is Opposite</h2>
+<p>Voltage polarity across a passive load (like a resistor or capacitor)
+is determined by the direction the current enters it. By convention, the
+point where current enters a load is positive, and the point where it
+exits is negative.</p>
+<p>In the Off-State of a conventional buck-boost converter, the inductor
+pulls current <em>upward</em> from the ground reference, through the
+load, and back to the top switch node.</p>
+<p>Because the current enters the bottom of the load (which is tied to
+the 0V ground reference) and exits at the top (the output terminal), the
+ground node is effectively more positive than the output terminal. Since
+the ground is held at 0V, the output terminal is forced to a negative
+potential. Consequently, a positive input voltage always yields a
+negative output voltage.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-does-a-buck-boost-converter-invert-output-voltage';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

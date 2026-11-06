@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Wi-Fi Uses OFDM to Combat Multipath Fading - electronics</title>
+    <meta name="description" content="Modern Wi-Fi transceivers rely on Orthogonal Frequency-Division Multiplexing (OFDM) to deliver high-speed, reliable wireless connectivity in complex environments. This article provides a comprehensive overview of how multipath fading degrades wireless sig">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-wi-fi-uses-ofdm-to-combat-multipath-fading">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Wi-Fi Uses OFDM to Combat Multipath Fading - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-wi-fi-uses-ofdm-to-combat-multipath-fading" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Modern Wi-Fi transceivers rely on Orthogonal Frequency-Division Multiplexing (OFDM) to deliver high-speed, reliable wireless connectivity in complex environments. This article provides a comprehensive overview of how multipath fading degrades wireless sig" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-wi-fi-uses-ofdm-to-combat-multipath-fading">Why Wi-Fi Uses
+OFDM to Combat Multipath Fading</h1>
+<p>Modern Wi-Fi transceivers rely on Orthogonal Frequency-Division
+Multiplexing (OFDM) to deliver high-speed, reliable wireless
+connectivity in complex environments. This article provides a
+comprehensive overview of how multipath fading degrades wireless
+signals, why traditional single-carrier modulation fails at high data
+rates, and how OFDM solves these issues by splitting data across
+multiple orthogonal subcarriers and utilizing a cyclic prefix to
+eliminate signal interference.</p>
+<p><strong>Understanding Multipath Fading</strong></p>
+<p>In any typical indoor or urban environment, wireless signals do not
+travel exclusively in a straight line from the transmitter to the
+receiver. Instead, the radio frequency (RF) waves bounce off walls,
+furniture, floors, and moving objects. As a result, multiple copies of
+the same transmitted signal arrive at the Wi-Fi receiver's antenna at
+slightly different times.</p>
+<p>This phenomenon creates two major problems for wireless
+electronics:</p>
+<ul>
+<li><strong>Destructive Interference:</strong> Signals arriving out of
+phase can cancel each other out, causing severe drops in signal strength
+known as deep fades.</li>
+<li><strong>Inter-Symbol Interference (ISI):</strong> Because reflected
+signals travel longer paths, they arrive delayed. At high data rates,
+where data symbols are extremely short, a delayed copy of one symbol
+will overlap and collide with the next incoming symbol, corrupting the
+data.</li>
+</ul>
+<p><strong>The Limitation of Single-Carrier Modulation</strong></p>
+<p>To transmit high-speed data using a single carrier frequency, the
+duration of each data symbol must be exceptionally brief. When the
+symbol duration is shorter than the delay spread (the time difference
+between the arrival of the first signal and the last reflected signal),
+Inter-Symbol Interference becomes unavoidable. Correcting this
+distortion on a single wide channel requires extremely complex and
+power-hungry equalization circuitry in the transceiver.</p>
+<p><strong>How OFDM Solves the Multipath Problem</strong></p>
+<p>Orthogonal Frequency-Division Multiplexing (OFDM) resolves the issue
+of multipath fading by fundamentally changing how data is transmitted
+across a wireless channel. Instead of sending a single, fast stream of
+data over one wide frequency band, OFDM divides the available bandwidth
+into dozens or hundreds of narrow, closely spaced sub-channels called
+subcarriers.</p>
+<p><strong>1. Slower Symbol Rates Reduce Interference</strong> By
+transmitting data in parallel across many subcarriers simultaneously,
+the data rate on each individual subcarrier is drastically reduced. A
+slower data rate means the duration of each symbol is much longer.
+Because the symbol duration is now significantly longer than the
+multipath delay spread, the reflected signals only affect a tiny
+fraction of the overall symbol, drastically reducing Inter-Symbol
+Interference.</p>
+<p><strong>2. The Cyclic Prefix Eliminates ISI</strong> To completely
+eliminate the remaining overlap between symbols, OFDM employs a
+mechanism called a cyclic prefix ( or guard interval). Before
+transmitting an OFDM symbol, the transceiver takes a copy of the end of
+the symbol and attaches it to the beginning.</p>
+<p>This guard interval acts as a buffer zone. When multipath reflections
+from the previous symbol arrive late at the receiver, they land safely
+within this cyclic prefix rather than the active data period. The Wi-Fi
+receiver simply discards the cyclic prefix, removing the corrupted
+overlap and leaving the pure, uncorrupted data symbol intact.</p>
+<p><strong>3. Converting Frequency-Selective Fading to Flat
+Fading</strong> In a wide wireless channel, multipath fading affects
+different frequencies unevenly—a problem known as frequency-selective
+fading. Some parts of the channel may experience severe signal
+cancellation while others remain untouched.</p>
+<p>Because OFDM slices the wide channel into many narrow subcarriers,
+the bandwidth of each subcarrier is small enough that it experiences
+"flat fading." This means the signal degradation is uniform across each
+individual subcarrier. For a Wi-Fi transceiver, correcting flat fading
+requires simple, single-tap equalizers in the digital signal processor,
+keeping the hardware fast, compact, and energy-efficient.</p>
+<p><strong>4. High Spectral Efficiency via Orthogonality</strong>
+Normally, placing multiple subcarriers close together would result in
+crosstalk, or Inter-Carrier Interference (ICI). OFDM prevents this
+through mathematical orthogonality. The frequencies of the subcarriers
+are chosen so that the peak of each subcarrier signal aligns precisely
+with the zero-crossings (nulls) of all adjacent subcarriers.</p>
+<p>Using Fast Fourier Transform (FFT) algorithms, the Wi-Fi transceiver
+can pack these subcarriers tightly together without them interfering
+with one another. If multipath fading completely destroys a specific
+frequency, only the data on that single subcarrier is lost, which can
+easily be recovered using Forward Error Correction (FEC) coding without
+dropping the entire Wi-Fi connection.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-wi-fi-uses-ofdm-to-combat-multipath-fading';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

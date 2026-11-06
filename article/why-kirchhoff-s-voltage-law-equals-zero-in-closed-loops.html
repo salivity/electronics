@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Kirchhoff&#39;s Voltage Law Equals Zero in Closed Loops - electronics</title>
+    <meta name="description" content="This article explains the fundamental physics behind Kirchhoff&#39;s Voltage Law (KVL), illustrating why the algebraic sum of potential differences in any closed electrical loop must always equal zero. It explores the direct relationship between KVL and the L">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-kirchhoff-s-voltage-law-equals-zero-in-closed-loops">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Kirchhoff&#39;s Voltage Law Equals Zero in Closed Loops - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-kirchhoff-s-voltage-law-equals-zero-in-closed-loops" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains the fundamental physics behind Kirchhoff&#39;s Voltage Law (KVL), illustrating why the algebraic sum of potential differences in any closed electrical loop must always equal zero. It explores the direct relationship between KVL and the L" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-kirchhoffs-voltage-law-equals-zero-in-closed-loops">Why
+Kirchhoff's Voltage Law Equals Zero in Closed Loops</h1>
+<p>This article explains the fundamental physics behind Kirchhoff's
+Voltage Law (KVL), illustrating why the algebraic sum of potential
+differences in any closed electrical loop must always equal zero. It
+explores the direct relationship between KVL and the Law of Conservation
+of Energy, details how electric potential functions as a conservative
+field, and provides a clear analogy to show how voltage drops and rises
+balance out within an electronic circuit.</p>
+<h3 id="the-law-of-conservation-of-energy">The Law of Conservation of
+Energy</h3>
+<p>The primary reason the algebraic sum of potential differences around
+any closed loop equals zero is the Law of Conservation of Energy. This
+fundamental principle of physics states that energy cannot be created or
+destroyed; it can only change from one form to another.</p>
+<p>In electronics, electric potential difference—commonly known as
+voltage—is a measure of potential energy per unit of charge. As electric
+charges move through a closed circuit, they gain energy from power
+sources (like batteries or generators) and lose energy as they pass
+through loads (like resistors, LEDs, or motors) which convert electrical
+energy into heat, light, or motion. Because energy cannot mysteriously
+appear or vanish, the total energy gained by a charge in one complete
+trip around a loop must exactly equal the total energy lost.</p>
+<h3 id="electric-potential-as-a-conservative-field">Electric Potential
+as a Conservative Field</h3>
+<p>In steady-state circuits, the electric field is conservative. This
+means that the work done on a charge moving between two points depends
+only on the starting and ending locations, not on the path taken between
+them.</p>
+<p>Every specific point in an electrical circuit has a single, unique
+electric potential value at any given instant. If you take a test charge
+from a specific starting point, move it through various components
+around a closed loop, and return it to the exact same starting point,
+its final potential energy must be identical to its initial potential
+energy. Because the starting point and the ending point are the exact
+same location, the net change in electric potential between the start
+and the end of the journey is zero.</p>
+<h3 id="balancing-voltage-rises-and-voltage-drops">Balancing Voltage
+Rises and Voltage Drops</h3>
+<p>To apply this mathematically, Kirchhoff's Voltage Law uses an
+algebraic sum, which accounts for both positive and negative values:</p>
+<ul>
+<li><strong>Voltage Rise (+):</strong> When a charge passes through a
+power source from the negative terminal to the positive terminal, its
+potential energy increases. This is recorded as a positive value.</li>
+<li><strong>Voltage Drop (-):</strong> When a charge passes through a
+passive component like a resistor, it expends energy to overcome
+electrical resistance. Its potential energy decreases, which is recorded
+as a negative value.</li>
+</ul>
+<p>If a 9-volt battery is connected to a closed loop containing two
+identical resistors, the charge gains 9 volts of potential at the
+battery. As it travels through the first resistor, it drops 4.5 volts.
+As it travels through the second resistor, it drops the remaining 4.5
+volts. The algebraic sum is +9V - 4.5V - 4.5V = 0V.</p>
+<h3 id="the-elevation-analogy">The Elevation Analogy</h3>
+<p>The clearest way to understand this concept is by comparing
+electrical potential to gravitational potential, such as hiking on a
+mountain.</p>
+<p>Imagine you start a hike at a base camp located at 1,000 feet above
+sea level. During your hike, you climb up steep hills (voltage rises)
+and walk down into valleys (voltage drops). Regardless of how many miles
+you walk or how many peaks you scale, if you return to the exact same
+base camp at the end of the day, your final elevation is still 1,000
+feet. The algebraic sum of all your elevation gains and elevation losses
+throughout the closed-loop hike must equal zero.</p>
+<p>If the sum of the voltages in a closed electrical loop did not equal
+zero, it would be the equivalent of returning to the exact same base
+camp and somehow standing at a different altitude. In electronics, a
+non-zero sum would mean charges are spontaneously gaining or losing
+energy on every lap around the circuit, violating the laws of
+physics.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-kirchhoff-s-voltage-law-equals-zero-in-closed-loops';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

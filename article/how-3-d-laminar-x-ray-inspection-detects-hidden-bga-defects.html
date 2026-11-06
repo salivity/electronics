@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How 3D Laminar X-Ray Inspection Detects Hidden BGA Defects - electronics</title>
+    <meta name="description" content="This article explores how automated 3D laminar X-ray inspection (AXI) identifies hidden manufacturing flaws, specifically head-in-pillow (HiP) defects and solder shorts, beneath Ball Grid Array (BGA) packages. By utilizing advanced radiographic tomography">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-3-d-laminar-x-ray-inspection-detects-hidden-bga-defects">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How 3D Laminar X-Ray Inspection Detects Hidden BGA Defects - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-3-d-laminar-x-ray-inspection-detects-hidden-bga-defects" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explores how automated 3D laminar X-ray inspection (AXI) identifies hidden manufacturing flaws, specifically head-in-pillow (HiP) defects and solder shorts, beneath Ball Grid Array (BGA) packages. By utilizing advanced radiographic tomography" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-3d-laminar-x-ray-inspection-detects-hidden-bga-defects">How
+3D Laminar X-Ray Inspection Detects Hidden BGA Defects</h1>
+<p>This article explores how automated 3D laminar X-ray inspection (AXI)
+identifies hidden manufacturing flaws, specifically head-in-pillow (HiP)
+defects and solder shorts, beneath Ball Grid Array (BGA) packages. By
+utilizing advanced radiographic tomography, 3D AXI generates isolated
+cross-sectional slices of a printed circuit board (PCB), bypassing the
+visual obstructions that limit traditional optical and 2D X-ray methods.
+Readers will learn the mechanics of laminar imaging and the exact
+analytical techniques automated systems use to spot structural anomalies
+in dense, double-sided electronics assemblies.</p>
+<h3 id="the-challenge-of-inspecting-bga-packages">The Challenge of
+Inspecting BGA Packages</h3>
+<p>Ball Grid Array (BGA) packages have solder balls located directly
+underneath the component body, making the joints completely invisible to
+the human eye and Automated Optical Inspection (AOI) systems. While 2D
+X-ray systems can penetrate the component to view the solder joints,
+they compress the entire vertical depth of the PCB into a single flat
+image. If a PCB has components mounted on both sides, the shadows of
+top-side and bottom-side parts overlap in a 2D X-ray, making it nearly
+impossible to accurately evaluate the integrity of the hidden BGA solder
+joints.</p>
+<h3 id="how-automated-3d-laminar-x-ray-works">How Automated 3D Laminar
+X-Ray Works</h3>
+<p>Automated 3D laminar X-ray inspection—often referred to as Computed
+Laminography—overcomes overlapping shadows by capturing multiple angled
+X-ray projections as the X-ray source and detector move in a
+synchronized path (or as the board rotates).</p>
+<p>Using reconstruction algorithms, the system mathematically combines
+these angled images to create a sharp focal plane at a specific vertical
+height while blurring out features above and below that plane. By
+repeating this process at different depths, the 3D AXI system generates
+a series of horizontal, cross-sectional slices (laminae) of the BGA
+solder joints. Commonly, three distinct slices are analyzed per joint:
+the package side (top), the center of the ball, and the PCB pad side
+(bottom).</p>
+<h3 id="detecting-head-in-pillow-hip-defects">Detecting Head-in-Pillow
+(HiP) Defects</h3>
+<p>A head-in-pillow defect occurs when the BGA solder ball and the
+solder paste on the PCB pad fail to coalesce during the reflow process.
+Instead of melting into a single unified joint, the ball rests in the
+solidified paste like a head on a pillow, resulting in an incomplete or
+mechanically weak connection that passes initial electrical tests but
+fails in the field.</p>
+<p>In a 2D X-ray looking straight down, a HiP defect looks completely
+normal because the ball and the paste are aligned vertically. 3D laminar
+X-ray detects HiP defects through horizontal slicing and volumetric
+profile analysis:</p>
+<ol type="1">
+<li><strong>Diameter Comparison:</strong> In a healthy BGA joint, the
+solder ball melts and collapses slightly, creating a uniform,
+predictable shape from top to bottom. In a HiP defect, the paste forms a
+cup around the unmelted ball. By taking a slice near the PCB pad and a
+slice at the center of the ball, the automated software measures the
+diameter and density of each slice. An abnormal transition in diameter
+between the bottom and middle slices flags a HiP defect.</li>
+<li><strong>Void and Interface Analysis:</strong> The boundary where the
+ball meets the "pillow" of paste creates a slight indentation or an
+irregular density gradient. The 3D AXI software inspects the specific
+focal slice where the paste and ball meet. If it detects a drop in
+gray-scale density (indicating a gap) or a non-circular perimeter at
+this interface, it automatically classifies the joint as a HiP
+defect.</li>
+</ol>
+<h3 id="detecting-solder-shorts-beneath-bgas">Detecting Solder Shorts
+Beneath BGAs</h3>
+<p>Solder shorts (or bridging) occur when excess solder or misplaced
+paste causes two or more adjacent BGA balls to connect, creating an
+unintended electrical path. While large shorts are sometimes visible in
+2D X-ray, complex double-sided boards can hide fine solder bridges
+behind dense copper traces, vias, or large components on the opposite
+side of the board.</p>
+<p>3D laminar X-ray isolates the exact vertical plane of the BGA solder
+joints, effectively erasing the visual interference from the rest of the
+PCB. The automated system detects shorts through the following
+steps:</p>
+<ol type="1">
+<li><strong>Plane Isolation:</strong> The system focuses strictly on the
+slices located between the bottom of the BGA package and the surface of
+the PCB pads.</li>
+<li><strong>Thresholding and Segmentation:</strong> The inspection
+algorithm applies gray-scale thresholding to separate high-density lead
+or tin-silver-copper solder from the lower-density fiberglass board
+material.</li>
+<li><strong>Connectivity Checks:</strong> The software expects to see a
+grid of isolated, circular shapes in every horizontal slice of the BGA.
+If the algorithm detects high-density material connecting the perimeters
+of two adjacent pads within the same focal slice, or if a single solder
+mass spans across the expected air gap between two balls, it immediately
+flags the anomaly as a solder short.</li>
+</ol>
+<p>By dividing the BGA joint into distinct horizontal layers and
+applying automated geometric rules to each slice, 3D laminar X-ray
+provides manufacturers with a definitive method to catch both subtle
+head-in-pillow anomalies and hidden electrical shorts before the circuit
+boards leave the factory.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-3-d-laminar-x-ray-inspection-detects-hidden-bga-defects';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How SAR ADCs Use Binary Search to Digitize Voltages - electronics</title>
+    <meta name="description" content="Successive-Approximation Register Analog-to-Digital Converters (SAR ADCs) are widely used in modern electronics to translate continuous analog voltage signals into discrete digital numbers. This article explains how a SAR ADC utilizes a binary search algo">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-sar-ad-cs-use-binary-search-to-digitize-voltages">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How SAR ADCs Use Binary Search to Digitize Voltages - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-sar-ad-cs-use-binary-search-to-digitize-voltages" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Successive-Approximation Register Analog-to-Digital Converters (SAR ADCs) are widely used in modern electronics to translate continuous analog voltage signals into discrete digital numbers. This article explains how a SAR ADC utilizes a binary search algo" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-sar-adcs-use-binary-search-to-digitize-voltages">How SAR
+ADCs Use Binary Search to Digitize Voltages</h1>
+<p>Successive-Approximation Register Analog-to-Digital Converters (SAR
+ADCs) are widely used in modern electronics to translate continuous
+analog voltage signals into discrete digital numbers. This article
+explains how a SAR ADC utilizes a binary search algorithm to efficiently
+determine the digital value of an input voltage by systematically
+halving the possible voltage range and comparing it against an internal
+reference.</p>
+<h2 id="core-components-of-a-sar-adc">Core Components of a SAR ADC</h2>
+<p>To execute a binary search, a SAR ADC relies on four primary internal
+components working in a feedback loop:</p>
+<ul>
+<li><strong>Sample-and-Hold Circuit (S/H):</strong> Captures the
+incoming analog voltage (<span class="math inline">\(V_{IN}\)</span>)
+and keeps it steady during the conversion process.</li>
+<li><strong>Digital-to-Analog Converter (DAC):</strong> Converts the
+current digital guess from the register into an analog voltage (<span
+class="math inline">\(V_{DAC}\)</span>) using a known reference voltage
+(<span class="math inline">\(V_{REF}\)</span>).</li>
+<li><strong>Comparator:</strong> Compares the held input voltage (<span
+class="math inline">\(V_{IN}\)</span>) with the generated DAC voltage
+(<span class="math inline">\(V_{DAC}\)</span>) and outputs a logic high
+or low.</li>
+<li><strong>Successive-Approximation Register (SAR):</strong> The
+digital logic unit that executes the binary search algorithm based on
+the comparator's output.</li>
+</ul>
+<h2 id="the-binary-search-algorithm-step-by-step">The Binary Search
+Algorithm Step-by-Step</h2>
+<p>The binary search process determines the digital output one bit at a
+time, starting from the Most Significant Bit (MSB) and moving down to
+the Least Significant Bit (LSB).</p>
+<ol type="1">
+<li><strong>Sampling:</strong> The Sample-and-Hold circuit captures the
+analog input voltage (<span class="math inline">\(V_{IN}\)</span>). The
+SAR resets all its bits to 0.</li>
+<li><strong>Testing the MSB:</strong> The SAR sets the Most Significant
+Bit (MSB) to 1, leaving all other bits at 0. For an <span
+class="math inline">\(N\)</span>-bit ADC, this represents half of the
+full-scale reference voltage (<span class="math inline">\(\frac{1}{2}
+V_{REF}\)</span>).</li>
+<li><strong>First Comparison:</strong> The internal DAC outputs <span
+class="math inline">\(\frac{1}{2} V_{REF}\)</span>. The comparator
+checks if <span class="math inline">\(V_{IN}\)</span> is greater than or
+less than <span class="math inline">\(V_{DAC}\)</span>.
+<ul>
+<li>If <span class="math inline">\(V_{IN} &gt; V_{DAC}\)</span>, the
+comparator outputs a 1, and the SAR keeps the MSB set to 1.</li>
+<li>If <span class="math inline">\(V_{IN} &lt; V_{DAC}\)</span>, the
+comparator outputs a 0, and the SAR resets the MSB back to 0.</li>
+</ul></li>
+<li><strong>Moving to the Next Bit:</strong> The SAR moves to the next
+bit down and sets it to 1. Depending on the result of the first step,
+the DAC now outputs either <span class="math inline">\(\frac{3}{4}
+V_{REF}\)</span> (if the MSB remained 1) or <span
+class="math inline">\(\frac{1}{4} V_{REF}\)</span> (if the MSB was reset
+to 0).</li>
+<li><strong>Repeating the Process:</strong> The comparator evaluates the
+new <span class="math inline">\(V_{DAC}\)</span> against <span
+class="math inline">\(V_{IN}\)</span> and keeps or resets the second bit
+accordingly. This process of halving the remaining voltage range
+continues until the Least Significant Bit (LSB) is tested.</li>
+<li><strong>Output:</strong> Once the LSB is determined, the binary
+search is complete. The digital word stored in the SAR is output as the
+final digital representation of the input voltage.</li>
+</ol>
+<h2 id="concrete-example-a-4-bit-sar-adc">Concrete Example: A 4-Bit SAR
+ADC</h2>
+<p>Assume a 4-bit SAR ADC has a reference voltage (<span
+class="math inline">\(V_{REF}\)</span>) of 16V and receives an analog
+input voltage (<span class="math inline">\(V_{IN}\)</span>) of
+11.2V.</p>
+<ul>
+<li><strong>Cycle 1 (Bit 3 - MSB):</strong> The SAR guesses
+<code>1000</code>, which sets <span
+class="math inline">\(V_{DAC}\)</span> to 8V (<span
+class="math inline">\(\frac{1}{2}\)</span> of 16V). Since 11.2V &gt; 8V,
+the MSB remains <code>1</code>.</li>
+<li><strong>Cycle 2 (Bit 2):</strong> The SAR sets the next bit,
+guessing <code>1100</code>. This sets <span
+class="math inline">\(V_{DAC}\)</span> to 12V (<span
+class="math inline">\(8V + 4V\)</span>). Since 11.2V &lt; 12V, this bit
+is too high and is reset to <code>0</code>. The register now holds
+<code>1000</code>.</li>
+<li><strong>Cycle 3 (Bit 1):</strong> The SAR sets the third bit,
+guessing <code>1010</code>. This sets <span
+class="math inline">\(V_{DAC}\)</span> to 10V (<span
+class="math inline">\(8V + 2V\)</span>). Since 11.2V &gt; 10V, this bit
+remains <code>1</code>.</li>
+<li><strong>Cycle 4 (Bit 0 - LSB):</strong> The SAR sets the final bit,
+guessing <code>1011</code>. This sets <span
+class="math inline">\(V_{DAC}\)</span> to 11V (<span
+class="math inline">\(8V + 2V + 1V\)</span>). Since 11.2V &gt; 11V, the
+LSB remains <code>1</code>.</li>
+</ul>
+<p>The conversion finishes in 4 clock cycles. The final digital output
+is <code>1011</code> (which represents 11V, the closest digital
+approximation to 11.2V for this resolution).</p>
+<h2 id="why-the-binary-search-approach-is-effective">Why the Binary
+Search Approach is Effective</h2>
+<p>By using a binary search algorithm, an <span
+class="math inline">\(N\)</span>-bit SAR ADC only requires <span
+class="math inline">\(N\)</span> clock cycles to complete a conversion.
+In contrast, a linear search (such as in a ramp-compare ADC) would
+require up to <span class="math inline">\(2^N\)</span> clock cycles. For
+a 16-bit ADC, a SAR architecture takes 16 cycles to find the voltage,
+whereas a linear search could take up to 65,536 cycles. This makes SAR
+ADCs an ideal balance of speed, resolution, and low power consumption
+for data acquisition systems.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-sar-ad-cs-use-binary-search-to-digitize-voltages';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

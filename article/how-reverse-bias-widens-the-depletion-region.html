@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Reverse Bias Widens the Depletion Region - electronics</title>
+    <meta name="description" content="Applying a reverse bias to a semiconductor p-n junction widens the insulating depletion region by using an external voltage to pull mobile charge carriers away from the junction interface. By connecting the positive terminal of a power source to the n-typ">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-reverse-bias-widens-the-depletion-region">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Reverse Bias Widens the Depletion Region - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-reverse-bias-widens-the-depletion-region" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Applying a reverse bias to a semiconductor p-n junction widens the insulating depletion region by using an external voltage to pull mobile charge carriers away from the junction interface. By connecting the positive terminal of a power source to the n-typ" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-reverse-bias-widens-the-depletion-region">How Reverse Bias
+Widens the Depletion Region</h1>
+<p>Applying a reverse bias to a semiconductor p-n junction widens the
+insulating depletion region by using an external voltage to pull mobile
+charge carriers away from the junction interface. By connecting the
+positive terminal of a power source to the n-type material and the
+negative terminal to the p-type material, electrons and holes are drawn
+toward the battery terminals. This movement leaves behind a wider zone
+of uncovered, immobile ions, which increases the internal electric field
+and creates a strong insulating barrier that prevents standard current
+flow.</p>
+<h3 id="the-p-n-junction-at-equilibrium">The P-N Junction at
+Equilibrium</h3>
+<p>To understand reverse bias, you must first understand the p-n
+junction without an external voltage applied:</p>
+<ul>
+<li><strong>P-type semiconductor:</strong> Contains an abundance of
+positively charged "holes" (spaces where an electron is missing).</li>
+<li><strong>N-type semiconductor:</strong> Contains an abundance of
+negatively charged free electrons.</li>
+</ul>
+<p>When these two materials are joined, electrons near the border
+naturally diffuse across the junction into the p-side to fill the holes.
+When an electron leaves the n-side, it leaves behind a positively
+charged, immobile donor ion. When that electron fills a hole on the
+p-side, it creates a negatively charged, immobile acceptor ion.</p>
+<p>This transfer creates a thin zone on both sides of the border that is
+stripped of free, mobile carriers. This is the <strong>depletion
+region</strong>. The immobile ions within this zone create a built-in
+electric field that eventually stops further electrons and holes from
+crossing, putting the semiconductor in a state of equilibrium.</p>
+<h3 id="applying-the-reverse-bias">Applying the Reverse Bias</h3>
+<p>Reverse bias occurs when an external voltage source (like a battery)
+is connected to the p-n junction in a specific polarity:</p>
+<ol type="1">
+<li>The <strong>positive terminal</strong> of the battery is connected
+to the <strong>n-type</strong> material.</li>
+<li>The <strong>negative terminal</strong> of the battery is connected
+to the <strong>p-type</strong> material.</li>
+</ol>
+<h3 id="the-widening-mechanism">The Widening Mechanism</h3>
+<p>Once the reverse bias voltage is applied, electrostatic attraction
+immediately alters the positioning of the mobile charge carriers:</p>
+<ul>
+<li><strong>On the N-side:</strong> The positive terminal of the battery
+attracts the negatively charged free electrons. These electrons are
+pulled away from the p-n junction and toward the battery terminal.</li>
+<li><strong>On the P-side:</strong> The negative terminal of the battery
+attracts the positively charged holes. These holes are also pulled away
+from the p-n junction and toward the opposite battery terminal.</li>
+</ul>
+<p>As these mobile electrons and holes retreat from the center, they
+uncover more immobile positive ions on the n-side and more immobile
+negative ions on the p-side. Because the depletion region is defined as
+the area devoid of mobile charge carriers, uncovering more fixed ions
+directly translates to a physically wider depletion region.</p>
+<h3 id="the-insulating-effect">The Insulating Effect</h3>
+<p>As the depletion region widens, it acts as a stronger insulator. The
+newly uncovered ions add to the strength of the existing built-in
+electric field. The depletion region will continue to widen until the
+internal electric field is equal in magnitude to the applied external
+voltage of the battery.</p>
+<p>At this point, the potential barrier at the junction is too high for
+majority carriers (electrons in the n-side, holes in the p-side) to
+overcome. With no mobile carriers left in the central zone to conduct
+electricity, the widened depletion region effectively blocks current
+flow across the semiconductor. (Only a minuscule, negligible "leakage
+current" caused by thermally generated minority carriers can pass
+through).</p>
+<h3 id="practical-applications-in-electronics">Practical Applications in
+Electronics</h3>
+<p>Engineers intentionally manipulate the width of the depletion region
+using reverse bias for several electronic components:</p>
+<ul>
+<li><strong>Rectifier Diodes:</strong> Used to convert alternating
+current (AC) to direct current (DC). The widened depletion region during
+the reverse-bias cycle acts as an open switch, blocking current from
+flowing backward into a circuit.</li>
+<li><strong>Varactor Diodes:</strong> A p-n junction acts like a
+capacitor, where the p-side and n-side are the conductive plates, and
+the insulating depletion region is the dielectric between them. By
+changing the reverse bias voltage, engineers can change the width of the
+depletion region, which alters the capacitance. This is commonly used in
+radio frequency (RF) tuning circuits.</li>
+<li><strong>Photodiodes:</strong> A wider depletion region provides a
+larger surface area to absorb incoming light (photons). Photodiodes are
+operated in reverse bias so that when light hits the wide depletion
+region, it generates electron-hole pairs that are quickly swept across
+the junction, creating a measurable electrical current used in light
+sensors and fiber optics.</li>
+</ul></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-reverse-bias-widens-the-depletion-region';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

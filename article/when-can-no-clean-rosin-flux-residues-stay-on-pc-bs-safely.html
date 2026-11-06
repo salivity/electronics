@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When Can No-Clean Rosin Flux Residues Stay on PCBs Safely? - electronics</title>
+    <meta name="description" content="No-clean rosin flux residues can be safely left on assembled printed circuit boards (PCBs) without causing dendritic electrochemical migration (ECM) only when the flux undergoes complete thermal activation during soldering, is classified as low-activity (">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/when-can-no-clean-rosin-flux-residues-stay-on-pc-bs-safely">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="When Can No-Clean Rosin Flux Residues Stay on PCBs Safely? - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/when-can-no-clean-rosin-flux-residues-stay-on-pc-bs-safely" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="No-clean rosin flux residues can be safely left on assembled printed circuit boards (PCBs) without causing dendritic electrochemical migration (ECM) only when the flux undergoes complete thermal activation during soldering, is classified as low-activity (" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="when-can-no-clean-rosin-flux-residues-stay-on-pcbs-safely">When
+Can No-Clean Rosin Flux Residues Stay on PCBs Safely?</h1>
+<p>No-clean rosin flux residues can be safely left on assembled printed
+circuit boards (PCBs) without causing dendritic electrochemical
+migration (ECM) only when the flux undergoes complete thermal activation
+during soldering, is classified as low-activity (ROL0 or ROM0), and
+operates in a controlled, low-humidity environment. Furthermore, the
+board design must not trap raw flux under low-standoff components, and
+any applied conformal coating must be chemically compatible with the
+remaining residue. This article outlines the specific thermal,
+environmental, and design conditions required to leave no-clean rosin
+flux on electronics safely without risking short circuits from dendritic
+growth.</p>
+<h2 id="complete-thermal-activation-during-reflow">Complete Thermal
+Activation During Reflow</h2>
+<p>The primary condition for safely leaving no-clean rosin flux on a PCB
+is achieving the correct thermal profile during the soldering process.
+No-clean flux contains weak organic acids (activators) that remove
+oxides from metal surfaces.</p>
+<p>For the residue to be safe, the assembly must reach the flux
+manufacturer's specified activation temperature for the correct
+duration. This heat serves two purposes:</p>
+<ul>
+<li><strong>Depleting the activators:</strong> The heat forces the
+acidic activators to react completely with the surface oxides,
+neutralizing their corrosive potential.</li>
+<li><strong>Encapsulating the ions:</strong> As the rosin cools, it
+hardens into a hydrophobic (water-repelling), glass-like shell. This
+benign matrix encapsulates any remaining ionic activators, preventing
+them from absorbing moisture and becoming conductive.</li>
+</ul>
+<p>If the soldering temperature is too low or the time in the reflow
+zone is too short, unactivated raw flux will remain on the board. This
+unspent flux is hygroscopic and conductive, which directly leads to
+electrochemical migration when voltage is applied.</p>
+<h2 id="using-low-activity-flux-classifications">Using Low-Activity Flux
+Classifications</h2>
+<p>Not all rosin fluxes are safe to leave behind. According to IPC
+J-STD-004 standards, only specific low-activity rosin fluxes are
+suitable for no-clean applications.</p>
+<p>To prevent dendritic growth, the flux must be classified as
+<strong>ROL0</strong> (Rosin, Low activity, 0% halide) or
+<strong>ROM0</strong> (Rosin, Moderate activity, 0% halide). Halides,
+such as chlorides and bromides, are aggressive activators that easily
+dissociate in the presence of moisture. By ensuring the flux is
+halide-free (indicated by the "0"), you drastically reduce the free ions
+available to form conductive filaments between bias traces.</p>
+<h2 id="avoiding-flux-entrapment-in-board-design">Avoiding Flux
+Entrapment in Board Design</h2>
+<p>Even with the correct reflow profile, physical board design dictates
+whether flux residue is safe. No-clean rosin flux is only safe when its
+volatile solvent carriers can fully evaporate during heating.</p>
+<p>Flux residue becomes a high risk for ECM if it is trapped under
+low-standoff, bottom-terminated components such as:</p>
+<ul>
+<li>Quad Flat No-Lead (QFN) packages</li>
+<li>Ball Grid Arrays (BGAs) with tight pitches</li>
+<li>Large RF shields</li>
+<li>Surface-mount capacitors and resistors placed tightly together</li>
+</ul>
+<p>When flux gets trapped beneath these components, the solvents cannot
+outgas. The flux remains in a partially liquid, active state. Over time,
+this trapped residue provides an ideal pathway for metal ions to migrate
+across closely spaced conductors, resulting in hidden short circuits.
+No-clean flux is only safe to leave uncleaned when component standoffs
+are high enough to allow total outgassing.</p>
+<h2 id="operating-in-benign-environmental-conditions">Operating in
+Benign Environmental Conditions</h2>
+<p>Electrochemical migration requires three factors to occur: ionic
+contamination, a voltage bias, and moisture. Even properly cured rosin
+can break down under extreme environmental stress.</p>
+<p>Leaving no-clean rosin flux on a board is safe when the final
+electronic device operates in benign environments, such as
+climate-controlled offices, consumer homes, or dry industrial spaces. In
+these settings, relative humidity stays low enough that a monolayer of
+water cannot form across the PCB surface.</p>
+<p>Conversely, if the electronics are exposed to high heat and high
+condensing humidity (typically above 65% to 85% relative humidity)
+alongside high voltages, the rosin shell can degrade. Moisture will
+penetrate the residue, mobilize the dormant ions, and initiate dendritic
+growth.</p>
+<h2 id="ensuring-conformal-coating-compatibility">Ensuring Conformal
+Coating Compatibility</h2>
+<p>If a circuit board will be exposed to harsh environments,
+manufacturers often apply a conformal coating directly over the no-clean
+flux residue. For this to be safe, the flux residue and the conformal
+coating must be chemically compatible.</p>
+<p>Rosin residues have low surface energy, which can cause coatings to
+delaminate, bubble, or fail to cure properly (a defect known as
+"de-wetting"). If the coating delaminates from the flux residue, it
+creates a microscopic pocket. Moisture will eventually diffuse through
+the coating and condense inside this pocket, mixing with the flux
+residue to create a concentrated electrolyte cell. This accelerates
+dendritic growth rather than preventing it. Leaving the flux on the
+board is only safe if cross-hatch adhesion testing and Surface
+Insulation Resistance (SIR) testing confirm that the conformal coating
+bonds permanently to the specific rosin formulation used.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/when-can-no-clean-rosin-flux-residues-stay-on-pc-bs-safely';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

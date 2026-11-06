@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Nonlinear Loads Cause Total Harmonic Distortion in AC Power - electronics</title>
+    <meta name="description" content="This article explains the mechanics of how nonlinear loads generate total harmonic distortion (THD) in alternating current (AC) power electronics. It begins by differentiating between linear and nonlinear electrical behavior, details the role of switching">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-nonlinear-loads-cause-total-harmonic-distortion-in-ac-power">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Nonlinear Loads Cause Total Harmonic Distortion in AC Power - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-nonlinear-loads-cause-total-harmonic-distortion-in-ac-power" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains the mechanics of how nonlinear loads generate total harmonic distortion (THD) in alternating current (AC) power electronics. It begins by differentiating between linear and nonlinear electrical behavior, details the role of switching" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="how-nonlinear-loads-cause-total-harmonic-distortion-in-ac-power">How
+Nonlinear Loads Cause Total Harmonic Distortion in AC Power</h1>
+<p>This article explains the mechanics of how nonlinear loads generate
+total harmonic distortion (THD) in alternating current (AC) power
+electronics. It begins by differentiating between linear and nonlinear
+electrical behavior, details the role of switching semiconductors and
+rectifiers in distorting current waveforms, explains how distorted
+current translates into system-wide voltage distortion via source
+impedance, and outlines the resulting impacts on electrical
+infrastructure.</p>
+<h3 id="understanding-linear-vs-nonlinear-loads">Understanding Linear
+vs. Nonlinear Loads</h3>
+<p>In an ideal AC power system, voltage and current flow in smooth,
+continuous sinusoidal waves. When a linear load—such as an incandescent
+light bulb, a standard heater, or an unregulated AC motor—is connected
+to the system, its impedance remains constant throughout the electrical
+cycle. Consequently, the current it draws is directly proportional to
+the applied voltage, mirroring the smooth sine wave.</p>
+<p>Nonlinear loads change their impedance abruptly during each AC cycle.
+Modern power electronics, including variable frequency drives (VFDs),
+uninterruptible power supplies (UPS), switched-mode power supplies
+(SMPS) in computers, and LED lighting drivers, are inherently nonlinear.
+Because their impedance is not constant, the current they draw is not
+proportional to the source voltage, resulting in a non-sinusoidal
+current waveform.</p>
+<h3 id="the-mechanism-of-current-distortion">The Mechanism of Current
+Distortion</h3>
+<p>The root cause of harmonic generation inside AC power electronics is
+the rectification process, which converts incoming AC power into direct
+current (DC). Most modern electronics use a front-end diode bridge
+rectifier paired with a large smoothing capacitor to create a stable DC
+bus.</p>
+<p>Diodes act as one-way valves for electricity. They only conduct
+current when the incoming AC line voltage exceeds the DC voltage
+currently stored in the smoothing capacitor. Because the capacitor
+retains its charge well, the incoming AC voltage only surpasses the
+capacitor's voltage right at the absolute peak of the AC sine wave.</p>
+<p>Instead of drawing current smoothly throughout the entire 50 Hz or 60
+Hz cycle, the nonlinear load gulps current in short, high-amplitude
+pulses at the top and bottom peaks of the voltage wave. For the
+remainder of the cycle, the load draws zero current. This sudden pulsing
+flattens and chops the current waveform, making it look like a series of
+sharp spikes rather than a smooth wave.</p>
+<h3 id="from-pulses-to-harmonics-fourier-analysis">From Pulses to
+Harmonics (Fourier Analysis)</h3>
+<p>According to French mathematician Jean-Baptiste Joseph Fourier, any
+distorted, repeating waveform can be mathematically broken down into a
+combination of pure sine waves at different frequencies.</p>
+<p>When a nonlinear load draws current in sharp pulses, it creates a
+composite waveform made up of the fundamental frequency (e.g., 60 Hz)
+plus a series of higher-frequency sine waves known as harmonics.
+Harmonics are integer multiples of the fundamental frequency. Because
+the pulsing happens identically on both the positive and negative halves
+of the AC cycle, power electronics primarily generate "odd"
+harmonics:</p>
+<ul>
+<li><strong>3rd Harmonic:</strong> 180 Hz (3 x 60 Hz)</li>
+<li><strong>5th Harmonic:</strong> 300 Hz (5 x 60 Hz)</li>
+<li><strong>7th Harmonic:</strong> 420 Hz (7 x 60 Hz)</li>
+</ul>
+<p>Total Harmonic Distortion (THD) is the measurement used to quantify
+the cumulative effect of all these harmonic frequencies compared to the
+fundamental frequency, expressed as a percentage.</p>
+<h3 id="how-current-thd-creates-voltage-thd">How Current THD Creates
+Voltage THD</h3>
+<p>It is a common misconception that nonlinear loads directly distort
+the grid's voltage. In reality, nonlinear loads are sources of
+<em>current</em> distortion. However, this current distortion inevitably
+causes <em>voltage</em> distortion through the electrical system's
+impedance.</p>
+<p>All electrical supply networks—including utility lines, facility
+wiring, and transformers—possess internal resistance and reactance,
+collectively known as source impedance. According to Ohm’s Law (<span
+class="math inline">\(V = I \times Z\)</span>), when the distorted
+harmonic currents (<span class="math inline">\(I\)</span>) generated by
+the nonlinear load flow back through the system's source impedance
+(<span class="math inline">\(Z\)</span>), they create harmonic voltage
+drops (<span class="math inline">\(V\)</span>).</p>
+<p>Because the current is drawn exclusively at the peak of the sine
+wave, the highest voltage drop occurs at that exact moment. This causes
+a phenomenon known as "flat-topping," where the peaks of the system's AC
+voltage waveform are visibly flattened. Once the source voltage is
+distorted, that corrupted voltage wave is fed to every other piece of
+equipment connected to the same electrical bus, even if those other
+loads are entirely linear.</p>
+<h3 id="consequences-of-high-thd-in-power-electronics">Consequences of
+High THD in Power Electronics</h3>
+<p>When nonlinear loads push current and voltage THD beyond acceptable
+limits (typically defined by the IEEE 519 standard), several operational
+failures occur:</p>
+<ul>
+<li><strong>Neutral Conductor Overloading:</strong> In three-phase,
+four-wire systems, balanced fundamental currents cancel each other out
+in the neutral wire. However, "triplen" harmonics (odd multiples of the
+3rd harmonic, such as the 3rd, 9th, and 15th) stay in phase with one
+another. Instead of canceling out, they add together cleanly in the
+neutral conductor, subjecting it to currents that can exceed the phase
+currents and cause severe overheating.</li>
+<li><strong>Transformer Overheating:</strong> Higher harmonic
+frequencies increase eddy current losses and hysteresis losses within
+the iron cores of distribution transformers, converting wasted
+electrical energy directly into destructive heat.</li>
+<li><strong>Nuisance Tripping and Logic Faults:</strong> High-frequency
+harmonics can fool the sensing mechanisms of standard circuit breakers
+into tripping prematurely. Furthermore, severe voltage distortion can
+create multiple "zero-crossings" per cycle, disrupting power electronics
+that rely on the point where voltage crosses zero to time their internal
+semiconductor switching.</li>
+</ul></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-nonlinear-loads-cause-total-harmonic-distortion-in-ac-power';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Nyquist Stability Criterion Predicts Circuit Oscillations - electronics</title>
+    <meta name="description" content="The Nyquist stability criterion is a graphical technique used in control systems and electronic engineering to determine the stability of a closed-loop feedback system. This article provides a comprehensive overview of how this mathematical principle pred">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-nyquist-stability-criterion-predicts-circuit-oscillations">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Nyquist Stability Criterion Predicts Circuit Oscillations - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-nyquist-stability-criterion-predicts-circuit-oscillations" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Nyquist stability criterion is a graphical technique used in control systems and electronic engineering to determine the stability of a closed-loop feedback system. This article provides a comprehensive overview of how this mathematical principle pred" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="how-nyquist-stability-criterion-predicts-circuit-oscillations">How
+Nyquist Stability Criterion Predicts Circuit Oscillations</h1>
+<p>The Nyquist stability criterion is a graphical technique used in
+control systems and electronic engineering to determine the stability of
+a closed-loop feedback system. This article provides a comprehensive
+overview of how this mathematical principle predicts unwanted
+oscillations in electronic circuits. By examining the open-loop
+frequency response on a complex plane, engineers can identify whether a
+feedback loop will remain stable or degrade into self-sustaining
+oscillations. We will explore the mechanics of loop gain, the importance
+of the critical (-1, 0) point, the role of Cauchy's argument principle,
+and how phase and gain margins are utilized to design reliable,
+oscillation-free electronics.</p>
+<h2 id="the-fundamentals-of-closed-loop-feedback">The Fundamentals of
+Closed-Loop Feedback</h2>
+<p>To understand how the Nyquist criterion predicts oscillations, one
+must first understand the basic structure of a closed-loop feedback
+system. An electronic amplifier with feedback takes a portion of its
+output signal and combines it with the input signal. The behavior of
+this system is governed by its closed-loop transfer function:</p>
+<p>T(s) = A(s) / [1 + A(s)β(s)]</p>
+<p>In this equation, A(s) represents the open-loop gain of the
+amplifier, and β(s) represents the feedback factor. The product A(s)β(s)
+is known as the "loop gain." The denominator of this equation, 1 +
+A(s)β(s), is the characteristic equation of the system. The roots of
+this characteristic equation are the closed-loop poles, which dictate
+the stability of the circuit.</p>
+<h2 id="the-condition-for-oscillation">The Condition for
+Oscillation</h2>
+<p>In any feedback system, instability and oscillations occur if the
+closed-loop transfer function has poles in the Right-Half Plane (RHP) of
+the complex s-plane. Physically, RHP poles correspond to signals that
+grow exponentially over time rather than decaying, leading to
+oscillation or saturation.</p>
+<p>Looking at the characteristic equation, if the loop gain A(s)β(s)
+equals -1 at any specific frequency, the denominator (1 + A(s)β(s))
+becomes zero. Division by zero causes the closed-loop gain to approach
+infinity. In practical electronics, an infinite gain means the circuit
+can generate an output signal with zero input signal. This is the exact
+condition for self-sustaining oscillation.</p>
+<p>In terms of magnitude and phase, the value -1 on the complex plane
+corresponds to a magnitude of 1 (or 0 dB) and a phase shift of -180
+degrees. If the open-loop system amplifies a signal by at least 1 while
+simultaneously shifting its phase by -180 degrees, negative feedback
+turns into positive feedback. The circuit will reinforce its own noise
+at that specific frequency, resulting in continuous oscillation.</p>
+<h2 id="mapping-the-nyquist-plot">Mapping the Nyquist Plot</h2>
+<p>Finding the closed-loop poles directly from the characteristic
+equation can be mathematically difficult for complex circuits. The
+Nyquist stability criterion bypasses this by using the open-loop
+frequency response—which is easily measured or simulated—to infer the
+behavior of the closed-loop system.</p>
+<p>A Nyquist plot is generated by sweeping the frequency of the input
+signal from negative infinity to positive infinity and plotting the
+resulting complex values of the open-loop gain A(jω)β(jω) on a polar
+coordinate system. The real part of the transfer function is plotted on
+the horizontal x-axis, and the imaginary part is plotted on the vertical
+y-axis. Each point on the resulting contour represents the magnitude and
+phase of the open-loop response at a specific frequency.</p>
+<h2 id="the-critical--1-0-point-and-cauchys-principle">The Critical (-1,
+0) Point and Cauchy's Principle</h2>
+<p>Because oscillation occurs when A(s)β(s) = -1, the coordinates (-1,
+0) on the complex plane become the critical point of interest on a
+Nyquist plot.</p>
+<p>The Nyquist criterion is based on Cauchy's argument principle from
+complex analysis. In simple terms, it relates the number of unstable
+closed-loop poles to the number of times the Nyquist plot encircles the
+critical (-1, 0) point. The mathematical formula for the criterion
+is:</p>
+<p>Z = N + P</p>
+<ul>
+<li><strong>Z</strong> is the number of unstable closed-loop poles (in
+the RHP). For the circuit to be stable and free of oscillations, Z must
+equal zero.</li>
+<li><strong>P</strong> is the number of unstable open-loop poles already
+present in the system before feedback is applied.</li>
+<li><strong>N</strong> is the number of clockwise encirclements the
+Nyquist plot makes around the (-1, 0) point. (Counter-clockwise
+encirclements are counted as negative values).</li>
+</ul>
+<h2 id="predicting-oscillations">Predicting Oscillations</h2>
+<p>Engineers use the Z = N + P formula to predict oscillations in two
+primary scenarios:</p>
+<ol type="1">
+<li><strong>Open-Loop Stable Systems (P = 0):</strong> Most electronic
+amplifiers are stable when operated without feedback, meaning P = 0. For
+the closed-loop system to remain stable (Z = 0), N must also be zero.
+Therefore, the Nyquist criterion states that if the Nyquist plot of an
+open-loop stable system intersects or encircles the (-1, 0) point in a
+clockwise direction, the closed-loop circuit will oscillate. If the plot
+does not encircle (-1, 0), the circuit is stable.</li>
+<li><strong>Open-Loop Unstable Systems (P &gt; 0):</strong> Some complex
+systems are inherently unstable in an open-loop configuration. Here, P
+is greater than zero. To achieve stability (Z = 0), the value of N must
+be negative (N = -P). This means the Nyquist plot must encircle the (-1,
+0) point in a counter-clockwise direction an exact number of times equal
+to the number of unstable open-loop poles. If it fails to do so, the
+system will oscillate or latch up.</li>
+</ol>
+<h2 id="gain-and-phase-margin-on-the-nyquist-plot">Gain and Phase Margin
+on the Nyquist Plot</h2>
+<p>In real-world electronics, component values drift due to temperature,
+aging, and manufacturing tolerances. Simply avoiding the (-1, 0) point
+is not enough; the Nyquist plot must stay a safe distance away from it.
+If the plot passes too close to (-1, 0), the circuit will exhibit
+"ringing"—damped oscillations that appear in response to sudden input
+changes.</p>
+<p>The Nyquist plot visually represents two vital safety metrics:</p>
+<ul>
+<li><strong>Gain Margin:</strong> This measures how much the open-loop
+gain can be increased before the plot hits the (-1, 0) point. It is
+found by looking at the point where the Nyquist plot crosses the
+negative real axis (where the phase is -180 degrees). If it crosses at
+-0.5, the gain can be doubled before reaching -1, providing a 6 dB gain
+margin.</li>
+<li><strong>Phase Margin:</strong> This measures how much additional
+phase shift the circuit can tolerate before oscillating. It is
+determined by finding the point where the Nyquist plot intersects the
+"unit circle" (where the magnitude of the gain is equal to 1). The angle
+between this intersection point and the negative real axis is the phase
+margin.</li>
+</ul>
+<p>By using the Nyquist stability criterion to ensure the open-loop
+response does not improperly encircle the (-1, 0) point, and by
+maintaining adequate gain and phase margins, engineers can reliably
+predict and prevent oscillations in closed-loop electronic systems.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-nyquist-stability-criterion-predicts-circuit-oscillations';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

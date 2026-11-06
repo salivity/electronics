@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirchhoff&#39;s Current Law and Charge Conservation at Nodes - electronics</title>
+    <meta name="description" content="This article explains how Kirchhoff&#39;s Current Law (KCL) governs the conservation of electric charge at parallel nodes in electronic circuits. You will learn the core principles of KCL, the physics behind why electric charge cannot accumulate at a junction">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/kirchhoff-s-current-law-and-charge-conservation-at-nodes">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Kirchhoff&#39;s Current Law and Charge Conservation at Nodes - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/kirchhoff-s-current-law-and-charge-conservation-at-nodes" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how Kirchhoff&#39;s Current Law (KCL) governs the conservation of electric charge at parallel nodes in electronic circuits. You will learn the core principles of KCL, the physics behind why electric charge cannot accumulate at a junction" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="kirchhoffs-current-law-and-charge-conservation-at-nodes">Kirchhoff's
+Current Law and Charge Conservation at Nodes</h1>
+<p>This article explains how Kirchhoff's Current Law (KCL) governs the
+conservation of electric charge at parallel nodes in electronic
+circuits. You will learn the core principles of KCL, the physics behind
+why electric charge cannot accumulate at a junction, and how this
+fundamental law dictates the behavior of current dividing and
+recombining within parallel circuit configurations.</p>
+<h3 id="understanding-kirchhoffs-current-law-kcl">Understanding
+Kirchhoff's Current Law (KCL)</h3>
+<p>Kirchhoff's Current Law (KCL), also known as Kirchhoff's first law or
+the junction rule, states that the total electric current entering a
+node (or junction) in an electrical circuit must equal the total
+electric current leaving that same node. Expressed mathematically, the
+algebraic sum of all currents entering and exiting a node is always
+equal to zero:</p>
+<p><span class="math display">\[\sum I_{in} = \sum I_{out}\]</span></p>
+<p>In electronics, a node is any point on a circuit where two or more
+circuit elements meet. Parallel circuits rely entirely on nodes to split
+a main pathway into multiple branches and later recombine them.</p>
+<h3 id="the-principle-of-charge-conservation">The Principle of Charge
+Conservation</h3>
+<p>KCL is not an arbitrary rule; it is a direct application of the Law
+of Conservation of Electric Charge. This fundamental law of physics
+states that electric charge can neither be created nor destroyed; it can
+only be transferred from one place to another.</p>
+<p>Because electric current is simply the rate of flow of electric
+charge over time (measured in Amperes, or Coulombs per second), the flow
+of current is physically bound by the behavior of electrons. A standard
+circuit node consists of conductive material, such as a copper trace or
+a wire splice, which has no capacity to store electric charge.</p>
+<p>At any given instant:</p>
+<ul>
+<li>Electrons flowing into a node must immediately flow out of it.</li>
+<li>A node cannot act as a reservoir to hold back electrons.</li>
+<li>A node cannot spontaneously generate new electrons to increase the
+flow.</li>
+</ul>
+<p>If more current entered a node than left it, electric charge would
+continuously build up at that point, eventually resulting in a
+catastrophic arc or breakdown. Conversely, if more current left the node
+than entered, the node would have to manufacture charge out of nothing,
+which is physically impossible.</p>
+<h3 id="how-kcl-operates-at-parallel-nodes">How KCL Operates at Parallel
+Nodes</h3>
+<p>In a parallel circuit configuration, components are connected across
+the same two sets of electrically common points. KCL governs how current
+distributes itself at these branching points based on the resistance or
+impedance of each pathway.</p>
+<p><strong>1. The Splitting Node (Current Division)</strong> When the
+main current from a power source reaches a parallel node, it encounters
+multiple pathways. KCL dictates that the main incoming current (<span
+class="math inline">\(I_{total}\)</span>) must split among the available
+branches (<span class="math inline">\(I_1, I_2, I_3,\)</span> etc.). The
+exact amount of current that enters each branch is determined by Ohm's
+Law—more current will naturally flow through the path of least
+resistance. However, regardless of the resistance values, the sum of the
+divided currents in the parallel branches will always equal the initial
+incoming current.</p>
+<p><strong>2. The Recombining Node</strong> After passing through the
+parallel components, the individual branch currents meet at a second
+node to return to the power source. Here, KCL operates in reverse. The
+currents from all parallel branches enter the node and recombine into a
+single outgoing current. Because no charge was lost inside the
+components (only electrical energy was converted into heat, light, or
+motion), the total current leaving this final node is identical to the
+<span class="math inline">\(I_{total}\)</span> that entered the first
+node.</p>
+<h3 id="practical-example-of-kcl-in-action">Practical Example of KCL in
+Action</h3>
+<p>Imagine a water pipe that splits into three smaller pipes. If 10
+gallons of water per minute flow into the junction, a total of 10
+gallons per minute must flow out through the three smaller pipes
+combined.</p>
+<p>Applying this to an electronic circuit:</p>
+<ul>
+<li>A power supply pushes <strong>10 Amps</strong> of current toward a
+parallel node.</li>
+<li>The node splits into three parallel branches containing different
+resistors.</li>
+<li>Branch 1 takes <strong>5 Amps</strong>.</li>
+<li>Branch 2 takes <strong>3 Amps</strong>.</li>
+<li>Because of KCL and charge conservation, Branch 3 must take the
+remaining <strong>2 Amps</strong> (<span class="math inline">\(10A - 5A
+- 3A = 2A\)</span>).</li>
+</ul>
+<p>When those three branches meet again at the negative return node, the
+<strong>5 Amps</strong>, <strong>3 Amps</strong>, and <strong>2
+Amps</strong> merge, ensuring that <strong>10 Amps</strong> exit the
+node to return to the power supply.</p>
+<h3 id="summary-of-kcl-rules-at-parallel-nodes">Summary of KCL Rules at
+Parallel Nodes</h3>
+<ul>
+<li><strong>Zero Net Charge:</strong> The net accumulation of charge at
+any node at any instant is always zero.</li>
+<li><strong>Path Independence:</strong> KCL holds true regardless of
+whether the parallel branches contain resistors, capacitors, inductors,
+or semiconductors.</li>
+<li><strong>Directional Accounting:</strong> When calculating KCL,
+currents entering a node are typically assigned a positive value, while
+currents exiting are assigned a negative value, resulting in a sum of
+zero.</li>
+</ul></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/kirchhoff-s-current-law-and-charge-conservation-at-nodes';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

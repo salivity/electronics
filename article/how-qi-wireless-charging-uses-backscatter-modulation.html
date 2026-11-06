@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Qi Wireless Charging Uses Backscatter Modulation - electronics</title>
+    <meta name="description" content="This article explains the technical process of how the Wireless Power Consortium (WPC) Qi standard uses backscatter modulation to enable communication between a power receiver and a power transmitter. We will explore the mechanics of inductive coupling, h">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-qi-wireless-charging-uses-backscatter-modulation">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Qi Wireless Charging Uses Backscatter Modulation - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-qi-wireless-charging-uses-backscatter-modulation" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains the technical process of how the Wireless Power Consortium (WPC) Qi standard uses backscatter modulation to enable communication between a power receiver and a power transmitter. We will explore the mechanics of inductive coupling, h" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-qi-wireless-charging-uses-backscatter-modulation">How Qi
+Wireless Charging Uses Backscatter Modulation</h1>
+<p>This article explains the technical process of how the Wireless Power
+Consortium (WPC) Qi standard uses backscatter modulation to enable
+communication between a power receiver and a power transmitter. We will
+explore the mechanics of inductive coupling, how the receiver alters its
+electrical load to send data packets, and how the transmitter
+demodulates these signals to safely and efficiently regulate wireless
+power delivery without needing a separate radio frequency
+transceiver.</p>
+<h3 id="the-basics-of-inductive-coupling-in-qi">The Basics of Inductive
+Coupling in Qi</h3>
+<p>The Qi wireless charging system consists of two main components: a
+base station (transmitter) and a mobile device (receiver). The
+transmitter contains a primary coil, and the receiver contains a
+secondary coil. When alternating current passes through the primary
+coil, it generates an oscillating magnetic field. When the secondary
+coil is placed within this field, the magnetic flux induces an
+alternating current in the receiver, which is then rectified into direct
+current to charge the device's battery.</p>
+<p>Because the two coils are inductively coupled, any electrical change
+on the receiver side directly affects the magnetic field, which can be
+detected on the transmitter side. The Qi standard leverages this
+physical property for communication via backscatter modulation, also
+known as load modulation.</p>
+<h3 id="how-backscatter-modulation-works">How Backscatter Modulation
+Works</h3>
+<p>Instead of using a dedicated communication chip like Bluetooth or
+Wi-Fi, the Qi receiver communicates with the transmitter using the same
+magnetic field that transfers power. This is called in-band
+communication.</p>
+<p>To send feedback to the transmitter, the receiver intentionally
+varies the electrical load connected to its secondary coil. Inside the
+receiver, a communication modulator switches small capacitors or
+resistors in and out of the circuit at specific intervals.</p>
+<ol type="1">
+<li><strong>Altering the Load:</strong> When the modulator switches the
+extra load into the circuit, it changes the impedance of the secondary
+coil.</li>
+<li><strong>Reflecting the Signal:</strong> Because the primary and
+secondary coils are linked by the magnetic field, this change in
+impedance is "reflected" back to the primary coil.</li>
+<li><strong>Detecting the Change:</strong> On the transmitter side, the
+reflected impedance causes measurable fluctuations in the current or
+voltage flowing through the primary coil.</li>
+</ol>
+<h3 id="encoding-and-decoding-the-data">Encoding and Decoding the
+Data</h3>
+<p>The Qi standard uses a specific encoding scheme to turn these load
+fluctuations into readable digital data.</p>
+<p>The receiver uses a differential bi-phase encoding method at a data
+rate of 2 kilobits per second (kbps). A logical "1" is encoded by making
+two load transitions within a single bit period, while a logical "0" is
+encoded with a single transition.</p>
+<p>The transmitter continuously monitors its primary coil using a
+demodulation circuit. This circuit tracks the amplitude or phase of the
+coil’s current and voltage. When the receiver modulates its load, the
+transmitter detects the resulting tiny spikes and dips in the coil
+current, filters out the main power frequency (typically between 110 kHz
+and 205 kHz), and translates the transitions back into binary data
+packets.</p>
+<h3 id="what-information-is-sent-via-feedback">What Information is Sent
+via Feedback?</h3>
+<p>Backscatter modulation is strictly unidirectional, flowing only from
+the receiver to the transmitter. This feedback loop is critical for four
+main phases of wireless charging:</p>
+<ul>
+<li><strong>Identification and Configuration:</strong> When a device is
+placed on a charger, it uses backscatter modulation to wake up the
+transmitter, identify itself as a Qi-compatible device, and communicate
+its maximum power requirements.</li>
+<li><strong>Control Error Packets:</strong> During active charging, the
+receiver constantly monitors its own voltage and current. It sends
+"Control Error Packets" roughly every 250 milliseconds, telling the
+transmitter to increase, decrease, or maintain the current power level.
+The transmitter adjusts its resonant frequency or duty cycle
+accordingly.</li>
+<li><strong>Foreign Object Detection (FOD):</strong> The receiver tells
+the transmitter precisely how much power it is receiving. The
+transmitter compares this value to the amount of power it is sending. If
+there is a large discrepancy, the transmitter assumes a foreign metal
+object (like a coin or key) is absorbing the magnetic field and shuts
+down to prevent overheating.</li>
+<li><strong>Charge Complete:</strong> Once the device's battery reaches
+100%, the receiver sends an "End Power Transfer" packet, instructing the
+transmitter to shut off the magnetic field and enter standby mode.</li>
+</ul></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-qi-wireless-charging-uses-backscatter-modulation';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

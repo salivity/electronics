@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How LoRa Chirp Spread Spectrum Works Below the Noise Floor - electronics</title>
+    <meta name="description" content="Long Range (LoRa) wireless technology revolutionizes telemetry electronics by enabling data transmission over vast distances while consuming minimal power, even when the incoming signal is significantly weaker than the surrounding background radio noise.">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-lo-ra-chirp-spread-spectrum-works-below-the-noise-floor">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How LoRa Chirp Spread Spectrum Works Below the Noise Floor - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-lo-ra-chirp-spread-spectrum-works-below-the-noise-floor" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Long Range (LoRa) wireless technology revolutionizes telemetry electronics by enabling data transmission over vast distances while consuming minimal power, even when the incoming signal is significantly weaker than the surrounding background radio noise." />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-lora-chirp-spread-spectrum-works-below-the-noise-floor">How
+LoRa Chirp Spread Spectrum Works Below the Noise Floor</h1>
+<p>Long Range (LoRa) wireless technology revolutionizes telemetry
+electronics by enabling data transmission over vast distances while
+consuming minimal power, even when the incoming signal is significantly
+weaker than the surrounding background radio noise. This article
+provides a comprehensive overview of how LoRa utilizes Chirp Spread
+Spectrum (CSS) modulation, variable spreading factors, and Fast Fourier
+Transform (FFT) processing to achieve high processing gain and extract
+clear telemetry data from up to 20 decibels below the thermal noise
+floor.</p>
+<h3 id="the-mechanics-of-chirp-spread-spectrum-css">The Mechanics of
+Chirp Spread Spectrum (CSS)</h3>
+<p>Traditional modulation schemes, such as Frequency Shift Keying (FSK)
+or Amplitude Modulation (AM), rely on sending a signal with enough
+concentrated power to sit visibly above the ambient RF noise floor. LoRa
+abandons this approach in favor of Chirp Spread Spectrum (CSS).</p>
+<p>A "chirp" (Compressed High-Intensity Radar Pulse) is a sinusoidal
+signal whose frequency continuously increases (up-chirp) or decreases
+(down-chirp) linearly over a specific timeframe. In LoRa, this chirp
+sweeps across a predefined channel bandwidth—typically 125 kHz, 250 kHz,
+or 500 kHz. By spreading a narrowband telemetry data signal across a
+much wider frequency band, the transmission becomes inherently resistant
+to narrowband interference, multipath fading, and the Doppler
+effect.</p>
+<h3 id="encoding-data-with-cyclic-shifts">Encoding Data with Cyclic
+Shifts</h3>
+<p>To transmit actual telemetry data, LoRa modulates the phase and
+frequency trajectory of the chirp. It does not change the bandwidth or
+the duration of the chirp for a given configuration; instead, it changes
+the starting frequency of the sweep.</p>
+<p>A standard up-chirp sweeps from the lowest frequency of the bandwidth
+(<span class="math inline">\(f_{min}\)</span>) to the highest (<span
+class="math inline">\(f_{max}\)</span>). To encode a specific data
+symbol, the transmitter starts the chirp at a calculated frequency
+offset above <span class="math inline">\(f_{min}\)</span>. The frequency
+increases linearly until it hits <span
+class="math inline">\(f_{max}\)</span>, at which point it instantly
+wraps around to <span class="math inline">\(f_{min}\)</span> and
+continues sweeping up until it reaches the initial starting frequency.
+The exact point where this frequency jump occurs represents the encoded
+digital value.</p>
+<h3 id="processing-gain-and-spreading-factors">Processing Gain and
+Spreading Factors</h3>
+<p>The secret to operating below the noise floor lies in "processing
+gain." Derived from the Shannon-Hartley theorem, channel capacity can be
+maintained in extremely poor Signal-to-Noise Ratio (SNR) environments by
+trading data rate for bandwidth. LoRa controls this trade-off using a
+parameter called the Spreading Factor (SF), which ranges from SF7 to
+SF12.</p>
+<p>The Spreading Factor determines how many bits are encoded into a
+single symbol and how long the chirp lasts in time:</p>
+<ul>
+<li>A symbol encodes <span class="math inline">\(SF\)</span> bits of
+information, meaning there are <span
+class="math inline">\(2^{SF}\)</span> possible cyclic shifts per
+chirp.</li>
+<li>Increasing the SF by one step (e.g., from SF7 to SF8) doubles the
+time duration of the chirp while halving the data rate.</li>
+</ul>
+<p>Because the signal energy is spread over a longer duration at higher
+Spreading Factors, the receiver has more time to integrate the signal
+energy. At SF12, a single chirp lasts much longer than at SF7, providing
+the maximum processing gain and allowing the receiver to detect signals
+as low as -20 dB below the noise floor.</p>
+<h3 id="de-chirping-extracting-the-signal-from-noise">De-chirping:
+Extracting the Signal from Noise</h3>
+<p>When a LoRa telemetry packet arrives at the receiver, its
+instantaneous power is buried beneath thermal and ambient RF noise. A
+standard power detector cannot see it. To extract the data, the LoRa
+receiver performs a mathematical operation called "de-chirping."</p>
+<ol type="1">
+<li><strong>Multiplication:</strong> The receiver generates a local,
+unmodulated base down-chirp (a signal whose frequency decreases linearly
+at the exact same rate the transmitted up-chirp increases). The incoming
+noisy signal is multiplied by this local down-chirp.</li>
+<li><strong>Frequency Compression:</strong> Because the transmitted
+signal's frequency is rising at the exact rate the local signal's
+frequency is falling, multiplying them together cancels out the
+frequency sweep. This collapses all the spread-out energy of the
+incoming chirp into a single, continuous, fixed frequency tone.</li>
+<li><strong>Fast Fourier Transform (FFT):</strong> The receiver then
+applies an FFT to the de-chirped signal.</li>
+</ol>
+<p>While the white noise remains distributed evenly and randomly across
+the entire bandwidth during the FFT process, the telemetry signal's
+energy—which was previously spread across the whole bandwidth over
+time—is now concentrated into a single FFT frequency bin. This
+concentrated spike of energy easily pokes out above the flat noise
+floor. The specific frequency bin where this spike appears corresponds
+directly to the starting frequency offset used by the transmitter,
+allowing the receiver to successfully decode the telemetry data.</p>
+<h3 id="forward-error-correction-fec">Forward Error Correction
+(FEC)</h3>
+<p>As a final layer of reliability, LoRa incorporates Forward Error
+Correction. Before modulation, redundant error-checking bits are added
+to the telemetry payload at a configurable Coding Rate (4/5, 4/6, 4/7,
+or 4/8). If a sudden burst of interference corrupts a portion of a chirp
+while it is below the noise floor, the receiver uses these redundant
+bits to mathematically reconstruct the lost data on the fly without
+requesting a retransmission, ensuring reliable telemetry links in the
+harshest RF environments.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-lo-ra-chirp-spread-spectrum-works-below-the-noise-floor';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

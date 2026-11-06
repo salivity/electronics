@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Sinusoidal PWM Synthesizes Three-Phase AC Waveforms - electronics</title>
+    <meta name="description" content="This article explains how Sinusoidal Pulse-Width Modulation (SPWM) converts a constant direct current (DC) bus voltage into balanced three-phase alternating current (AC) waveforms within inverter electronics. It provides a straightforward breakdown of the">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-sinusoidal-pwm-synthesizes-three-phase-ac-waveforms">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Sinusoidal PWM Synthesizes Three-Phase AC Waveforms - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-sinusoidal-pwm-synthesizes-three-phase-ac-waveforms" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how Sinusoidal Pulse-Width Modulation (SPWM) converts a constant direct current (DC) bus voltage into balanced three-phase alternating current (AC) waveforms within inverter electronics. It provides a straightforward breakdown of the" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-sinusoidal-pwm-synthesizes-three-phase-ac-waveforms">How
+Sinusoidal PWM Synthesizes Three-Phase AC Waveforms</h1>
+<p>This article explains how Sinusoidal Pulse-Width Modulation (SPWM)
+converts a constant direct current (DC) bus voltage into balanced
+three-phase alternating current (AC) waveforms within inverter
+electronics. It provides a straightforward breakdown of the six-switch
+bridge topology, the interaction between high-frequency carrier signals
+and reference sine waves, the mechanics of pulse width variation, and
+the final harmonic filtering process required to generate smooth AC
+power.</p>
+<h3 id="the-three-phase-inverter-bridge-topology">The Three-Phase
+Inverter Bridge Topology</h3>
+<p>To convert DC to three-phase AC, an inverter relies on a constant DC
+voltage source—known as the DC bus—and a switching network. The standard
+topology uses six power semiconductor switches, typically Insulated Gate
+Bipolar Transistors (IGBTs) or MOSFETs, arranged into three parallel
+legs. Each leg corresponds to one of the three AC output phases (Phase
+A, Phase B, and Phase C).</p>
+<p>Each phase leg consists of an upper switch connected to the positive
+DC bus rail and a lower switch connected to the negative rail. The
+output for each phase is tapped from the midpoint between the upper and
+lower switches. To prevent a catastrophic short circuit across the DC
+bus (known as "shoot-through"), the two switches in any given leg are
+driven complementarily; when the upper switch is on, the lower switch
+must be off, with a brief "dead time" inserted between transitions.</p>
+<h3 id="reference-and-carrier-signal-comparison">Reference and Carrier
+Signal Comparison</h3>
+<p>SPWM controls the exact timing of these six switches by comparing two
+distinct types of signals inside a microcontroller or digital signal
+processor:</p>
+<ol type="1">
+<li><strong>The Reference Signals (Modulating Waves):</strong> Three
+pure sine waves are generated at the desired fundamental output
+frequency (such as 50 Hz or 60 Hz). To create a balanced three-phase
+output, these three sine waves are identical in amplitude and frequency
+but are shifted in phase by 120 degrees relative to one another (0°,
+120°, and 240°).</li>
+<li><strong>The Carrier Signal:</strong> A single high-frequency
+triangular wave, often operating between 2 kHz and 20 kHz, is shared
+across all three phases.</li>
+</ol>
+<h3 id="generating-the-variable-width-pulses">Generating the Variable
+Width Pulses</h3>
+<p>The core mechanism of SPWM is the continuous comparison of the three
+reference sine waves against the single shared triangular carrier wave.
+Each phase leg has its own comparator logic:</p>
+<ul>
+<li>When the instantaneous voltage of a phase's reference sine wave is
+<strong>greater</strong> than the triangular carrier wave, the upper
+switch for that phase is turned ON (and the lower switch is turned OFF),
+connecting the output phase to the positive DC rail.</li>
+<li>When the instantaneous voltage of the reference sine wave is
+<strong>less</strong> than the triangular carrier wave, the upper switch
+is turned OFF (and the lower switch is turned ON), connecting the output
+phase to the negative DC rail.</li>
+</ul>
+<p>Because the reference wave is sinusoidal, the resulting output is a
+train of constant-amplitude voltage pulses whose widths vary
+sinusoidally. Near the peak of the sine wave, the reference stays above
+the carrier for longer periods, producing very wide positive pulses.
+Near the zero-crossing of the sine wave, the widths of the positive and
+negative pulses are nearly equal, resulting in an average voltage of
+zero.</p>
+<h3 id="synthesizing-the-balanced-line-to-line-voltage">Synthesizing the
+Balanced Line-to-Line Voltage</h3>
+<p>The raw output at each phase midpoint is a series of rectangular
+voltage pulses switching rapidly between the positive and negative DC
+bus levels. However, three-phase loads (like induction motors) are
+driven by the line-to-line voltage—the voltage difference between any
+two phases (<span class="math inline">\(V_{AB}\)</span>, <span
+class="math inline">\(V_{BC}\)</span>, <span
+class="math inline">\(V_{CA}\)</span>).</p>
+<p>Because the three reference sine waves are displaced by 120 degrees,
+the switching duty cycles of Phases A, B, and C are also offset by 120
+degrees. When subtracting the pulsed voltage of Phase B from Phase A to
+find <span class="math inline">\(V_{AB}\)</span>, the common-mode
+carrier frequencies partially cancel out, and a three-level stepped PWM
+waveform emerges (switching between <span
+class="math inline">\(+V_{DC}\)</span>, <span
+class="math inline">\(0\)</span>, and <span
+class="math inline">\(-V_{DC}\)</span>). The fundamental component of
+this line-to-line pulse train is a balanced sine wave shifted by 30
+degrees from the phase references, with an amplitude controlled by the
+Modulation Index (the ratio of the reference wave peak to the carrier
+wave peak).</p>
+<h3 id="harmonic-filtering-into-smooth-ac">Harmonic Filtering into
+Smooth AC</h3>
+<p>While the voltage exiting the inverter is pulsed, the resulting
+current becomes a smooth sinusoid. The SPWM process intentionally pushes
+voltage harmonics up to the high frequency of the triangular carrier
+wave and its multiples.</p>
+<p>When connected to an inductive load, such as a motor winding or a
+dedicated LC output filter, the inductance naturally resists rapid
+changes in current. The load acts as a low-pass filter, blocking the
+high-frequency carrier pulses and responding only to the moving average
+of the voltage. Consequently, three balanced, smooth, sinusoidal AC
+currents separated by 120 degrees flow through the load, completing the
+synthesis of three-phase AC power from a static DC bus.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-sinusoidal-pwm-synthesizes-three-phase-ac-waveforms';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

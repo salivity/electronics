@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Logarithmic Rotary Potentiometers Adjust Audio Signals - electronics</title>
+    <meta name="description" content="This article explains how logarithmic rotary potentiometers adjust signal levels in audio electronics to match human hearing perception. It covers the fundamental mechanics of potentiometers as voltage dividers, the logarithmic nature of the human ear, an">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-logarithmic-rotary-potentiometers-adjust-audio-signals">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Logarithmic Rotary Potentiometers Adjust Audio Signals - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-logarithmic-rotary-potentiometers-adjust-audio-signals" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how logarithmic rotary potentiometers adjust signal levels in audio electronics to match human hearing perception. It covers the fundamental mechanics of potentiometers as voltage dividers, the logarithmic nature of the human ear, an" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-logarithmic-rotary-potentiometers-adjust-audio-signals">How
+Logarithmic Rotary Potentiometers Adjust Audio Signals</h1>
+<p>This article explains how logarithmic rotary potentiometers adjust
+signal levels in audio electronics to match human hearing perception. It
+covers the fundamental mechanics of potentiometers as voltage dividers,
+the logarithmic nature of the human ear, and why audio tapers are
+essential for smooth volume control. By understanding the relationship
+between resistance curves and decibels, you will see how these
+components prevent sudden volume spikes in audio equipment.</p>
+<h2 id="the-basics-of-a-rotary-potentiometer">The Basics of a Rotary
+Potentiometer</h2>
+<p>A rotary potentiometer, often called a "pot," is a three-terminal
+variable resistor. Inside the casing, there is a circular resistive
+track connected to the two outer terminals, and a rotating contact
+called a wiper connected to the middle terminal.</p>
+<p>In audio electronics, potentiometers are wired as voltage dividers to
+control signal levels:</p>
+<ul>
+<li><strong>Terminal 1 (Ground):</strong> Connected to the system
+ground, representing zero signal.</li>
+<li><strong>Terminal 2 (Output):</strong> Connected to the wiper,
+sending the adjusted signal to the next stage of the amplifier.</li>
+<li><strong>Terminal 3 (Input):</strong> Receives the incoming raw audio
+signal.</li>
+</ul>
+<p>As you turn the knob, the wiper moves along the resistive track.
+Moving it closer to the input terminal allows more signal voltage to
+pass through to the output. Moving it closer to the ground terminal
+bleeds more of the signal to the ground, reducing the output
+voltage.</p>
+<h2 id="the-quirk-of-human-hearing">The Quirk of Human Hearing</h2>
+<p>To understand why logarithmic potentiometers are necessary, you must
+first understand how humans perceive sound. The human ear does not hear
+volume linearly; it perceives loudness on a logarithmic scale.</p>
+<p>To make a sound feel twice as loud to a human listener, you must
+increase the actual acoustic power by roughly ten times. Because of
+this, audio engineers measure sound levels in decibels (dB), which is a
+logarithmic unit.</p>
+<p>If you use a standard linear potentiometer—where turning the knob to
+50% gives you 50% of the voltage—as a volume control, the results are
+jarring. Turning the knob from 0% to 20% would cause the perceived
+volume to skyrocket from silence to almost full loudness. Turning the
+knob the rest of the way from 20% to 100% would result in very little
+perceived change.</p>
+<h2 id="how-the-logarithmic-taper-works">How the Logarithmic Taper
+Works</h2>
+<p>Logarithmic rotary potentiometers (often labeled as "Audio Taper" or
+"A-taper" pots) solve this perception problem by changing their internal
+resistance at an exponential rate rather than a constant, linear
+rate.</p>
+<p>When you turn a logarithmic potentiometer, the resistance changes
+very slowly during the first half of the rotation and much faster during
+the second half.</p>
+<p>Here is how a logarithmic pot adjusts the audio signal across its
+rotation:</p>
+<ol type="1">
+<li><strong>0% to 50% Rotation:</strong> As you turn the knob from zero
+to the halfway point, the potentiometer only allows about 10% of the
+total signal voltage to pass through to the output. Because the ear is
+very sensitive to small changes at low volumes, this slow ramp-up allows
+for precise, gradual adjustments in quiet listening environments.</li>
+<li><strong>50% to 100% Rotation:</strong> As you turn the knob past the
+halfway mark toward the maximum setting, the resistance drops rapidly.
+The remaining 90% of the signal voltage is introduced during this second
+half of the turn. Because the ear requires massive increases in energy
+to perceive louder volumes, this steep electrical curve sounds
+completely smooth and natural.</li>
+</ol>
+<p>By counteracting the logarithmic nature of human hearing with an
+opposing exponential resistance curve, the potentiometer creates a
+linear <em>perceived</em> change in volume. Halfway on the dial finally
+sounds like half volume to the listener.</p>
+<h2 id="construction-of-logarithmic-tracks">Construction of Logarithmic
+Tracks</h2>
+<p>Manufacturers achieve this specific signal adjustment through the
+physical design of the resistive track inside the potentiometer. Rather
+than using a uniform strip of carbon or conductive plastic, a
+logarithmic pot usually features a track made of two or more materials
+with different resistivities connected together. Alternatively, the
+track may vary in width, starting very narrow at the ground end and
+widening toward the input end. Both methods force the electrical signal
+to follow the required curve as the wiper sweeps across the surface.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-logarithmic-rotary-potentiometers-adjust-audio-signals';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

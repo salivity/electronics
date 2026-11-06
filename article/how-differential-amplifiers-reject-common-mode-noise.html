@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Differential Amplifiers Reject Common-Mode Noise - electronics</title>
+    <meta name="description" content="Differential amplifiers are fundamental electronic circuits designed to amplify the voltage difference between two input signals while simultaneously suppressing any voltage that is identical on both inputs. This article provides a comprehensive overview">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-differential-amplifiers-reject-common-mode-noise">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Differential Amplifiers Reject Common-Mode Noise - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-differential-amplifiers-reject-common-mode-noise" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Differential amplifiers are fundamental electronic circuits designed to amplify the voltage difference between two input signals while simultaneously suppressing any voltage that is identical on both inputs. This article provides a comprehensive overview" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-differential-amplifiers-reject-common-mode-noise">How
+Differential Amplifiers Reject Common-Mode Noise</h1>
+<p>Differential amplifiers are fundamental electronic circuits designed
+to amplify the voltage difference between two input signals while
+simultaneously suppressing any voltage that is identical on both inputs.
+This article provides a comprehensive overview of the internal mechanics
+of a differential amplifier, focusing on the symmetrical transistor
+configuration known as the long-tailed pair, the critical role of the
+constant current source, and the mathematical principles behind the
+Common-Mode Rejection Ratio (CMRR). By understanding these core
+concepts, you will see exactly how these circuits isolate weak, desired
+signals from noisy environments.</p>
+<h3 id="the-core-principle-differential-vs-common-mode-signals">The Core
+Principle: Differential vs. Common-Mode Signals</h3>
+<p>To understand how a differential amplifier works, you must first
+distinguish between two types of signals:</p>
+<ol type="1">
+<li><strong>Differential-Mode Signals:</strong> These are two separate
+signals applied to the two inputs (non-inverting and inverting) that are
+equal in magnitude but opposite in phase. The amplifier is designed to
+amplify the difference between these two voltages.</li>
+<li><strong>Common-Mode Signals:</strong> These are signals that appear
+simultaneously and in-phase on both inputs with the exact same
+amplitude. In practical electronics, common-mode signals are almost
+always unwanted external noise, such as 60 Hz power line hum or
+electromagnetic interference picked up equally by two adjacent
+wires.</li>
+</ol>
+<p>The mathematical formula for the output of an ideal differential
+amplifier is:</p>
+<p><em>V_out = A_d (V_in+ - V_in-)</em></p>
+<p>Where <em>A_d</em> is the differential gain, <em>V_in+</em> is the
+non-inverting input, and <em>V_in-</em> is the inverting input. If the
+same noise voltage is added to both inputs, the subtraction cancels the
+noise out entirely, leaving only the difference to be multiplied by the
+gain.</p>
+<h3 id="circuit-symmetry-the-long-tailed-pair">Circuit Symmetry: The
+Long-Tailed Pair</h3>
+<p>At the heart of a differential amplifier is a circuit topology called
+a "long-tailed pair." This configuration uses two matched transistors
+(either Bipolar Junction Transistors or MOSFETs) whose emitters (or
+sources) are connected together.</p>
+<p>For the amplifier to reject noise effectively, the two halves of the
+circuit must be identical. The collector resistors must have the exact
+same resistance, and the two transistors must have identical electrical
+characteristics. In integrated circuits, this is achieved by fabricating
+the components simultaneously on the same piece of silicon.</p>
+<h3 id="how-the-constant-current-source-blocks-noise">How the Constant
+Current Source Blocks Noise</h3>
+<p>The connected emitters of the two transistors are tied to ground (or
+a negative voltage rail) through a constant current source, which forms
+the "tail" of the long-tailed pair. This constant current source is the
+secret to common-mode rejection.</p>
+<p>Here is how the circuit reacts to different signals:</p>
+<p><strong>When a Differential Signal is Applied:</strong> If the
+voltage at Input A goes up and the voltage at Input B goes down by the
+same amount, Transistor A conducts more current, and Transistor B
+conducts less. Because the increase in one matches the decrease in the
+other, the total current flowing into the shared tail remains constant.
+The voltage at the collectors changes dramatically in opposite
+directions, resulting in high amplification of the difference.</p>
+<p><strong>When Common-Mode Noise is Applied:</strong> If a noise spike
+causes the voltage at both Input A and Input B to rise simultaneously,
+both transistors will attempt to conduct more current at the same time.
+However, they share the tail connected to the constant current source.
+Because the current source refuses to allow more total current to flow,
+and because the circuit is symmetrical, neither transistor can increase
+its current.</p>
+<p>Instead, the voltage at the shared emitter node simply rises to match
+the common-mode input voltage. Because the current through the
+transistors does not change, the voltage drop across the collector
+resistors does not change. Consequently, the common-mode noise does not
+appear at the output.</p>
+<h3 id="common-mode-rejection-ratio-cmrr">Common-Mode Rejection Ratio
+(CMRR)</h3>
+<p>In the real world, no two transistors or resistors are 100%
+identical, and no current source has infinite impedance. Because of
+these tiny manufacturing imperfections, a minuscule amount of
+common-mode noise will leak through to the output.</p>
+<p>Engineers quantify a differential amplifier's ability to block noise
+using the Common-Mode Rejection Ratio (CMRR). It is the ratio of the
+differential gain (<em>A_d</em>) to the common-mode gain
+(<em>A_cm</em>), usually expressed in decibels (dB):</p>
+<p><em>CMRR = 20 log10 (A_d / A_cm)</em></p>
+<p>A standard operational amplifier might have a CMRR of 80 dB to 100
+dB. A CMRR of 100 dB means the desired differential signal is amplified
+100,000 times more than the unwanted common-mode noise.</p>
+<h3 id="practical-applications">Practical Applications</h3>
+<p>Because of their ability to extract tiny signals from high-noise
+environments, differential amplifiers are used extensively in modern
+electronics:</p>
+<ul>
+<li><strong>Professional Audio (XLR Cables):</strong> Microphones send
+audio over three-pin XLR cables. One wire carries the normal audio
+signal, and a second wire carries an inverted version of the same
+signal. Both wires pick up the same stage noise. At the mixing console,
+a differential amplifier subtracts the two inputs, canceling the noise
+and doubling the audio signal.</li>
+<li><strong>Medical Instrumentation:</strong> Electrocardiograms (ECGs)
+measure microvolt-level electrical signals from the heart. The human
+body acts like an antenna for 60 Hz AC power noise. Differential
+amplifiers reject the massive 60 Hz common-mode voltage on the body,
+allowing doctors to see the tiny differential voltage of the
+heartbeat.</li>
+<li><strong>High-Speed Data:</strong> Technologies like USB, Ethernet,
+and HDMI use differential signaling (twisted pairs of wires) to transmit
+data at gigabit speeds without corruption from internal computer
+noise.</li>
+</ul></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-differential-amplifiers-reject-common-mode-noise';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

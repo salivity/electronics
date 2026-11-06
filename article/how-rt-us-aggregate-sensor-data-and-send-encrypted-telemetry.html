@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How RTUs Aggregate Sensor Data and Send Encrypted Telemetry - electronics</title>
+    <meta name="description" content="Remote Terminal Units (RTUs) serve as the critical link between physical field instruments and centralized Supervisory Control and Data Acquisition (SCADA) master stations in pipeline and water infrastructure. This article provides a comprehensive overvie">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-rt-us-aggregate-sensor-data-and-send-encrypted-telemetry">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How RTUs Aggregate Sensor Data and Send Encrypted Telemetry - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-rt-us-aggregate-sensor-data-and-send-encrypted-telemetry" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Remote Terminal Units (RTUs) serve as the critical link between physical field instruments and centralized Supervisory Control and Data Acquisition (SCADA) master stations in pipeline and water infrastructure. This article provides a comprehensive overvie" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-rtus-aggregate-sensor-data-and-send-encrypted-telemetry">How
+RTUs Aggregate Sensor Data and Send Encrypted Telemetry</h1>
+<p>Remote Terminal Units (RTUs) serve as the critical link between
+physical field instruments and centralized Supervisory Control and Data
+Acquisition (SCADA) master stations in pipeline and water
+infrastructure. This article provides a comprehensive overview of how
+RTUs collect raw analog and digital signals from remote sensors, convert
+and aggregate this information into standardized data packets, and apply
+robust cryptographic protocols to transmit secure telemetry over vast
+distances to central control rooms.</p>
+<h2 id="field-sensor-data-acquisition">Field Sensor Data
+Acquisition</h2>
+<p>At the foundational level, water treatment facilities and pipelines
+rely on field sensors to measure flow rates, pressure, temperature, and
+tank levels. RTUs acquire this data through dedicated input/output (I/O)
+modules.</p>
+<ul>
+<li><strong>Analog Inputs:</strong> Sensors frequently output continuous
+electrical signals, typically a 4-20 mA current loop or a 0-10V DC
+signal. The RTU uses internal Analog-to-Digital Converters (ADCs) to
+translate these electrical values into raw digital numbers.</li>
+<li><strong>Digital Inputs:</strong> Equipment statuses, such as whether
+a valve is open or a pump is running, are read as binary states (on/off)
+via voltage sensing or dry contact closures.</li>
+<li><strong>Smart Field Devices:</strong> Modern sensors often
+communicate digitally with the RTU over serial buses like RS-485 using
+protocols such as Modbus RTU, HART, or Foundation Fieldbus. This allows
+the RTU to pull multiple variables and diagnostic metrics from a single
+instrument.</li>
+</ul>
+<h2 id="data-aggregation-and-local-processing">Data Aggregation and
+Local Processing</h2>
+<p>Once the raw signals are converted into digital formats, the RTU's
+central microprocessor aggregates the data to prevent network congestion
+and optimize transmission bandwidth.</p>
+<p>First, the RTU normalizes the data by scaling raw ADC counts into
+standard engineering units, such as pounds per square inch (PSI) or
+gallons per minute (GPM). Next, the RTU applies timestamping to every
+data point, which is vital for accurate historical sequence-of-events
+recording at the master station.</p>
+<p>Instead of streaming continuous, redundant data, the RTU utilizes
+"report by exception" and deadband filtering. The RTU stores the
+aggregated data in local memory registers and only flags values for
+transmission if they change beyond a predetermined threshold or if a
+specific timer expires. In pipeline electronics, the RTU also performs
+local custody transfer calculations—such as the American Gas Association
+(AGA) flow equations—aggregating raw pressure, temperature, and
+differential pressure into a single calculated volume metric before
+transmission.</p>
+<h2 id="industrial-protocol-formatting">Industrial Protocol
+Formatting</h2>
+<p>To ensure the central SCADA master station can interpret the
+aggregated data, the RTU packages the information into standardized
+industrial telemetry protocols. In the water and pipeline sectors, the
+most prevalent protocols are DNP3 (Distributed Network Protocol), IEC
+60870-5-104, and MQTT (Message Queuing Telemetry Transport) with
+Sparkplug B.</p>
+<p>These protocols organize the data into structured object
+groups—separating analogs, binaries, counters, and alarms. Crucially, if
+the communication link drops, the RTU uses these protocols to buffer the
+timestamped data locally in non-volatile memory, automatically
+backfilling the SCADA master database once connectivity is restored.</p>
+<h2 id="encrypting-telemetry-for-transmission">Encrypting Telemetry for
+Transmission</h2>
+<p>Because pipelines and water distribution networks span massive
+geographical areas, RTUs must transmit data over untrusted Wide Area
+Networks (WANs), including cellular networks, satellite links, and
+licensed radio frequencies. Securing this telemetry requires a
+multi-layered cryptographic approach before the data leaves the RTU.</p>
+<h3
+id="protocol-level-security-dnp3-secure-authentication">Protocol-Level
+Security (DNP3 Secure Authentication)</h3>
+<p>Modern RTUs implement DNP3 Secure Authentication (DNP3-SA). Instead
+of encrypting the entire data stream, which can overwhelm low-bandwidth
+radio networks, DNP3-SA uses challenge-response mechanisms and
+Hash-based Message Authentication Codes (HMAC). This verifies the
+identity of both the RTU and the SCADA master, ensuring that
+unauthorized actors cannot inject false control commands or spoof
+telemetry data.</p>
+<h3 id="transport-layer-encryption-tls">Transport Layer Encryption
+(TLS)</h3>
+<p>For IP-based communications (such as cellular or fiber networks),
+RTUs wrap their telemetry protocols inside Transport Layer Security
+(TLS). Using asymmetric cryptography for the initial handshake and
+symmetric encryption (such as AES-256) for the session, the RTU
+establishes an encrypted tunnel directly with the SCADA server. This
+prevents eavesdropping and man-in-the-middle attacks.</p>
+<h3 id="network-level-vpns">Network-Level VPNs</h3>
+<p>When legacy RTUs lack native encryption processing power, encryption
+is offloaded to an industrial edge router connected to the RTU. The
+router encapsulates the RTU’s data packets within an IPsec (Internet
+Protocol Security) Virtual Private Network (VPN) tunnel. The data is
+encrypted at the network layer before being broadcast over the cellular
+or satellite modem.</p>
+<h2 id="reception-at-the-scada-master-station">Reception at the SCADA
+Master Station</h2>
+<p>Upon reaching the central utility network, the encrypted telemetry
+passes through industrial firewalls and a demilitarized zone (DMZ). A
+front-end communication server or VPN concentrator decrypts the payload,
+validates the cryptographic certificates or HMAC signatures, and strips
+away the transport headers. The raw protocol data is then parsed by the
+SCADA master station, updating the Human-Machine Interface (HMI) for
+operators and logging the metrics into the central data historian.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-rt-us-aggregate-sensor-data-and-send-encrypted-telemetry';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

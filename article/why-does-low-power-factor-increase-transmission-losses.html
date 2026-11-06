@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Does Low Power Factor Increase Transmission Losses? - electronics</title>
+    <meta name="description" content="A low power factor in grid-connected electronics forces the electrical grid to supply more total current than is actually required to do useful work. This excess current flows through transmission lines, transformers, and distribution equipment, encounter">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-does-low-power-factor-increase-transmission-losses">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Does Low Power Factor Increase Transmission Losses? - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-does-low-power-factor-increase-transmission-losses" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="A low power factor in grid-connected electronics forces the electrical grid to supply more total current than is actually required to do useful work. This excess current flows through transmission lines, transformers, and distribution equipment, encounter" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-does-low-power-factor-increase-transmission-losses">Why Does
+Low Power Factor Increase Transmission Losses?</h1>
+<p>A low power factor in grid-connected electronics forces the
+electrical grid to supply more total current than is actually required
+to do useful work. This excess current flows through transmission lines,
+transformers, and distribution equipment, encountering natural
+electrical resistance along the way. Because transmission line losses
+increase exponentially with the amount of current flowing through them,
+this wasted current generates significant heat, resulting in severe
+energy losses and reduced efficiency across the entire power grid.</p>
+<p>To understand why this happens, you first need to understand the
+three types of power in an alternating current (AC) system:</p>
+<ul>
+<li><strong>Real Power (Measured in Watts):</strong> The power that
+actually performs useful work, such as spinning a motor or lighting a
+circuit.</li>
+<li><strong>Reactive Power (Measured in Volt-Amps Reactive):</strong>
+The useless power that flows back and forth between the grid and the
+electronic device to maintain magnetic and electric fields in components
+like inductors and capacitors.</li>
+<li><strong>Apparent Power (Measured in Volt-Amps):</strong> The
+combination of real power and reactive power. This represents the total
+power the utility company must generate and transmit.</li>
+</ul>
+<p>Power factor is the ratio of Real Power to Apparent Power, expressed
+as a number between 0 and 1. A power factor of 1.0 means 100% of the
+supplied current is doing useful work. A low power factor—such as
+0.6—means only 60% of the power is being used effectively, while the
+rest is wasted as reactive power or harmonic distortion.</p>
+<p>Grid-connected electronics, such as computers, LED lighting, and
+variable speed drives, use switch-mode power supplies. These supplies
+draw current in short, high-magnitude pulses rather than a smooth
+continuous wave. Furthermore, inductive loads like motors cause the
+current wave to lag behind the voltage wave. Both of these behaviors
+result in a low power factor.</p>
+<p>When an electronic device has a low power factor, it still demands
+the exact same amount of Real Power to operate. However, because it is
+using the power inefficiently, it must draw a much higher Apparent Power
+from the grid to meet its needs. Assuming the grid voltage remains
+constant, the only way to deliver more Apparent Power is to increase the
+electrical current (Amperes).</p>
+<p>For example, a device requiring 1,000 Watts of real power on a
+120-volt line with a perfect power factor of 1.0 will draw 8.33 Amps of
+current. If that same device has a low power factor of 0.5, it must draw
+16.66 Amps from the grid to get that exact same 1,000 Watts of useful
+power.</p>
+<p>This increase in current is the direct cause of transmission losses.
+Power lines, no matter how well-constructed, have inherent electrical
+resistance. As current flows through a resistive wire, some of the
+electrical energy is converted into heat. This is known as <span
+class="math inline">\(I^2R\)</span> loss (where <span
+class="math inline">\(I\)</span> is the current and <span
+class="math inline">\(R\)</span> is the resistance of the wire).</p>
+<p>Because the loss is proportional to the <em>square</em> of the
+current, doubling the current does not just double the transmission
+loss—it quadruples it. Looking back at the previous example, the device
+with a 0.5 power factor draws twice as much current as the device with a
+1.0 power factor. Consequently, the transmission lines delivering power
+to the inefficient device will suffer four times the amount of heat
+loss.</p>
+<p>When millions of grid-connected electronics operate with a low power
+factor simultaneously, the cumulative effect on the grid is massive.
+Utility companies must burn more fuel to generate the extra power lost
+as heat in the lines. Additionally, they must install thicker wires and
+larger transformers just to handle the excess, non-productive current,
+which increases infrastructure costs and reduces the overall capacity of
+the electrical grid.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-does-low-power-factor-increase-transmission-losses';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

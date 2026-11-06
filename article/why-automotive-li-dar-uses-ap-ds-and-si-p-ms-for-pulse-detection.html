@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Automotive LiDAR Uses APDs and SiPMs for Pulse Detection - electronics</title>
+    <meta name="description" content="Automotive LiDAR systems rely on high-gain photodetectors—specifically Avalanche Photodiodes (APDs) and Silicon Photomultipliers (SiPMs)—to detect extremely weak reflected laser pulses and enable safe autonomous driving. This article explains the physics">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-automotive-li-dar-uses-ap-ds-and-si-p-ms-for-pulse-detection">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Automotive LiDAR Uses APDs and SiPMs for Pulse Detection - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-automotive-li-dar-uses-ap-ds-and-si-p-ms-for-pulse-detection" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Automotive LiDAR systems rely on high-gain photodetectors—specifically Avalanche Photodiodes (APDs) and Silicon Photomultipliers (SiPMs)—to detect extremely weak reflected laser pulses and enable safe autonomous driving. This article explains the physics" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="why-automotive-lidar-uses-apds-and-sipms-for-pulse-detection">Why
+Automotive LiDAR Uses APDs and SiPMs for Pulse Detection</h1>
+<p>Automotive LiDAR systems rely on high-gain
+photodetectors—specifically Avalanche Photodiodes (APDs) and Silicon
+Photomultipliers (SiPMs)—to detect extremely weak reflected laser pulses
+and enable safe autonomous driving. This article explains the physics of
+signal attenuation over long distances, how strict eye-safety
+regulations limit initial laser power, and why the internal gain
+mechanisms of APDs and SiPMs are required to overcome electronic noise
+and bright ambient sunlight to detect low-reflectivity obstacles.</p>
+<h3 id="the-challenge-of-signal-attenuation">The Challenge of Signal
+Attenuation</h3>
+<p>Autonomous vehicles must detect obstacles up to 200 or 300 meters
+away to allow enough time for braking or evasive maneuvers at highway
+speeds. LiDAR systems measure this distance by emitting a laser pulse
+and calculating the time it takes for the light to bounce off an object
+and return to the receiver.</p>
+<p>As the laser pulse travels through the air, it experiences severe
+signal loss. According to the inverse-square law, the intensity of the
+light drops exponentially both on its way to the target and on its way
+back to the sensor. Furthermore, adverse weather conditions like fog,
+rain, and dust scatter the light, further degrading the signal. By the
+time a laser pulse returns from a distant object, only a microscopic
+fraction of the original light reaches the LiDAR receiver.</p>
+<h3 id="eye-safety-regulations-limit-laser-power">Eye-Safety Regulations
+Limit Laser Power</h3>
+<p>The simplest way to get a stronger return signal would be to increase
+the power of the transmitting laser. However, automotive LiDAR systems
+operate in public spaces and must adhere to strict Class 1 eye-safety
+standards. The laser cannot damage the naked human eye under any
+circumstances. Because engineers cannot simply crank up the laser power
+at the source, the burden falls entirely on the LiDAR receiver to be
+sensitive enough to detect the faintest return signals.</p>
+<h3 id="detecting-low-reflectivity-targets">Detecting Low-Reflectivity
+Targets</h3>
+<p>Not all objects reflect light equally. While retroreflective road
+signs send a strong signal back to the LiDAR, dark objects absorb most
+of the laser energy. A black car, a pedestrian wearing dark clothing, or
+a rubber tire sitting on black asphalt may reflect less than 5% to 10%
+of the light that hits it. When a low-power, eye-safe laser hits a
+low-reflectivity object 200 meters away, the returning signal may
+consist of just a few individual photons.</p>
+<h3 id="how-apds-and-sipms-amplify-weak-signals">How APDs and SiPMs
+Amplify Weak Signals</h3>
+<p>Standard PIN photodiodes cannot detect a handful of photons because
+the tiny electrical current they generate gets completely drowned out by
+the internal thermal noise of the receiving electronics. To solve this,
+automotive LiDAR receivers use high-gain photodetectors that amplify the
+signal before it hits the noisy amplification circuitry.</p>
+<p><strong>Avalanche Photodiodes (APDs)</strong> use a high reverse-bias
+voltage to create a strong internal electric field. When a returning
+photon strikes the silicon, it generates a free electron. The electric
+field accelerates this electron so rapidly that it collides with the
+silicon lattice, knocking loose additional electrons. This chain
+reaction, known as impact ionization or the "avalanche effect,"
+multiplies a single photon into hundreds of electrons, creating a
+readable electrical current.</p>
+<p><strong>Silicon Photomultipliers (SiPMs)</strong> take this concept
+further. A SiPM is a dense array of thousands of microscopic APDs
+operating in "Geiger mode," meaning they are biased above their
+breakdown voltage. These micro-cells are called Single-Photon Avalanche
+Diodes (SPADs). When even a single photon hits one of these cells, it
+triggers a massive, self-sustaining avalanche that generates millions of
+electrons. By summing the output of thousands of these cells, a SiPM can
+accurately detect and measure light down to the single-photon level.</p>
+<h3 id="overcoming-ambient-sunlight-noise">Overcoming Ambient Sunlight
+Noise</h3>
+<p>In addition to internal electronic noise, LiDAR receivers must deal
+with external noise from the sun. Bright sunlight floods the environment
+with infrared photons that constantly strike the LiDAR receiver.</p>
+<p>Because APDs and SiPMs have high internal gain and extremely fast
+response times (measured in picoseconds or nanoseconds), the LiDAR
+system can isolate the tightly packed, ultra-short laser pulse from the
+continuous background glare of the sun. Without this high-speed internal
+amplification, the weak reflected laser pulses would be completely
+invisible against the backdrop of daytime driving conditions, rendering
+the autonomous vehicle blind to distant hazards.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-automotive-li-dar-uses-ap-ds-and-si-p-ms-for-pulse-detection';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

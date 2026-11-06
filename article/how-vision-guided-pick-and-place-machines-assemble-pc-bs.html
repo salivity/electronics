@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Vision-Guided Pick-and-Place Machines Assemble PCBs - electronics</title>
+    <meta name="description" content="Vision-guided pick-and-place machines are the backbone of modern electronics manufacturing, capable of mounting tens of thousands of tiny surface-mount technology (SMT) components onto printed circuit boards (PCBs) every hour. This article explains the st">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-vision-guided-pick-and-place-machines-assemble-pc-bs">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Vision-Guided Pick-and-Place Machines Assemble PCBs - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-vision-guided-pick-and-place-machines-assemble-pc-bs" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Vision-guided pick-and-place machines are the backbone of modern electronics manufacturing, capable of mounting tens of thousands of tiny surface-mount technology (SMT) components onto printed circuit boards (PCBs) every hour. This article explains the st" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-vision-guided-pick-and-place-machines-assemble-pcbs">How
+Vision-Guided Pick-and-Place Machines Assemble PCBs</h1>
+<p>Vision-guided pick-and-place machines are the backbone of modern
+electronics manufacturing, capable of mounting tens of thousands of tiny
+surface-mount technology (SMT) components onto printed circuit boards
+(PCBs) every hour. This article explains the step-by-step mechanics
+behind this high-speed process, focusing on how advanced optical
+systems, high-speed gantry robotics, and real-time software algorithms
+work together to pick, align, and place components with microscopic
+precision.</p>
+<h3 id="board-registration-and-fiducial-alignment">Board Registration
+and Fiducial Alignment</h3>
+<p>Before a single component is placed, the machine must know the exact
+position of the circuit board. The PCB is fed into the machine via a
+conveyor belt and clamped tightly in place. A downward-facing vision
+camera attached to the machine’s moving head scans the board to locate
+"fiducial markers"—small, specific copper shapes etched into the PCB's
+surface.</p>
+<p>Because no PCB is manufactured perfectly, the machine compares the
+actual location of these fiducials to the digital CAD layout file. The
+software then calculates the exact offset, including any slight skew or
+stretching of the board, and adjusts all subsequent placement
+coordinates accordingly.</p>
+<h3 id="high-speed-component-pickup">High-Speed Component Pickup</h3>
+<p>Around the perimeter of the machine are dozens of feeders containing
+spools, tubes, or trays of electronic components like resistors,
+capacitors, and integrated circuits. The machine's placement head—often
+equipped with multiple vacuum nozzles organized in a rotary turret or
+matrix—moves rapidly over the feeders using frictionless linear
+motors.</p>
+<p>The nozzles drop down, apply precise vacuum suction to pick up the
+components directly from the feeder tapes, and immediately retract.
+Having multiple nozzles on a single head allows the machine to pick up
+ten to twenty parts in a single trip, drastically reducing travel time
+back and forth to the circuit board.</p>
+<h3 id="on-the-fly-optical-alignment">On-the-Fly Optical Alignment</h3>
+<p>Once the components are picked up, they are rarely centered perfectly
+on the vacuum nozzles; they may be shifted slightly or rotated at an
+incorrect angle. Correcting this without slowing down the machine
+requires "on-the-fly" vision alignment.</p>
+<p>As the placement head travels from the feeders toward the PCB, it
+passes directly over an upward-facing high-speed camera (or utilizes a
+side-mounted laser system directly on the head). The camera fires a
+strobe light with an exposure time measured in microseconds, capturing a
+crisp silhouette or bottom-view image of the components without the head
+ever stopping its motion.</p>
+<p>Machine vision algorithms instantly analyze the images to
+accomplishes three things:</p>
+<ul>
+<li><strong>Verify integrity:</strong> It checks for bent pins, damaged
+bodies, or wrong component sizes. Defective parts are dumped into a
+reject bin.</li>
+<li><strong>Calculate X-Y offset:</strong> It determines how far
+off-center the component sits on the nozzle.</li>
+<li><strong>Measure rotation (Theta):</strong> It measures the exact
+rotational error of the part.</li>
+</ul>
+<h3 id="microscopic-correction-and-placement">Microscopic Correction and
+Placement</h3>
+<p>While the head is still moving toward the target location on the PCB,
+the machine makes real-time mechanical adjustments based on the camera's
+data. Tiny servo motors inside the nozzles rotate the components to the
+exact required angle, while the main X-Y gantry system adjusts its final
+destination coordinates by fractions of a millimeter to compensate for
+the off-center pickup.</p>
+<p>When the head arrives at the designated coordinates on the PCB, the
+nozzle drops down along the Z-axis. Force sensors monitor the downward
+pressure to ensure the fragile component is pressed securely into the
+wet solder paste without being crushed. The vacuum is switched off, a
+tiny puff of positive air pressure releases the part, and the nozzle
+retracts to repeat the cycle.</p>
+<h3 id="turret-heads-and-dual-gantry-architecture">Turret Heads and
+Dual-Gantry Architecture</h3>
+<p>To achieve speeds exceeding 100,000 components per hour (CPH),
+high-end "chip shooter" machines combine these vision systems with
+extreme mechanical optimization.</p>
+<p>Many utilize a rotary turret head that spins like a Ferris wheel.
+While one nozzle at the bottom of the wheel is placing a part onto the
+board, another nozzle at the top is picking a part from a feeder, and
+nozzles along the side are passing in front of the vision camera.
+Furthermore, machines often use dual-gantry systems—two independent
+robotic arms working over the same board simultaneously, orchestrated by
+anti-collision software to maximize uptime and throughput.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-vision-guided-pick-and-place-machines-assemble-pc-bs';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

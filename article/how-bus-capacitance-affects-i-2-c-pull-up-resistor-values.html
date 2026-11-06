@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Bus Capacitance Affects I2C Pull-Up Resistor Values - electronics</title>
+    <meta name="description" content="Selecting the correct pull-up resistor value is critical for reliable I2C communication in embedded electronics, and this choice is directly governed by the total capacitance of the bus. Because I2C utilizes open-drain connections, external resistors are">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-bus-capacitance-affects-i-2-c-pull-up-resistor-values">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Bus Capacitance Affects I2C Pull-Up Resistor Values - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-bus-capacitance-affects-i-2-c-pull-up-resistor-values" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Selecting the correct pull-up resistor value is critical for reliable I2C communication in embedded electronics, and this choice is directly governed by the total capacitance of the bus. Because I2C utilizes open-drain connections, external resistors are" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-bus-capacitance-affects-i2c-pull-up-resistor-values">How Bus
+Capacitance Affects I2C Pull-Up Resistor Values</h1>
+<p>Selecting the correct pull-up resistor value is critical for reliable
+I2C communication in embedded electronics, and this choice is directly
+governed by the total capacitance of the bus. Because I2C utilizes
+open-drain connections, external resistors are required to pull the
+signal lines high, creating an RC (resistor-capacitor) circuit with the
+innate capacitance of the PCB traces and connected devices. This article
+explains how bus capacitance limits the maximum resistance you can use
+by affecting signal rise times, how to balance this against the minimum
+resistance dictated by transistor current limits, and how to calculate
+the optimal resistor values for your specific circuit design.</p>
+<h2 id="the-open-drain-architecture-and-the-rc-circuit">The Open-Drain
+Architecture and the RC Circuit</h2>
+<p>In an I2C bus, the Serial Data (SDA) and Serial Clock (SCL) lines use
+open-drain (or open-collector) drivers. This means that connected
+microcontrollers and peripherals can actively pull the lines to ground
+(logic low), but they cannot drive the lines to a positive voltage
+(logic high). Instead, when a device releases the line, an external
+pull-up resistor connected to the voltage supply (<span
+class="math inline">\(V_{CC}\)</span>) pulls the line high.</p>
+<p>Every wire, PCB trace, and device pin connected to the I2C bus adds a
+small amount of parasitic capacitance. The sum of all these capacitances
+is known as the total bus capacitance (<span
+class="math inline">\(C_{bus}\)</span>). Together, the pull-up resistor
+(<span class="math inline">\(R_p\)</span>) and the bus capacitance
+(<span class="math inline">\(C_{bus}\)</span>) form a classic RC
+circuit.</p>
+<h2 id="how-capacitance-dictates-rise-time">How Capacitance Dictates
+Rise Time</h2>
+<p>When an open-drain driver releases the I2C line, the pull-up resistor
+must charge the bus capacitance for the voltage to rise from a logic low
+to a logic high. Because it is an RC circuit, the voltage does not
+change instantly; it follows an exponential charging curve.</p>
+<p>The time it takes for the signal to transition from a low threshold
+(typically 30% of <span class="math inline">\(V_{CC}\)</span>) to a high
+threshold (typically 70% of <span class="math inline">\(V_{CC}\)</span>)
+is called the rise time (<span class="math inline">\(t_r\)</span>). The
+relationship is governed by the RC time constant (<span
+class="math inline">\(\tau = R \times C\)</span>).</p>
+<p>If the bus capacitance increases—for example, by lengthening the PCB
+traces or adding more sensor ICs to the bus—the pull-up resistor must
+charge a larger capacitor. If the resistor value remains the same, the
+rise time will become slower. If the rise time is too slow, the voltage
+will not reach the logic-high threshold before the next clock cycle
+begins, leading to corrupted data and failed communication.</p>
+<h2 id="calculating-the-maximum-pull-up-resistance">Calculating the
+Maximum Pull-Up Resistance</h2>
+<p>Because bus capacitance slows down the rise time, it strictly
+dictates the <strong>maximum</strong> allowable value for your pull-up
+resistor. The I2C specification defines strict maximum rise times based
+on the operating speed of the bus:</p>
+<ul>
+<li><strong>Standard Mode (100 kHz):</strong> Maximum <span
+class="math inline">\(t_r\)</span> = 1000 ns</li>
+<li><strong>Fast Mode (400 kHz):</strong> Maximum <span
+class="math inline">\(t_r\)</span> = 300 ns</li>
+<li><strong>Fast Mode Plus (1 MHz):</strong> Maximum <span
+class="math inline">\(t_r\)</span> = 120 ns</li>
+</ul>
+<p>Furthermore, the I2C specification limits the maximum allowable bus
+capacitance to 400 pF for Standard and Fast modes, and 550 pF for Fast
+Mode Plus.</p>
+<p>To ensure the signal rises fast enough for the chosen speed, you
+calculate the maximum pull-up resistor value (<span
+class="math inline">\(R_{p(max)}\)</span>) using the following formula
+derived from the RC charging curve between 30% and 70% of <span
+class="math inline">\(V_{CC}\)</span>:</p>
+<p><span class="math display">\[R_{p(max)} = \frac{t_r}{0.8473 \times
+C_{bus}}\]</span></p>
+<h3 id="the-trade-off-higher-capacitance-requires-lower-resistance">The
+Trade-off: Higher Capacitance Requires Lower Resistance</h3>
+<p>As the formula demonstrates, <span
+class="math inline">\(R_{p(max)}\)</span> and <span
+class="math inline">\(C_{bus}\)</span> are inversely proportional. If
+you have a high bus capacitance, you must use a lower value pull-up
+resistor (a "stronger" pull-up) to supply more current and charge the
+capacitance quickly enough to meet the <span
+class="math inline">\(t_r\)</span> specification. Conversely, if your
+bus capacitance is very low, you can use a higher value resistor (a
+"weaker" pull-up), which helps conserve power in battery-operated
+embedded systems.</p>
+<h2 id="the-lower-limit-minimum-pull-up-resistance">The Lower Limit:
+Minimum Pull-Up Resistance</h2>
+<p>While bus capacitance dictates the maximum resistor value, you cannot
+simply pick an arbitrarily low resistor value to guarantee fast rise
+times. The <strong>minimum</strong> pull-up resistor value (<span
+class="math inline">\(R_{p(min)}\)</span>) is dictated by the
+current-sinking capability of the open-drain transistors inside the I2C
+devices.</p>
+<p>When a device pulls the line low, it must sink the current flowing
+from <span class="math inline">\(V_{CC}\)</span> through the pull-up
+resistor. If the resistor value is too low, the current will exceed the
+transistor's maximum rating (<span
+class="math inline">\(I_{OL}\)</span>), preventing the device from
+pulling the voltage down to a valid logic-low level (<span
+class="math inline">\(V_{OL}\)</span>) or potentially damaging the
+pin.</p>
+<p>The minimum resistance is calculated as:</p>
+<p><span class="math display">\[R_{p(min)} = \frac{V_{CC} -
+V_{OL(max)}}{I_{OL}}\]</span></p>
+<p>For Standard and Fast modes, <span
+class="math inline">\(V_{OL(max)}\)</span> is typically 0.4V, and <span
+class="math inline">\(I_{OL}\)</span> is 3 mA.</p>
+<h2 id="practical-design-example">Practical Design Example</h2>
+<p>Assume you are designing a Fast Mode (400 kHz) I2C bus operating at
+<span class="math inline">\(V_{CC} = 3.3\text{V}\)</span> with an
+estimated total bus capacitance (<span
+class="math inline">\(C_{bus}\)</span>) of 200 pF.</p>
+<ol type="1">
+<li><p><strong>Find the Maximum Resistance (Dictated by
+Capacitance):</strong> For Fast Mode, the maximum rise time (<span
+class="math inline">\(t_r\)</span>) is 300 ns. <span
+class="math display">\[R_{p(max)} = \frac{300\text{ ns}}{0.8473 \times
+200\text{ pF}} \approx 1.77\text{ k}\Omega\]</span></p></li>
+<li><p><strong>Find the Minimum Resistance (Dictated by Current
+Limits):</strong> <span class="math display">\[R_{p(min)} =
+\frac{3.3\text{V} - 0.4\text{V}}{3\text{ mA}} \approx 967\text{
+}\Omega\]</span></p></li>
+</ol>
+<p>In this scenario, the 200 pF bus capacitance forces you to choose a
+resistor no larger than <span class="math inline">\(1.77\text{
+k}\Omega\)</span>. To stay safely between the minimum and maximum
+limits, a standard resistor value of <strong><span
+class="math inline">\(1.2\text{ k}\Omega\)</span> or <span
+class="math inline">\(1.5\text{ k}\Omega\)</span></strong> would be
+ideal. If the bus capacitance were to double to 400 pF, <span
+class="math inline">\(R_{p(max)}\)</span> would drop to <span
+class="math inline">\(885\text{ }\Omega\)</span>, which is below <span
+class="math inline">\(R_{p(min)}\)</span>, making the circuit impossible
+to run at 400 kHz without reducing capacitance or using specialized I2C
+buffer ICs.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-bus-capacitance-affects-i-2-c-pull-up-resistor-values';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

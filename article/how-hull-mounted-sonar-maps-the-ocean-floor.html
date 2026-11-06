@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Hull-Mounted Sonar Maps the Ocean Floor - electronics</title>
+    <meta name="description" content="This article explains how hull-mounted marine sonar electronics use stave-mounted piezoelectric hydrophones and time-delay beamformers to create detailed maps of the ocean floor. By transmitting sound waves toward the seabed and capturing the returning ec">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-hull-mounted-sonar-maps-the-ocean-floor">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Hull-Mounted Sonar Maps the Ocean Floor - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-hull-mounted-sonar-maps-the-ocean-floor" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how hull-mounted marine sonar electronics use stave-mounted piezoelectric hydrophones and time-delay beamformers to create detailed maps of the ocean floor. By transmitting sound waves toward the seabed and capturing the returning ec" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hull-mounted-sonar-maps-the-ocean-floor">How Hull-Mounted
+Sonar Maps the Ocean Floor</h1>
+<p>This article explains how hull-mounted marine sonar electronics use
+stave-mounted piezoelectric hydrophones and time-delay beamformers to
+create detailed maps of the ocean floor. By transmitting sound waves
+toward the seabed and capturing the returning echoes across organized
+arrays of sensors, modern sonar systems can accurately calculate ocean
+depth and underwater topography. The following sections break down the
+mechanics of hydrophone staves, the physics of piezoelectricity, the
+mathematics of time-delay beamforming, and how these components work
+together to turn sound into visual seafloor data.</p>
+<h2 id="the-role-of-hull-mounted-sonar">The Role of Hull-Mounted
+Sonar</h2>
+<p>Hull-mounted sonar systems are permanently fixed to the bottom of a
+marine vessel. To map the ocean floor, the system uses active sonar. A
+projector transmits an acoustic pulse, or "ping," downward into the
+water. This sound wave travels until it hits the seabed and bounces back
+toward the ship as an echo. The receiving electronics must then capture
+this echo and determine both how long it took to return and the exact
+angle from which it arrived.</p>
+<h2 id="staves-and-piezoelectric-hydrophones">Staves and Piezoelectric
+Hydrophones</h2>
+<p>To capture the returning echoes effectively, the sonar receiver is
+divided into "staves." A stave is a linear row of individual underwater
+microphones called hydrophones, arranged side-by-side along the hull.
+Grouping hydrophones into staves allows the system to capture acoustic
+data across a wide physical area.</p>
+<p>Each hydrophone within a stave relies on piezoelectric
+materials—typically specialized ceramics—to function. Piezoelectricity
+is the ability of certain materials to generate an electric charge in
+response to applied mechanical stress.</p>
+<ol type="1">
+<li><strong>Acoustic Impact:</strong> The returning sound wave from the
+ocean floor travels through the water as a pressure wave.</li>
+<li><strong>Mechanical Stress:</strong> This pressure wave strikes the
+hydrophone, slightly compressing the piezoelectric ceramic inside.</li>
+<li><strong>Electrical Conversion:</strong> The compression generates a
+tiny, proportional voltage.</li>
+</ol>
+<p>The marine sonar electronics amplify this voltage and convert it from
+an analog electrical signal into digital data. Because a stave contains
+multiple hydrophones, the system records slightly different versions of
+the same echo at each sensor location.</p>
+<h2 id="how-time-delay-beamformers-work">How Time-Delay Beamformers
+Work</h2>
+<p>If an echo returns from directly beneath the ship, the sound wave
+hits all the hydrophones in a stave at the exact same time. However, if
+the echo bounces back from an angle (such as a submarine canyon wall off
+to the side of the ship), the sound wave will reach the hydrophones on
+one end of the stave fractions of a millisecond before it reaches the
+hydrophones on the other end.</p>
+<p>This is where the time-delay beamformer comes in. Beamforming is a
+signal processing technique used to control the directionality of the
+reception of a signal. A time-delay beamformer allows the sonar system
+to "listen" in specific directions without physically moving the
+hydrophone staves.</p>
+<p>The beamformer processes the digital signals from the stave using the
+following steps:</p>
+<ul>
+<li><strong>Applying Delays:</strong> To listen for an echo coming from
+a specific angle, the beamformer applies precise, artificial time delays
+to the signals of the hydrophones that the sound wave hit first.</li>
+<li><strong>Signal Alignment:</strong> These programmed delays match the
+natural propagation delay of the sound wave traveling through the water.
+As a result, the signals from all hydrophones in the stave for that
+specific angle are now aligned in time.</li>
+<li><strong>Summation:</strong> The aligned signals are added together
+(summed). Signals coming from the target angle reinforce each other,
+creating a strong, clear reading. Signals and noise coming from other
+directions remain out of alignment and cancel each other out.</li>
+</ul>
+<p>By rapidly applying different sets of time delays to the same
+recorded data, the electronics simultaneously create multiple "beams"
+pointing at dozens or hundreds of different angles beneath the ship.</p>
+<h2 id="generating-the-ocean-floor-map">Generating the Ocean Floor
+Map</h2>
+<p>To construct a 3D map of the ocean floor, the sonar electronics
+combine the data from the hydrophone staves and the time-delay
+beamformer for every ping.</p>
+<p>The beamformer determines the precise <strong>angle</strong> of the
+returning echo. Meanwhile, the system's internal clock measures the
+<strong>two-way travel time</strong>—the exact duration from when the
+ping left the ship to when the aligned echo peaked in the
+beamformer.</p>
+<p>Knowing the speed of sound in water, the sonar computer uses the
+travel time to calculate the distance to the seabed along each specific
+beam angle. This creates a "swath" of depth points across the ocean
+floor perpendicular to the ship's path. As the vessel moves forward, the
+hull-mounted sonar repeats this process, stitching consecutive swaths
+together to produce a continuous, high-resolution topographic map of the
+seabed.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-hull-mounted-sonar-maps-the-ocean-floor';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

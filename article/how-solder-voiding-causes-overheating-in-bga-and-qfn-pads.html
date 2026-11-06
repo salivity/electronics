@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Solder Voiding Causes Overheating in BGA and QFN Pads - electronics</title>
+    <meta name="description" content="Excessive outgassing voiding inside a Ball Grid Array (BGA) or Quad Flat No-lead (QFN) thermal pad causes localized die overheating because the trapped gas pockets act as severe thermal insulators, blocking the primary heat dissipation path from the semic">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-solder-voiding-causes-overheating-in-bga-and-qfn-pads">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Solder Voiding Causes Overheating in BGA and QFN Pads - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-solder-voiding-causes-overheating-in-bga-and-qfn-pads" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Excessive outgassing voiding inside a Ball Grid Array (BGA) or Quad Flat No-lead (QFN) thermal pad causes localized die overheating because the trapped gas pockets act as severe thermal insulators, blocking the primary heat dissipation path from the semic" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-solder-voiding-causes-overheating-in-bga-and-qfn-pads">How
+Solder Voiding Causes Overheating in BGA and QFN Pads</h1>
+<p>Excessive outgassing voiding inside a Ball Grid Array (BGA) or Quad
+Flat No-lead (QFN) thermal pad causes localized die overheating because
+the trapped gas pockets act as severe thermal insulators, blocking the
+primary heat dissipation path from the semiconductor die to the printed
+circuit board (PCB). This overview explains the mechanics of solder
+outgassing, why these voids drastically increase thermal resistance, and
+how the resulting trapped heat creates destructive hot spots that
+degrade and destroy power electronics.</p>
+<h3 id="what-is-outgassing-voiding">What is Outgassing Voiding?</h3>
+<p>During the surface mount technology (SMT) reflow soldering process,
+solder paste is heated to melt and bond the component to the PCB. Solder
+paste contains flux, which chemically cleans the metal surfaces to
+ensure a strong metallurgical bond. As the paste heats up, volatile
+compounds within the flux vaporize.</p>
+<p>Outgassing occurs as this gas attempts to escape the molten solder.
+In components with large surface area connections, such as QFN thermal
+pads or large BGA ground balls, the gas often gets trapped before the
+solder solidifies. These trapped gas bubbles become permanent empty
+pockets within the hardened solder joint, known as voids.</p>
+<h3 id="the-physics-of-thermal-resistance">The Physics of Thermal
+Resistance</h3>
+<p>Power electronics generate significant amounts of heat during
+operation. BGA and QFN packages are designed with exposed metal thermal
+pads on their undersides specifically to pull this heat away from the
+internal silicon die and transfer it into the PCB's copper planes, which
+act as a heatsink.</p>
+<p>This process relies on high thermal conductivity. Standard solder
+alloys have a thermal conductivity of roughly 50 to 60 W/m·K (watts per
+meter-kelvin), allowing heat to flow through the joint easily. In
+contrast, the trapped air and flux vapors inside a void have a thermal
+conductivity of approximately 0.026 W/m·K. Because the gas inside the
+void is nearly 2,000 times less conductive than the surrounding metal,
+the void acts as an insulator rather than a conductor.</p>
+<h3 id="how-voids-cause-localized-die-overheating">How Voids Cause
+Localized Die Overheating</h3>
+<p>When a large void or a cluster of smaller voids forms directly
+beneath the silicon die, it interrupts the direct path of heat transfer.
+This creates a phenomenon known as thermal crowding.</p>
+<p>Because heat cannot pass through the void, it must detour laterally
+through the thin silicon die and the component's package base to find a
+solid section of solder. This longer, bottlenecked path increases the
+overall junction-to-board thermal resistance. Consequently, the area of
+the silicon die situated directly above the void cannot shed its thermal
+energy fast enough. Heat accumulates rapidly in that specific
+microscopic region, resulting in a localized hot spot on the die, even
+if the overall average temperature of the component appears normal.</p>
+<h3 id="consequences-for-power-electronics">Consequences for Power
+Electronics</h3>
+<p>Power electronics—such as MOSFETs, voltage regulators, and high-power
+amplifiers—push massive currents through tiny areas of silicon.
+Localized die overheating in these components leads to immediate
+performance and reliability failures:</p>
+<ul>
+<li><strong>Thermal Runaway:</strong> In certain semiconductors, as a
+localized area gets hotter, its electrical resistance drops, causing it
+to draw even more current than the cooler areas of the die. This
+generates more heat in the exact same spot, creating a fatal loop that
+melts the silicon.</li>
+<li><strong>Parameter Drift:</strong> Excessive heat alters the
+electrical characteristics of the die, causing shifts in switching
+speeds, voltage thresholds, and efficiency.</li>
+<li><strong>Mechanical Stress:</strong> The severe temperature gradient
+between the hot spot above the void and the cooler areas of the die
+causes uneven thermal expansion. Over time, this mechanical stress
+cracks the die, delaminates internal bond wires, and fractures the
+solder joint itself.</li>
+</ul>
+<p>To prevent localized overheating, industry standards such as
+IPC-A-610 generally mandate that thermal pad voiding must be kept below
+25% to 50% of the total joint area, though high-reliability power
+electronics often require voiding to be under 10% to ensure
+uninterrupted thermal transfer.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-solder-voiding-causes-overheating-in-bga-and-qfn-pads';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

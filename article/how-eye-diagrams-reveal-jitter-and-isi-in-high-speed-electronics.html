@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Eye Diagrams Reveal Jitter and ISI in High-Speed Electronics - electronics</title>
+    <meta name="description" content="This article explains how engineers use eye diagrams to evaluate signal integrity in high-speed digital electronics. By slicing a continuous serial data stream into individual bit periods and overlaying millions of these transitions onto a single graph, a">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-eye-diagrams-reveal-jitter-and-isi-in-high-speed-electronics">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Eye Diagrams Reveal Jitter and ISI in High-Speed Electronics - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-eye-diagrams-reveal-jitter-and-isi-in-high-speed-electronics" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how engineers use eye diagrams to evaluate signal integrity in high-speed digital electronics. By slicing a continuous serial data stream into individual bit periods and overlaying millions of these transitions onto a single graph, a" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="how-eye-diagrams-reveal-jitter-and-isi-in-high-speed-electronics">How
+Eye Diagrams Reveal Jitter and ISI in High-Speed Electronics</h1>
+<p>This article explains how engineers use eye diagrams to evaluate
+signal integrity in high-speed digital electronics. By slicing a
+continuous serial data stream into individual bit periods and overlaying
+millions of these transitions onto a single graph, an oscilloscope forms
+a visual representation that resembles a human eye. This composite image
+immediately exposes critical signal degradation issues, specifically
+showing how timing errors manifest as jitter and how amplitude
+distortions reveal inter-symbol interference (ISI).</p>
+<h3 id="the-mechanics-of-overlaying-bit-transitions">The Mechanics of
+Overlaying Bit Transitions</h3>
+<p>In high-speed serial communications, looking at a single pulse on an
+oscilloscope does not provide enough data to guarantee system
+reliability. To get a complete statistical picture, test equipment
+captures millions of consecutive bits—consisting of various combinations
+of ones and zeros—and slices them into segments tied to the system's
+clock rate.</p>
+<p>These segments are then stacked on top of one another on a display,
+usually showing one or two unit intervals (bit periods) across the
+horizontal time axis, while the vertical axis measures voltage
+amplitude. The persistence of the display records every single
+transition: 0-to-1, 1-to-0, 1-to-1, and 0-to-0.</p>
+<p>In an ideal system, all rising edges, falling edges, high states, and
+low states would align perfectly, creating a wide-open rectangle in the
+center of the graph. In reality, physical limitations of circuit boards,
+cables, and transceivers distort the signal, rounding the corners and
+creating the characteristic "eye" shape. The wider and taller the
+central opening of the eye, the easier it is for a receiver to
+accurately distinguish between a logical one and a logical zero.</p>
+<h3 id="how-the-eye-diagram-reveals-jitter">How the Eye Diagram Reveals
+Jitter</h3>
+<p>Jitter is the deviation of a signal's timing from its ideal clock
+position. Because the horizontal axis of an eye diagram represents time,
+jitter is revealed through the horizontal thickening of the rising and
+falling edges where the transitions cross each other.</p>
+<p>Instead of a crisp, single line where a 0 transitions to a 1, timing
+variations cause these transitions to occur slightly too early or
+slightly too late. When millions of these misaligned transitions are
+overlaid, the crossing points blur and widen horizontally.</p>
+<p>This horizontal thickening directly narrows the width of the eye
+opening. Engineers measure this width at the crossing point to determine
+the total jitter. By analyzing the density and distribution of these
+overlaid traces, engineers can further separate random jitter (caused by
+thermal noise) from deterministic jitter (caused by electromagnetic
+interference or power supply fluctuations). If the jitter becomes too
+severe, the horizontal opening closes entirely, meaning the receiver
+will sample the bit at the wrong time, resulting in bit errors.</p>
+<h3 id="how-the-eye-diagram-reveals-inter-symbol-interference-isi">How
+the Eye Diagram Reveals Inter-Symbol Interference (ISI)</h3>
+<p>Inter-symbol interference (ISI) is a form of distortion where one
+bit, or symbol, interferes with subsequent bits. In high-speed
+electronics, ISI is primarily caused by frequency-dependent attenuation
+(loss) and reflections in the transmission channel. High-frequency
+signals degrade faster than low-frequency signals as they travel through
+copper traces.</p>
+<p>Because of this, the voltage level a bit reaches depends on the bits
+that came immediately before it. For example, a single "1" following a
+long string of "0"s might not have enough time to reach its full voltage
+amplitude before the next bit period begins. Conversely, a "1" following
+several other "1"s will easily reach the maximum voltage rail.</p>
+<p>When millions of different bit patterns are overlaid in an eye
+diagram, ISI manifests as a vertical thickening at the top and bottom of
+the eye, as well as the splitting of rising and falling edges into
+multiple distinct trajectories. Instead of a single, thin line
+representing the "1" voltage level, you see a thick band of varying
+voltages. This vertical thickening reduces the height of the eye
+opening, eroding the noise margin. Furthermore, because a lower-voltage
+bit takes a different amount of time to cross the voltage threshold than
+a full-voltage bit, ISI also contributes to deterministic timing jitter,
+narrowing the eye horizontally as well as vertically.</p>
+<h3 id="interpreting-the-eye-opening">Interpreting the Eye Opening</h3>
+<p>By combining these millions of transitions, the eye diagram acts as a
+pass/fail map for high-speed channels. Engineers place a polygon—known
+as an eye mask—in the center of the diagram. The height of the mask
+represents the minimum voltage required for the receiver to detect the
+signal, and the width represents the setup and hold times the receiver
+needs to lock onto the data. If jitter or ISI causes even a few of the
+millions of overlaid traces to intrude into this central mask, the
+system fails compliance testing and will likely suffer from data
+corruption.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-eye-diagrams-reveal-jitter-and-isi-in-high-speed-electronics';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

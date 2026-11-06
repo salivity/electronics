@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Low-Capacitance TVS Diodes Clamp USB ESD Spikes - electronics</title>
+    <meta name="description" content="This article explains how low-capacitance Transient Voltage Suppression (TVS) diodes protect high-speed USB lines from electrostatic discharge (ESD). We will cover the nature of nanosecond ESD events, the clamping mechanism of TVS diodes, and why ultra-lo">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-low-capacitance-tvs-diodes-clamp-usb-esd-spikes">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Low-Capacitance TVS Diodes Clamp USB ESD Spikes - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-low-capacitance-tvs-diodes-clamp-usb-esd-spikes" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how low-capacitance Transient Voltage Suppression (TVS) diodes protect high-speed USB lines from electrostatic discharge (ESD). We will cover the nature of nanosecond ESD events, the clamping mechanism of TVS diodes, and why ultra-lo" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-low-capacitance-tvs-diodes-clamp-usb-esd-spikes">How
+Low-Capacitance TVS Diodes Clamp USB ESD Spikes</h1>
+<p>This article explains how low-capacitance Transient Voltage
+Suppression (TVS) diodes protect high-speed USB lines from electrostatic
+discharge (ESD). We will cover the nature of nanosecond ESD events, the
+clamping mechanism of TVS diodes, and why ultra-low junction capacitance
+is critical for maintaining USB signal integrity during high-speed data
+transmission.</p>
+<h2 id="the-threat-of-nanosecond-esd-spikes">The Threat of Nanosecond
+ESD Spikes</h2>
+<p>High-speed USB ports are constantly exposed to the outside world,
+making them prime entry points for Electrostatic Discharge (ESD). When a
+user touches a USB connector, a triboelectric charge can transfer to the
+data lines. These ESD events are extremely fast, often reaching peak
+voltages of 8,000 to 15,000 volts in less than one nanosecond.</p>
+<p>Modern USB controllers are built using nanometer-scale silicon
+processes. While this allows for rapid data processing, it makes the
+internal transistors fragile. Without protection, a nanosecond ESD spike
+will instantly puncture the microscopic gate oxides within the USB
+transceiver, permanently destroying the device.</p>
+<h2 id="the-tvs-diode-clamping-mechanism">The TVS Diode Clamping
+Mechanism</h2>
+<p>A Transient Voltage Suppression (TVS) diode is a specialized
+electronic component placed in parallel with the USB data lines and
+connected to the ground. It acts as a voltage-activated switch that
+responds in picoseconds—faster than the rise time of an ESD pulse.</p>
+<p><strong>Normal Operation:</strong> When the USB line operates at its
+standard signaling voltage (typically between 0V and 3.6V), the TVS
+diode remains in a high-impedance "off" state. It is virtually invisible
+to the circuit, allowing data to pass directly to the USB
+controller.</p>
+<p><strong>Avalanche Breakdown:</strong> When an ESD strike occurs, the
+voltage on the USB line rapidly rises past the TVS diode's breakdown
+voltage. Within picoseconds, the diode undergoes an avalanche breakdown,
+transitioning from a high-impedance state to a low-impedance conductive
+path.</p>
+<p><strong>Clamping and Shunting:</strong> By becoming a path of least
+resistance, the TVS diode diverts (shunts) the massive ESD current
+safely into the ground plane and away from the sensitive USB
+transceiver. Simultaneously, it "clamps" the voltage on the data line to
+a safe maximum level, known as the clamping voltage. Once the nanosecond
+spike dissipates, the TVS diode automatically resets to its
+high-impedance state.</p>
+<h2 id="why-low-capacitance-is-required-for-high-speed-usb">Why Low
+Capacitance is Required for High-Speed USB</h2>
+<p>Every diode possesses an intrinsic junction capacitance, which acts
+like a tiny capacitor connected between the data line and the ground. In
+low-speed circuits, this capacitance does not matter. However,
+high-speed USB protocols (such as USB 3.0, USB 3.2, and USB4) transmit
+data at rates ranging from 5 Gbps to 40 Gbps.</p>
+<p>At these high frequencies, standard TVS diodes have too much
+capacitance. High capacitance acts as a low-pass filter, absorbing the
+high-frequency components of the digital signal. This degrades the fast
+rise and fall times of the square waves used to represent binary data,
+rounding off the edges and causing bit errors, data corruption, or
+complete communication failure.</p>
+<h2 id="how-low-capacitance-tvs-diodes-solve-the-problem">How
+Low-Capacitance TVS Diodes Solve the Problem</h2>
+<p>To protect high-speed lines without ruining the signal, engineers use
+low-capacitance TVS diodes, which typically feature a capacitance of
+less than 0.5 picofarads (pF).</p>
+<p>Manufacturers achieve this low capacitance by combining a small-area
+P-N junction (which naturally has low capacitance) in series with a
+standard avalanche diode. During normal USB operation, the ultra-low
+capacitance ensures that the high-frequency data signals pass through
+undisturbed, preserving the "eye pattern" of the signal. When a
+nanosecond ESD event occurs, the internal structure still triggers
+instantly, providing the same robust clamping performance as a standard
+TVS diode without sacrificing data speeds.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-low-capacitance-tvs-diodes-clamp-usb-esd-spikes';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Do OR Logic Gates Output High With Just One Active Input? - electronics</title>
+    <meta name="description" content="This article provides a quick overview of why a multi-input OR logic gate outputs a logic high whenever at least one input is asserted. We will explore the underlying physical architecture of the gate, its parallel transistor configuration, and the Boolea">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-do-or-logic-gates-output-high-with-just-one-active-input">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Do OR Logic Gates Output High With Just One Active Input? - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-do-or-logic-gates-output-high-with-just-one-active-input" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a quick overview of why a multi-input OR logic gate outputs a logic high whenever at least one input is asserted. We will explore the underlying physical architecture of the gate, its parallel transistor configuration, and the Boolea" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="why-do-or-logic-gates-output-high-with-just-one-active-input">Why Do
+OR Logic Gates Output High With Just One Active Input?</h1>
+<p>This article provides a quick overview of why a multi-input OR logic
+gate outputs a logic high whenever at least one input is asserted. We
+will explore the underlying physical architecture of the gate, its
+parallel transistor configuration, and the Boolean algebra rules that
+dictate this fundamental digital electronics behavior. By understanding
+both the theoretical logic and the physical flow of electrical current,
+you will see exactly how a single active input controls the output state
+of an OR gate.</p>
+<p>At the physical level, logic gates are built using transistors that
+act as high-speed electronic switches. In a multi-input OR gate, the
+transistors responsible for outputting a logic high are wired in
+parallel with one another. Because of this parallel arrangement, each
+input controls its own independent pathway between the voltage supply
+and the gate's output terminal.</p>
+<p>When all inputs are at a logic low (0 volts), all the parallel
+transistor switches remain open. No current can flow from the power
+supply to the output, and a separate pull-down network connects the
+output to the ground, resulting in a logic low output.</p>
+<p>However, when at least one input is asserted (driven to a logic high
+voltage), its corresponding transistor switch closes. Because the
+pathways are in parallel, closing just one switch is enough to create a
+complete, uninterrupted bridge from the voltage supply to the output
+terminal. Simultaneously, this single active input breaks the pull-down
+connection to the ground. Voltage immediately flows through the single
+closed switch, driving the output to a logic high. Asserting additional
+inputs simply closes more parallel switches, which reinforces the
+existing connection to the power supply without changing the
+already-high output state.</p>
+<p>In standard CMOS (Complementary Metal-Oxide-Semiconductor)
+technology, a multi-input OR gate is actually constructed using a NOR
+(Not-OR) gate followed by an inverter (NOT gate). The internal stages
+work as follows:</p>
+<ol type="1">
+<li><strong>The NOR Stage:</strong> The inputs are connected to PMOS
+transistors in series (pull-up network) and NMOS transistors in parallel
+(pull-down network).</li>
+<li><strong>Asserting an Input:</strong> When a single input goes high,
+it turns off its corresponding series PMOS transistor—breaking the path
+to the power supply—and turns on its parallel NMOS transistor.</li>
+<li><strong>Pulling to Ground:</strong> That single active NMOS
+transistor creates a direct path to ground, pulling the internal NOR
+output to a logic low.</li>
+<li><strong>The Inverter Stage:</strong> The logic low from the NOR
+stage is fed directly into an inverter, which flips the signal to a
+logic high at the final output.</li>
+</ol>
+<p>Mathematically, the OR gate is governed by Boolean addition,
+represented by the plus sign (+). In Boolean algebra, there are only two
+possible values: 1 (high/true) and 0 (low/false). For a three-input OR
+gate with inputs A, B, and C, the output (X) is defined by the
+equation:</p>
+<p>X = A + B + C</p>
+<p>In binary logic, the rule of OR addition states that 1 + 0 = 1, and 1
++ 1 = 1. The mathematical expression evaluateswhether <em>any</em>
+condition is true. Therefore, if input A is 1, and inputs B and C are 0,
+the equation becomes 1 + 0 + 0, which equals 1. Because Boolean logic
+measures states of truth rather than cumulative quantities, a single
+"true" input satisfies the requirement of the equation, forcing the
+final output to be true (logic high) regardless of how many other inputs
+remain false.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-do-or-logic-gates-output-high-with-just-one-active-input';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

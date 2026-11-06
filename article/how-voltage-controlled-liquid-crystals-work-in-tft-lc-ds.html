@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Voltage-Controlled Liquid Crystals Work in TFT LCDs - electronics</title>
+    <meta name="description" content="Thin-Film-Transistor Liquid Crystal Displays (TFT LCDs) create images by using electrical voltage to manipulate the orientation of liquid crystal molecules, which in turn controls the passage of polarized light through crossed filters. This article explai">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-voltage-controlled-liquid-crystals-work-in-tft-lc-ds">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Voltage-Controlled Liquid Crystals Work in TFT LCDs - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-voltage-controlled-liquid-crystals-work-in-tft-lc-ds" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Thin-Film-Transistor Liquid Crystal Displays (TFT LCDs) create images by using electrical voltage to manipulate the orientation of liquid crystal molecules, which in turn controls the passage of polarized light through crossed filters. This article explai" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-voltage-controlled-liquid-crystals-work-in-tft-lcds">How
+Voltage-Controlled Liquid Crystals Work in TFT LCDs</h1>
+<p>Thin-Film-Transistor Liquid Crystal Displays (TFT LCDs) create images
+by using electrical voltage to manipulate the orientation of liquid
+crystal molecules, which in turn controls the passage of polarized light
+through crossed filters. This article explains the fundamental physics
+and electronics behind this process, detailing how unpolarized backlight
+is filtered, twisted by nematic liquid crystals, and regulated by
+microscopic transistors to control pixel brightness and form the images
+seen on modern screens.</p>
+<h2 id="the-role-of-crossed-polarizing-filters">The Role of Crossed
+Polarizing Filters</h2>
+<p>At the core of an LCD panel are two polarizing filters placed at a
+90-degree angle to one another, known as crossed polarizers. The first
+filter, located directly in front of the display's backlight, only
+allows light waves vibrating in a single plane (for example, vertically)
+to pass through. The second filter, located near the front of the
+screen, is oriented horizontally.</p>
+<p>Under normal circumstances, vertically polarized light from the first
+filter cannot pass through the horizontal second filter. Without an
+active mechanism between them to alter the light's orientation, the
+screen would remain completely black.</p>
+<h2 id="the-twisted-nematic-liquid-crystal-state">The Twisted Nematic
+Liquid Crystal State</h2>
+<p>Sandwiched between these two crossed filters is a layer of nematic
+liquid crystals. The inner surfaces of the substrates holding the liquid
+crystals are treated with microscopic grooves that align the molecules
+in a specific direction. Because the grooves on the front and back
+substrates are perpendicular to each other, the liquid crystal molecules
+naturally form a helical, 90-degree twisted structure from one side of
+the layer to the other.</p>
+<p>When no electrical voltage is applied, this twisted structure acts as
+a waveguide. As vertically polarized light enters the liquid crystal
+layer, the light's polarization plane follows the 90-degree twist of the
+molecules. By the time the light reaches the second filter, it has been
+rotated to a horizontal orientation. This matches the alignment of the
+second filter, allowing the light to pass through and making the pixel
+appear bright.</p>
+<h2 id="voltage-control-via-thin-film-transistors">Voltage Control via
+Thin-Film Transistors</h2>
+<p>To create an image, the display must be able to block this light on a
+pixel-by-pixel basis. This is achieved using Thin-Film Transistors
+(TFTs) and transparent electrodes made of Indium Tin Oxide (ITO). Each
+sub-pixel on a screen has its own tiny transistor that acts as a precise
+electrical switch.</p>
+<p>When a TFT applies a specific voltage to the electrodes flanking the
+liquid crystal layer, an electric field is generated. Liquid crystal
+molecules carry a slight electrical charge and are sensitive to this
+field. As voltage is applied, the molecules abandon their natural
+twisted structure and untwist to align themselves parallel to the
+electric field—pointing straight from the back of the display to the
+front.</p>
+<h2 id="light-blocking-and-grayscale-modulation">Light Blocking and
+Grayscale Modulation</h2>
+<p>Once the liquid crystal molecules are straightened out by the
+electric field, they no longer guide or rotate the light. The vertically
+polarized light travels straight through the untwisted liquid crystals
+without changing its orientation. When this vertical light hits the
+horizontally aligned second filter, it is completely blocked, and the
+pixel appears dark.</p>
+<p>TFT LCDs do not just switch between fully on and fully off; they also
+produce millions of colors by controlling grayscale levels. By varying
+the exact amount of voltage applied by the thin-film transistor, the
+liquid crystals only partially untwist. A partial twist rotates the
+light only slightly, meaning only a fraction of the light wave aligns
+with the second polarizer. Precise voltage control allows the
+electronics to dictate the exact percentage of light that escapes
+through each red, green, and blue sub-pixel, blending together to form a
+full-color image.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-voltage-controlled-liquid-crystals-work-in-tft-lc-ds';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Use Grounded Via Stitching on RF PCB Perimeters? - electronics</title>
+    <meta name="description" content="Printed Circuit Board (PCB) designers place rows of grounded stitching vias along the perimeter of radio frequency (RF) boards to create an electromagnetic shield that traps high-frequency energy inside the board and blocks external noise from entering. I">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-use-grounded-via-stitching-on-rf-pcb-perimeters">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Use Grounded Via Stitching on RF PCB Perimeters? - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-use-grounded-via-stitching-on-rf-pcb-perimeters" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Printed Circuit Board (PCB) designers place rows of grounded stitching vias along the perimeter of radio frequency (RF) boards to create an electromagnetic shield that traps high-frequency energy inside the board and blocks external noise from entering. I" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-use-grounded-via-stitching-on-rf-pcb-perimeters">Why Use
+Grounded Via Stitching on RF PCB Perimeters?</h1>
+<p>Printed Circuit Board (PCB) designers place rows of grounded
+stitching vias along the perimeter of radio frequency (RF) boards to
+create an electromagnetic shield that traps high-frequency energy inside
+the board and blocks external noise from entering. In RF electronics,
+signals can easily escape through the exposed edges of the substrate,
+causing electromagnetic interference (EMI) and signal degradation. By
+connecting the top, bottom, and internal ground planes with a dense line
+of vias around the board's edge, engineers effectively construct a
+miniature Faraday cage. This article explains the physics behind edge
+radiation, how perimeter via stitching contains electromagnetic fields,
+and the basic rules for implementing this technique.</p>
+<h3 id="stopping-edge-radiation">Stopping Edge Radiation</h3>
+<p>In standard multi-layer RF PCBs, high-frequency signals travel
+between copper ground planes. As these signals move, they generate
+electromagnetic waves within the dielectric material (the insulating
+layer) of the board. When these waves reach the physical edge of the
+PCB, they encounter a sudden change in material—moving from the
+fiberglass substrate to the open air. Without a barrier, the edges of
+the PCB act like slot antennas, radiating RF energy outward into the
+surrounding environment. Grounded stitching vias tie the copper planes
+together at the boundary, forcing the electric field between the planes
+to drop to zero at the edge and preventing the energy from escaping.</p>
+<h3 id="creating-a-faraday-cage-via-fence">Creating a Faraday Cage (Via
+Fence)</h3>
+<p>A row of grounded vias placed along the perimeter is often referred
+to as a "via fence" or "picket fence." This structure mimics a solid
+metal wall. To an electromagnetic wave, a row of closely spaced metal
+cylinders looks identical to a continuous sheet of metal, provided the
+gaps between the vias are smaller than the wavelength of the signal. By
+surrounding the entire board perimeter with this via fence, the top and
+bottom ground planes are joined into a single, continuous conductive
+enclosure. This mimics a coaxial cable or waveguide, keeping the
+electromagnetic fields safely contained within the board's interior.</p>
+<h3 id="suppressing-parallel-plate-modes">Suppressing Parallel-Plate
+Modes</h3>
+<p>Two parallel copper planes separated by a dielectric substrate
+naturally form a parallel-plate waveguide. High-frequency switching and
+RF transmissions can excite resonance modes between these plates,
+causing energy to bounce back and forth across the board. If this energy
+reaches the board's edge, it reflects back inside or radiates outward,
+leading to signal integrity issues and crosstalk between components.
+Perimeter via stitching shorts out these parallel plates at the
+boundaries, suppressing resonance modes and absorbing the stray energy
+into the ground system.</p>
+<h3 id="protecting-against-external-interference">Protecting Against
+External Interference</h3>
+<p>Containment works in both directions. Just as the via fence stops
+internal RF signals from leaking out, it also prevents external
+electromagnetic noise from penetrating the PCB edge. In complex
+electronic devices where an RF board is mounted near noisy digital
+processors, power supplies, or motors, external radiation can couple
+into the inner layers of the RF board. The grounded perimeter acts as
+the first line of defense, shunting external interference safely to the
+ground before it can reach sensitive analog traces.</p>
+<h3 id="improving-regulatory-emi-compliance">Improving Regulatory EMI
+Compliance</h3>
+<p>Electronic products must pass strict regulatory testing, such as FCC
+or CE compliance, which limits the amount of unintentional radiation a
+device can emit. Board-edge radiation is a common reason devices fail
+these tests. Implementing grounded perimeter vias is an inexpensive,
+passive design method to drastically lower radiated emissions. It
+reduces the need for bulky, expensive external metal shielding cans
+after the board is manufactured.</p>
+<h3 id="spacing-rules-for-effective-containment">Spacing Rules for
+Effective Containment</h3>
+<p>For grounded stitching vias to successfully contain electromagnetic
+fields, the spacing between them is critical. If the vias are too far
+apart, high-frequency waves will simply pass right through the gaps. The
+standard engineering rule of thumb is to space the vias no further apart
+than one-tenth to one-twentieth (<span
+class="math inline">\(\lambda/10\)</span> to <span
+class="math inline">\(\lambda/20\)</span>) of the wavelength of the
+highest operating frequency on the board. For exceptionally high
+frequencies, designers often use two staggered rows of vias to create an
+even denser barrier against electromagnetic leakage.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-use-grounded-via-stitching-on-rf-pcb-perimeters';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

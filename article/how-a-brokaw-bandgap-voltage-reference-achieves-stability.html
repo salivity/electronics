@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How a Brokaw Bandgap Voltage Reference Achieves Stability - electronics</title>
+    <meta name="description" content="A Brokaw bandgap voltage reference achieves exceptional stability in electronic circuits by combining a negative temperature coefficient and a positive temperature coefficient so that their thermal drifts cancel each other out. Invented by Paul Brokaw in">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-a-brokaw-bandgap-voltage-reference-achieves-stability">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How a Brokaw Bandgap Voltage Reference Achieves Stability - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-a-brokaw-bandgap-voltage-reference-achieves-stability" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="A Brokaw bandgap voltage reference achieves exceptional stability in electronic circuits by combining a negative temperature coefficient and a positive temperature coefficient so that their thermal drifts cancel each other out. Invented by Paul Brokaw in" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-a-brokaw-bandgap-voltage-reference-achieves-stability">How a
+Brokaw Bandgap Voltage Reference Achieves Stability</h1>
+<p>A Brokaw bandgap voltage reference achieves exceptional stability in
+electronic circuits by combining a negative temperature coefficient and
+a positive temperature coefficient so that their thermal drifts cancel
+each other out. Invented by Paul Brokaw in 1974, this fundamental analog
+circuit utilizes two bipolar junction transistors operating at different
+current densities to generate a predictable voltage output of
+approximately 1.25 volts. This article explains the mechanics of these
+opposing temperature coefficients, how the Brokaw cell merges them using
+an operational amplifier and resistor network, and why this balance
+results in a reliable, temperature-independent voltage reference.</p>
+<p>To understand how the circuit works, you must first look at the
+negative temperature coefficient, often referred to as Complementary to
+Absolute Temperature (CTAT). The base-emitter voltage (<span
+class="math inline">\(V_{BE}\)</span>) of a bipolar junction transistor
+naturally decreases as the temperature rises. At room temperature, this
+drop occurs at a very predictable rate of roughly -2 millivolts per
+degree Celsius. If a circuit relied solely on a single transistor for
+its reference voltage, the output would drop significantly as the device
+warmed up, making it unusable for precision electronics.</p>
+<p>To counteract this downward drift, the Brokaw cell generates a
+positive temperature coefficient, known as Proportional to Absolute
+Temperature (PTAT). The circuit uses two identical transistors, Q1 and
+Q2, which are forced to operate at different current densities. Usually,
+this is done by making the emitter area of Q2 larger than Q1 by a
+specific ratio, while pushing the exact same amount of collector current
+through both. Because of this size difference, a voltage difference
+(<span class="math inline">\(\Delta V_{BE}\)</span>) develops between
+the base-emitter voltages of the two transistors. According to
+semiconductor physics, this voltage difference is directly proportional
+to the absolute temperature, meaning it increases at a steady,
+predictable rate as the temperature rises.</p>
+<p>The magic of the Brokaw architecture lies in how it merges the CTAT
+and PTAT voltages within a single feedback loop. The bases of both Q1
+and Q2 are tied together, and an operational amplifier is used to sense
+the currents in their collectors, adjusting the base drive to keep the
+currents equal. A small resistor (R1) is placed in series with the
+emitter of the larger transistor (Q2) to develop the <span
+class="math inline">\(\Delta V_{BE}\)</span> voltage. Both emitter paths
+then join together and flow through a second, shared resistor (R2) to
+the ground.</p>
+<p>Because the current flowing through R1 is determined by <span
+class="math inline">\(\Delta V_{BE}\)</span>, that current is completely
+PTAT. This PTAT current, along with the identical current from Q1, flows
+through the shared resistor R2, creating a larger, amplified PTAT
+voltage drop across R2.</p>
+<p>The final reference voltage is taken at the shared base of the
+transistors. Mathematically, the voltage at this node is the sum of the
+base-emitter voltage of Q1 (which is CTAT) and the amplified voltage
+drop across the resistor network (which is PTAT). By carefully selecting
+the ratio of the resistors R1 and R2, a circuit designer can scale the
+positive temperature coefficient of the resistor network so that it
+equals the exact magnitude of the negative temperature coefficient of
+the transistor.</p>
+<p>When the positive slope of the PTAT voltage (+2 mV/°C) is added to
+the negative slope of the CTAT voltage (-2 mV/°C), the net temperature
+coefficient becomes zero. This summation reliably hits a "magic" voltage
+near 1.22V to 1.25V, which corresponds to the theoretical bandgap energy
+of silicon extrapolated to absolute zero. The result is a rock-solid
+voltage reference that remains stable regardless of whether the
+surrounding electronic environment heats up or cools down.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-a-brokaw-bandgap-voltage-reference-achieves-stability';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

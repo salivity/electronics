@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Time-Domain Reflectometry Locates Cable Faults - electronics</title>
+    <meta name="description" content="Time-Domain Reflectometry (TDR) is a diagnostic technique used in electronics to measure the integrity of cables and printed circuit board (PCB) traces by injecting a fast-rising step pulse down a conductor and analyzing the reflected signals. This articl">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-time-domain-reflectometry-locates-cable-faults">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Time-Domain Reflectometry Locates Cable Faults - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-time-domain-reflectometry-locates-cable-faults" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Time-Domain Reflectometry (TDR) is a diagnostic technique used in electronics to measure the integrity of cables and printed circuit board (PCB) traces by injecting a fast-rising step pulse down a conductor and analyzing the reflected signals. This articl" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-time-domain-reflectometry-locates-cable-faults">How
+Time-Domain Reflectometry Locates Cable Faults</h1>
+<p>Time-Domain Reflectometry (TDR) is a diagnostic technique used in
+electronics to measure the integrity of cables and printed circuit board
+(PCB) traces by injecting a fast-rising step pulse down a conductor and
+analyzing the reflected signals. This article explains how TDR works by
+detailing the mechanics of signal injection, the physics behind
+impedance discontinuities, how different faults appear as reflections,
+and the mathematical formula used to calculate the exact physical
+location of a break or defect.</p>
+<h3 id="the-mechanics-of-the-fast-step-pulse">The Mechanics of the Fast
+Step Pulse</h3>
+<p>A Time-Domain Reflectometer contains two primary components: a fast
+step generator and a high-speed sampling oscilloscope. To test a
+transmission line, the generator injects an electrical step voltage with
+a very fast rise time down the cable or PCB trace.</p>
+<p>The rise time of this pulse is critical because it determines the
+spatial resolution of the measurement. A faster rise time allows the
+instrument to distinguish between two closely spaced faults. As this
+step pulse travels down the conductor, it propagates at a specific speed
+determined by the insulating material surrounding the wire or trace.</p>
+<h3 id="impedance-discontinuities-and-signal-reflections">Impedance
+Discontinuities and Signal Reflections</h3>
+<p>In an ideal transmission line, the characteristic impedance (often 50
+or 75 ohms) remains uniform along its entire length. When the injected
+step pulse travels through a uniform line terminated with a matching
+load, the energy is entirely absorbed at the end, and no signal reflects
+back to the source.</p>
+<p>However, if the pulse encounters a change in the characteristic
+impedance—known as an impedance discontinuity—a portion of the incident
+wave's energy is reflected back toward the TDR source. Discontinuities
+can be caused by physical damage, sharp bends in a trace, faulty
+connectors, water ingress, or complete breaks in the wire.</p>
+<h3 id="interpreting-the-reflected-waveforms">Interpreting the Reflected
+Waveforms</h3>
+<p>The sampling oscilloscope at the TDR source monitors the line
+continuously. It displays the sum of the injected incident voltage and
+any reflected voltage over time. The polarity and amplitude of the
+reflected wave tell the engineer the exact nature of the fault. This
+relationship is governed by the reflection coefficient (<span
+class="math inline">\(\rho\)</span>), which is calculated using the
+transmission line's impedance (<span class="math inline">\(Z_0\)</span>)
+and the impedance of the fault (<span
+class="math inline">\(Z_L\)</span>):</p>
+<p><span class="math inline">\(\rho = (Z_L - Z_0) / (Z_L +
+Z_0)\)</span></p>
+<p>By observing how the voltage changes on the TDR display, you can
+identify specific issues:</p>
+<ul>
+<li><strong>Open Circuit (Breaks):</strong> If a cable is cut or a PCB
+trace is broken, the impedance at the fault approaches infinity (<span
+class="math inline">\(Z_L = \infty\)</span>). The reflection coefficient
+becomes +1. The pulse hits the break and reflects back completely
+in-phase, causing the voltage on the TDR display to double.</li>
+<li><strong>Short Circuit:</strong> If the conductor is shorted to
+ground, the impedance at the fault drops to zero (<span
+class="math inline">\(Z_L = 0\)</span>). The reflection coefficient
+becomes -1. The pulse reflects back completely out-of-phase, canceling
+out the original step pulse and dropping the displayed voltage back to
+zero.</li>
+<li><strong>Capacitive Discontinuity:</strong> If the impedance is
+momentarily lower than the line's characteristic impedance (such as a
+wide spot on a PCB trace), the TDR display shows a temporary downward
+dip in voltage before returning to the baseline level.</li>
+<li><strong>Inductive Discontinuity:</strong> If the impedance is
+momentarily higher (such as a narrow neck in a trace or a poor solder
+joint), the TDR display shows a temporary upward spike before
+settling.</li>
+</ul>
+<h3 id="calculating-the-exact-distance-to-the-fault">Calculating the
+Exact Distance to the Fault</h3>
+<p>Locating the physical position of the fault requires measuring the
+time it takes for the step pulse to travel to the discontinuity and
+reflect back to the source. Because electricity travels slower in a
+dielectric material than in a vacuum, you must know the cable or PCB
+material's Velocity of Propagation (<span
+class="math inline">\(V_p\)</span>), which is expressed as a percentage
+of the speed of light (<span class="math inline">\(c\)</span>).</p>
+<p>Once the TDR measures the round-trip transit time (<span
+class="math inline">\(t\)</span>), it calculates the distance (<span
+class="math inline">\(D\)</span>) to the fault using the following
+formula:</p>
+<p><span class="math inline">\(D = (c \times V_p \times t) /
+2\)</span></p>
+<p>The result is divided by two because the measured time represents the
+round trip of the signal—both to the fault and back to the oscilloscope.
+By combining the time delay with the shape of the reflected waveform,
+TDR provides an exact physical map of the transmission line, allowing
+engineers to pinpoint and diagnose invisible breaks and defects within
+millimeters.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-time-domain-reflectometry-locates-cable-faults';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

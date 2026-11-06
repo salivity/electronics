@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How High-Slew-Rate Switching Loops Cause Radiated EMI - electronics</title>
+    <meta name="description" content="High-slew-rate switching loops in digital electronics frequently act as unintended loop antennas, creating significant radiated electromagnetic interference (EMI) that can disrupt nearby circuits and cause regulatory compliance failures. This article expl">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-high-slew-rate-switching-loops-cause-radiated-emi">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How High-Slew-Rate Switching Loops Cause Radiated EMI - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-high-slew-rate-switching-loops-cause-radiated-emi" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="High-slew-rate switching loops in digital electronics frequently act as unintended loop antennas, creating significant radiated electromagnetic interference (EMI) that can disrupt nearby circuits and cause regulatory compliance failures. This article expl" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-high-slew-rate-switching-loops-cause-radiated-emi">How
+High-Slew-Rate Switching Loops Cause Radiated EMI</h1>
+<p>High-slew-rate switching loops in digital electronics frequently act
+as unintended loop antennas, creating significant radiated
+electromagnetic interference (EMI) that can disrupt nearby circuits and
+cause regulatory compliance failures. This article explores the physics
+behind how rapid voltage and current transitions generate high-frequency
+harmonics, how the physical layout of a printed circuit board (PCB)
+transforms current paths into efficient radiating structures, and the
+fundamental engineering strategies used to minimize loop areas and
+suppress unwanted electromagnetic emissions.</p>
+<h2 id="the-physics-of-high-slew-rates">The Physics of High Slew
+Rates</h2>
+<p>In modern digital electronics, transistors switch between logic
+states in fractions of a nanosecond. The slew rate refers to this rate
+of change in voltage (<span class="math inline">\(dV/dt\)</span>) or
+current (<span class="math inline">\(dI/dt\)</span>) over time. While a
+digital clock or data signal might have a relatively low fundamental
+frequency, a fast rise or fall time packs a massive amount of energy
+into high-frequency harmonics.</p>
+<p>According to Fourier analysis, a square wave is composed of a
+fundamental sine wave and an infinite series of odd-numbered harmonic
+frequencies. As the transition time (slew rate) of the digital edge
+becomes faster, the amplitude of these higher-frequency harmonics
+increases significantly. Consequently, a circuit operating at a mere 10
+MHz can easily generate substantial electromagnetic energy at 100 MHz,
+500 MHz, or even into the gigahertz range, solely due to the speed of
+its switching edges.</p>
+<h2 id="current-loops-as-unintended-antennas">Current Loops as
+Unintended Antennas</h2>
+<p>Every electrical signal requires a closed loop to travel from the
+source, to the load, and back to the source. In a PCB layout, this
+consists of the forward signal trace and the return path, which is
+typically located on an adjacent ground plane.</p>
+<p>When a high-slew-rate current flows through this path, it creates a
+rapidly changing magnetic field proportional to the loop area. According
+to Faraday’s Law of Induction and Maxwell’s equations, a time-varying
+magnetic field generates a time-varying electric field. When the
+physical dimensions of the current loop become a significant fraction of
+the wavelength of the high-frequency harmonics passing through it, the
+loop stops acting like a simple conductor and begins acting as an
+efficient magnetic loop antenna.</p>
+<h2 id="the-mathematical-relationship-to-radiated-emi">The Mathematical
+Relationship to Radiated EMI</h2>
+<p>The electric field strength (<span class="math inline">\(E\)</span>)
+radiated by a small current loop in the far-field is governed by a
+straightforward relationship:</p>
+<p><span class="math display">\[E \propto A \cdot I \cdot
+f^2\]</span></p>
+<p>Where:</p>
+<ul>
+<li><strong><span class="math inline">\(A\)</span></strong> is the
+physical area of the current loop.</li>
+<li><strong><span class="math inline">\(I\)</span></strong> is the
+magnitude of the current at a given frequency.</li>
+<li><strong><span class="math inline">\(f\)</span></strong> is the
+frequency of the harmonic content (driven by the slew rate).</li>
+</ul>
+<p>Because the radiated emission is proportional to the square of the
+frequency (<span class="math inline">\(f^2\)</span>), doubling the
+harmonic frequency quadruples the radiated energy. When high-slew-rate
+components like MOSFETs in switching power supplies or high-speed
+microcontroller I/O pins switch rapidly, they maximize the <span
+class="math inline">\(f^2\)</span> term. If these currents are forced to
+travel through a physically large loop on the PCB, the <span
+class="math inline">\(A\)</span> term is also maximized, resulting in
+severe radiated EMI.</p>
+<h2 id="common-causes-of-large-switching-loops">Common Causes of Large
+Switching Loops</h2>
+<p>Unintended loop antennas usually occur due to oversight during the
+PCB layout phase. The most common culprits include:</p>
+<ul>
+<li><strong>Split Ground Planes:</strong> High-frequency return currents
+naturally follow the path of least inductance, which is directly
+underneath the forward signal trace. If a slot or split exists in the
+reference plane, the return current must detour around the gap. This
+drastically increases the physical loop area (<span
+class="math inline">\(A\)</span>).</li>
+<li><strong>Poor Decoupling Capacitor Placement:</strong> When an
+integrated circuit switches, it draws a rapid burst of current from its
+local decoupling capacitor. If the capacitor is placed too far from the
+power and ground pins, or if thin, long traces are used to connect it,
+the high-<span class="math inline">\(dI/dt\)</span> current loop becomes
+large enough to radiate.</li>
+<li><strong>Layer Transitions Without Stitching Vias:</strong> When a
+high-speed signal transitions from one PCB layer to another through a
+via, its return current must also switch reference planes. Without a
+nearby "stitching via" to connect the reference planes, the return
+current will wander across the board to find the nearest path, forming a
+massive radiating loop.</li>
+</ul>
+<h2 id="mitigating-unintended-loop-radiation">Mitigating Unintended Loop
+Radiation</h2>
+<p>To prevent switching loops from acting as antennas, engineers must
+manipulate the variables of the radiation equation—specifically by
+reducing the loop area (<span class="math inline">\(A\)</span>) and
+reducing the high-frequency content (<span
+class="math inline">\(f\)</span>).</p>
+<ol type="1">
+<li><strong>Minimize Loop Area:</strong> Route high-speed traces over
+solid, unbroken ground planes. Keep switching power supply components
+(such as the input capacitor, switching transistor, and catch diode) as
+close together as physically possible to shrink the high-<span
+class="math inline">\(dI/dt\)</span> hot loop.</li>
+<li><strong>Use Stitching Vias:</strong> Always place a ground via
+immediately adjacent to any signal via that transitions between
+ground-referenced layers. This provides a tight, low-inductance return
+path.</li>
+<li><strong>Slew Rate Control:</strong> Do not use components that
+switch faster than the application requires. Many modern
+microcontrollers allow engineers to program the drive strength and slew
+rate of I/O pins. Adding a small series resistor (damping resistor) at
+the source of a high-speed line or at the gate of a MOSFET will slow
+down the rise time, effectively stripping away the highest-frequency
+harmonics before they can radiate.</li>
+</ol></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-high-slew-rate-switching-loops-cause-radiated-emi';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

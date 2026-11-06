@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Pneumatic Bed of Nails ICT Fixtures Test PCBs - electronics</title>
+    <meta name="description" content="A pneumatic bed-of-nails In-Circuit Test (ICT) fixture is the backbone of quality assurance in high-volume electronics manufacturing. This article provides an overview of how these specialized fixtures use compressed air to physically connect thousands of">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-pneumatic-bed-of-nails-ict-fixtures-test-pc-bs">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Pneumatic Bed of Nails ICT Fixtures Test PCBs - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-pneumatic-bed-of-nails-ict-fixtures-test-pc-bs" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="A pneumatic bed-of-nails In-Circuit Test (ICT) fixture is the backbone of quality assurance in high-volume electronics manufacturing. This article provides an overview of how these specialized fixtures use compressed air to physically connect thousands of" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-pneumatic-bed-of-nails-ict-fixtures-test-pcbs">How Pneumatic
+Bed of Nails ICT Fixtures Test PCBs</h1>
+<p>A pneumatic bed-of-nails In-Circuit Test (ICT) fixture is the
+backbone of quality assurance in high-volume electronics manufacturing.
+This article provides an overview of how these specialized fixtures use
+compressed air to physically connect thousands of spring-loaded test
+probes to a printed circuit board assembly (PCBA). We will explore the
+mechanics behind unpowered testing, specifically detailing how ICT
+systems rapidly detect manufacturing solder shorts and electronically
+isolate individual passive components—such as resistors, capacitors, and
+inductors—to verify their exact values without interference from
+surrounding circuitry.</p>
+<h3 id="the-mechanics-of-the-pneumatic-fixture">The Mechanics of the
+Pneumatic Fixture</h3>
+<p>A pneumatic ICT fixture consists of a custom-drilled base plate
+populated with spring-loaded pogo pins, known as a "bed of nails." Each
+pin aligns precisely with a designated test pad or via on the underside
+of the PCBA.</p>
+<p>In high-volume production, speed and repeatable contact pressure are
+critical. Pneumatic fixtures use compressed air cylinders to pull or
+push a top plate downward, pressing the PCBA evenly onto the bed of
+nails. This pneumatic actuation compresses the springs inside the
+probes, allowing the sharp crown or spear tips of the pins to pierce
+through surface oxides and flux residues. This creates a solid,
+low-resistance electrical connection to every electrical net on the
+board simultaneously.</p>
+<h3 id="checking-for-manufacturing-shorts-and-opens">Checking for
+Manufacturing Shorts and Opens</h3>
+<p>Once the pneumatic press locks the PCBA onto the probes, the ICT
+system begins its unpowered test phase, starting with continuity (opens)
+and isolation (shorts) testing. Manufacturing shorts are typically
+caused by excess solder bridging adjacent pads or pins during the reflow
+or wave soldering processes.</p>
+<p>To detect shorts, the ICT system utilizes an ultra-fast switching
+matrix connected to the pogo pins:</p>
+<ol type="1">
+<li><strong>Net Identification:</strong> The system groups the test
+probes based on the board's schematic netlist. Every probe connected to
+the same electrical trace belongs to one net.</li>
+<li><strong>Low-Voltage Injection:</strong> The tester applies a tiny,
+safe DC voltage (usually below 0.2V) to one net while holding all other
+nets on the board at ground potential. The voltage is kept strictly
+below the turn-on threshold of silicon junctions (roughly 0.6V for
+diodes and transistors) so active components do not conduct and skew the
+results.</li>
+<li><strong>Current Measurement:</strong> The system measures the
+resulting current flow. If current leaks from the energized net into a
+grounded net, the system calculates the resistance using Ohm’s Law
+(<span class="math inline">\(R = V/I\)</span>).</li>
+<li><strong>Threshold Comparison:</strong> If the measured resistance
+between two supposedly isolated nets falls below a programmed threshold
+(typically 10 ohms to 50 ohms), the ICT flags a manufacturing short and
+identifies the exact two nets involved for the repair technician.</li>
+</ol>
+<p>Conversely, to check for "opens" (missing solder joints or broken
+traces), the system probes two ends of the same net and ensures the
+resistance is near zero.</p>
+<h3 id="verifying-individual-passive-component-values">Verifying
+Individual Passive Component Values</h3>
+<p>Measuring a single resistor or capacitor after it has been soldered
+onto a board is challenging because it is connected to dozens of other
+components. If you simply place a multimeter across a resistor on a
+populated PCB, parallel current paths through neighboring components
+will alter the reading.</p>
+<p>ICT systems overcome this problem using a technique called
+<strong>Six-Wire Guarding</strong> (or simple three-wire/four-wire
+guarding depending on the precision required).</p>
+<h4 id="the-guarding-technique">The Guarding Technique</h4>
+<p>Consider a target resistor (<span class="math inline">\(R_x\)</span>)
+that is connected in parallel with two other resistors (<span
+class="math inline">\(R_1\)</span> and <span
+class="math inline">\(R_2\)</span>) that share a common node. To measure
+<span class="math inline">\(R_x\)</span> independently:</p>
+<ol type="1">
+<li><strong>Drive and Sense:</strong> The ICT applies a known DC or AC
+voltage across <span class="math inline">\(R_x\)</span> using two
+probes.</li>
+<li><strong>Applying the Guard:</strong> A third probe, known as the
+"Guard" pin, is placed on the node between the parallel resistors (<span
+class="math inline">\(R_1\)</span> and <span
+class="math inline">\(R_2\)</span>). The ICT actively forces this Guard
+pin to the exact same voltage potential as the measurement node of <span
+class="math inline">\(R_x\)</span>.</li>
+<li><strong>Eliminating Parallel Paths:</strong> Because there is now
+zero voltage difference across the parallel path, no current can flow
+through the neighboring components (<span
+class="math inline">\(R_1\)</span> and <span
+class="math inline">\(R_2\)</span>).</li>
+<li><strong>Isolated Calculation:</strong> All the current generated by
+the ICT is forced to flow exclusively through <span
+class="math inline">\(R_x\)</span>. The system measures this isolated
+current and calculates the exact value of the component.</li>
+</ol>
+<h4 id="measuring-different-passive-types">Measuring Different Passive
+Types</h4>
+<p>By combining guarding with different signal sources, the ICT verifies
+all standard passives:</p>
+<ul>
+<li><strong>Resistors:</strong> Measured by applying a constant DC
+current or voltage and measuring the resulting drop.</li>
+<li><strong>Capacitors:</strong> Measured by applying a programmable AC
+sine wave at a specific frequency (e.g., 1 kHz) and measuring the
+reactive current and phase shift to calculate capacitance (<span
+class="math inline">\(C\)</span>).</li>
+<li><strong>Inductors:</strong> Measured similarly to capacitors, using
+an AC signal to determine inductive reactance and calculate inductance
+(<span class="math inline">\(L\)</span>).</li>
+</ul>
+<h3 id="conclusion-of-the-test-cycle">Conclusion of the Test Cycle</h3>
+<p>Because the switching matrix is entirely electronic and controlled by
+high-speed relays, a pneumatic ICT fixture can execute thousands of
+short tests and passive component verifications in just a few seconds.
+Once the pass/fail data is logged, the pneumatic valves release the
+compressed air, the top plate lifts, and the board moves down the
+assembly line, ensuring zero manufacturing defects reach the functional
+test stage.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-pneumatic-bed-of-nails-ict-fixtures-test-pc-bs';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

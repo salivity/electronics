@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Negative Feedback Sets Inverting Amplifier Voltage Gain - electronics</title>
+    <meta name="description" content="Negative feedback is a fundamental concept in electronics that stabilizes operational amplifiers (op-amps) and sets their precise closed-loop voltage gain. By feeding a portion of the output signal back to the inverting input, the circuit counteracts the">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-negative-feedback-sets-inverting-amplifier-voltage-gain">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Negative Feedback Sets Inverting Amplifier Voltage Gain - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-negative-feedback-sets-inverting-amplifier-voltage-gain" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Negative feedback is a fundamental concept in electronics that stabilizes operational amplifiers (op-amps) and sets their precise closed-loop voltage gain. By feeding a portion of the output signal back to the inverting input, the circuit counteracts the" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-negative-feedback-sets-inverting-amplifier-voltage-gain">How
+Negative Feedback Sets Inverting Amplifier Voltage Gain</h1>
+<p>Negative feedback is a fundamental concept in electronics that
+stabilizes operational amplifiers (op-amps) and sets their precise
+closed-loop voltage gain. By feeding a portion of the output signal back
+to the inverting input, the circuit counteracts the op-amp's inherently
+massive and unpredictable open-loop gain. This article explains how
+negative feedback creates a virtual ground, governs current flow through
+external resistors, and ultimately defines the exact amplification of an
+inverting amplifier using a simple ratio of two resistance values.</p>
+<h2 id="the-problem-with-open-loop-gain">The Problem with Open-Loop
+Gain</h2>
+<p>An operational amplifier on its own has an extremely high open-loop
+voltage gain (<span class="math inline">\(A_{OL}\)</span>), often
+exceeding 100,000. While high gain sounds beneficial, it is highly
+unstable. It fluctuates significantly with changes in temperature, power
+supply variations, and manufacturing tolerances. Without control, even a
+tiny input voltage will cause the op-amp output to immediately saturate,
+clipping the signal at the power supply limits. To make an op-amp useful
+for precise linear amplification, this raw gain must be tamed.</p>
+<h2 id="how-negative-feedback-works">How Negative Feedback Works</h2>
+<p>In an inverting amplifier configuration, the non-inverting input (+)
+is connected directly to ground (0V). The input signal (<span
+class="math inline">\(V_{in}\)</span>) is applied to the inverting input
+(-) through an input resistor (<span
+class="math inline">\(R_{in}\)</span>). A feedback resistor (<span
+class="math inline">\(R_f\)</span>) is connected between the output
+(<span class="math inline">\(V_{out}\)</span>) and the inverting
+input.</p>
+<p>This connection via <span class="math inline">\(R_f\)</span> creates
+a negative feedback loop. When the input voltage goes positive, the
+inverting nature of the op-amp causes the output voltage to go negative.
+Because the output is tied back to the inverting input through <span
+class="math inline">\(R_f\)</span>, this negative output voltage pulls
+down on the positive input voltage, opposing the original change.</p>
+<h2 id="the-virtual-ground-concept">The Virtual Ground Concept</h2>
+<p>To understand how this opposition sets the precise gain, you must
+understand the concept of a "virtual ground." Because the op-amp's
+open-loop gain is nearly infinite, the voltage difference between its
+two input terminals must be driven to nearly zero for the output to
+remain within a normal, non-saturated range.</p>
+<p>Since the non-inverting input (+) is physically connected to ground
+(0V), the negative feedback loop forces the op-amp to adjust its output
+voltage dynamically so that the inverting input (-) is also maintained
+at 0V. It is not physically connected to ground, so no current flows
+into the ground from this node, which is why it is called a
+<em>virtual</em> ground.</p>
+<h2 id="current-flow-and-the-resistor-ratio">Current Flow and the
+Resistor Ratio</h2>
+<p>The ideal op-amp also has infinite input impedance, meaning zero
+electrical current flows directly into the inverting or non-inverting
+input pins. Knowing that the inverting input is at 0V (virtual ground)
+and draws no current, the behavior of the circuit becomes entirely
+dependent on Ohm's Law and Kirchhoff's Current Law.</p>
+<ol type="1">
+<li><p><strong>Input Current (<span
+class="math inline">\(I_{in}\)</span>):</strong> The voltage across the
+input resistor (<span class="math inline">\(R_{in}\)</span>) is the
+difference between the input voltage (<span
+class="math inline">\(V_{in}\)</span>) and the virtual ground (0V).
+Therefore, the current flowing through <span
+class="math inline">\(R_{in}\)</span> is: <span
+class="math inline">\(I_{in} = \frac{V_{in} - 0}{R_{in}} =
+\frac{V_{in}}{R_{in}}\)</span></p></li>
+<li><p><strong>Feedback Current (<span
+class="math inline">\(I_f\)</span>):</strong> Because this input current
+cannot enter the op-amp's input pin, 100% of it must be diverted through
+the feedback resistor (<span class="math inline">\(R_f\)</span>) toward
+the output. The voltage across <span class="math inline">\(R_f\)</span>
+is the difference between the virtual ground (0V) and the output voltage
+(<span class="math inline">\(V_{out}\)</span>). Therefore, the feedback
+current is: <span class="math inline">\(I_f = \frac{0 - V_{out}}{R_f} =
+\frac{-V_{out}}{R_f}\)</span></p></li>
+</ol>
+<h2 id="deriving-the-closed-loop-gain-formula">Deriving the Closed-Loop
+Gain Formula</h2>
+<p>Since the input current must equal the feedback current (<span
+class="math inline">\(I_{in} = I_f\)</span>), we can set the two
+equations equal to each other:</p>
+<p><span class="math inline">\(\frac{V_{in}}{R_{in}} =
+\frac{-V_{out}}{R_f}\)</span></p>
+<p>Closed-loop voltage gain (<span
+class="math inline">\(A_{CL}\)</span>) is defined as the ratio of the
+output voltage to the input voltage (<span
+class="math inline">\(\frac{V_{out}}{V_{in}}\)</span>). By rearranging
+the equation above, we get the standard formula for the gain of an
+inverting amplifier:</p>
+<p><span class="math inline">\(A_{CL} = \frac{V_{out}}{V_{in}} =
+-\frac{R_f}{R_{in}}\)</span></p>
+<h2 id="why-this-makes-the-gain-precise">Why This Makes the Gain
+Precise</h2>
+<p>The formula <span class="math inline">\(-\frac{R_f}{R_{in}}\)</span>
+reveals why negative feedback is so powerful in electronics. Notice that
+the op-amp's erratic open-loop gain (<span
+class="math inline">\(A_{OL}\)</span>) does not appear in the final
+equation at all. As long as the open-loop gain remains exceptionally
+high, the negative feedback loop completely masks the internal
+variations of the silicon chip.</p>
+<p>Instead of relying on the unstable internal properties of the
+transistor network inside the op-amp, the closed-loop voltage gain is
+dictated entirely by the ratio of two passive external components: <span
+class="math inline">\(R_f\)</span> and <span
+class="math inline">\(R_{in}\)</span>. Because engineers can easily
+purchase resistors with tight tolerances (such as 0.1% or 0.01%) and
+high thermal stability, they can use negative feedback to set the
+inverting amplifier's voltage gain to an exact, unchanging value. The
+negative sign in the equation simply indicates that the output signal is
+180 degrees out of phase with the input signal.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-negative-feedback-sets-inverting-amplifier-voltage-gain';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Non-Inverting Amplifiers Have Higher Input Impedance - electronics</title>
+    <meta name="description" content="In operational amplifier (op-amp) design, the non-inverting amplifier configuration inherently provides a vastly higher input impedance than the inverting amplifier configuration. This article explores the fundamental electronics principles behind this di">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-non-inverting-amplifiers-have-higher-input-impedance">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Non-Inverting Amplifiers Have Higher Input Impedance - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-non-inverting-amplifiers-have-higher-input-impedance" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In operational amplifier (op-amp) design, the non-inverting amplifier configuration inherently provides a vastly higher input impedance than the inverting amplifier configuration. This article explores the fundamental electronics principles behind this di" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-non-inverting-amplifiers-have-higher-input-impedance">Why
+Non-Inverting Amplifiers Have Higher Input Impedance</h1>
+<p>In operational amplifier (op-amp) design, the non-inverting amplifier
+configuration inherently provides a vastly higher input impedance than
+the inverting amplifier configuration. This article explores the
+fundamental electronics principles behind this difference, specifically
+focusing on how input signals are routed to the op-amp terminals and the
+effects of the virtual ground phenomenon. Understanding these circuit
+topologies helps engineers prevent signal loading and select the right
+amplifier stage for sensitive electronic applications.</p>
+<p>The primary reason a non-inverting amplifier offers superior input
+impedance lies in where the input signal is applied. In a non-inverting
+configuration, the input signal connects directly to the op-amp's
+non-inverting (+) terminal. Because internal op-amp inputs are
+constructed using either Field-Effect Transistors (FETs) or Bipolar
+Junction Transistors (BJTs) designed to draw minimal current, the
+intrinsic impedance at this terminal is naturally massive. It typically
+ranges from several megaohms (<span
+class="math inline">\(M\Omega\)</span>) to teraohms (<span
+class="math inline">\(T\Omega\)</span>).</p>
+<p>Furthermore, the non-inverting configuration utilizes series-shunt
+negative feedback. The feedback network is connected to the inverting
+(-) terminal, entirely separate from the input signal path. This
+arrangement actually multiplies the already high intrinsic input
+impedance of the op-amp by a factor of one plus the loop gain, pushing
+the effective input impedance toward infinity in ideal scenarios. As a
+result, the non-inverting stage draws virtually zero current from the
+signal source.</p>
+<p>Conversely, the inverting amplifier configuration suffers from a much
+lower input impedance due to the "virtual ground" effect. In an
+inverting stage, the non-inverting (+) terminal is connected directly to
+physical ground. Because an op-amp with negative feedback works to keep
+both of its input terminals at the exact same voltage potential, the
+inverting (-) terminal is forced to sit at zero volts as well, creating
+a virtual ground.</p>
+<p>In the inverting topology, the input signal is not applied directly
+to the op-amp pin. Instead, it must pass through an input resistor
+(<span class="math inline">\(R_{in}\)</span>) that leads to the
+inverting (-) terminal. Because the inverting terminal is held at
+virtual ground (0V) by the feedback loop, the input signal source only
+"sees" the resistance of <span class="math inline">\(R_{in}\)</span>
+going straight to ground. Therefore, the total input impedance of an
+inverting amplifier is strictly limited to the value of that single
+input resistor:</p>
+<p><span class="math display">\[Z_{in} = R_{in}\]</span></p>
+<p>To achieve a high input impedance in an inverting amplifier, a
+designer would have to use a very large resistor for <span
+class="math inline">\(R_{in}\)</span>. However, using high-value
+resistors introduces significant thermal noise and increases errors
+caused by the op-amp's input bias currents, making it an impractical
+solution for precision electronics.</p>
+<p>Ultimately, the physical routing of the feedback loop dictates the
+impedance. By isolating the input terminal from the feedback network,
+the non-inverting amplifier preserves the massive natural impedance of
+the op-amp's internal transistors. The inverting amplifier sacrifices
+this high impedance by placing the feedback summing point directly in
+the path of the input signal, clamping the input impedance to the value
+of a single external resistor.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-non-inverting-amplifiers-have-higher-input-impedance';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

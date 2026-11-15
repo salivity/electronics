@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How NFC Tags Work Without Batteries in Payment Electronics - electronics</title>
+    <meta name="description" content="This article explores the underlying physics and engineering that allow Near Field Communication (NFC) tags in payment electronics to function completely without internal batteries. By examining resonant inductive coupling at the standardized 13.56 MHz fr">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-nfc-tags-work-without-batteries-in-payment-electronics">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How NFC Tags Work Without Batteries in Payment Electronics - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-nfc-tags-work-without-batteries-in-payment-electronics" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explores the underlying physics and engineering that allow Near Field Communication (NFC) tags in payment electronics to function completely without internal batteries. By examining resonant inductive coupling at the standardized 13.56 MHz fr" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-nfc-tags-work-without-batteries-in-payment-electronics">How
+NFC Tags Work Without Batteries in Payment Electronics</h1>
+<p>This article explores the underlying physics and engineering that
+allow Near Field Communication (NFC) tags in payment electronics to
+function completely without internal batteries. By examining resonant
+inductive coupling at the standardized 13.56 MHz frequency, we will
+cover how passive payment devices harvest energy from payment terminals,
+convert magnetic fields into usable electrical power, and transmit
+secure transaction data in milliseconds through load modulation.</p>
+<h3 id="the-basics-of-passive-nfc-systems">The Basics of Passive NFC
+Systems</h3>
+<p>In a contactless payment scenario, there are two main components: the
+active device (the payment terminal or reader) and the passive device
+(the contactless credit card or unpowered NFC tag). The active device
+has its own dedicated power source, while the passive NFC tag contains
+only a microchip and a looped antenna, completely lacking a battery. For
+the passive tag to process cryptographic security checks and send
+payment information, it must harvest energy wirelessly from the payment
+terminal in real time.</p>
+<h3 id="magnetic-induction-at-1356-mhz">Magnetic Induction at 13.56
+MHz</h3>
+<p>The foundation of battery-free NFC operation is electromagnetic
+induction, governed by Faraday’s Law of Induction. When you bring a
+contactless card within a few centimeters of a payment terminal, the
+process begins:</p>
+<ol type="1">
+<li><strong>Generating the Field:</strong> The payment terminal passes
+an alternating current (AC) through its internal antenna coil.</li>
+<li><strong>The 13.56 MHz Standard:</strong> This current oscillates at
+a globally standardized high frequency of exactly 13.56 megahertz
+(MHz)—meaning the current switches direction 13.56 million times per
+second.</li>
+<li><strong>Inducing a Current:</strong> This rapidly oscillating
+current creates an alternating magnetic field around the terminal. When
+the NFC tag's antenna enters this field, the moving magnetic flux cuts
+across the tag’s wire coil, pushing electrons and inducing an
+alternating voltage within the tag.</li>
+</ol>
+<h3 id="the-role-of-resonant-inductive-coupling">The Role of Resonant
+Inductive Coupling</h3>
+<p>Standard magnetic induction is inherently inefficient over any
+distance if the coils are not physically touching. Because air is a poor
+conductor of magnetic fields, most of the energy generated by the
+payment terminal would normally scatter and be lost. To overcome this,
+NFC payment systems use <strong>resonant inductive
+coupling</strong>.</p>
+<p>To achieve resonance, engineers add a specific capacitor to both the
+reader's circuit and the NFC tag's circuit, creating what is known as an
+LC circuit (Inductor-Capacitor circuit). Both the terminal and the
+payment tag are precisely tuned to the exact same resonant frequency of
+13.56 MHz.</p>
+<p>When two coils are tuned to the same resonant frequency, energy
+transfers between them with vastly higher efficiency. It works similarly
+to an acoustic tuning fork: striking one fork causes a second fork of
+the same pitch across the room to vibrate. Because of resonance at 13.56
+MHz, the NFC tag can capture enough magnetic energy through the air
+(typically up to 4 centimeters away) to cross the voltage threshold
+required to boot up its microchip.</p>
+<h3 id="power-conversion-from-ac-to-dc">Power Conversion: From AC to
+DC</h3>
+<p>Once the resonant magnetic field induces an alternating current (AC)
+in the NFC tag's antenna, that raw energy still cannot be used directly
+by the tag's silicon microchip, which requires a steady direct current
+(DC) to operate.</p>
+<p>To solve this, the NFC microchip contains an integrated
+<strong>rectifier</strong> and a <strong>voltage regulator</strong>:</p>
+<ul>
+<li><strong>The Rectifier:</strong> Acts as a one-way valve for
+electricity, converting the oscillating 13.56 MHz AC voltage into a
+single-direction DC voltage.</li>
+<li><strong>The Storage Capacitor:</strong> A microscopic capacitor on
+the chip stores this rectified energy for a fraction of a second,
+smoothing out the power supply.</li>
+<li><strong>The Voltage Regulator:</strong> Ensures the power doesn't
+spike if the card is slapped directly onto the reader, keeping the
+voltage at a safe, steady level (usually around 1.8 to 3.3 volts).</li>
+</ul>
+<p>Once this capacitor charges—which takes just milliseconds—the
+microchip wakes up and executes its programmed payment security
+protocols.</p>
+<h3 id="communicating-back-load-modulation">Communicating Back: Load
+Modulation</h3>
+<p>Generating a radio signal from scratch requires a tremendous amount
+of power that a passive NFC tag simply does not have. Therefore, to send
+payment details back to the terminal without a battery, the tag uses a
+technique called <strong>load modulation</strong>.</p>
+<p>Instead of transmitting its own radio wave, the NFC tag manipulates
+the magnetic field already being generated by the payment terminal. The
+tag's microchip rapidly switches a tiny internal resistor on and off in
+a specific pattern corresponding to binary data (1s and 0s).</p>
+<p>Turning this resistor on and off changes the electrical "load" on the
+tag's antenna. Because the tag and the terminal are magnetically coupled
+at 13.56 MHz, the payment terminal instantly detects these microscopic
+fluctuations in its own magnetic field's voltage draw. The terminal
+demodulates these voltage drops, translates them back into binary code,
+and processes the encrypted payment data, completing the transaction
+without the card ever needing a battery.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-nfc-tags-work-without-batteries-in-payment-electronics';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

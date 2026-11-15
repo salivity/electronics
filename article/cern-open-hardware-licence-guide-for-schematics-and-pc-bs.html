@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CERN Open Hardware Licence Guide for Schematics and PCBs - electronics</title>
+    <meta name="description" content="This article explores how the CERN Open Hardware Licence (CERN-OHL) establishes a robust legal framework specifically designed for sharing, modifying, and distributing schematic capture and printed circuit board (PCB) layout files in open-source electroni">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/cern-open-hardware-licence-guide-for-schematics-and-pc-bs">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="CERN Open Hardware Licence Guide for Schematics and PCBs - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/cern-open-hardware-licence-guide-for-schematics-and-pc-bs" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explores how the CERN Open Hardware Licence (CERN-OHL) establishes a robust legal framework specifically designed for sharing, modifying, and distributing schematic capture and printed circuit board (PCB) layout files in open-source electroni" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="cern-open-hardware-licence-guide-for-schematics-and-pcbs">CERN
+Open Hardware Licence Guide for Schematics and PCBs</h1>
+<p>This article explores how the CERN Open Hardware Licence (CERN-OHL)
+establishes a robust legal framework specifically designed for sharing,
+modifying, and distributing schematic capture and printed circuit board
+(PCB) layout files in open-source electronics. It details the
+shortcomings of using traditional software licenses for physical
+hardware, explains how the CERN-OHL defines editable design source
+files, and breaks down the three distinct variants of the
+license—permissive, weakly reciprocal, and strongly reciprocal—so
+hardware developers can confidently protect and share their electronic
+designs.</p>
+<h2 id="the-challenge-of-licensing-open-source-electronics">The
+Challenge of Licensing Open-Source Electronics</h2>
+<p>Historically, hardware developers attempted to use open-source
+software licenses (like the MIT License or GNU General Public License)
+or Creative Commons licenses to share their electronic designs. However,
+these licenses rely heavily on copyright law, which presents a major
+problem for electronics.</p>
+<p>While artistic elements and documentation are covered by copyright,
+functional physical objects and the utilitarian aspects of circuit
+layouts often fall outside the scope of copyright protection. Using a
+software license for a PCB layout creates legal ambiguity regarding what
+constitutes "source code" versus an "executable," making it difficult to
+enforce sharing requirements when a third party manufactures and sells a
+physical board based on open designs. The CERN-OHL was written
+specifically to bridge this gap by addressing the unique legal realities
+of physical hardware and electronic design automation (EDA) files.</p>
+<h2 id="defining-complete-source-for-schematics-and-pcbs">Defining
+"Complete Source" for Schematics and PCBs</h2>
+<p>The core mechanism of the CERN-OHL is its precise definition of
+hardware documentation and "Complete Source." In the context of
+open-source electronics, viewing a static PDF of a schematic or
+inspecting raw Gerber files used for manufacturing is the equivalent of
+looking at compiled binary code in software. While you can manufacture a
+board from Gerbers, you cannot easily modify the design.</p>
+<p>The CERN-OHL solves this by legally differentiating between
+manufacturing outputs and the actual modifiable design files. Under the
+CERN-OHL, if a license variant requires you to share the source, you
+must provide the files in the preferred format for making modifications.
+For electronics, this explicitly covers:</p>
+<ul>
+<li><strong>Schematic Capture Files:</strong> The native, editable files
+generated by EDA software (such as KiCad, Altium, or Eagle) showing the
+logical connections between components.</li>
+<li><strong>PCB Layout Files:</strong> The modifiable board routing
+files, including copper layers, footprints, and design rules.</li>
+<li><strong>Supporting Libraries and BOM:</strong> Custom schematic
+symbols, PCB footprints, and a complete Bill of Materials (BOM) required
+to successfully reproduce and modify the assembly.</li>
+</ul>
+<p>By strictly defining these editable files as the "source," the
+CERN-OHL ensures that downstream users receive the actual building
+blocks of the project, not just the uneditable manufacturing
+outputs.</p>
+<h2 id="the-three-variants-of-cern-ohl-v2">The Three Variants of
+CERN-OHL v2</h2>
+<p>Version 2 of the CERN-OHL recognizes that different hardware projects
+have different commercial and community goals. To accommodate this, the
+framework is split into three distinct variants:</p>
+<h3 id="1-cern-ohl-p-permissive">1. CERN-OHL-P (Permissive)</h3>
+<p>This variant allows anyone to use, modify, and manufacture the
+schematics and PCBs for any purpose, including proprietary commercial
+products. The user is not required to share their modified schematic or
+PCB layout files, provided they retain the original copyright notices
+and attribution.</p>
+<h3 id="2-cern-ohl-w-weakly-reciprocal">2. CERN-OHL-W (Weakly
+Reciprocal)</h3>
+<p>This variant acts as a middle ground. If a user modifies the provided
+schematic or PCB layout files and distributes a product based on them,
+they must release those modified design files under the same CERN-OHL-W
+license. However, if they integrate this open-source PCB as a sub-module
+into a larger, more complex electronic system, they do not have to
+open-source the schematics of the surrounding proprietary system.
+Furthermore, they can use proprietary components or closed-source
+firmware on the board without violating the license.</p>
+<h3 id="3-cern-ohl-s-strongly-reciprocal">3. CERN-OHL-S (Strongly
+Reciprocal)</h3>
+<p>This is the strictest "copyleft" version. If anyone distributes a
+physical product or modified design based on CERN-OHL-S schematics and
+layouts, they must make the complete, modifiable design files of the
+entire resulting hardware product publicly available. This requires
+sharing all native EDA files and ensures that any improvements to the
+circuitry or routing are returned to the open-source community,
+preventing third parties from taking open designs and locking future
+iterations behind closed doors.</p>
+<h2 id="patent-protection-and-liability">Patent Protection and
+Liability</h2>
+<p>Beyond copyright and file-sharing rules, the CERN-OHL framework
+provides critical patent clauses. Schematic designs often involve novel
+electronic circuits that may be subject to patent law rather than
+copyright. The CERN-OHL includes an express patent license from the
+original designer to the user, granting permission to make, use, and
+sell the patented circuitry contained within the shared schematics. It
+also includes a patent retaliation clause: if a user sues anyone
+alleging that the open-source design infringes on their patents, their
+rights to use the CERN-OHL licensed designs are immediately
+terminated.</p>
+<p>Finally, the license includes strict "no warranty" and limitation of
+liability clauses. If a third party downloads a PCB layout, manufactures
+the board, and the circuit fails or causes damage, the original designer
+is legally insulated from liability.</p>
+<h2 id="practical-implementation-for-designers">Practical Implementation
+for Designers</h2>
+<p>To properly apply the CERN-OHL to an electronics project, the
+designer must include the full text of the chosen license variant inside
+the project repository. Additionally, the license notice should be
+placed directly inside the schematic capture sheets (usually in the
+title block) and on the silkscreen or copper layer of the PCB layout
+itself. By embedding the notice into the physical and digital files, the
+legal framework remains attached to the hardware throughout its entire
+lifecycle, from digital modification in an EDA tool to physical
+fabrication.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/cern-open-hardware-licence-guide-for-schematics-and-pc-bs';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

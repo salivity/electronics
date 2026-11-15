@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How IEEE 1149.1 Boundary Scan Tests BGA Pin Connectivity - electronics</title>
+    <meta name="description" content="This article explains how IEEE 1149.1 boundary scan testing, commonly known as JTAG, verifies pin-to-pin connectivity between Ball Grid Array (BGA) devices when physical test points are impossible to access. By utilizing internal shift registers built dir">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-ieee-1149-1-boundary-scan-tests-bga-pin-connectivity">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How IEEE 1149.1 Boundary Scan Tests BGA Pin Connectivity - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-ieee-1149-1-boundary-scan-tests-bga-pin-connectivity" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how IEEE 1149.1 boundary scan testing, commonly known as JTAG, verifies pin-to-pin connectivity between Ball Grid Array (BGA) devices when physical test points are impossible to access. By utilizing internal shift registers built dir" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-ieee-11491-boundary-scan-tests-bga-pin-connectivity">How
+IEEE 1149.1 Boundary Scan Tests BGA Pin Connectivity</h1>
+<p>This article explains how IEEE 1149.1 boundary scan testing, commonly
+known as JTAG, verifies pin-to-pin connectivity between Ball Grid Array
+(BGA) devices when physical test points are impossible to access. By
+utilizing internal shift registers built directly into the silicon of
+compliant integrated circuits, boundary scan replaces traditional
+physical probing with digital test vectors. You will learn the
+architecture of boundary scan cells, the role of the Test Access Port
+(TAP), the mechanics of the EXTEST instruction, and how this methodology
+detects open and short circuits hidden beneath densely packed BGA
+packages.</p>
+<h3 id="the-challenge-of-bga-packaging">The Challenge of BGA
+Packaging</h3>
+<p>Ball Grid Array (BGA) packages mount directly to a printed circuit
+board (PCB) using a grid of solder balls located entirely underneath the
+component body. High-density PCB designs often route traces from these
+solder balls directly into inner board layers using micro-vias. Because
+the pins are hidden beneath the package and the traces are buried within
+the board, traditional In-Circuit Testing (ICT) using physical
+"bed-of-nails" fixtures cannot probe the connections to check for
+manufacturing defects. IEEE 1149.1 boundary scan resolves this by moving
+the test points inside the chips themselves.</p>
+<h3 id="boundary-scan-architecture">Boundary Scan Architecture</h3>
+<p>To understand how connectivity is verified without physical probes,
+it is necessary to understand the hardware embedded inside an IEEE
+1149.1-compliant BGA device.</p>
+<ul>
+<li><strong>Boundary Scan Cells:</strong> Every digital input and output
+pin on a compliant BGA is connected to a dedicated boundary scan cell
+located between the physical pin and the chip's internal core logic.
+During normal operation, these cells are invisible, allowing signals to
+pass freely. During testing, these cells intercept the signals, allowing
+the test system to manually drive a signal out of a pin or read the
+state of a signal coming into a pin.</li>
+<li><strong>Boundary Scan Register (BSR):</strong> All the individual
+boundary scan cells inside a chip are linked together sequentially to
+form one continuous shift register around the perimeter (boundary) of
+the silicon die.</li>
+<li><strong>Test Access Port (TAP):</strong> The BSR is controlled via a
+four- or five-pin interface known as the TAP. The pins include Test
+Clock (TCK), Test Mode Select (TMS), Test Data In (TDI), Test Data Out
+(TDO), and an optional Test Reset (TRST).</li>
+<li><strong>The Scan Chain:</strong> On a PCB with multiple BGA devices,
+the TDO pin of the first BGA is wired to the TDI pin of the next BGA.
+This creates a continuous serial data path, or "scan chain," that links
+the boundary scan registers of multiple chips together, accessible
+through a single connector on the edge of the board.</li>
+</ul>
+<h3 id="how-pin-to-pin-connectivity-is-verified">How Pin-to-Pin
+Connectivity is Verified</h3>
+<p>To test the physical copper traces connecting one BGA pin to another,
+the boundary scan controller executes a specific IEEE 1149.1 instruction
+called <strong>EXTEST</strong> (External Test). The EXTEST mode isolates
+the internal core logic of the BGAs and gives the boundary scan cells
+complete control over the physical pins.</p>
+<p>The verification process follows a strictfour-step cycle:</p>
+<ol type="1">
+<li><strong>Load (Shift-DR):</strong> The test controller shifts a
+specific serial pattern of 1s and 0s (a test vector) into the TDI pin.
+This data travels through the scan chain until the targeted output
+boundary scan cell on "BGA 1" holds a specific logic value.</li>
+<li><strong>Drive (Update-DR):</strong> The TAP controller issues an
+update command. The boundary scan cell on BGA 1 drives its stored logic
+value out onto the physical BGA solder ball and across the PCB
+trace.</li>
+<li><strong>Sample (Capture-DR):</strong> Almost simultaneously, the
+boundary scan cell connected to the receiving solder ball on "BGA 2"
+captures the logic level present on its pin.</li>
+<li><strong>Read (Shift-DR):</strong> The captured data in BGA 2 is
+shifted out of the chain via the TDO pin back to the test software,
+while the next test vector is simultaneously shifted in through the TDI
+pin.</li>
+</ol>
+<h3 id="detecting-manufacturing-faults">Detecting Manufacturing
+Faults</h3>
+<p>By comparing the data shifted into the transmitting BGA pins with the
+data captured by the receiving BGA pins, the boundary scan software can
+pinpoint physical manufacturing defects without touching the board.</p>
+<ul>
+<li><strong>Pass Condition:</strong> If BGA 1 drives a logic
+<code>1</code> and BGA 2 captures a logic <code>1</code> (and the same
+holds true for a logic <code>0</code>), the solder joints on both BGAs
+and the PCB trace connecting them are intact.</li>
+<li><strong>Open Circuits:</strong> If a solder ball under BGA 1 or BGA
+2 is cracked or missing, the signal will not cross the gap. When BGA 1
+toggles between driving a <code>1</code> and a <code>0</code>, the
+receiving cell on BGA 2 will fail to see the change, typically reading a
+constant float value (stuck-at fault).</li>
+<li><strong>Short Circuits (Bridging):</strong> To find shorts between
+adjacent solder balls, the software drives opposite logic values on
+neighboring pins. For example, Pin A drives a <code>1</code> while
+adjacent Pin B drives a <code>0</code>. If solder has bridged the two
+balls underneath the BGA, the two signals will clash. The receiving pins
+at the other end of the traces will read corrupted logic levels,
+alerting the test software that a short circuit exists between those two
+specific nets.</li>
+</ul>
+<h3 id="the-role-of-bsdl-files">The Role of BSDL Files</h3>
+<p>The test software knows which bit in the long serial chain
+corresponds to which physical BGA ball by reading a Boundary Scan
+Description Language (BSDL) file. Provided by the chip manufacturer, the
+BSDL file maps the exact order of the boundary scan cells to the
+physical pinout of the BGA. By combining the BSDL files of the chips
+with the PCB's CAD netlist, automated test software can automatically
+generate the exact test vectors needed to verify 100% of the digital
+interconnects between inaccessible BGA pins.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-ieee-1149-1-boundary-scan-tests-bga-pin-connectivity';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

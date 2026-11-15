@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Metal Oxide Varistors Are Used Across Power Inputs - electronics</title>
+    <meta name="description" content="This article explains why engineers place metal oxide varistors (MOVs) across power inputs in electronic devices. It covers the fundamental behavior of MOVs as voltage-dependent resistors, how they rapidly react to clamp dangerous voltage spikes, and thei">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-metal-oxide-varistors-are-used-across-power-inputs">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Metal Oxide Varistors Are Used Across Power Inputs - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-metal-oxide-varistors-are-used-across-power-inputs" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains why engineers place metal oxide varistors (MOVs) across power inputs in electronic devices. It covers the fundamental behavior of MOVs as voltage-dependent resistors, how they rapidly react to clamp dangerous voltage spikes, and thei" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-metal-oxide-varistors-are-used-across-power-inputs">Why
+Metal Oxide Varistors Are Used Across Power Inputs</h1>
+<p>This article explains why engineers place metal oxide varistors
+(MOVs) across power inputs in electronic devices. It covers the
+fundamental behavior of MOVs as voltage-dependent resistors, how they
+rapidly react to clamp dangerous voltage spikes, and their critical role
+in working alongside fuses to protect sensitive downstream circuitry
+from electrical surges and transient events.</p>
+<p>An electronic device connected to an external power source is
+constantly vulnerable to transient voltage spikes. These spikes can be
+caused by lightning strikes, electrostatic discharge, or inductive loads
+switching on and off on the same power grid. Without protection, these
+sudden surges of high voltage will enter the power input and destroy
+delicate internal components like microcontrollers and power supply
+regulators. Metal oxide varistors are placed directly across the power
+input lines to act as the first line of defense against these
+destructive transients.</p>
+<p>A metal oxide varistor is a voltage-dependent, nonlinear resistor
+composed primarily of zinc oxide grains pressed into a ceramic mass. Its
+defining characteristic is that its electrical resistance changes
+dramatically based on the voltage applied to it. Under normal operating
+voltages, the MOV exhibits extremely high resistance, functioning almost
+like an open circuit. Because it is placed in parallel across the power
+input—typically from the live wire to the neutral wire, or from the
+power lines to the ground—it draws virtually no current during standard
+operation and remains invisible to the rest of the circuit.</p>
+<p>When a voltage spike enters the power input and exceeds the MOV's
+specific "clamping voltage" threshold, the properties of the component
+change within nanoseconds. The resistance of the MOV drops from millions
+of ohms to just a few ohms. By becoming a path of very low resistance,
+the MOV creates a temporary short circuit across the power input
+lines.</p>
+<p>This sudden drop in resistance diverts the massive surge current away
+from the sensitive downstream electronics and channels it safely back to
+the neutral or ground line. In doing so, the MOV "clamps" the voltage,
+restricting the maximum voltage that can pass into the rest of the
+circuit to a safe, predetermined level. The excess electrical energy
+from the spike is absorbed by the MOV and dissipated harmlessly as a
+brief pulse of heat. Once the voltage spike subsides and the input power
+returns to normal levels, the MOV instantly reverts to its
+high-resistance state, allowing the device to continue functioning
+without interruption.</p>
+<p>In addition to clamping brief transients, MOVs are placed at the
+power input to work in tandem with input fuses during sustained
+overvoltage events. An MOV can only absorb a finite amount of energy
+before it overheats and degrades. If a massive or prolonged power surge
+occurs, the MOV will conduct so much current that it forces the primary
+fuse placed just before it to blow. By sacrificing itself to trip the
+fuse, the MOV physically disconnects the circuit from the hazardous
+power source, preventing catastrophic damage or fire within the
+electronic device.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-metal-oxide-varistors-are-used-across-power-inputs';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

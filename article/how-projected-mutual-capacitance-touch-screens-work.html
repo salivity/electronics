@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Projected Mutual-Capacitance Touch Screens Work - electronics</title>
+    <meta name="description" content="This article explains the underlying technology of projected mutual-capacitance touch screens and how they accurately detect multiple simultaneous finger touches through a protective glass overlay. By utilizing a microscopic grid of conductive electrodes,">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-projected-mutual-capacitance-touch-screens-work">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Projected Mutual-Capacitance Touch Screens Work - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-projected-mutual-capacitance-touch-screens-work" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains the underlying technology of projected mutual-capacitance touch screens and how they accurately detect multiple simultaneous finger touches through a protective glass overlay. By utilizing a microscopic grid of conductive electrodes," />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-projected-mutual-capacitance-touch-screens-work">How
+Projected Mutual-Capacitance Touch Screens Work</h1>
+<p>This article explains the underlying technology of projected
+mutual-capacitance touch screens and how they accurately detect multiple
+simultaneous finger touches through a protective glass overlay. By
+utilizing a microscopic grid of conductive electrodes, these displays
+generate an electrostatic field that projects directly through
+insulating glass. When one or more fingers approach the screen, they
+disrupt this field at specific intersections, allowing an internal
+controller to measure capacitance drops and calculate precise
+multi-touch coordinates in real time.</p>
+<h2 id="the-electrode-grid-architecture">The Electrode Grid
+Architecture</h2>
+<p>At the core of a projected mutual-capacitance touch screen is a
+two-layer grid of microscopic conductive lines, typically made from
+Indium Tin Oxide (ITO). ITO is used because it is both electrically
+conductive and optically transparent, allowing light from the display
+beneath to pass through unhindered.</p>
+<p>The grid is divided into two distinct layers separated by a thin
+insulating material:</p>
+<ul>
+<li><strong>Transmit (Tx) Electrodes:</strong> Arranged in rows (or
+columns), these lines are driven by an alternating current (AC) voltage
+signal from the touch controller.</li>
+<li><strong>Receive (Rx) Electrodes:</strong> Arranged at a 90-degree
+angle to the Tx lines, these lines measure the electrical charge coupled
+from the transmitting layer.</li>
+</ul>
+<p>Every intersection where a Tx line crosses an Rx line forms a unique
+capacitor. A standard smartphone screen contains hundreds or thousands
+of these miniature capacitive nodes.</p>
+<h2 id="projecting-the-field-through-glass">Projecting the Field Through
+Glass</h2>
+<p>For the electronics to remain safe from moisture, dust, and physical
+damage, the ITO electrode grid is bonded beneath a protective glass
+overlay, such as chemically strengthened aluminosilicate glass.</p>
+<p>When the AC signal is applied to the Tx electrodes, an electrostatic
+field is generated between the Tx and Rx intersections. Rather than
+staying strictly confined between the two microscopic layers, the
+"fringing" lines of this electric field project upward and outward.
+Because glass is a dielectric material (an electrical insulator that can
+be polarized by an applied electric field), it allows these fringing
+electrostatic fields to pass right through to the top surface of the
+screen.</p>
+<h2 id="how-a-finger-alters-mutual-capacitance">How a Finger Alters
+Mutual Capacitance</h2>
+<p>Each intersection on the grid holds a baseline amount of electrical
+charge, known as its mutual capacitance. The system constantly monitors
+this baseline.</p>
+<p>The human body is filled with water and electrolytes, making a finger
+an effective electrical conductor that acts as a virtual ground. When a
+finger touches the protective glass overlay, it enters the projected
+fringing electric field. Because the finger is conductive, it steals a
+tiny portion of the electrical charge that was previously flowing from
+the Tx electrode to the Rx electrode.</p>
+<p>Instead of the full charge reaching the Rx line, a fraction of the
+current is shunted through the finger and into the human body. This
+interaction causes a measurable drop in the mutual capacitance at that
+specific intersection.</p>
+<h2 id="detecting-multiple-simultaneous-touches">Detecting Multiple
+Simultaneous Touches</h2>
+<p>Older capacitive technologies, such as self-capacitance, measure the
+capacitance of an entire row or column at once. If two fingers touch a
+self-capacitance screen simultaneously, the controller cannot determine
+which specific intersections are being pressed, resulting in false
+positional readings known as "ghosting."</p>
+<p>Mutual-capacitance eliminates this problem by addressing each
+intersection individually. The touch controller operates using the
+following sequence:</p>
+<ol type="1">
+<li><strong>Sequential Driving:</strong> The controller sends an AC
+signal down a single Tx line at a time, cycling through all the Tx lines
+in milliseconds.</li>
+<li><strong>Simultaneous Reading:</strong> As one Tx line is active, the
+controller measures the voltage at every single Rx line crossing that
+active Tx line.</li>
+<li><strong>Heat Map Generation:</strong> By repeating this process
+across the entire grid hundreds of times per second, the controller
+builds a complete two-dimensional map of capacitance values across the
+screen.</li>
+</ol>
+<p>Because every single intersection is measured independently, the
+system can detect a capacitance drop at any number of nodes at the exact
+same time. When multiple fingers touch the glass, the controller sees
+multiple isolated pockets of reduced capacitance on its 2D map. Advanced
+algorithms then calculate the center point (centroid) of each pocket,
+translating those raw electrical measurements into precise X and Y
+coordinates for the device's operating system to execute multi-touch
+gestures like pinching, zooming, and rotating.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-projected-mutual-capacitance-touch-screens-work';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

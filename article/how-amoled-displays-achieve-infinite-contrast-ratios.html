@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How AMOLED Displays Achieve Infinite Contrast Ratios - electronics</title>
+    <meta name="description" content="This article explains the core engineering behind Active-Matrix Organic Light-Emitting Diode (AMOLED) technology and why it delivers an infinite contrast ratio in modern smartphones and televisions. By examining the self-emissive nature of organic subpixe">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-amoled-displays-achieve-infinite-contrast-ratios">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How AMOLED Displays Achieve Infinite Contrast Ratios - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-amoled-displays-achieve-infinite-contrast-ratios" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains the core engineering behind Active-Matrix Organic Light-Emitting Diode (AMOLED) technology and why it delivers an infinite contrast ratio in modern smartphones and televisions. By examining the self-emissive nature of organic subpixe" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-amoled-displays-achieve-infinite-contrast-ratios">How AMOLED
+Displays Achieve Infinite Contrast Ratios</h1>
+<p>This article explains the core engineering behind Active-Matrix
+Organic Light-Emitting Diode (AMOLED) technology and why it delivers an
+infinite contrast ratio in modern smartphones and televisions. By
+examining the self-emissive nature of organic subpixels, the role of the
+active-matrix backplane, and the mathematical definition of contrast,
+you will understand how turning off individual pixels creates true black
+levels that traditional LCD screens cannot replicate.</p>
+<h2 id="the-mathematics-of-contrast-ratio">The Mathematics of Contrast
+Ratio</h2>
+<p>To understand how a display achieves an infinite contrast ratio, you
+first need to understand how contrast is measured. In display
+technology, the contrast ratio is the mathematical difference between
+the brightest white a screen can produce (maximum luminance) and the
+darkest black it can produce (minimum luminance).</p>
+<p>The formula is simple: Maximum Luminance divided by Minimum
+Luminance.</p>
+<p>In traditional Liquid Crystal Displays (LCDs), a constant LED
+backlight shines through a layer of liquid crystals. When the screen
+needs to display black, the crystals twist to block the light. However,
+some light always leaks through, resulting in a minimum luminance above
+zero (for example, 0.05 nits). If the maximum luminance is 500 nits and
+the minimum is 0.05 nits, the contrast ratio is 10,000:1.</p>
+<p>In an AMOLED display, there is no backlight. When the screen displays
+black, the pixels simply turn off, resulting in a minimum luminance of
+exactly 0 nits. In mathematics, dividing any positive number by zero
+approaches infinity. Therefore, a maximum luminance of 500 nits divided
+by 0 nits results in an infinite (∞:1) contrast ratio.</p>
+<h2 id="self-emissive-organic-subpixels">Self-Emissive Organic
+Subpixels</h2>
+<p>The fundamental reason an AMOLED screen can reach 0 nits of luminance
+is that its pixels are self-emissive. Each pixel is made up of smaller
+red, green, and blue subpixels. These subpixels contain microscopic
+layers of organic carbon-based compounds placed between two conductors
+(an anode and a cathode).</p>
+<p>When an electrical current is applied to a specific subpixel, the
+organic material emits light directly—a process called
+electroluminescence. Because each subpixel generates its own light, no
+external illumination is required. Conversely, when no electrical
+voltage is applied to the organic compound, no chemical reaction occurs,
+and zero photons are emitted. The subpixel becomes completely inert and
+pitch black.</p>
+<h2 id="the-role-of-the-active-matrix-backplane">The Role of the
+Active-Matrix Backplane</h2>
+<p>Having organic LEDs is only half the equation; the display needs a
+way to control millions of them simultaneously and independently. This
+is the job of the "Active-Matrix" in AMOLED, which consists of a
+Thin-Film Transistor (TFT) backplane.</p>
+<p>Attached to every single subpixel is a microscopic transistor and a
+capacitor. The transistor acts as a precise electrical switch, while the
+capacitor holds the electrical charge between screen refreshes.</p>
+<p>When a television or smartphone processor sends an image to the
+screen, the TFT backplane routes exact voltages to the exact coordinates
+of every subpixel. If an image features a bright white star against the
+blackness of space, the active matrix supplies power strictly to the
+subpixels forming the star. Simultaneously, it completely cuts the
+electrical current to the adjacent subpixels representing space. Because
+there is no shared backlight bleeding into the dark areas, a fully lit
+pixel can sit right next to a completely turned-off pixel without any
+halo effect or light contamination.</p>
+<h2 id="impact-on-mobile-and-television-electronics">Impact on Mobile
+and Television Electronics</h2>
+<p>This pixel-level control transforms visual quality in consumer
+electronics. In televisions, infinite contrast makes High Dynamic Range
+(HDR) content look remarkably lifelike, adding depth and dimensionality
+to dark scenes that usually look washed out and gray on standard
+LED-backlit TVs.</p>
+<p>In mobile electronics, this mechanism provides a secondary benefit:
+power efficiency. Because black pixels are completely turned off and
+draw no electrical current from the battery, using system-wide "Dark
+Modes" on AMOLED smartphones significantly reduces power consumption
+while delivering superior visual clarity.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-amoled-displays-achieve-infinite-contrast-ratios';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

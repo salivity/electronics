@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Current Mirrors Copy and Scale Bias Currents in ICs - electronics</title>
+    <meta name="description" content="This article explores how matched-transistor current mirrors copy and scale bias currents across monolithic integrated circuits (ICs). By leveraging the identical physical properties of transistors fabricated on the same silicon die, engineers can generat">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-current-mirrors-copy-and-scale-bias-currents-in-i-cs">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Current Mirrors Copy and Scale Bias Currents in ICs - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-current-mirrors-copy-and-scale-bias-currents-in-i-cs" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explores how matched-transistor current mirrors copy and scale bias currents across monolithic integrated circuits (ICs). By leveraging the identical physical properties of transistors fabricated on the same silicon die, engineers can generat" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-current-mirrors-copy-and-scale-bias-currents-in-ics">How
+Current Mirrors Copy and Scale Bias Currents in ICs</h1>
+<p>This article explores how matched-transistor current mirrors copy and
+scale bias currents across monolithic integrated circuits (ICs). By
+leveraging the identical physical properties of transistors fabricated
+on the same silicon die, engineers can generate a single precise
+reference current and replicate or scale it across hundreds of internal
+amplifier stages. The following sections break down the fundamental
+physics of current mirroring, the geometric techniques used for current
+scaling, the advantages of monolithic integration, and the circuit
+topologies used to overcome real-world non-idealities.</p>
+<h2 id="the-fundamental-principle-of-current-mirroring">The Fundamental
+Principle of Current Mirroring</h2>
+<p>A current mirror is a circuit block designed to copy a current
+flowing through one active device by controlling the current in another
+active device, keeping the output current constant regardless of
+loading.</p>
+<p>In a basic two-transistor current mirror—whether using
+Metal-Oxide-Semiconductor Field-Effect Transistors (MOSFETs) or Bipolar
+Junction Transistors (BJTs)—the governing principle relies on the
+relationship between control voltage and output current:</p>
+<ul>
+<li><strong>In MOSFETs:</strong> The drain current (<span
+class="math inline">\(I_D\)</span>) is controlled by the gate-to-source
+voltage (<span class="math inline">\(V_{GS}\)</span>).</li>
+<li><strong>In BJTs:</strong> The collector current (<span
+class="math inline">\(I_C\)</span>) is controlled by the base-to-emitter
+voltage (<span class="math inline">\(V_{BE}\)</span>).</li>
+</ul>
+<p>To copy a current, a reference current (<span
+class="math inline">\(I_{REF}\)</span>) is forced into a
+"diode-connected" input transistor (where the gate is tied to the drain,
+or the base is tied to the collector). This configuration forces the
+transistor to automatically generate the exact <span
+class="math inline">\(V_{GS}\)</span> or <span
+class="math inline">\(V_{BE}\)</span> required to sustain that specific
+reference current.</p>
+<p>Because the gate (or base) and source (or emitter) terminals of the
+second transistor are wired directly in parallel with the first
+transistor, both devices share the exact same control voltage. If the
+two transistors are physically identical and operating at the same
+temperature, the second transistor will naturally produce an output
+current (<span class="math inline">\(I_{OUT}\)</span>) equal to <span
+class="math inline">\(I_{REF}\)</span>.</p>
+<h2 id="why-monolithic-integration-is-critical">Why Monolithic
+Integration is Critical</h2>
+<p>Attempting to build a precise current mirror using discrete,
+off-the-shelf transistors usually yields poor results. Discrete
+components come from different silicon wafers and manufacturing batches,
+resulting in slight variations in threshold voltages, oxide thicknesses,
+and doping profiles. Furthermore, discrete transistors experience
+different local temperatures during operation, which drastically alters
+their current-voltage characteristics.</p>
+<p>Monolithic integrated circuits solve this problem. Because all
+components on an IC are fabricated simultaneously on the same
+microscopic piece of silicon using photolithography, adjacent
+transistors share nearly identical material properties.</p>
+<p>Additionally, placing the transistors side-by-side ensures tight
+thermal coupling. As the chip heats up during operation, both the
+reference and output transistors experience the exact same temperature
+shifts, allowing their electrical parameters to drift together and
+preserving the accuracy of the current ratio.</p>
+<h2 id="scaling-bias-currents-geometrically">Scaling Bias Currents
+Geometrically</h2>
+<p>Integrated circuits rarely require the exact same bias current for
+every stage. High-speed output stages may need milliamps of current,
+while low-power input stages may only require microamps. Rather than
+generating multiple independent reference currents, designers use a
+single reference and scale the output currents geometrically.</p>
+<h3 id="scaling-in-mosfets">Scaling in MOSFETs</h3>
+<p>The drain current of a MOSFET in saturation is directly proportional
+to its aspect ratio—the width of its channel (<span
+class="math inline">\(W\)</span>) divided by its length (<span
+class="math inline">\(L\)</span>). If the channel lengths of the
+reference transistor (<span class="math inline">\(M_1\)</span>) and
+output transistor (<span class="math inline">\(M_2\)</span>) are kept
+equal, the current scales purely by the ratio of their widths:</p>
+<p><span class="math display">\[I_{OUT} = I_{REF} \left( \frac{W_2 /
+L_2}{W_1 / L_1} \right)\]</span></p>
+<p>To double the current, the layout engineer makes the output
+transistor twice as wide as the reference transistor. In practice,
+rather than drawing one wide transistor (which can introduce
+lithographic edge errors), engineers connect multiple identical "unit
+transistors" in parallel. For example, a 1:4 current scaling ratio uses
+one unit transistor for the reference and four identical unit
+transistors wired in parallel for the output.</p>
+<h3 id="scaling-in-bjts">Scaling in BJTs</h3>
+<p>In bipolar transistors, the collector current is directly
+proportional to the saturation current (<span
+class="math inline">\(I_S\)</span>), which is determined by the physical
+area of the emitter (<span class="math inline">\(A_E\)</span>). The
+scaling equation is:</p>
+<p><span class="math display">\[I_{OUT} = I_{REF} \left(
+\frac{A_{E2}}{A_{E1}} \right)\]</span></p>
+<p>Just like parallel unit MOSFETs, BJT current mirrors scale currents
+by placing multiple unit transistors in parallel or by fabricating a
+single transistor with multiple emitter fingers.</p>
+<h2 id="distributing-bias-across-the-chip">Distributing Bias Across the
+Chip</h2>
+<p>While a simple current mirror works locally, routing a sensitive
+gate-to-source voltage line across a large silicon die to bias distant
+circuits is problematic. Long metal traces introduce voltage drops (IR
+drop) in the ground return path and pick up capacitive noise from
+adjacent digital clocks, corrupting the <span
+class="math inline">\(V_{GS}\)</span> or <span
+class="math inline">\(V_{BE}\)</span> signal.</p>
+<p>To distribute bias currents across an entire chip, engineers use a
+<strong>master-slave distribution scheme</strong>:</p>
+<ol type="1">
+<li>A central bandgap reference generates a precise master current.</li>
+<li>A central multi-output current mirror copies and scales this master
+current into several intermediate bias currents.</li>
+<li>These currents (rather than voltages) are routed across the chip via
+long metal traces. Because the signal is a current, parasitic series
+resistance along the wire does not degrade the accuracy of the
+signal.</li>
+<li>Once the current reaches the target functional block, it feeds into
+a local current mirror, which converts it back into the required local
+bias voltages and currents for that specific stage.</li>
+</ol>
+<h2 id="overcoming-real-world-non-idealities">Overcoming Real-World
+Non-Idealities</h2>
+<p>Even on a monolithic IC, basic two-transistor current mirrors suffer
+from physical limitations that degrade their accuracy. Designers use
+specific layout techniques and advanced circuit topologies to mitigate
+these issues:</p>
+<ul>
+<li><strong>Channel-Length Modulation and the Early Effect:</strong>
+Ideally, a current mirror has infinite output impedance, meaning the
+output current remains constant regardless of the voltage at the output
+terminal. In reality, changes in the drain-to-source voltage (<span
+class="math inline">\(V_{DS}\)</span>) or collector-to-emitter voltage
+(<span class="math inline">\(V_{CE}\)</span>) alter the effective width
+of the depletion region, causing the output current to vary. Designers
+fix this by using <strong>Cascode</strong> or <strong>Wilson current
+mirrors</strong>, which stack additional transistors on top of the
+mirror to shield the bottom transistors from voltage fluctuations,
+increasing output impedance by orders of magnitude.</li>
+<li><strong>Base Current Error (BJTs):</strong> In a BJT mirror, the
+reference current must supply the base currents for both transistors,
+leading to an output current slightly lower than the reference. Adding a
+buffer transistor (such as in a beta-helper or Wilson configuration)
+minimizes this error.</li>
+<li><strong>Process Gradients:</strong> Silicon wafer properties (like
+oxide thickness) change slightly from one side of the chip to the other.
+To prevent this linear gradient from ruining the matching of scaled
+transistors, layout engineers use <strong>common-centroid
+layouts</strong> (such as interdigitated fingers), where the unit
+elements of the reference and output transistors are symmetrically
+interwoven so they share the exact same physical center point on the
+die.</li>
+</ul></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-current-mirrors-copy-and-scale-bias-currents-in-i-cs';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

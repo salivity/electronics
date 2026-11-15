@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Apollo Computers Used Only Three-Input NOR Gates - electronics</title>
+    <meta name="description" content="The Apollo Guidance Computer (AGC), a marvel of 1960s aerospace electronics, successfully navigated astronauts to the Moon using a surprising design choice: its logic modules were built entirely from thousands of identical three-input NOR gates. This arti">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-apollo-computers-used-only-three-input-nor-gates">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Apollo Computers Used Only Three-Input NOR Gates - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-apollo-computers-used-only-three-input-nor-gates" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Apollo Guidance Computer (AGC), a marvel of 1960s aerospace electronics, successfully navigated astronauts to the Moon using a surprising design choice: its logic modules were built entirely from thousands of identical three-input NOR gates. This arti" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-apollo-computers-used-only-three-input-nor-gates">Why Apollo
+Computers Used Only Three-Input NOR Gates</h1>
+<p>The Apollo Guidance Computer (AGC), a marvel of 1960s aerospace
+electronics, successfully navigated astronauts to the Moon using a
+surprising design choice: its logic modules were built entirely from
+thousands of identical three-input NOR gates. This article explores the
+engineering reasons behind this single-gate architecture. By examining
+the era's technological limits, we will cover how functional
+completeness, manufacturing consistency, rigorous testing standards, and
+physical simplicity made the three-input NOR gate the safest and most
+reliable choice for early spaceflight.</p>
+<p>In the early 1960s, integrated circuits (ICs) were a brand-new and
+largely unproven technology. When MIT Instrumentation Laboratory was
+tasked by NASA to design the Apollo Guidance Computer, the primary
+requirement was absolute reliability. If a computer failed in deep
+space, the crew could be lost. To mitigate the risks of using infant
+microchip technology, engineers decided to standardize the entire
+computer around a single component: the three-input Resistor-Transistor
+Logic (RTL) NOR gate.</p>
+<p>The primary reason this worked is a digital logic concept known as
+"functional completeness." In electronics, both NOR gates and NAND gates
+are universal gates. This means that by wiring multiple NOR gates
+together in different combinations, engineers can create any other logic
+gate—such as AND, OR, and NOT gates—as well as complex memory elements
+like flip-flops and adders. While building an entire computer out of one
+type of gate requires more total chips than using a variety of
+specialized gates, the trade-off in reliability was well worth the extra
+component count.</p>
+<p>Using only one type of microchip drastically simplified the
+manufacturing process. Instead of splitting factory production lines at
+Fairchild Semiconductor to create dozens of different logic chips,
+manufacturers could dedicate their entire focus to perfecting just one
+design. Apollo ended up consuming the vast majority of the world's early
+IC production, and focusing on a single three-input NOR gate allowed
+manufacturers to quickly iron out production defects, resulting in
+unprecedented component yields and uniformity.</p>
+<p>Quality assurance and testing were also major factors in this
+decision. Because NASA required every single part to undergo extreme
+testing—including thermal cycling, centrifuge spinning, and vibration
+tests—using a single chip type meant engineers only had to study the
+failure modes of one specific component. If a batch showed an anomaly,
+engineers knew exactly how it would affect the whole system.
+Standardizing the testing equipment for a single three-input NOR gate
+saved massive amounts of time and ensured that only the most resilient
+chips made it into the flight modules.</p>
+<p>Additionally, the three-input NOR gate offered the ideal balance of
+physical simplicity and logical usefulness. In early RTL technology, a
+NOR gate was structurally simpler to build on a silicon wafer than a
+NAND gate, requiring fewer internal components and thus offering fewer
+points of potential failure. Giving the gate three inputs instead of two
+provided the MIT engineers with just enough logical flexibility to build
+complex processor pathways without making the silicon chip itself too
+crowded or prone to overheating.</p>
+<p>Finally, this uniform approach streamlined spare parts and repairs.
+Whether engineers were assembling the Block I or the later Block II
+versions of the computer, logistics were vastly simplified. A technician
+never had to worry about stocking different types of logic chips, and
+there was zero risk of accidentally installing the wrong gate type onto
+a circuit board. Ultimately, the three-input NOR gate implementation
+proved to be a triumph of aerospace engineering, delivering a faultless
+performance throughout the Apollo Moon landings.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-apollo-computers-used-only-three-input-nor-gates';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

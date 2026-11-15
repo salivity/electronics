@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Ground Loops Cause 60 Hz Hum in Audio and Electronics - electronics</title>
+    <meta name="description" content="Ground loops and the resulting 60-hertz hum occur when interconnected audio or instrumentation devices share multiple paths to ground, creating an unintended closed electrical loop. When a slight voltage difference—known as a potential difference—exists b">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-ground-loops-cause-60-hz-hum-in-audio-and-electronics">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Ground Loops Cause 60 Hz Hum in Audio and Electronics - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-ground-loops-cause-60-hz-hum-in-audio-and-electronics" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Ground loops and the resulting 60-hertz hum occur when interconnected audio or instrumentation devices share multiple paths to ground, creating an unintended closed electrical loop. When a slight voltage difference—known as a potential difference—exists b" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-ground-loops-cause-60-hz-hum-in-audio-and-electronics">How
+Ground Loops Cause 60 Hz Hum in Audio and Electronics</h1>
+<p>Ground loops and the resulting 60-hertz hum occur when interconnected
+audio or instrumentation devices share multiple paths to ground,
+creating an unintended closed electrical loop. When a slight voltage
+difference—known as a potential difference—exists between the chassis
+grounds of two separate pieces of equipment, an alternating current
+flows through the shielding of the interconnecting signal cables.
+Because these systems rely on the ground path as a zero-volt reference
+point, this unwanted current directly modulates the signal path,
+manifesting as a persistent 60-hertz audible hum in audio gear or
+corrupted baseline readings in sensitive measurement electronics.</p>
+<h3 id="the-anatomy-of-a-ground-loop">The Anatomy of a Ground Loop</h3>
+<p>In an ideal electrical system, "ground" is a universal, zero-volt
+reference point. Safety regulations require that the metal chassis of
+mains-powered equipment be connected directly to the earth ground via
+the third prong of an AC power cord.</p>
+<p>When you connect two grounded devices—such as an audio mixer and a
+powered amplifier, or a sensor array and an oscilloscope—using a
+standard unbalanced cable, you link their chassis grounds together
+through the cable's shield. At this moment, a closed conductive loop is
+formed:</p>
+<ol type="1">
+<li>From the first device's chassis, through its power cord, to the wall
+outlet's earth ground.</li>
+<li>Through the building’s electrical ground wiring to the second
+device's wall outlet.</li>
+<li>Up the second device's power cord to its chassis.</li>
+<li>Back to the first device's chassis via the shield of the
+interconnecting signal cable.</li>
+</ol>
+<p>This circular path is a ground loop. By itself, a loop of wire is
+harmless, provided no current flows through it. However, potential
+differences between the ground points guarantee that current will
+flow.</p>
+<h3 id="how-potential-differences-arise">How Potential Differences
+Arise</h3>
+<p>The earth ground wiring inside a building does not have zero
+electrical resistance. Like any physical conductor, copper wiring has a
+small but measurable impedance.</p>
+<p>When multiple devices are plugged into different outlets—especially
+outlets on different circuit breakers—the physical distance between
+their ground connections increases. Stray currents from other appliances
+on the building's power grid, internal leakage currents from power
+supplies, and electromagnetic induction from nearby AC power lines all
+dump small amounts of alternating current into the building's ground
+wiring.</p>
+<p>Because of Ohm’s Law (<span class="math inline">\(V = I \times
+R\)</span>), as this stray 60-hertz AC current (<span
+class="math inline">\(I\)</span>) flows through the natural resistance
+(<span class="math inline">\(R\)</span>) of the building's ground wires,
+it creates a voltage drop (<span class="math inline">\(V\)</span>).
+Consequently, the chassis of Device A might sit at a ground potential of
+0.05 volts, while the chassis of Device B sits at 0.02 volts. A
+potential difference of 0.03 volts now exists between the two pieces of
+equipment.</p>
+<h3 id="signal-corruption-and-the-60-hz-hum">Signal Corruption and the
+60 Hz Hum</h3>
+<p>Electricity always seeks the path of least resistance to equalize
+potential differences. Because the shield of an interconnecting audio or
+instrumentation cable has a very low resistance, the 60-hertz current
+driven by the potential difference flows directly through the cable
+shield from one chassis to the other.</p>
+<p>In unbalanced connections (like standard RCA or 1/4-inch TS cables),
+the cable shield serves two purposes: it protects the inner signal wire
+from outside interference, and it acts as the return path (the 0V
+reference) for the audio or data signal itself.</p>
+<p>As the unwanted 60-hertz current travels along the cable shield, it
+encounters the internal resistance of the shield wire. This creates a
+small 60-hertz voltage drop across the length of the cable. The
+receiving device cannot distinguish between the intended signal coming
+down the center wire and the fluctuating voltage on the reference
+shield. It simply measures the difference between the two. Because the
+reference ground is now oscillating at 60 times per second (the
+frequency of standard North American AC power), that 60-hertz
+oscillation is added directly to the desired signal.</p>
+<p>In audio systems, this is amplified and heard as a low-frequency
+60-hertz hum—often accompanied by a 120-hertz buzz or higher harmonics
+caused by rectifiers in the equipment's power supplies. In
+instrumentation electronics, this manifests as a sine-wave ripple
+superimposed over precise DC measurements, ruining data integrity.</p>
+<h3 id="magnetic-induction-in-the-loop">Magnetic Induction in the
+Loop</h3>
+<p>Even if the building's ground points are at the exact same voltage
+potential, a ground loop can still generate a 60-hertz hum through
+electromagnetic induction.</p>
+<p>The closed loop formed by the power cords and the interconnect cable
+acts as a single-turn secondary winding of a transformer. Every AC power
+cord, wall wart, and power transformer in the room emits a 60-hertz
+magnetic field. As these magnetic fields expand and collapse through the
+physical area of the ground loop, Faraday’s Law of Induction dictates
+that an alternating current is induced inside the loop. Just like the
+current caused by conductive potential differences, this induced current
+flows through the signal cable's shield, creating the exact same voltage
+drop and resulting hum.</p>
+<h3 id="eliminating-the-potential-difference">Eliminating the Potential
+Difference</h3>
+<p>To stop the 60-hertz hum without compromising safety (never remove
+the third grounding prong on an AC plug), the conductive loop must be
+broken or the signal path must be separated from the chassis ground.</p>
+<ul>
+<li><strong>Star Grounding:</strong> Plugging all interconnected
+equipment into the exact same power strip minimizes the physical
+distance and wire resistance between their earth grounds, drastically
+reducing the potential difference.</li>
+<li><strong>Balanced Interconnects:</strong> Using balanced cables (such
+as XLR or TRS) separates the chassis shield from the signal return path.
+The signal is carried on two inner wires (positive and inverted), and
+the receiving device uses differential amplification to cancel out any
+60-hertz noise that was equally induced onto both wires.</li>
+<li><strong>Isolation Transformers (DI Boxes):</strong> Placing a 1:1
+isolation transformer in the signal path physically breaks the direct
+metallic connection between the two devices. The signal passes through
+magnetically, while the ground loop is completely severed.</li>
+</ul></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-ground-loops-cause-60-hz-hum-in-audio-and-electronics';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How High-Side and Low-Side Switches Work in a Half-Bridge - electronics</title>
+    <meta name="description" content="This article explains how high-side and low-side switches alternate conduction in a half-bridge inverter stage within motor-drive electronics. A half-bridge converts direct current (DC) power into modulated alternating current (AC) waveforms to drive elec">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-high-side-and-low-side-switches-work-in-a-half-bridge">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How High-Side and Low-Side Switches Work in a Half-Bridge - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-high-side-and-low-side-switches-work-in-a-half-bridge" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how high-side and low-side switches alternate conduction in a half-bridge inverter stage within motor-drive electronics. A half-bridge converts direct current (DC) power into modulated alternating current (AC) waveforms to drive elec" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-high-side-and-low-side-switches-work-in-a-half-bridge">How
+High-Side and Low-Side Switches Work in a Half-Bridge</h1>
+<p>This article explains how high-side and low-side switches alternate
+conduction in a half-bridge inverter stage within motor-drive
+electronics. A half-bridge converts direct current (DC) power into
+modulated alternating current (AC) waveforms to drive electric motors
+efficiently. By alternating the on and off states of these two switches
+using Pulse Width Modulation (PWM), the circuit controls the direction
+and magnitude of the current flowing into the motor windings. We will
+cover the core switching states, the necessity of dead time to prevent
+catastrophic short circuits, the role of freewheeling diodes in handling
+inductive loads, and the floating gate drive requirements for the
+high-side switch.</p>
+<h3 id="the-basic-half-bridge-topology">The Basic Half-Bridge
+Topology</h3>
+<p>A half-bridge inverter stage consists of two power switches—typically
+MOSFETs or IGBTs—connected in series across a high-voltage DC bus.</p>
+<ul>
+<li><strong>The High-Side Switch</strong> connects the positive DC
+supply rail to the output phase node.</li>
+<li><strong>The Low-Side Switch</strong> connects the output phase node
+to the negative DC return rail (ground).</li>
+</ul>
+<p>The motor winding is connected directly to the output phase node
+between the two switches. By alternating which switch conducts, the
+phase node is rapidly toggled between the positive voltage rail and
+ground.</p>
+<h3 id="alternating-conduction-via-pwm">Alternating Conduction via
+PWM</h3>
+<p>Motor speed and torque are controlled by a microcontroller or digital
+signal processor (DSP) that generates Pulse Width Modulation (PWM)
+signals. These signals dictate the exact timing of the alternation
+between the switches.</p>
+<ol type="1">
+<li><strong>High-Side Conduction:</strong> The gate driver turns the
+high-side switch ON while keeping the low-side switch OFF. The phase
+node is pulled up to the DC bus voltage, and current flows from the
+positive power supply, through the high-side switch, and into the motor
+winding.</li>
+<li><strong>Low-Side Conduction:</strong> The gate driver turns the
+high-side switch OFF and turns the low-side switch ON. The phase node is
+pulled down to ground. Depending on the motor's operating state, current
+is either drawn from the motor winding to ground or circulates through
+the low-side path.</li>
+</ol>
+<p>By varying the duty cycle (the percentage of time the high-side
+switch is on versus the low-side switch), the half-bridge synthesizes a
+variable average voltage, which shapes the sinusoidal current required
+by the motor.</p>
+<h3 id="dead-time-preventing-shoot-through">Dead Time: Preventing
+Shoot-Through</h3>
+<p>Power semiconductors do not turn on and off instantaneously; it takes
+nanoseconds or microseconds for the internal charge to dissipate. If the
+high-side and low-side switches conduct simultaneously, even for a
+fraction of a microsecond, they create a direct short circuit across the
+DC bus. This event is called "shoot-through" and quickly destroys the
+switches due to massive current spikes.</p>
+<p>To prevent shoot-through, motor-drive controllers insert <strong>dead
+time</strong> (also known as blanking time) into the switching cycle.
+During a transition:</p>
+<ol type="1">
+<li>The conducting switch is commanded to turn OFF.</li>
+<li>Both switches are held in the OFF state for a brief, predetermined
+dead time.</li>
+<li>The opposing switch is commanded to turn ON.</li>
+</ol>
+<h3 id="freewheeling-diodes-and-inductive-currents">Freewheeling Diodes
+and Inductive Currents</h3>
+<p>Motor windings are large inductors. By nature, inductors resist
+instantaneous changes in current. When a switch turns off and the
+circuit enters the dead-time phase, the current flowing through the
+motor winding cannot simply stop. It must find an immediate path to
+continue flowing, or it will generate destructive voltage spikes.</p>
+<p>This path is provided by anti-parallel freewheeling diodes (or the
+intrinsic body diodes in MOSFETs) situated across both the high-side and
+low-side switches.</p>
+<ul>
+<li>If current is flowing <strong>into</strong> the motor when the
+high-side switch turns off, the voltage at the phase node drops below
+ground until the <strong>low-side diode</strong> becomes forward-biased
+and conducts the current during the dead time.</li>
+<li>Once the dead time expires, the low-side switch turns on, taking
+over the current from its parallel diode to reduce conduction losses (a
+technique known as synchronous rectification).</li>
+</ul>
+<h3 id="driving-the-high-side-switch">Driving the High-Side Switch</h3>
+<p>While the low-side switch is referenced to ground—making it easy to
+turn on by applying a standard gate voltage—the high-side switch is
+referenced to the switching phase node. Because the voltage at this node
+rapidly jumps between ground and the high-voltage DC bus, the gate
+driver must apply a voltage <em>higher</em> than the DC bus to keep the
+high-side switch conducting.</p>
+<p>This is typically achieved using a <strong>bootstrap
+circuit</strong>. While the low-side switch is conducting and the phase
+node is at ground, a bootstrap capacitor charges up via an auxiliary
+low-voltage supply. When the low-side switch turns off and the high-side
+switch needs to turn on, the capacitor acts as a floating power supply.
+It rides on top of the rising phase node voltage, providing the
+necessary gate-to-source voltage to keep the high-side switch fully
+conducting until the next alternation cycle begins.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-high-side-and-low-side-switches-work-in-a-half-bridge';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

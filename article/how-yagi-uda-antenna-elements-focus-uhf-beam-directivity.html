@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Yagi-Uda Antenna Elements Focus UHF Beam Directivity - electronics</title>
+    <meta name="description" content="This article provides a concise overview of how parasitic director and reflector elements manipulate electromagnetic waves to create high-gain, focused beam directivity in a Yagi-Uda antenna array used for Ultra High Frequency (UHF) reception electronics.">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-yagi-uda-antenna-elements-focus-uhf-beam-directivity">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Yagi-Uda Antenna Elements Focus UHF Beam Directivity - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-yagi-uda-antenna-elements-focus-uhf-beam-directivity" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a concise overview of how parasitic director and reflector elements manipulate electromagnetic waves to create high-gain, focused beam directivity in a Yagi-Uda antenna array used for Ultra High Frequency (UHF) reception electronics." />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-yagi-uda-antenna-elements-focus-uhf-beam-directivity">How
+Yagi-Uda Antenna Elements Focus UHF Beam Directivity</h1>
+<p>This article provides a concise overview of how parasitic director
+and reflector elements manipulate electromagnetic waves to create
+high-gain, focused beam directivity in a Yagi-Uda antenna array used for
+Ultra High Frequency (UHF) reception electronics. By exploring the
+principles of mutual impedance, phase shifting, and constructive
+interference, this guide explains how passive metal rods transform a
+standard omnidirectional dipole into a highly directional receiver
+capable of isolating weak UHF signals from background noise.</p>
+<h2 id="the-role-of-the-driven-element">The Role of the Driven
+Element</h2>
+<p>To understand how parasitic elements focus a signal, you must first
+understand the driven element. In a Yagi-Uda array, the driven element
+is typically a half-wave dipole connected directly to the UHF receiver
+via a coaxial feedline. By itself, a dipole receives radio frequency
+(RF) energy equally well from the front and the back, creating a
+bidirectional pattern. To focus this reception into a single forward
+direction, parasitic elements are placed parallel to the driven element
+along a central supporting boom.</p>
+<h2 id="how-parasitic-elements-work">How Parasitic Elements Work</h2>
+<p>Parasitic elements—consisting of one reflector and one or more
+directors—are not physically connected to the reception electronics.
+Instead, they operate through electromagnetic coupling. When an incoming
+UHF radio wave strikes the antenna array, it induces small alternating
+currents in all the elements simultaneously.</p>
+<p>The parasitic elements absorb this RF energy and immediately
+re-radiate it. Because the elements are placed at very specific
+distances from one another, the re-radiated waves interact with the
+original incoming wave. By precisely tuning the length and spacing of
+these parasitic rods, the antenna forces the re-radiated waves to
+combine with the incoming wave in a specific phase relationship.</p>
+<h2 id="the-reflector-blocking-rear-signals">The Reflector: Blocking
+Rear Signals</h2>
+<p>The reflector is placed behind the driven element, away from the
+signal source. It is engineered to be slightly longer than the resonant
+half-wave driven element (usually about 5% longer) and is spaced
+approximately 0.15 to 0.25 wavelengths behind it.</p>
+<p>Because the reflector is longer than the resonant frequency of the
+incoming UHF wave, it exhibits inductive reactance. This inductance
+causes a phase lag in the current induced within the reflector. When the
+reflector re-radiates the UHF energy, the wave travels forward toward
+the driven element and arrives completely in-phase with the primary
+incoming signal. This causes constructive interference at the driven
+element, boosting the signal strength. Conversely, waves traveling
+backward past the reflector experience destructive interference,
+effectively canceling out reception from the rear of the antenna and
+creating a high front-to-back ratio.</p>
+<h2 id="the-directors-focusing-the-forward-beam">The Directors: Focusing
+the Forward Beam</h2>
+<p>Directors are placed in front of the driven element, pointing
+directly toward the UHF transmitter. Unlike the reflector, directors are
+cut slightly shorter than the driven element (typically 5% to 10%
+shorter) and are spaced roughly 0.1 to 0.35 wavelengths apart.</p>
+<p>Because the directors are shorter than the resonant wavelength, they
+exhibit capacitive reactance. This capacitance causes the induced
+current in the directors to lead the phase of the incoming wave. As a
+UHF wave travels across the directors toward the driven element, each
+director absorbs and re-radiates the energy slightly ahead of phase.
+This creates a localized phase velocity change, pulling the
+electromagnetic wavefront inward and funneling it toward the driven
+element.</p>
+<p>Adding more directors along the boom narrows the antenna's beamwidth
+and increases forward gain. However, each subsequent director
+contributes slightly less gain than the one before it, due to the
+diminishing strength of the coupled electromagnetic field further away
+from the driven element.</p>
+<h2 id="impact-on-uhf-reception-electronics">Impact on UHF Reception
+Electronics</h2>
+<p>UHF signals (ranging from 300 MHz to 3 GHz) have short wavelengths,
+usually measured in centimeters. This makes Yagi-Uda arrays
+exceptionally practical for UHF, as multiple directors can be added to a
+relatively short boom to achieve high directivity.</p>
+<p>For UHF reception electronics, the physical focusing provided by the
+reflector and directors offers three major benefits:</p>
+<ul>
+<li><strong>Increased Signal-to-Noise Ratio (SNR):</strong> By rejecting
+signals from the rear and sides, the array prevents off-axis
+interference and multipath reflections from reaching the receiver's
+sensitive low-noise amplifier (LNA).</li>
+<li><strong>Passive Amplification:</strong> The constructive
+interference at the driven element delivers a higher voltage to the
+receiver's front-end circuitry without requiring active power.</li>
+<li><strong>Impedance Matching:</strong> While parasitic elements
+drastically improve directivity, their close proximity lowers the
+radiation resistance of the driven element. Therefore, UHF Yagi-Uda
+antennas often use a folded dipole as the driven element or incorporate
+a matching network (balun) to ensure a stable 50-ohm or 75-ohm impedance
+match for the receiving electronics.</li>
+</ul></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-yagi-uda-antenna-elements-focus-uhf-beam-directivity';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

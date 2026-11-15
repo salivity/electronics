@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How TMDS Encodes HDMI Video and Audio in Home Theater Systems - electronics</title>
+    <meta name="description" content="Transition-Minimized Differential Signaling (TMDS) is the core technology responsible for transmitting high-speed, uncompressed video and audio data across HDMI cables in modern home theater systems. This article explains how TMDS converts digital media i">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-tmds-encodes-hdmi-video-and-audio-in-home-theater-systems">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How TMDS Encodes HDMI Video and Audio in Home Theater Systems - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-tmds-encodes-hdmi-video-and-audio-in-home-theater-systems" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Transition-Minimized Differential Signaling (TMDS) is the core technology responsible for transmitting high-speed, uncompressed video and audio data across HDMI cables in modern home theater systems. This article explains how TMDS converts digital media i" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="how-tmds-encodes-hdmi-video-and-audio-in-home-theater-systems">How
+TMDS Encodes HDMI Video and Audio in Home Theater Systems</h1>
+<p>Transition-Minimized Differential Signaling (TMDS) is the core
+technology responsible for transmitting high-speed, uncompressed video
+and audio data across HDMI cables in modern home theater systems. This
+article explains how TMDS converts digital media into electrical
+signals, uses an advanced 8b/10b encoding algorithm to prevent signal
+degradation, and combines audio and video onto the same physical wires
+without causing electromagnetic interference.</p>
+<h3 id="the-basics-of-differential-signaling">The Basics of Differential
+Signaling</h3>
+<p>Before encoding the data, TMDS relies on a method called differential
+signaling to physically move information from a source device (like a
+Blu-ray player or gaming console) to a display.</p>
+<p>Standard HDMI connections use four shielded twisted pairs of copper
+wire for TMDS: three data channels (typically corresponding to Red,
+Green, and Blue video components) and one clock channel.</p>
+<p>In each twisted pair, one wire carries the original positive
+electrical signal, while the second wire carries an exact inverted
+(negative) copy of that signal. When these signals reach the television
+or AV receiver, the device measures the difference between the two
+wires. If external electromagnetic interference—such as noise from power
+cables—affects the HDMI cable, it impacts both wires equally. The
+receiving device simply subtracts the identical noise, leaving behind a
+clean, uninterrupted digital signal.</p>
+<h3 id="the-two-stage-8b10b-encoding-process">The Two-Stage 8b/10b
+Encoding Process</h3>
+<p>Sending billions of digital bits (1s and 0s) per second down a copper
+wire creates two major problems: high-frequency interference caused by
+rapid voltage changes (transitions from 1 to 0), and Direct Current (DC)
+bias caused by sending too many 1s or too many 0s in a row. TMDS solves
+this by converting standard 8-bit data into 10-bit code words before
+transmission.</p>
+<p>This conversion happens in two distinct stages:</p>
+<ol type="1">
+<li><strong>Transition Minimization (8-bit to 9-bit):</strong> The
+transmitter analyzes the original 8 bits of data to count how many times
+the signal transitions between 0 and 1. To keep these transitions to a
+minimum, the system runs a mathematical operation (either XOR or XNOR)
+on the bits. A 9th bit is added to the sequence solely to tell the
+receiving TV which mathematical operation was used, allowing the TV to
+reverse the process.</li>
+<li><strong>DC Balancing (9-bit to 10-bit):</strong> Over time, the
+cable must carry an equal number of 1s and 0s to maintain a neutral
+electrical charge. The transmitter checks the running tally of 1s and
+0s. If there is an imbalance, it inverts the 8 data bits (turning 1s
+into 0s and vice versa). A 10th bit is then added to tell the receiver
+whether or not the data was inverted.</li>
+</ol>
+<h3 id="how-video-is-encoded">How Video is Encoded</h3>
+<p>During active video transmission, pixel data is fed into the TMDS
+transmitter. Each color channel (Red, Green, Blue, or YCbCr equivalents)
+is processed as an 8-bit value.</p>
+<p>The TMDS encoder converts each 8-bit color value into the 10-bit code
+described above. These 10-bit codes are then serialized—lined up in
+single file—and sent down the three TMDS data channels at massive
+speeds, synchronized by the fourth TMDS clock channel.</p>
+<h3 id="how-audio-shares-the-same-wires">How Audio Shares the Same
+Wires</h3>
+<p>A common misconception is that HDMI cables have separate wires just
+for audio. Instead, TMDS embeds digital audio directly into the video
+channels using a method called time-division multiplexing.</p>
+<p>Video frames are not transmitted as a continuous, unbroken stream.
+Just like old analog televisions, digital video signals include
+"blanking intervals"—brief pauses between the end of one horizontal line
+of pixels and the beginning of the next (Horizontal Blanking), and
+between the end of one full frame and the start of the next (Vertical
+Blanking).</p>
+<p>During these blanking intervals, when no video data is being sent,
+the TMDS transmitter switches modes. It enters the "Data Island
+Period."</p>
+<p>In this period, uncompressed digital audio (such as PCM) or
+compressed surround sound formats (like Dolby TrueHD and DTS-HD Master
+Audio) are grouped into packets. Because audio is much more sensitive to
+single-bit errors than video (a bad video bit is a barely noticeable
+dead pixel for a millisecond; a bad audio bit is a loud pop in the
+speakers), TMDS uses a different encoding method called TERC4 (TMDS
+Error Reduction Coding 4-bit) during the blanking intervals. TERC4
+translates 4-bit audio and auxiliary data into highly resilient 10-bit
+codes, packs them into the video blanking spaces, and sends them down
+the exact same three data channels used for the picture.</p>
+<h3 id="decoding-at-the-display-or-receiver">Decoding at the Display or
+Receiver</h3>
+<p>When the TMDS signals arrive at your AV receiver or television, the
+process runs in reverse. The receiver uses the TMDS clock channel to
+lock onto the timing of the incoming stream. It separates the active
+video pixels from the Data Island packets (audio). It reads the 9th and
+10th bits of the video data to undo the inversion and mathematical
+operations, stripping away the encoding to reveal the original 8-bit
+video and audio streams, which are then sent to your screen and
+speakers.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-tmds-encodes-hdmi-video-and-audio-in-home-theater-systems';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

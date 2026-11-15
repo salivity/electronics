@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microstrip vs Stripline Propagation Velocity in High-Speed PCBs - electronics</title>
+    <meta name="description" content="This article explores the differences in signal propagation velocity between outer-layer microstrip transmission lines and inner-layer buried stripline traces in high-frequency printed circuit boards (PCBs). By examining the surrounding dielectric environ">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/microstrip-vs-stripline-propagation-velocity-in-high-speed-pc-bs">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Microstrip vs Stripline Propagation Velocity in High-Speed PCBs - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/microstrip-vs-stripline-propagation-velocity-in-high-speed-pc-bs" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explores the differences in signal propagation velocity between outer-layer microstrip transmission lines and inner-layer buried stripline traces in high-frequency printed circuit boards (PCBs). By examining the surrounding dielectric environ" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="microstrip-vs-stripline-propagation-velocity-in-high-speed-pcbs">Microstrip
+vs Stripline Propagation Velocity in High-Speed PCBs</h1>
+<p>This article explores the differences in signal propagation velocity
+between outer-layer microstrip transmission lines and inner-layer buried
+stripline traces in high-frequency printed circuit boards (PCBs). By
+examining the surrounding dielectric environments of both trace
+geometries, we will explain why signals travel significantly faster on
+the surface of a PCB than they do when buried within its internal
+layers, and how these differences impact high-speed circuit design and
+timing.</p>
+<h3 id="the-role-of-the-dielectric-constant">The Role of the Dielectric
+Constant</h3>
+<p>In high-frequency PCB electronics, the speed at which an electrical
+signal travels along a trace—its propagation velocity—is dictated by the
+material surrounding the conductor. Electromagnetic waves travel fastest
+in a vacuum (the speed of light, <span
+class="math inline">\(c\)</span>). When a signal travels through an
+insulating material, or dielectric, its speed is reduced.</p>
+<p>The degree to which a material slows down a signal is measured by its
+relative dielectric constant (<span class="math inline">\(D_k\)</span>
+or <span class="math inline">\(\varepsilon_r\)</span>). Air has a <span
+class="math inline">\(D_k\)</span> of approximately 1.0, offering almost
+no resistance to signal speed. Standard PCB substrate materials, such as
+FR-4, have a much higher <span class="math inline">\(D_k\)</span>,
+typically ranging from 3.8 to 4.8. The fundamental rule of signal
+propagation is simple: the lower the dielectric constant of the
+surrounding medium, the faster the signal travels.</p>
+<h3 id="stripline-propagation-velocity">Stripline Propagation
+Velocity</h3>
+<p>A stripline is a transmission line trace routed on an internal layer
+of a PCB. It is completely buried within the board's insulating
+substrate and sandwiched between two reference ground planes—one above
+and one below.</p>
+<p>Because a stripline is entirely encased in a homogeneous dielectric
+material (the PCB substrate and prepreg), 100% of its electromagnetic
+field lines travel through this solid material. Therefore, the
+propagation velocity of a stripline is determined strictly by the <span
+class="math inline">\(D_k\)</span> of the PCB substrate:</p>
+<p><span class="math display">\[V_p =
+\frac{c}{\sqrt{\varepsilon_r}}\]</span></p>
+<p>In standard FR-4 with a <span class="math inline">\(D_k\)</span> of
+4.0, the signal travels at half the speed of light, or roughly 6 inches
+per nanosecond (approximately 165 to 170 picoseconds per inch of
+delay).</p>
+<h3 id="microstrip-propagation-velocity">Microstrip Propagation
+Velocity</h3>
+<p>A microstrip is a transmission line routed on the outermost, exposed
+layers of a PCB (top or bottom), referenced to a single internal ground
+plane directly beneath it. Unlike a stripline, a microstrip is exposed
+to two different mediums: the solid PCB substrate below the trace, and
+the air (along with a thin layer of solder mask) above the trace.</p>
+<p>As a high-frequency signal travels down a microstrip, its
+electromagnetic field lines split. While the majority of the field is
+concentrated in the PCB substrate between the trace and the ground
+plane, a significant portion fringes upward into the air. Because the
+field travels through a mix of substrate (<span
+class="math inline">\(D_k \approx 4.0\)</span>) and air (<span
+class="math inline">\(D_k \approx 1.0\)</span>), engineers must use an
+"effective dielectric constant" (<span
+class="math inline">\(\varepsilon_{eff}\)</span>) to calculate signal
+speed.</p>
+<p>Because air lowers the overall average dielectric constant, <span
+class="math inline">\(\varepsilon_{eff}\)</span> is always lower than
+the substrate's actual <span
+class="math inline">\(\varepsilon_r\)</span>. The propagation velocity
+for a microstrip is calculated as:</p>
+<p><span class="math display">\[V_p =
+\frac{c}{\sqrt{\varepsilon_{eff}}}\]</span></p>
+<p>For a microstrip on the same FR-4 material, the <span
+class="math inline">\(\varepsilon_{eff}\)</span> might drop to around
+2.8 to 3.2. Consequently, the signal travels much faster—roughly 7
+inches per nanosecond (approximately 140 to 150 picoseconds per inch of
+delay).</p>
+<h3 id="key-impacts-on-high-frequency-pcb-design">Key Impacts on
+High-Frequency PCB Design</h3>
+<p>Understanding the velocity difference between microstrip and
+stripline configurations is critical for high-speed digital and RF PCB
+layout for several reasons:</p>
+<ul>
+<li><strong>Length Matching and Timing:</strong> When routing parallel
+data buses (such as DDR memory) where signals must arrive at the
+receiver simultaneously, engineers cannot simply match the physical
+lengths of the traces if they are routed on different layers. A trace
+routed as a microstrip will deliver its signal faster than a stripline
+of the exact same physical length. Designers must match "electrical
+length" (time delay) rather than physical length.</li>
+<li><strong>Velocity Dispersion:</strong> Because a microstrip uses a
+mixed dielectric medium (air and fiberglass/epoxy), different frequency
+components of a signal can travel at slightly different speeds. This
+causes phase distortion and dispersion at extremely high frequencies.
+Striplines, being surrounded by a uniform material, do not suffer from
+this issue and offer better signal integrity for ultra-high-speed serial
+links.</li>
+<li><strong>Component Density:</strong> Because signals travel slower in
+striplines, the physical wavelength of a given frequency is shorter.
+While this requires careful delay management in digital circuits, it can
+actually be an advantage in RF design, allowing engineers to create
+physically smaller quarter-wave transformers or couplers on internal
+layers compared to the surface.</li>
+</ul></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/microstrip-vs-stripline-propagation-velocity-in-high-speed-pc-bs';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

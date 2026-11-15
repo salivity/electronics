@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stray Inductance Causes Voltage Spikes in Electronics - electronics</title>
+    <meta name="description" content="This article provides a quick overview of how stray inductance in electronic component leads generates dangerous voltage spikes during rapid current transitions. By examining the physics of parasitic inductance, the mathematical relationship between curre">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/stray-inductance-causes-voltage-spikes-in-electronics">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Stray Inductance Causes Voltage Spikes in Electronics - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/stray-inductance-causes-voltage-spikes-in-electronics" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a quick overview of how stray inductance in electronic component leads generates dangerous voltage spikes during rapid current transitions. By examining the physics of parasitic inductance, the mathematical relationship between curre" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="stray-inductance-causes-voltage-spikes-in-electronics">Stray
+Inductance Causes Voltage Spikes in Electronics</h1>
+<p>This article provides a quick overview of how stray inductance in
+electronic component leads generates dangerous voltage spikes during
+rapid current transitions. By examining the physics of parasitic
+inductance, the mathematical relationship between current change and
+voltage, and practical mitigation techniques, you will learn why
+fast-switching circuits are particularly vulnerable to this phenomenon
+and how to protect your components.</p>
+<h2 id="what-is-stray-inductance">What is Stray Inductance?</h2>
+<p>Every conductive path in an electronic circuit possesses a small,
+unintended amount of inductance known as stray or parasitic inductance.
+Component leads, printed circuit board (PCB) traces, and wire bonds all
+act as tiny inductors. When current flows through these conductors, a
+magnetic field forms around them. At low frequencies or in direct
+current (DC) applications, this stray inductance is negligible. However,
+in modern high-speed electronics, even a few nanohenries of inductance
+in a component lead can severely impact circuit performance.</p>
+<h2 id="the-physics-of-fast-current-transitions">The Physics of Fast
+Current Transitions</h2>
+<p>The root cause of induced voltage spikes lies in Faraday’s Law of
+Induction, which is expressed by the inductor voltage equation:</p>
+<p><strong>V = L × (di/dt)</strong></p>
+<p>In this formula:</p>
+<ul>
+<li><strong>V</strong> is the induced voltage.</li>
+<li><strong>L</strong> is the inductance (in this case, the stray
+inductance of the lead).</li>
+<li><strong>di/dt</strong> is the rate of change of current over
+time.</li>
+</ul>
+<p>Inductors naturally resist changes in current. When a circuit
+switches on or off rapidly, the current transitions from one state to
+another in mere nanoseconds. This creates an extremely high
+<em>di/dt</em> value. Because the induced voltage is directly
+proportional to this rate of change, multiplying even a minuscule stray
+inductance (<em>L</em>) by a massive rate of current change
+(<em>di/dt</em>) results in a substantial voltage spike.</p>
+<p>When current is abruptly cut off, the magnetic field around the
+component lead collapses rapidly. To keep the current flowing, the
+collapsing field generates a high-voltage spike of opposite polarity,
+often referred to as inductive kickback or voltage overshoot.</p>
+<h2 id="real-world-examples-in-electronics">Real-World Examples in
+Electronics</h2>
+<p>Voltage spikes from stray inductance are most prevalent in circuits
+that switch substantial currents at high speeds. Common examples
+include:</p>
+<ul>
+<li><strong>Switching Power Supplies (SMPS):</strong> Transistors like
+MOSFETs and IGBTs switch on and off at high frequencies. Stray
+inductance in the transistor leads causes voltage overshoot during
+turn-off, which can exceed the breakdown voltage of the semiconductor
+and destroy it.</li>
+<li><strong>Digital Logic Gates:</strong> Fast transitions between high
+and low states in microprocessors and FPGAs draw rapid bursts of
+current. Stray inductance in the ground leads causes "ground bounce,"
+where the component's internal ground reference temporarily spikes above
+the system ground, leading to false logic triggering.</li>
+<li><strong>Decoupling Capacitors:</strong> If a decoupling capacitor
+has long leads, the stray inductance increases its Equivalent Series
+Inductance (ESL). During a fast current transient, this inductance
+blocks the capacitor from supplying immediate charge to the integrated
+circuit, rendering the capacitor ineffective.</li>
+</ul>
+<h2 id="how-to-minimize-stray-inductance-and-voltage-spikes">How to
+Minimize Stray Inductance and Voltage Spikes</h2>
+<p>To prevent destructive voltage spikes, engineers must either reduce
+the stray inductance (<em>L</em>) or slow down the current transition
+(<em>di/dt</em>). This is achieved through several design practices:</p>
+<ol type="1">
+<li><strong>Use Surface-Mount Devices (SMD):</strong> Through-hole
+components have long metal leads that act as significant inductors.
+Switching to SMD components drastically reduces lead length and stray
+inductance.</li>
+<li><strong>Optimize PCB Layout:</strong> Keep high-current switching
+loops as short and wide as possible. Placing decoupling capacitors
+directly adjacent to component power pins minimizes trace
+inductance.</li>
+<li><strong>Add Snubber Circuits:</strong> Implementing
+resistor-capacitor (RC) snubber networks or flyback diodes across
+switching components provides a safe path for trapped inductive energy
+to dissipate, clamping the voltage spike.</li>
+<li><strong>Control Switching Speed:</strong> Increasing the gate
+resistor value on a MOSFET slightly slows down its turn-on and turn-off
+times. While this slightly decreases power efficiency, it reduces
+<em>di/dt</em> and keeps voltage spikes within safe limits.</li>
+</ol></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/stray-inductance-causes-voltage-spikes-in-electronics';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

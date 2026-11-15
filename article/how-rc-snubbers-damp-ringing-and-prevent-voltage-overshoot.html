@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How RC Snubbers Damp Ringing and Prevent Voltage Overshoot - electronics</title>
+    <meta name="description" content="Resistor-capacitor (RC) snubber networks are essential passive circuits used in power electronics to suppress high-frequency parasitic ringing and prevent destructive voltage overshoot across switching devices. This article provides a straightforward expl">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-rc-snubbers-damp-ringing-and-prevent-voltage-overshoot">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How RC Snubbers Damp Ringing and Prevent Voltage Overshoot - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-rc-snubbers-damp-ringing-and-prevent-voltage-overshoot" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Resistor-capacitor (RC) snubber networks are essential passive circuits used in power electronics to suppress high-frequency parasitic ringing and prevent destructive voltage overshoot across switching devices. This article provides a straightforward expl" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-rc-snubbers-damp-ringing-and-prevent-voltage-overshoot">How
+RC Snubbers Damp Ringing and Prevent Voltage Overshoot</h1>
+<p>Resistor-capacitor (RC) snubber networks are essential passive
+circuits used in power electronics to suppress high-frequency parasitic
+ringing and prevent destructive voltage overshoot across switching
+devices. This article provides a straightforward explanation of the
+causes behind voltage transients in switching circuits, the fundamental
+physics of how RC snubbers dissipate excess energy to damp these
+oscillations, and the standard methodology for selecting the right
+resistor and capacitor values to protect power switches like MOSFETs and
+IGBTs.</p>
+<h2 id="the-cause-of-parasitic-ringing-and-voltage-overshoot">The Cause
+of Parasitic Ringing and Voltage Overshoot</h2>
+<p>In an ideal switching circuit, transistors turn on and off
+instantaneously without loss or oscillation. In reality, physical
+circuit boards and components contain unavoidable parasitic
+elements:</p>
+<ul>
+<li><strong>Parasitic Inductance (<span
+class="math inline">\(L_p\)</span>):</strong> Found in PCB traces,
+component leads, and transformer leakage paths.</li>
+<li><strong>Parasitic Capacitance (<span
+class="math inline">\(C_p\)</span>):</strong> Exists within the
+semiconductor switch itself (such as the output capacitance, <span
+class="math inline">\(C_{oss}\)</span>, of a MOSFET) and between circuit
+board layers.</li>
+</ul>
+<p>When a power switch rapidly turns off, the current flowing through
+the parasitic inductance is abruptly interrupted. According to Faraday's
+law of induction (<span class="math inline">\(V = L \cdot
+di/dt\)</span>), a rapid change in current (<span
+class="math inline">\(di/dt\)</span>) across an inductor generates a
+massive voltage spike. This initial spike is known as <strong>voltage
+overshoot</strong>.</p>
+<p>Immediately following the overshoot, the energy trapped in the
+parasitic inductor begins to transfer back and forth with the parasitic
+capacitor. This creates an unintentional resonant tank circuit (LC
+circuit) that oscillates at a specific high frequency, defined by the
+formula:</p>
+<p><span class="math display">\[f_{ring} = \frac{1}{2\pi\sqrt{L_p
+C_p}}\]</span></p>
+<p>Because the parasitic resistance in the circuit path is typically
+very low, there is nothing to absorb this bouncing energy. The result is
+sustained high-frequency voltage oscillations known as <strong>parasitic
+ringing</strong>.</p>
+<h2 id="why-overshoot-and-ringing-are-dangerous">Why Overshoot and
+Ringing Are Dangerous</h2>
+<p>Leaving parasitic ringing and overshoot unaddressed leads to
+immediate and long-term failures in electronic systems:</p>
+<ol type="1">
+<li><strong>Avalanche Breakdown:</strong> If the voltage overshoot
+exceeds the maximum breakdown voltage rating (<span
+class="math inline">\(V_{DS(max)}\)</span> or <span
+class="math inline">\(V_{CE(max)}\)</span>) of the power switch, the
+device can enter avalanche breakdown and suffer immediate thermal
+destruction.</li>
+<li><strong>Electromagnetic Interference (EMI):</strong> High-frequency
+ringing acts like a broadcast antenna on PCB traces, radiating
+electromagnetic noise that can disrupt nearby logic circuits and cause
+the device to fail regulatory EMI compliance testing.</li>
+<li><strong>Increased Switching Losses:</strong> Oscillations during
+state transitions increase the stress and heat generated within the
+semiconductor, reducing overall system efficiency and lifespan.</li>
+</ol>
+<h2 id="how-the-rc-snubber-network-works">How the RC Snubber Network
+Works</h2>
+<p>An RC snubber network consists of a resistor (<span
+class="math inline">\(R_s\)</span>) and a capacitor (<span
+class="math inline">\(C_s\)</span>) connected in series, placed directly
+in parallel across the power switch (e.g., from Drain to Source on a
+MOSFET) or across the inductive load. It protects the switch through two
+primary mechanisms: controlling the rate of voltage change and damping
+the resonant tank.</p>
+<h3 id="1-clamping-voltage-overshoot-the-capacitors-role">1. Clamping
+Voltage Overshoot (The Capacitor's Role)</h3>
+<p>At high frequencies, a capacitor acts as a low-impedance path. When
+the switch turns off and the inductor attempts to generate a sudden
+voltage spike, the snubber capacitor (<span
+class="math inline">\(C_s\)</span>) absorbs the surge current. Because
+the voltage across a capacitor cannot change instantaneously (<span
+class="math inline">\(I = C \cdot dv/dt\)</span>), the capacitor slows
+down the rate of voltage rise (<span
+class="math inline">\(dv/dt\)</span>). By providing an alternate path
+for the current during the turn-off transition, the peak voltage
+overshoot across the switch is significantly reduced.</p>
+<h3 id="2-damping-parasitic-ringing-the-resistors-role">2. Damping
+Parasitic Ringing (The Resistor's Role)</h3>
+<p>Adding a capacitor alone does not stop ringing; it simply lowers the
+resonant frequency by increasing the total capacitance in the LC tank.
+To stop the oscillation, energy must be removed from the system.</p>
+<p>This is the role of the snubber resistor (<span
+class="math inline">\(R_s\)</span>). As the high-frequency ringing
+current flows into and out of the snubber capacitor, it is forced to
+pass through the series resistor. The resistor converts this oscillating
+electrical energy into heat, rapidly reducing the amplitude of the
+waveform until it flatlines.</p>
+<p>In physics terms, the resistor lowers the Quality Factor (<span
+class="math inline">\(Q\)</span>) of the parasitic LC circuit. When the
+resistance is matched to the characteristic impedance of the parasitic
+tank, the circuit becomes <strong>critically damped</strong>,
+eliminating ringing entirely within a single cycle.</p>
+<h2 id="how-to-design-and-size-an-rc-snubber">How to Design and Size an
+RC Snubber</h2>
+<p>Designing an effective RC snubber requires measuring the existing
+circuit behavior and calculating the appropriate component values.</p>
+<h3 id="step-1-measure-the-ringing-frequency">Step 1: Measure the
+Ringing Frequency</h3>
+<p>Using an oscilloscope with a low-inductance probe (such as a ground
+spring tip), measure the frequency of the parasitic ringing (<span
+class="math inline">\(f_{ring1}\)</span>) across the switch during
+turn-off.</p>
+<h3 id="step-2-determine-parasitic-inductance-and-capacitance">Step 2:
+Determine Parasitic Inductance and Capacitance</h3>
+<p>Solder a known film or ceramic capacitor (<span
+class="math inline">\(C_{test}\)</span>) directly across the switch
+until the ringing frequency drops to exactly half of its original value
+(<span class="math inline">\(f_{ring2} = f_{ring1} / 2\)</span>).
+Because frequency is inversely proportional to the square root of
+capacitance, halving the frequency means the total capacitance has
+quadrupled. Therefore, the original parasitic capacitance is:</p>
+<p><span class="math display">\[C_p = \frac{C_{test}}{3}\]</span></p>
+<p>Once <span class="math inline">\(C_p\)</span> and <span
+class="math inline">\(f_{ring1}\)</span> are known, calculate the
+parasitic inductance (<span class="math inline">\(L_p\)</span>):</p>
+<p><span class="math display">\[L_p = \frac{1}{(2\pi f_{ring1})^2 \cdot
+C_p}\]</span></p>
+<h3 id="step-3-calculate-the-snubber-resistor-r_s">Step 3: Calculate the
+Snubber Resistor (<span class="math inline">\(R_s\)</span>)</h3>
+<p>To damp the ringing effectively, the snubber resistor should be equal
+to the characteristic impedance (<span
+class="math inline">\(Z_0\)</span>) of the parasitic tank circuit:</p>
+<p><span class="math display">\[R_s = Z_0 =
+\sqrt{\frac{L_p}{C_p}}\]</span></p>
+<h3 id="step-4-calculate-the-snubber-capacitor-c_s">Step 4: Calculate
+the Snubber Capacitor (<span class="math inline">\(C_s\)</span>)</h3>
+<p>The snubber capacitor must be large enough to allow the resistor to
+act at the ringing frequency, but small enough to prevent excessive
+power loss at the main switching frequency. A standard rule of thumb is
+to choose a capacitance between 1 to 4 times the value of the parasitic
+capacitance:</p>
+<p><span class="math display">\[C_s \approx 3 \cdot C_p\]</span></p>
+<h3 id="step-5-calculate-resistor-power-dissipation">Step 5: Calculate
+Resistor Power Dissipation</h3>
+<p>Every time the switch turns on and off, the snubber capacitor charges
+to the supply voltage (<span class="math inline">\(V\)</span>) and
+discharges completely through the snubber resistor. The power dissipated
+(<span class="math inline">\(P_R\)</span>) as heat in the resistor
+depends only on the capacitance, the voltage, and the switching
+frequency (<span class="math inline">\(f_{sw}\)</span>) of the power
+supply—not the resistance value itself:</p>
+<p><span class="math display">\[P_R = C_s \cdot V^2 \cdot
+f_{sw}\]</span></p>
+<p>Always select a resistor with a power rating at least twice the
+calculated <span class="math inline">\(P_R\)</span> value to ensure
+thermal reliability. Additionally, use low-inductance resistors (such as
+metal film or carbon composition) and stable, low-ESR capacitors (such
+as C0G/NP0 ceramics or polypropylene film) so the snubber components do
+not introduce new parasitics into the circuit.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-rc-snubbers-damp-ringing-and-prevent-voltage-overshoot';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

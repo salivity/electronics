@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Mixed-Signal Oscilloscopes Correlate Analog and Digital - electronics</title>
+    <meta name="description" content="This article provides a comprehensive overview of how mixed-signal oscilloscopes (MSOs) correlate continuous analog waveforms with sixteen channels of parallel digital bus timing in embedded electronics. It explores the architecture behind synchronized ti">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-mixed-signal-oscilloscopes-correlate-analog-and-digital">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Mixed-Signal Oscilloscopes Correlate Analog and Digital - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-mixed-signal-oscilloscopes-correlate-analog-and-digital" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a comprehensive overview of how mixed-signal oscilloscopes (MSOs) correlate continuous analog waveforms with sixteen channels of parallel digital bus timing in embedded electronics. It explores the architecture behind synchronized ti" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-mixed-signal-oscilloscopes-correlate-analog-and-digital">How
+Mixed-Signal Oscilloscopes Correlate Analog and Digital</h1>
+<p>This article provides a comprehensive overview of how mixed-signal
+oscilloscopes (MSOs) correlate continuous analog waveforms with sixteen
+channels of parallel digital bus timing in embedded electronics. It
+explores the architecture behind synchronized timebases, the mechanics
+of analog-to-digital and comparator-based acquisitions, cross-domain
+triggering techniques, and the hardware deskewing processes required to
+align both domains accurately for efficient system-level debugging.</p>
+<h3 id="the-synchronized-acquisition-architecture">The Synchronized
+Acquisition Architecture</h3>
+<p>At the core of a mixed-signal oscilloscope is a shared, unified
+acquisition system. Unlike connecting a standalone logic analyzer to a
+traditional oscilloscope, an MSO drives both its analog channels and its
+sixteen digital channels using a single master sample clock.</p>
+<p>When a trigger event occurs, the MSO captures data across all active
+channels simultaneously and stores it in time-aligned acquisition
+memory. Because both domains rely on the exact same internal clock
+reference, the oscilloscope plots the high-resolution analog waveforms
+and the 16-bit digital logic states on a single, unified horizontal
+display grid. This eliminates the need to manually match timestamps
+between two different instruments.</p>
+<h3 id="processing-analog-integrity-vs-digital-logic">Processing Analog
+Integrity vs. Digital Logic</h3>
+<p>To correlate these two domains, the MSO must process incoming signals
+differently while keeping them locked in time:</p>
+<ul>
+<li><strong>Analog Channels:</strong> Signals entering the analog
+channels pass through attenuators and preamplifiers before reaching an
+Analog-to-Digital Converter (ADC). The ADC typically uses 8-bit to
+12-bit vertical resolution to capture the exact voltage levels,
+overshoot, ringing, ground bounce, and rise times of the waveform.</li>
+<li><strong>16 Digital Channels:</strong> The sixteen digital channels
+are routed through a specialized logic probe pod. Instead of using
+multi-bit ADCs, each digital channel uses a high-speed 1-bit comparator.
+The user defines a specific logic threshold voltage (such as 3.3V CMOS
+or 1.8V TTL). The comparator simply registers a logic "1" if the signal
+is above the threshold or a logic "0" if it is below.</li>
+</ul>
+<p>By sacrificing vertical voltage resolution on the sixteen digital
+channels, the MSO can dedicate memory and processing power to tracking
+the fast timing transitions of a wide parallel bus alongside a few
+high-resolution analog signals.</p>
+<h3 id="deskewing-for-precise-time-correlation">Deskewing for Precise
+Time Correlation</h3>
+<p>Electricity travels at different speeds through different types of
+cables and internal circuitry. An analog passive probe and a 16-channel
+digital logic pod have different propagation delays. If left
+uncorrected, a digital transition might appear on the screen several
+nanoseconds before or after the analog event that caused it.</p>
+<p>MSOs solve this through channel deskewing. Internally, the
+oscilloscope applies factory-calibrated delay offsets to align the
+digital comparator paths with the analog ADC paths. For high-speed
+embedded systems, engineers also perform manual deskewing by connecting
+both an analog probe and the digital channels to a single fast-edge
+reference signal, adjusting the time offset in the oscilloscope settings
+until the edges align perfectly on the display.</p>
+<h3 id="cross-domain-triggering">Cross-Domain Triggering</h3>
+<p>The most powerful aspect of an MSO in embedded electronics is
+cross-domain triggering, which allows events in the digital domain to
+trigger captures in the analog domain, and vice versa.</p>
+<p>Engineers can configure the sixteen digital channels as a parallel
+bus and set a pattern trigger for a specific 16-bit hexadecimal address
+or data value. When the embedded processor writes that specific value to
+the parallel bus, the MSO triggers. Because of the shared timebase, the
+engineer can immediately look at the analog channels at that exact
+nanosecond to see if the simultaneous switching of the sixteen digital
+lines caused a voltage droop on the power rail or induced crosstalk on a
+nearby analog sensor line.</p>
+<p>Conversely, you can set an analog trigger to catch a "runt" pulse or
+a voltage glitch on a clock line, and instantly observe the sixteen
+digital channels to see how that analog anomaly corrupted the parallel
+data bus transaction.</p>
+<h3 id="bus-decoding-and-signal-integrity-analysis">Bus Decoding and
+Signal Integrity Analysis</h3>
+<p>Once the data is captured and aligned, the MSO translates the raw
+ones and zeros of the sixteen digital channels into a human-readable bus
+display. It groups the sixteen individual logic traces into a single
+virtual bus trace, displaying decoded hexadecimal, binary, or ASCII
+values directly beneath the analog waveforms.</p>
+<p>When a parallel bus fails to read data correctly in an embedded
+system, the MSO allows the engineer to pinpoint the root cause across
+domains. If the decoded bus shows an invalid state, the engineer can
+place an analog probe directly onto the suspect digital line. By viewing
+the same signal as both a logic state and an analog waveform
+simultaneously, it becomes clear whether the timing error was caused by
+a software bug or an analog signal integrity issue like impedance
+mismatch, slow slew rate, or electromagnetic interference.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-mixed-signal-oscilloscopes-correlate-analog-and-digital';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

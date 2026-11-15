@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How 77 GHz FMCW Automotive Radar Measures Range and Velocity - electronics</title>
+    <meta name="description" content="Modern automotive safety systems rely on 77-gigahertz (GHz) Frequency-Modulated Continuous-Wave (FMCW) radar transceivers to simultaneously track the distance and relative speed of surrounding vehicles. This article provides a technical breakdown of how t">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-77-g-hz-fmcw-automotive-radar-measures-range-and-velocity">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How 77 GHz FMCW Automotive Radar Measures Range and Velocity - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-77-g-hz-fmcw-automotive-radar-measures-range-and-velocity" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Modern automotive safety systems rely on 77-gigahertz (GHz) Frequency-Modulated Continuous-Wave (FMCW) radar transceivers to simultaneously track the distance and relative speed of surrounding vehicles. This article provides a technical breakdown of how t" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="how-77-ghz-fmcw-automotive-radar-measures-range-and-velocity">How 77
+GHz FMCW Automotive Radar Measures Range and Velocity</h1>
+<p>Modern automotive safety systems rely on 77-gigahertz (GHz)
+Frequency-Modulated Continuous-Wave (FMCW) radar transceivers to
+simultaneously track the distance and relative speed of surrounding
+vehicles. This article provides a technical breakdown of how these
+sensors function, explaining the transmission of rapid
+frequency-modulated "chirps," the extraction of intermediate beat
+frequencies to calculate distance, and the measurement of phase shifts
+across multiple signal transmissions to determine relative velocity
+using two-dimensional Fast Fourier Transforms (2D-FFT).</p>
+<h2 id="the-fast-chirp-fmcw-signal-architecture">The Fast-Chirp FMCW
+Signal Architecture</h2>
+<p>Unlike traditional pulsed radar, an FMCW radar transceiver
+continuously emits an electromagnetic signal whose frequency changes
+linearly over time. This frequency sweep is known as a "chirp." In 77
+GHz automotive radar, the transceiver sweeps across a wide
+bandwidth—typically up to 4 GHz (from 77 GHz to 81 GHz)—within a
+fraction of a millisecond.</p>
+<p>The transceiver transmits a sequence of these rapid chirps, grouped
+together into what is called a "chirp frame." When the transmitted
+signal strikes a target vehicle, it reflects back to the radar's
+receiving antenna. Because the signal travels at the speed of light, the
+received echo is time-delayed relative to the signal currently being
+transmitted.</p>
+<h2 id="measuring-vehicle-range-via-beat-frequency">Measuring Vehicle
+Range via Beat Frequency</h2>
+<p>To measure the distance (range) to a target, the radar transceiver
+routes both the currently transmitting signal and the incoming reflected
+signal into an electronic component called a mixer. The mixer subtracts
+the frequency of the received signal from the frequency of the
+transmitted signal.</p>
+<p>This subtraction produces a much lower frequency signal called the
+Intermediate Frequency (IF), or "beat frequency." Because the frequency
+of the chirp increases linearly with time, the beat frequency is
+directly proportional to the round-trip time delay of the echo.</p>
+<ul>
+<li><strong>Close targets</strong> reflect the signal quickly, resulting
+in a small time delay and a low beat frequency.</li>
+<li><strong>Distant targets</strong> result in a longer time delay and a
+higher beat frequency.</li>
+</ul>
+<p>An Analog-to-Digital Converter (ADC) samples this IF signal, and a
+Digital Signal Processor (DSP) applies a Fast Fourier Transform (
+Range-FFT) to the data. The Range-FFT converts the time-domain signal
+into the frequency domain, showing distinct peaks at specific
+frequencies. These peaks directly correspond to the distance of the
+detected vehicles.</p>
+<h2 id="resolving-range-velocity-ambiguity">Resolving Range-Velocity
+Ambiguity</h2>
+<p>If a target vehicle is moving, the reflected signal undergoes a
+Doppler frequency shift in addition to the time delay. In older,
+slow-chirp FMCW systems, this creates a problem: a single beat frequency
+contains both range and velocity information intertwined, making it
+impossible to tell if a frequency shift is caused by the target's
+distance or its movement.</p>
+<p>Modern 77 GHz transceivers solve this by using "fast-chirp"
+modulation. By making each individual chirp extremely short (usually
+between 10 and 100 microseconds), the Doppler shift within a single
+chirp becomes negligible compared to the frequency shift caused by the
+distance. Therefore, the beat frequency of a single chirp is used almost
+exclusively to determine the target's range.</p>
+<h2 id="measuring-relative-velocity-via-phase-shift">Measuring Relative
+Velocity via Phase Shift</h2>
+<p>To find the relative velocity simultaneously, the radar transceiver
+analyzes the reflected signals across a sequence of multiple consecutive
+chirps within a frame.</p>
+<p>While a moving vehicle does not travel far enough between two
+microsecond-long chirps to noticeably change the beat frequency, its
+tiny movement (even just a few millimeters) causes a significant,
+measurable change in the <strong>phase</strong> of the reflected carrier
+wave. At 77 GHz, the wavelength of the radar signal is roughly 3.9
+millimeters. A tiny shift in distance results in a massive shift in the
+wave's phase.</p>
+<p>By transmitting a frame of <span class="math inline">\(N\)</span>
+chirps at regular time intervals, the radar measures the progression of
+this phase shift from chirp to chirp. The rate at which the phase
+changes over time is directly proportional to the Doppler frequency,
+which correlates to the radial velocity of the target vehicle.</p>
+<h2 id="simultaneous-extraction-using-2d-fft">Simultaneous Extraction
+Using 2D-FFT</h2>
+<p>To output range and velocity at the same time, the radar's processor
+builds a two-dimensional data matrix for every chirp frame and performs
+a Two-Dimensional Fast Fourier Transform (2D-FFT):</p>
+<ol type="1">
+<li><strong>1st Dimension (Range-FFT):</strong> As each chirp arrives,
+the DSP performs a Range-FFT to sort targets into "range bins." At this
+stage, the radar knows the distance of the targets, and it records the
+phase of the signal in each range bin.</li>
+<li><strong>2nd Dimension (Doppler-FFT):</strong> Once all the chirps in
+the frame are collected, the DSP runs a second FFT across the sequence
+of chirps for each specific range bin. This Doppler-FFT analyzes the
+phase shifts from chirp to chirp, separating the targets into "velocity
+bins."</li>
+</ol>
+<p>The result of the 2D-FFT is a Range-Doppler map. Even if two vehicles
+are at the exact same distance from the radar, they will appear as
+separate points on the map if they are traveling at different speeds, as
+their phase shifts across the chirp frame will differ. This
+simultaneous, real-time extraction of range and relative velocity allows
+automotive electronics to reliably execute functions like Adaptive
+Cruise Control (ACC) and Autonomous Emergency Braking (AEB).</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-77-g-hz-fmcw-automotive-radar-measures-range-and-velocity';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

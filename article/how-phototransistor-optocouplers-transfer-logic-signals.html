@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Phototransistor Optocouplers Transfer Logic Signals - electronics</title>
+    <meta name="description" content="This article explains how phototransistor optocouplers transmit digital logic signals between isolated circuits while blocking dangerous common-mode voltages. You will learn about the internal components of an optocoupler, the step-by-step process of opti">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-phototransistor-optocouplers-transfer-logic-signals">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Phototransistor Optocouplers Transfer Logic Signals - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-phototransistor-optocouplers-transfer-logic-signals" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how phototransistor optocouplers transmit digital logic signals between isolated circuits while blocking dangerous common-mode voltages. You will learn about the internal components of an optocoupler, the step-by-step process of opti" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-phototransistor-optocouplers-transfer-logic-signals">How
+Phototransistor Optocouplers Transfer Logic Signals</h1>
+<p>This article explains how phototransistor optocouplers transmit
+digital logic signals between isolated circuits while blocking dangerous
+common-mode voltages. You will learn about the internal components of an
+optocoupler, the step-by-step process of optical signal transmission,
+the physical structure of the insulating barrier, and how these devices
+maintain signal integrity in noisy, high-voltage electronic
+environments.</p>
+<h3 id="the-internal-architecture">The Internal Architecture</h3>
+<p>A phototransistor optocoupler (or optoisolator) contains two primary
+elements housed within a single, opaque package:</p>
+<ul>
+<li><strong>The Emitter:</strong> An infrared light-emitting diode (LED)
+on the input side.</li>
+<li><strong>The Detector:</strong> A photosensitive silicon transistor
+on the output side.</li>
+</ul>
+<p>Between the LED and the phototransistor lies a microscopic insulating
+gap made of a transparent dielectric material, such as glass, air, or
+clear silicone plastic. There is zero conductive metal connecting the
+input pins to the output pins.</p>
+<h3 id="transferring-the-logic-signal">Transferring the Logic
+Signal</h3>
+<p>To transfer a logic signal without a physical wire, the optocoupler
+converts electrical energy into light, and then back into electrical
+energy.</p>
+<ol type="1">
+<li><strong>Electrical Input:</strong> A digital logic high signal (such
+as 3.3V or 5V from a microcontroller) is applied to the input pins. This
+causes current to flow through the internal infrared LED.</li>
+<li><strong>Optical Transmission:</strong> The current energizes the
+LED, causing it to emit infrared light across the transparent insulating
+gap. A logic low signal turns the LED off, stopping the light.</li>
+<li><strong>Photoconversion:</strong> The emitted photons strike the
+base region of the internal phototransistor on the other side of the
+gap.</li>
+<li><strong>Electrical Output:</strong> The absorbed light generates
+electron-hole pairs in the phototransistor's base, acting just like a
+standard base current. This switches the transistor on, allowing current
+to flow between the collector and emitter on the output side.</li>
+</ol>
+<p>By using a pull-up or pull-down resistor on the output side, the
+switching of the phototransistor recreates the original digital logic
+signal in the secondary circuit.</p>
+<h3 id="blocking-high-common-mode-voltages">Blocking High Common-Mode
+Voltages</h3>
+<p>Common-mode voltage is a voltage potential that appears equally on
+both signal lines of a circuit relative to a local ground. In industrial
+motors, solar inverters, and medical equipment, one part of the system
+may operate at hundreds or thousands of volts higher than the sensitive
+logic controller. Connecting them directly with copper wire would
+instantly destroy the logic controller.</p>
+<p>Phototransistor optocouplers block these high common-mode voltages
+through two main mechanisms:</p>
+<ul>
+<li><strong>High Dielectric Strength:</strong> The transparent material
+separating the LED and phototransistor acts as a physical voltage
+barrier. While photons pass through effortlessly, electrical current
+cannot. Depending on the thickness and material of this barrier,
+optocouplers can easily block anywhere from 1,000V to over 5,000V of
+continuous or surge voltage.</li>
+<li><strong>Elimination of Ground Loops:</strong> Because the input LED
+and output phototransistor do not share a common ground path, current
+has no return path between the two sides. The input circuit references
+its own local ground, and the output circuit references a completely
+separate ground.</li>
+</ul>
+<h3 id="overcoming-parasitic-capacitance-cmti">Overcoming Parasitic
+Capacitance (CMTI)</h3>
+<p>While DC voltages are completely blocked by the dielectric gap,
+rapidly changing AC common-mode voltages (transients) present a unique
+challenge. The physical proximity of the LED lead frame and the
+phototransistor lead frame creates a tiny, unintended "parasitic"
+capacitance across the gap—typically around 0.5 to 2 picofarads.</p>
+<p>If the common-mode voltage spikes rapidly (high <span
+class="math inline">\(dV/dt\)</span>), this capacitance can allow
+displacement current to jump the gap, falsely triggering the
+phototransistor and corrupting the logic signal.</p>
+<p>To block these rapid voltage transients, high-performance
+optocouplers include an internal <strong>Faraday shield</strong>. This
+is a microscopic, optically transparent, conductive layer placed
+directly between the LED and the phototransistor. This shield shunts
+capacitive noise currents safely to the output ground before they can
+reach the base of the phototransistor. This capability is measured as
+Common-Mode Transient Immunity (CMTI), ensuring that even if the voltage
+across the barrier swings by thousands of volts in a microsecond, the
+logic signal transfers without error.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-phototransistor-optocouplers-transfer-logic-signals';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

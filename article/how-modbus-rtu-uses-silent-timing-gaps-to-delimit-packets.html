@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Modbus RTU Uses Silent Timing Gaps to Delimit Packets - electronics</title>
+    <meta name="description" content="In industrial automation electronics, the Modbus RTU protocol relies on silent inter-frame timing gaps to identify the start and end of data packets over serial communication links. Unlike text-based protocols that use specific start and end characters, M">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-modbus-rtu-uses-silent-timing-gaps-to-delimit-packets">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Modbus RTU Uses Silent Timing Gaps to Delimit Packets - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-modbus-rtu-uses-silent-timing-gaps-to-delimit-packets" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In industrial automation electronics, the Modbus RTU protocol relies on silent inter-frame timing gaps to identify the start and end of data packets over serial communication links. Unlike text-based protocols that use specific start and end characters, M" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-modbus-rtu-uses-silent-timing-gaps-to-delimit-packets">How
+Modbus RTU Uses Silent Timing Gaps to Delimit Packets</h1>
+<p>In industrial automation electronics, the Modbus RTU protocol relies
+on silent inter-frame timing gaps to identify the start and end of data
+packets over serial communication links. Unlike text-based protocols
+that use specific start and end characters, Modbus RTU transmits raw
+binary data, meaning any byte value could appear within the payload. To
+prevent devices from misinterpreting actual data as control markers, the
+protocol uses precise periods of bus silence—specifically 3.5 character
+times between frames and 1.5 character times between bytes—to
+synchronize communication and accurately delimit messages.</p>
+<h2 id="the-challenge-of-binary-serial-communication">The Challenge of
+Binary Serial Communication</h2>
+<p>Serial links such as RS-485 and RS-232 transmit data sequentially bit
+by bit. In protocols like Modbus ASCII, specific characters (a colon to
+start and a carriage return/line feed to end) frame the message.
+However, Modbus RTU (Remote Terminal Unit) uses a dense binary format to
+maximize efficiency.</p>
+<p>Because binary payloads can contain any hexadecimal value from 0x00
+to 0xFF, it is impossible to reserve a specific byte value as an
+"end-of-frame" marker without complex byte-stuffing algorithms. Instead,
+Modbus RTU uses time itself as the delimiter.</p>
+<h2 id="the-35-character-time-rule-t35">The 3.5 Character Time Rule
+(t3.5)</h2>
+<p>To delimit packets, Modbus RTU mandates that every message frame must
+be preceded and followed by a silent interval on the serial bus equal to
+at least 3.5 character times (often referred to as t3.5).</p>
+<p>Here is how automation electronics use this silent gap:</p>
+<ol type="1">
+<li><strong>Idle State Detection:</strong> All slave devices on the
+serial bus continuously monitor the communication line. When the line
+remains idle (no data transitions) for a duration equal to or greater
+than 3.5 character times, the internal timers of the receiving devices
+reset.</li>
+<li><strong>Start of Frame:</strong> The very first falling edge (start
+bit) detected after this 3.5-character silent period is automatically
+interpreted by all devices as the beginning of a new Modbus RTU packet.
+The first byte read is always evaluated as the Slave Address.</li>
+<li><strong>End of Frame:</strong> Once data transmission begins, the
+receiving device buffers the incoming bytes. When the transmission stops
+and the line goes silent again for 3.5 character times, the receiver
+recognizes that the packet is complete.</li>
+<li><strong>Packet Processing:</strong> Immediately after the t3.5 timer
+expires at the end of the message, the receiving device calculates the
+Cyclic Redundancy Check (CRC) on the buffered data to verify integrity
+and processes the command.</li>
+</ol>
+<h2 id="calculating-character-time">Calculating Character Time</h2>
+<p>A "character time" is the exact duration required to transmit one
+full character frame over the serial link. In standard Modbus RTU, a
+single character frame consists of 11 bits:</p>
+<ul>
+<li>1 Start bit</li>
+<li>8 Data bits</li>
+<li>1 Parity bit (or 1 additional Stop bit if no parity is used)</li>
+<li>1 Stop bit</li>
+</ul>
+<p>Because serial transmission speed varies by baud rate, the actual
+time duration of the 3.5-character gap changes depending on the network
+configuration.</p>
+<p>For example, at a baud rate of 9600 bps:</p>
+<ul>
+<li><strong>1 bit time</strong> = 1 / 9600 = 0.104 milliseconds.</li>
+<li><strong>1 character time (11 bits)</strong> = 11 × 0.104 ms = 1.145
+milliseconds.</li>
+<li><strong>3.5 character times (t3.5)</strong> = 3.5 × 1.145 ms =
+<strong>4.01 milliseconds</strong>.</li>
+</ul>
+<p>At 9600 bps, a silent gap of at least 4.01 milliseconds is required
+to delimit packets.</p>
+<h3 id="high-baud-rate-exception">High Baud Rate Exception</h3>
+<p>At higher baud rates, calculating microscopic timing gaps places a
+heavy burden on microcontroller CPU timers. Therefore, the official
+Modbus specification states that for baud rates greater than 19,200 bps,
+fixed timing values should be used instead of the formula. For any speed
+above 19,200 bps, the inter-frame silent gap (t3.5) is fixed at
+<strong>1.750 milliseconds</strong> (1750 microseconds).</p>
+<h2 id="the-15-character-time-rule-t15">The 1.5 Character Time Rule
+(t1.5)</h2>
+<p>For the 3.5-character silent gap to work reliably, the bytes within a
+single packet must be transmitted in a continuous stream. If a
+transmitter pauses for too long in the middle of sending a packet, the
+receivers will mistakenly assume the packet has ended.</p>
+<p>To prevent this, Modbus RTU enforces an inter-character timeout of
+1.5 character times (t1.5). If a silent gap of more than 1.5 character
+times occurs between two bytes within the same frame, the receiving
+device flags the transmission as incomplete, discards the current
+buffer, and waits for the next 3.5-character silent gap to begin
+listening for a new frame. For baud rates above 19,200 bps, this t1.5
+timer is fixed at <strong>0.750 milliseconds</strong> (750
+microseconds).</p>
+<h2 id="hardware-implementation-in-automation">Hardware Implementation
+in Automation</h2>
+<p>In modern automation electronics, such as Programmable Logic
+Controllers (PLCs), Variable Frequency Drives (VFDs), and smart sensors,
+these timing gaps are managed at the hardware level.</p>
+<p>The Universal Asynchronous Receiver-Transmitter (UART) peripheral
+inside the device's microcontroller works alongside a dedicated hardware
+timer. Every time the UART receives a byte, it resets the hardware
+timer. If the timer reaches the t1.5 threshold before the next byte
+arrives, a framing error is triggered. If the timer successfully reaches
+the t3.5 threshold, an interrupt is triggered, signaling the main
+processor that a complete, delimited Modbus RTU packet is ready in the
+buffer for evaluation.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-modbus-rtu-uses-silent-timing-gaps-to-delimit-packets';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

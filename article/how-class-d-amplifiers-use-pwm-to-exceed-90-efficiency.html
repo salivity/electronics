@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Class D Amplifiers Use PWM to Exceed 90% Efficiency - electronics</title>
+    <meta name="description" content="This article provides a comprehensive overview of how Class D switching amplifiers achieve over 90% power efficiency in modern audio electronics. By abandoning the traditional continuous linear operation of older amplifier designs, Class D technology util">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-class-d-amplifiers-use-pwm-to-exceed-90-efficiency">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Class D Amplifiers Use PWM to Exceed 90% Efficiency - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-class-d-amplifiers-use-pwm-to-exceed-90-efficiency" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a comprehensive overview of how Class D switching amplifiers achieve over 90% power efficiency in modern audio electronics. By abandoning the traditional continuous linear operation of older amplifier designs, Class D technology util" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-class-d-amplifiers-use-pwm-to-exceed-90-efficiency">How
+Class D Amplifiers Use PWM to Exceed 90% Efficiency</h1>
+<p>This article provides a comprehensive overview of how Class D
+switching amplifiers achieve over 90% power efficiency in modern audio
+electronics. By abandoning the traditional continuous linear operation
+of older amplifier designs, Class D technology utilizes high-frequency
+pulse-width modulation (PWM) to rapidly switch output transistors
+between fully on and fully off states. The following sections break down
+the mechanics of PWM conversion, the role of MOSFET switching in
+minimizing thermal power dissipation, and the final low-pass filtering
+stage that reconstructs the amplified analog audio signal for the
+speaker.</p>
+<h2 id="the-limitation-of-traditional-linear-amplifiers">The Limitation
+of Traditional Linear Amplifiers</h2>
+<p>To understand the efficiency of Class D amplifiers, it is necessary
+to look at why traditional amplifiers waste power. Class A, B, and AB
+amplifiers operate in a linear mode. Their output transistors act like
+variable resistors, constantly regulating voltage to mirror the incoming
+analog audio signal.</p>
+<p>Because these transistors are often partially on, they simultaneously
+experience both significant voltage across them and current flowing
+through them. In electronics, power dissipation (heat) is calculated as
+Voltage multiplied by Current (<span class="math inline">\(P = V \times
+I\)</span>). Consequently, linear amplifiers burn off 30% to 75% of
+their drawn power as heat, requiring large, heavy heat sinks.</p>
+<h2 id="high-frequency-pulse-width-modulation-pwm">High-Frequency
+Pulse-Width Modulation (PWM)</h2>
+<p>Class D amplifiers solve the heat problem by never operating their
+transistors in a partially open, resistive state. Instead, they convert
+the analog audio input into a stream of digital-like pulses using
+Pulse-Width Modulation (PWM).</p>
+<p>This process requires two components:</p>
+<ol type="1">
+<li><strong>The Input Audio Signal:</strong> The standard analog
+waveform.</li>
+<li><strong>A High-Frequency Carrier Wave:</strong> A triangle or
+sawtooth waveform generated internally, typically running between 250
+kHz and 1.5 MHz—far above the 20 kHz limit of human hearing.</li>
+</ol>
+<p>A circuit component called a comparator continuously compares the
+voltage of the audio signal against the voltage of the high-frequency
+triangle wave. When the audio signal’s voltage is higher than the
+triangle wave, the comparator outputs a high voltage. When the audio
+signal is lower, it outputs a low voltage.</p>
+<p>The result is a square wave where the width of each pulse corresponds
+directly to the amplitude of the original audio signal at that exact
+microsecond. High audio peaks create wide pulses; quiet audio passages
+create narrow pulses.</p>
+<h2 id="the-switching-stage-and-power-retention">The Switching Stage and
+Power Retention</h2>
+<p>Once the audio is encoded into a PWM signal, it is sent to the
+switching output stage, which relies on MOSFETs
+(Metal-Oxide-Semiconductor Field-Effect Transistors). Unlike the
+transistors in linear amplifiers, these MOSFETs act as binary switches.
+They are either completely off or completely on.</p>
+<p>This binary operation is the core reason Class D amplifiers exceed
+90% efficiency:</p>
+<ul>
+<li><strong>When the switch is OFF:</strong> Resistance is infinite,
+meaning current (<span class="math inline">\(I\)</span>) is zero. Even
+though voltage (<span class="math inline">\(V\)</span>) is high, <span
+class="math inline">\(V \times 0 = 0\)</span> watts of power lost.</li>
+<li><strong>When the switch is ON:</strong> The MOSFET has near-zero
+resistance, meaning the voltage drop (<span
+class="math inline">\(V\)</span>) across the transistor is nearly zero.
+Even though current (<span class="math inline">\(I\)</span>) is high,
+<span class="math inline">\(0 \times I = 0\)</span> watts of power
+lost.</li>
+</ul>
+<p>In reality, transistors are not perfect. A tiny amount of power is
+lost due to the slight resistance of the MOSFET when on (conduction
+loss) and the brief nanosecond it takes the transistor to transition
+from on to off (switching loss). However, because the transistors spend
+almost no time in the transitional state, heat generation is negligible,
+allowing over 90% of the power supply's energy to go directly toward the
+audio output.</p>
+<h2 id="reconstructing-the-audio-signal">Reconstructing the Audio
+Signal</h2>
+<p>A loudspeaker cannot properly play a high-frequency PWM square wave,
+and feeding megahertz-level frequencies into a speaker coil would waste
+energy and generate electromagnetic interference (EMI). The final step
+in a Class D amplifier is converting the high-power pulses back into a
+smooth analog waveform.</p>
+<p>Before reaching the speaker terminals, the amplified PWM signal
+passes through a passive low-pass filter, consisting of inductors and
+capacitors (an LC filter). This filter blocks the high-frequency
+switching carrier (e.g., 500 kHz) while allowing the low-frequency audio
+band (20 Hz to 20 kHz) to pass through unhindered.</p>
+<p>The inductor resists rapid changes in current, effectively averaging
+out the wide and narrow pulses. What emerges from the filter is an
+exact, high-voltage replica of the original analog audio input, ready to
+drive the speaker with minimal wasted energy.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-class-d-amplifiers-use-pwm-to-exceed-90-efficiency';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Prevent Fine-Pitch Solder Bridging on Gull-Wing ICs - electronics</title>
+    <meta name="description" content="Eliminating solder bridging on fine-pitch gull-wing integrated circuits requires targeted adjustments to both stencil design and reflow oven profiling. This article provides an overview of exact engineering changes needed to stop shorts between adjacent p">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-to-prevent-fine-pitch-solder-bridging-on-gull-wing-i-cs">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Prevent Fine-Pitch Solder Bridging on Gull-Wing ICs - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-to-prevent-fine-pitch-solder-bridging-on-gull-wing-i-cs" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Eliminating solder bridging on fine-pitch gull-wing integrated circuits requires targeted adjustments to both stencil design and reflow oven profiling. This article provides an overview of exact engineering changes needed to stop shorts between adjacent p" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-to-prevent-fine-pitch-solder-bridging-on-gull-wing-ics">How
+to Prevent Fine-Pitch Solder Bridging on Gull-Wing ICs</h1>
+<p>Eliminating solder bridging on fine-pitch gull-wing integrated
+circuits requires targeted adjustments to both stencil design and reflow
+oven profiling. This article provides an overview of exact engineering
+changes needed to stop shorts between adjacent pins. You will learn how
+to reduce stencil aperture widths, select the right stencil materials
+and coatings, adjust ramp and soak thermal zones, and optimize peak
+reflow parameters to ensure clean, reliable solder joints in
+high-density electronics assembly.</p>
+<h3 id="stencil-aperture-reductions-and-shapes">Stencil Aperture
+Reductions and Shapes</h3>
+<p>Excess solder paste volume is the primary cause of bridging on
+fine-pitch components (typically 0.5 mm pitch and below). Modifying the
+stencil aperture geometry controls the exact volume and placement of the
+paste deposit.</p>
+<ul>
+<li><strong>Width Reduction:</strong> Reduce the stencil aperture width
+by 10% to 20% compared to the PCB pad width. Maintaining a slightly
+narrower print than the pad prevents the paste from slumping into
+adjacent spaces during component placement.</li>
+<li><strong>Length Reduction:</strong> Pull back the inner and outer
+ends of the aperture by 0.05 mm to 0.1 mm. Pulling back the inner heel
+edge is especially critical, as excess paste at the heel is easily
+squeezed out between the pins when the gull-wing leads are pressed into
+the paste.</li>
+<li><strong>Home-Plate and Rounded Shapes:</strong> Modify the inner
+edge of the aperture into a "home-plate" (triangular) shape or a "U"
+shape to further reduce paste volume at the heel. Additionally, round
+the corners of rectangular apertures with a small radius (e.g., 0.05 mm)
+to prevent paste from getting trapped in sharp corners during stencil
+separation.</li>
+</ul>
+<h3 id="stencil-material-thickness-and-coating">Stencil Material,
+Thickness, and Coating</h3>
+<p>Clean paste release is vital for fine-pitch printing. If solder paste
+sticks to the inside of the stencil apertures, it deforms the print on
+the board and leads to bridging.</p>
+<ul>
+<li><strong>Aspect Ratio:</strong> Ensure the aspect ratio (aperture
+width divided by stencil thickness) is greater than 1.5. For 0.5 mm and
+0.4 mm pitch components, step down the stencil thickness to 4 mil (100
+µm) or 3 mil (75 µm) either across the whole stencil or via localized
+step-down cavities.</li>
+<li><strong>Fine-Grain Stainless Steel:</strong> Use laser-cut,
+electropolished, fine-grain stainless steel or electroformed nickel
+stencils. These materials yield smoother aperture walls, reducing
+friction during paste release.</li>
+<li><strong>Nano-Coatings:</strong> Apply a hydrophobic/oleophobic
+nano-coating to the bottom side and aperture walls of the stencil. This
+treatment drastically improves transfer efficiency and prevents paste
+from smearing on the underside of the stencil between wipe cycles.</li>
+</ul>
+<h3 id="reflow-profile-ramp-and-soak-adjustments">Reflow Profile Ramp
+and Soak Adjustments</h3>
+<p>When solder paste heats up too quickly, the volatile solvents within
+the flux vaporize rapidly, causing "hot slump" or small explosions that
+push solder particles onto neighboring pads.</p>
+<ul>
+<li><strong>Control the Ramp Rate:</strong> Limit the initial preheat
+ramp rate to between 1.0°C and 1.5°C per second. A gradual temperature
+increase allows solvents to evaporate gently without displacing the
+printed paste brick.</li>
+<li><strong>Optimize the Soak Zone:</strong> For no-clean, lead-free
+pastes (such as SAC305), establish a soak zone between 150°C and 180°C
+lasting 60 to 90 seconds. This equalizes thermal mass across the PCB and
+activates the flux to clean oxides off the gull-wing leads.</li>
+<li><strong>Prevent Flux Exhaustion:</strong> Avoid soaking the board
+for too long (over 120 seconds) or at too high a temperature. If the
+flux burns off completely before reaching the liquidus state, the molten
+solder will lack the surface tension and wetting action needed to pull
+itself onto the metal pads, leaving bridges behind.</li>
+</ul>
+<h3 id="peak-temperature-and-time-above-liquidus-tal">Peak Temperature
+and Time Above Liquidus (TAL)</h3>
+<p>The final stages of the reflow profile govern how the molten solder
+wets the gull-wing lead and the PCB pad.</p>
+<ul>
+<li><strong>Slow the Ramp to Peak:</strong> As the board moves from the
+soak zone into the reflow zone, keep the ramp rate between 1.0°C and
+2.0°C per second to prevent violent flux outgassing right before the
+solder melts.</li>
+<li><strong>Peak Temperature:</strong> Set the peak temperature safely
+within the paste manufacturer's guidelines—typically 235°C to 245°C for
+SAC305. Excessive peak temperatures lower the viscosity of the molten
+solder too much, making it run and bridge more easily.</li>
+<li><strong>Time Above Liquidus (TAL):</strong> Maintain a TAL between
+45 and 60 seconds. This provides enough time for the wetting forces of
+the copper pad and component lead to pull the molten solder inward,
+naturally breaking small bridges via surface tension, without
+overheating the flux or components.</li>
+</ul></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-to-prevent-fine-pitch-solder-bridging-on-gull-wing-i-cs';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

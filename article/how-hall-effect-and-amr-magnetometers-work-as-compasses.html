@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Hall-Effect and AMR Magnetometers Work as Compasses - electronics</title>
+    <meta name="description" content="Three-axis Hall-effect and anisotropic magnetoresistive (AMR) magnetometers are critical components in modern navigation electronics, functioning as digital compasses to determine precise orientation. This article explores how both sensor technologies det">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-hall-effect-and-amr-magnetometers-work-as-compasses">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Hall-Effect and AMR Magnetometers Work as Compasses - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-hall-effect-and-amr-magnetometers-work-as-compasses" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Three-axis Hall-effect and anisotropic magnetoresistive (AMR) magnetometers are critical components in modern navigation electronics, functioning as digital compasses to determine precise orientation. This article explores how both sensor technologies det" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hall-effect-and-amr-magnetometers-work-as-compasses">How
+Hall-Effect and AMR Magnetometers Work as Compasses</h1>
+<p>Three-axis Hall-effect and anisotropic magnetoresistive (AMR)
+magnetometers are critical components in modern navigation electronics,
+functioning as digital compasses to determine precise orientation. This
+article explores how both sensor technologies detect the Earth's
+magnetic field across three dimensions to calculate heading. By
+understanding the physical principles of the Hall effect and
+magnetoresistance, as well as how three-axis configurations compensate
+for device tilt, you will see how these microchips guide everything from
+smartphones to autonomous vehicles.</p>
+<h2 id="the-role-of-three-axis-sensing-in-navigation">The Role of
+Three-Axis Sensing in Navigation</h2>
+<p>Traditional mechanical compasses must be held flat to work correctly
+because the needle needs to rotate freely along a horizontal plane. In
+modern electronics, devices like smartphones, drones, and wearables are
+rarely held completely flat.</p>
+<p>To solve this, electronic compasses use a three-axis configuration
+(X, Y, and Z). By placing three separate magnetic sensors orthogonal (at
+90-degree angles) to one another inside a single microchip, the
+magnetometer can capture the complete three-dimensional vector of the
+Earth's magnetic field.</p>
+<p>Navigation systems pair this 3D magnetic data with data from a
+three-axis accelerometer, which measures gravity to determine the
+device's tilt (pitch and roll). A processor then mathematically rotates
+the magnetic readings back to a flat horizontal plane, providing an
+accurate compass heading regardless of how the device is angled.</p>
+<h2 id="how-three-axis-hall-effect-magnetometers-work">How Three-Axis
+Hall-Effect Magnetometers Work</h2>
+<p>Hall-effect magnetometers operate on a principle discovered by Edwin
+Hall in 1879. When an electrical current flows through a thin
+semiconductor plate and is exposed to a magnetic field perpendicular to
+the current, the magnetic force pushes the moving electrons to one side
+of the plate. This separation of charge creates a measurable voltage
+across the sides of the plate, known as the Hall voltage.</p>
+<p>In a three-axis Hall-effect magnetometer:</p>
+<ul>
+<li><strong>Measurement:</strong> The strength of the Hall voltage is
+directly proportional to the strength of the magnetic field.</li>
+<li><strong>3D Orientation:</strong> Traditional Hall plates only detect
+magnetic fields perpendicular to their surface. To measure three axes on
+a single flat silicon chip, manufacturers either mount microscopic
+plates vertically or use specialized "magnetic concentrators." These
+concentrators bend the horizontal X and Y magnetic fields so they pass
+vertically through flat Hall plates, while a standard plate measures the
+Z-axis.</li>
+<li><strong>Application:</strong> Because they are inexpensive, tiny,
+and consume very little power, three-axis Hall-effect sensors are the
+standard choice for consumer electronics like smartphones and
+smartwatches.</li>
+</ul>
+<h2 id="how-three-axis-amr-magnetometers-work">How Three-Axis AMR
+Magnetometers Work</h2>
+<p>Anisotropic magnetoresistive (AMR) magnetometers operate on a
+different physical property: they change their electrical resistance
+when exposed to a magnetic field. AMR sensors are typically made of a
+thin film of permalloy (a nickel-iron alloy) deposited on a silicon
+wafer.</p>
+<p>In a three-axis AMR magnetometer:</p>
+<ul>
+<li><strong>Measurement:</strong> During manufacturing, the permalloy's
+internal magnetization is aligned in a specific direction. When an
+external magnetic field (like the Earth's) is applied, the alloy's
+magnetization rotates. The angle between the electrical current and the
+magnetization vector changes the material's electrical resistance.</li>
+<li><strong>Bridge Circuitry:</strong> AMR sensors use a configuration
+called a Wheatstone bridge to detect these tiny changes in resistance
+and convert them into a readable voltage output.</li>
+<li><strong>3D Orientation:</strong> Three separate permalloy structures
+are aligned along the X, Y, and Z axes to capture the full magnetic
+vector.</li>
+<li><strong>Application:</strong> AMR sensors are significantly more
+sensitive and produce less electronic noise than Hall-effect sensors.
+Because Earth's magnetic field is very weak (ranging from 0.25 to 0.65
+Gauss), AMR sensors are preferred for high-precision navigation in
+aviation, autonomous robotics, and automotive systems.</li>
+</ul>
+<h2 id="translating-magnetic-data-into-a-compass-heading">Translating
+Magnetic Data into a Compass Heading</h2>
+<p>Whether a device uses a Hall-effect or AMR magnetometer, the process
+of converting the sensor's raw physics into a compass heading follows
+the same digital pathway:</p>
+<ol type="1">
+<li><strong>Analog-to-Digital Conversion:</strong> The voltage changes
+from the X, Y, and Z sensors are converted into digital values.</li>
+<li><strong>Calibration:</strong> The system filters out "hard-iron" and
+"soft-iron" interference. These are magnetic distortions caused by the
+device's own battery, speakers, or metal chassis.</li>
+<li><strong>Tilt Compensation:</strong> The microcontroller combines the
+calibrated X, Y, and Z magnetic readings with pitch and roll data from
+the accelerometer.</li>
+<li><strong>Trigonometric Calculation:</strong> Using the
+tilt-compensated horizontal magnetic values (<span
+class="math inline">\(B_x\)</span> and <span
+class="math inline">\(B_y\)</span>), the processor applies the
+arctangent function (<span class="math inline">\(\text{Heading} =
+\arctan(B_y / B_x)\)</span>) to determine the exact angle of the device
+relative to Magnetic North.</li>
+</ol></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-hall-effect-and-amr-magnetometers-work-as-compasses';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

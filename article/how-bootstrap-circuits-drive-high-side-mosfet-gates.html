@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Bootstrap Circuits Drive High-Side MOSFET Gates - electronics</title>
+    <meta name="description" content="This article explains how a bootstrap diode and capacitor network generates a floating gate drive voltage above the high-side source rail in switching electronics. By examining the charging phase, the voltage-boosting phase, and the critical component lim">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-bootstrap-circuits-drive-high-side-mosfet-gates">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Bootstrap Circuits Drive High-Side MOSFET Gates - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-bootstrap-circuits-drive-high-side-mosfet-gates" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how a bootstrap diode and capacitor network generates a floating gate drive voltage above the high-side source rail in switching electronics. By examining the charging phase, the voltage-boosting phase, and the critical component lim" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-bootstrap-circuits-drive-high-side-mosfet-gates">How
+Bootstrap Circuits Drive High-Side MOSFET Gates</h1>
+<p>This article explains how a bootstrap diode and capacitor network
+generates a floating gate drive voltage above the high-side source rail
+in switching electronics. By examining the charging phase, the
+voltage-boosting phase, and the critical component limitations, you will
+understand how this simple circuit powers high-side transistors without
+requiring an expensive, isolated power supply.</p>
+<h3 id="the-high-side-driving-challenge">The High-Side Driving
+Challenge</h3>
+<p>In half-bridge and full-bridge switching topologies, N-channel
+MOSFETs or IGBTs are preferred for both the low-side and high-side
+switches due to their low on-resistance and high efficiency. To turn on
+an N-channel MOSFET, the gate voltage must be driven higher than the
+source voltage by a specific threshold (typically 10V to 15V).</p>
+<p>For the low-side switch, the source is connected to ground, making it
+easy to drive the gate using a standard ground-referenced power supply
+(<span class="math inline">\(V_{CC}\)</span>). However, the source of
+the high-side switch is connected to the switching node (the connection
+point between the two transistors). When the high-side switch is fully
+turned on, its source voltage rises to match the high-voltage DC bus
+(<span class="math inline">\(V_{BUS}\)</span>). Therefore, to keep the
+high-side switch on, the gate driver must generate a voltage that is 10V
+to 15V <em>higher</em> than the main high-voltage rail.</p>
+<h3 id="the-bootstrap-network-components">The Bootstrap Network
+Components</h3>
+<p>A bootstrap circuit solves this problem using two primary passive
+components connected to a gate driver IC:</p>
+<ol type="1">
+<li><strong>Bootstrap Capacitor (<span
+class="math inline">\(C_{BOOT}\)</span>):</strong> Connects between the
+switching node (high-side source) and the floating power supply pin
+(<span class="math inline">\(V_B\)</span>) of the high-side gate
+driver.</li>
+<li><strong>Bootstrap Diode (<span
+class="math inline">\(D_{BOOT}\)</span>):</strong> Connects between the
+low-voltage gate drive supply (<span
+class="math inline">\(V_{CC}\)</span>) and the positive terminal of the
+bootstrap capacitor.</li>
+</ol>
+<h3 id="phase-1-charging-the-bootstrap-capacitor">Phase 1: Charging the
+Bootstrap Capacitor</h3>
+<p>The bootstrap process relies on the alternating switching states of
+the bridge. The charging phase occurs when the high-side switch is off
+and the low-side switch is turned on.</p>
+<ol type="1">
+<li>When the low-side switch conducts, it pulls the switching node down
+to ground (0V).</li>
+<li>Because the negative terminal of the bootstrap capacitor is
+connected to the switching node, it is also pulled to ground.</li>
+<li>Current flows from the low-voltage <span
+class="math inline">\(V_{CC}\)</span> supply (e.g., 12V), through the
+forward-biased bootstrap diode, and into the bootstrap capacitor.</li>
+<li>The capacitor rapidly charges up to approximately <span
+class="math inline">\(V_{CC}\)</span> (minus the forward voltage drop of
+the diode).</li>
+</ol>
+<h3 id="phase-2-generating-the-floating-voltage">Phase 2: Generating the
+Floating Voltage</h3>
+<p>The voltage-boosting phase occurs when the low-side switch turns off
+and the high-side switch is commanded to turn on.</p>
+<ol type="1">
+<li>The high-side gate driver connects the charged bootstrap capacitor
+directly between the high-side transistor's gate and source.</li>
+<li>As the high-side switch begins to turn on, the voltage at the
+switching node rapidly rises from 0V toward the high-voltage rail (<span
+class="math inline">\(V_{BUS}\)</span>).</li>
+<li>Because the voltage across a capacitor cannot change
+instantaneously, the bootstrap capacitor maintains its 12V charge. As
+the negative terminal of the capacitor rises to <span
+class="math inline">\(V_{BUS}\)</span>, the positive terminal is pushed
+up to <span class="math inline">\(V_{BUS} + 12\text{V}\)</span>.</li>
+<li>The voltage at the positive terminal of the capacitor is now higher
+than the <span class="math inline">\(V_{CC}\)</span> supply. This
+reverse-biases the bootstrap diode, which automatically blocks the high
+voltage from flowing backward into the low-voltage <span
+class="math inline">\(V_{CC}\)</span> supply.</li>
+<li>The high-side gate driver is now powered by a "floating" 12V supply
+(the capacitor) referenced directly to the high-side source rail,
+keeping the transistor fully enhanced and conducting.</li>
+</ol>
+<h3 id="operational-limitations">Operational Limitations</h3>
+<p>While efficient and cost-effective, the bootstrap network has one
+major limitation: it cannot maintain a 100% duty cycle for the high-side
+switch.</p>
+<p>While the high-side switch is on, the bootstrap capacitor slowly
+discharges due to gate charge requirements and internal leakage currents
+within the driver IC. To prevent the capacitor voltage from dropping too
+low (which would cause the MOSFET to enter a resistive, high-heat state
+or trigger an under-voltage lockout), the high-side switch must
+periodically turn off, and the low-side switch must turn on to refresh
+the charge in the capacitor.</p>
+<p>For optimal performance, engineers use ultra-fast recovery or
+Schottky diodes for <span class="math inline">\(D_{BOOT}\)</span> to
+prevent charge from leaking back into the <span
+class="math inline">\(V_{CC}\)</span> supply during the rapid transition
+from low to high states, and low-ESR ceramic capacitors for <span
+class="math inline">\(C_{BOOT}\)</span> to deliver fast, high-current
+pulses to the MOSFET gate.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-bootstrap-circuits-drive-high-side-mosfet-gates';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

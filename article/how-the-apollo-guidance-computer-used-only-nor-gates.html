@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How the Apollo Guidance Computer Used Only NOR Gates - electronics</title>
+    <meta name="description" content="This article explores the engineering marvel of the Block II Apollo Guidance Computer (AGC), focusing on how MIT Instrumentation Laboratory engineers built the revolutionary system using thousands of identical flat-pack dual NOR gates. By relying on a sin">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-the-apollo-guidance-computer-used-only-nor-gates">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How the Apollo Guidance Computer Used Only NOR Gates - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-the-apollo-guidance-computer-used-only-nor-gates" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explores the engineering marvel of the Block II Apollo Guidance Computer (AGC), focusing on how MIT Instrumentation Laboratory engineers built the revolutionary system using thousands of identical flat-pack dual NOR gates. By relying on a sin" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-the-apollo-guidance-computer-used-only-nor-gates">How the
+Apollo Guidance Computer Used Only NOR Gates</h1>
+<p>This article explores the engineering marvel of the Block II Apollo
+Guidance Computer (AGC), focusing on how MIT Instrumentation Laboratory
+engineers built the revolutionary system using thousands of identical
+flat-pack dual NOR gates. By relying on a single type of silicon
+integrated circuit, the team maximized reliability, simplified
+manufacturing quality control, and miniaturized the spacecraft's
+navigation system. What follows is a straightforward look at the logic
+architecture, hardware assembly, and historical impact of using
+universal NOR logic in aerospace electronics.</p>
+<h2 id="the-challenge-of-spaceflight-computing">The Challenge of
+Spaceflight Computing</h2>
+<p>In the early 1960s, the MIT Instrumentation Laboratory was tasked
+with designing the onboard computer for the Apollo moon missions. The
+computer needed to be small, lightweight, energy-efficient, and
+extraordinarily reliable. Traditional discrete transistor circuits were
+too bulky, so the engineers turned to a newly invented technology: the
+silicon integrated circuit (IC).</p>
+<p>While earlier Block I versions of the AGC used single three-input NOR
+gates housed in round metal cans, the upgraded Block II computer—the
+version that actually flew to the moon—transitioned to a more compact
+flat-pack design. Each flat-pack IC contained two three-input NOR gates.
+In total, the Block II AGC used approximately 2,800 of these flat-pack
+chips, equating to 5,600 individual NOR gates.</p>
+<h2 id="why-only-nor-gates">Why Only NOR Gates?</h2>
+<p>In digital logic, a NOR gate is known as a "universal gate." A NOR
+gate outputs a "true" (1) signal only when all of its inputs are "false"
+(0). Because of its mathematical properties, you can combine multiple
+NOR gates in different configurations to create any other fundamental
+logic gate, including AND, OR, NOT, and NAND gates, as well as complex
+memory latches and adders.</p>
+<p>MIT engineers chose to build the entire computer out of this single
+type of logic gate for one primary reason: reliability. In the 1960s,
+semiconductor manufacturing was in its infancy, and chip failure rates
+were high. By using only one type of integrated circuit for the entire
+computer, the manufacturer ( primarily Fairchild Semiconductor and
+Philco) could dedicate entire production lines to perfecting that single
+component.</p>
+<p>This standardization allowed MIT and NASA to subject the chips to
+rigorous, uniform testing. Engineers could easily identify manufacturing
+defects, study failure modes, and guarantee a level of quality control
+that would have been impossible if the computer relied on dozens of
+different chip designs.</p>
+<h2 id="building-complex-logic-from-simple-parts">Building Complex Logic
+from Simple Parts</h2>
+<p>Constructing a 16-bit computer entirely from three-input NOR gates
+required clever logical architecture. Every function of the Central
+Processing Unit (CPU)—from the arithmetic logic unit (ALU) to the memory
+registers and timing generators—was mapped out using only NOR gate
+combinations.</p>
+<ul>
+<li><strong>Inverter (NOT):</strong> Tying the inputs of a single NOR
+gate together created a basic inverter.</li>
+<li><strong>OR Gate:</strong> Running a signal through a NOR gate and
+then immediately through a NOR-based inverter produced a standard OR
+function.</li>
+<li><strong>AND Gate:</strong> Inverting the inputs using individual NOR
+gates before feeding them into a final NOR gate yielded an AND
+function.</li>
+<li><strong>Flip-Flops:</strong> Cross-coupling the outputs and inputs
+of two NOR gates created a basic SR latch, which served as the
+foundational building block for the computer's volatile registers.</li>
+</ul>
+<p>Because each flat-pack chip held two three-input NOR gates, engineers
+could pack twice as much logic into the same physical footprint compared
+to the Block I design.</p>
+<h2 id="wire-wrap-packaging-and-assembly">Wire-Wrap Packaging and
+Assembly</h2>
+<p>Once the logic was designed, the physical assembly required extreme
+precision to survive the violent vibrations of a Saturn V rocket launch.
+The flat-pack NOR gates were mounted onto modular multilayer circuit
+boards, known as logic sticks. Each module held 120 flat-pack ICs,
+providing 240 NOR gates per module.</p>
+<p>The modules were plugged into a backplane tray. Instead of using
+soldered circuit boards for the main interconnections—which were prone
+to cracking under thermal stress and vibration—technicians at Raytheon
+used a technique called wire-wrapping. Thousands of thin wires were
+tightly wrapped around square metal posts connected to the logic
+modules. This created gas-tight, high-pressure electrical connections
+that were vastly more reliable than solder joints. Once the wiring was
+verified, the modules and backplane were potted in an epoxy compound to
+lock the components in place and conduct heat away from the silicon
+chips.</p>
+<h2 id="legacy-of-the-block-ii-design">Legacy of the Block II
+Design</h2>
+<p>The decision to build the Block II Apollo Guidance Computer entirely
+from flat-pack dual NOR gates was a pivotal moment in electronics
+history. The Apollo program became the largest consumer of integrated
+circuits in the world during the mid-1960s, driving down costs and
+proving the viability of silicon microchips. Not a single integrated
+circuit failed during any of the Apollo flights, validating MIT's
+strategy of radical standardization in aerospace engineering.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-the-apollo-guidance-computer-used-only-nor-gates';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

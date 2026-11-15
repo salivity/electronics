@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Four-Wire Kelvin Sensing Eliminates Lead Resistance - electronics</title>
+    <meta name="description" content="Four-wire Kelvin resistance sensing eliminates lead wire resistance by separating the current-carrying circuit from the voltage-measuring circuit. When measuring low-value resistors in the milliohm range, standard two-wire multimeters fail because the res">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-four-wire-kelvin-sensing-eliminates-lead-resistance">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Four-Wire Kelvin Sensing Eliminates Lead Resistance - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-four-wire-kelvin-sensing-eliminates-lead-resistance" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Four-wire Kelvin resistance sensing eliminates lead wire resistance by separating the current-carrying circuit from the voltage-measuring circuit. When measuring low-value resistors in the milliohm range, standard two-wire multimeters fail because the res" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-four-wire-kelvin-sensing-eliminates-lead-resistance">How
+Four-Wire Kelvin Sensing Eliminates Lead Resistance</h1>
+<p>Four-wire Kelvin resistance sensing eliminates lead wire resistance
+by separating the current-carrying circuit from the voltage-measuring
+circuit. When measuring low-value resistors in the milliohm range,
+standard two-wire multimeters fail because the resistance of the test
+leads is often higher than the component being measured. By utilizing
+separate force leads to supply a known current and high-impedance sense
+leads to measure the exact voltage drop directly across the target
+component, no current flows through the sensing wires. This completely
+removes the voltage drop of the test leads from the calculation,
+ensuring highly accurate milliohm measurements.</p>
+<h2 id="the-problem-with-two-wire-resistance-measurement">The Problem
+with Two-Wire Resistance Measurement</h2>
+<p>In a standard two-wire resistance measurement, a multimeter uses a
+single pair of leads to both inject a test current and measure the
+resulting voltage drop. The meter calculates resistance using Ohm's Law
+(<span class="math inline">\(R = V / I\)</span>).</p>
+<p>The flaw in this method is that the test leads themselves have
+resistance, typically ranging from 0.1 to 1 ohm. Because the current
+flows through the leads and the resistor in series, the meter measures
+the total voltage drop across the entire loop. When testing a 10 kilohm
+resistor, a 0.5-ohm lead resistance is negligible. However, when
+measuring a 10 milliohm (0.01 ohm) current-sense resistor, that same
+0.5-ohm lead resistance introduces a 5000% error, rendering the
+measurement useless.</p>
+<h2 id="how-separate-force-and-sense-leads-work">How Separate Force and
+Sense Leads Work</h2>
+<p>Four-wire Kelvin sensing solves this problem by splitting the
+measurement system into two independent pairs of wires:</p>
+<ul>
+<li><strong>Force Leads (Source):</strong> This pair of outer leads
+connects a precision current source to the resistor under test. They
+carry the main test current. Just like in a two-wire setup, these wires
+experience a voltage drop due to their inherent resistance, as well as
+the contact resistance at the test points.</li>
+<li><strong>Sense Leads (Measure):</strong> This pair of inner leads
+connects a voltmeter directly across the leads of the target resistor,
+positioned just inside the force connections. They are responsible
+solely for measuring the voltage drop across the component.</li>
+</ul>
+<h2 id="the-role-of-high-input-impedance">The Role of High Input
+Impedance</h2>
+<p>The secret to why the sense leads do not introduce their own
+resistance error lies in the properties of the voltmeter. The voltmeter
+connected to the sense leads has an extremely high input impedance,
+typically in the megaohm or gigaohm range.</p>
+<p>Because of this massive impedance, virtually zero current flows into
+the sense leads. According to Ohm's Law (<span class="math inline">\(V =
+I \times R\)</span>), if the current (<span
+class="math inline">\(I\)</span>) is zero, the voltage drop (<span
+class="math inline">\(V\)</span>) across the sense leads and their
+contact points must also be zero, regardless of the wire's resistance
+(<span class="math inline">\(R\)</span>).</p>
+<p>With no voltage lost in the sense wires, the voltmeter reads the
+exact voltage present at the terminals of the milliohm resistor. The
+measurement instrument then takes this pure voltage reading and divides
+it by the known current supplied by the force leads, calculating the
+exact resistance of the component without any interference from the test
+setup.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-four-wire-kelvin-sensing-eliminates-lead-resistance';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How JTAG Works for Debugging and Flash Programming - electronics</title>
+    <meta name="description" content="This article explains how the IEEE 1149.1 JTAG interface enables single-step hardware debugging and flash programming in embedded electronics. It covers the fundamental architecture of the Test Access Port (TAP), the boundary scan mechanism, direct proces">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-jtag-works-for-debugging-and-flash-programming">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How JTAG Works for Debugging and Flash Programming - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-jtag-works-for-debugging-and-flash-programming" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how the IEEE 1149.1 JTAG interface enables single-step hardware debugging and flash programming in embedded electronics. It covers the fundamental architecture of the Test Access Port (TAP), the boundary scan mechanism, direct proces" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-jtag-works-for-debugging-and-flash-programming">How JTAG
+Works for Debugging and Flash Programming</h1>
+<p>This article explains how the IEEE 1149.1 JTAG interface enables
+single-step hardware debugging and flash programming in embedded
+electronics. It covers the fundamental architecture of the Test Access
+Port (TAP), the boundary scan mechanism, direct processor core control
+for step-by-step code execution, and the methods used to write firmware
+directly to non-volatile memory.</p>
+<h2 id="the-ieee-11491-standard-and-tap-architecture">The IEEE 1149.1
+Standard and TAP Architecture</h2>
+<p>Originally developed to test circuit boards after manufacturing, the
+IEEE 1149.1 standard—commonly known as JTAG (Joint Test Action
+Group)—provides a serial communication interface directly into the
+silicon of an integrated circuit. At the heart of this interface is the
+Test Access Port (TAP) controller, a 16-state finite state machine
+driven by four mandatory signals (and one optional reset signal):</p>
+<ul>
+<li><strong>TCK (Test Clock):</strong> Synchronizes the internal state
+machine operations.</li>
+<li><strong>TMS (Test Mode Select):</strong> Determines the next state
+of the TAP controller on the rising edge of TCK.</li>
+<li><strong>TDI (Test Data In):</strong> Serial input for shifting
+instructions and data into the device.</li>
+<li><strong>TDO (Test Data Out):</strong> Serial output for shifting
+data out of the device.</li>
+<li><strong>TRST (Test Reset):</strong> An optional pin that resets the
+TAP controller to its initial state.</li>
+</ul>
+<p>By manipulating the TMS and TCK lines, an external hardware debugger
+can navigate the TAP state machine to load specific commands into the
+Instruction Register (IR) and subsequently shift data into or out of
+various Data Registers (DR).</p>
+<h2 id="enabling-single-step-hardware-debugging">Enabling Single-Step
+Hardware Debugging</h2>
+<p>Modern microcontrollers and processors extend the standard JTAG
+architecture by connecting internal debug modules (such as ARM CoreSight
+or RISC-V Debug Modules) as specific Data Registers within the JTAG
+chain. This direct silicon access allows engineers to control the CPU
+without relying on running software.</p>
+<h3 id="halting-the-processor">Halting the Processor</h3>
+<p>To initiate debugging, the external JTAG probe shifts a specific
+debug instruction into the Instruction Register. It then writes a "halt"
+command into the internal debug control register via the Data Register
+path. This signal intercepts the CPU's clock or instruction fetch
+pipeline, freezing execution immediately.</p>
+<h3 id="reading-and-modifying-state">Reading and Modifying State</h3>
+<p>Once halted, the debugger uses JTAG to access the processor's
+internal buses and registers. By shifting data through the JTAG port,
+the debugger can read the Program Counter (PC), inspect general-purpose
+registers, and view the contents of RAM. The engineer can also overwrite
+these values by shifting new data in via the TDI line.</p>
+<h3 id="single-stepping-execution">Single-Stepping Execution</h3>
+<p>Single-stepping is achieved through hardware-level breakpoint and
+clock control mechanisms:</p>
+<ol type="1">
+<li>The debugger writes to the debug control register to set a
+"single-step" flag.</li>
+<li>The debugger commands the CPU to resume execution.</li>
+<li>The hardware debug module allows the CPU to fetch and execute
+exactly one assembly instruction.</li>
+<li>Immediately upon completion of that instruction, the internal
+hardware automatically re-asserts the halt signal.</li>
+<li>The JTAG probe polls the status register, detects the halt, and
+shifts out the updated CPU register values to display the results to the
+developer.</li>
+</ol>
+<h2 id="enabling-flash-programming">Enabling Flash Programming</h2>
+<p>Flash memory requires specific sequences of voltages, commands, and
+timing to erase and write data. JTAG enables flash programming on blank
+or bricked circuit boards using two primary methods.</p>
+<h3 id="method-1-boundary-scan-bit-banging">Method 1: Boundary Scan
+Bit-Banging</h3>
+<p>Every pin on a JTAG-compliant chip is backed by a "boundary scan
+cell." These cells form a continuous shift register (the Boundary Scan
+Register) around the perimeter of the silicon die.</p>
+<p>When the <code>EXTEST</code> instruction is loaded into the JTAG
+Instruction Register, the chip's core logic is disconnected from its
+physical pins, and the JTAG interface takes direct control of the pins.
+If an external flash chip is connected to the processor, the JTAG probe
+can shift bit patterns into the Boundary Scan Register to manually
+toggle the address, data, and control pins connected to the flash
+memory. While universally compatible, this "bit-banging" approach is
+slow because every single pin transition requires shifting hundreds of
+bits through the JTAG chain.</p>
+<h3 id="method-2-debug-module-and-ram-loader-fast-programming">Method 2:
+Debug Module and RAM Loader (Fast Programming)</h3>
+<p>For internal flash memory or high-speed programming of external
+flash, debuggers bypass boundary scan and use the CPU's internal bus
+access:</p>
+<ol type="1">
+<li><strong>Halt and Initialize:</strong> The JTAG probe halts the CPU
+and configures the memory controller registers so that system RAM and
+flash memory are accessible.</li>
+<li><strong>Upload Flash Algorithm:</strong> The debugger shifts a
+small, compiled program (the "flash loader") directly into the
+microcontroller's internal RAM.</li>
+<li><strong>Transfer Firmware Data:</strong> The debugger shifts a block
+of the target firmware into a designated buffer area in RAM.</li>
+<li><strong>Execute:</strong> The debugger sets the CPU's Program
+Counter to the start of the flash loader in RAM and releases the CPU
+from its halted state.</li>
+<li><strong>Write to Flash:</strong> The CPU runs at full clock speed,
+executing the flash loader to copy the firmware buffer from RAM into the
+flash memory while handling all necessary unlock sequences and timing
+delays.</li>
+<li><strong>Repeat:</strong> Once the block is written, the flash loader
+triggers a hardware breakpoint. The JTAG probe detects the halt, loads
+the next chunk of firmware into RAM, and repeats the process until the
+entire memory is programmed.</li>
+</ol></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-jtag-works-for-debugging-and-flash-programming';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

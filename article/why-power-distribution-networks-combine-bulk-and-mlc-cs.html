@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Power Distribution Networks Combine Bulk and MLCCs - electronics</title>
+    <meta name="description" content="In high-speed electronics, maintaining a stable power supply requires a power distribution network (PDN) that exhibits low impedance across a vast range of frequencies. Because no single capacitor can perform effectively at both very low and very high fre">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-power-distribution-networks-combine-bulk-and-mlc-cs">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Power Distribution Networks Combine Bulk and MLCCs - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-power-distribution-networks-combine-bulk-and-mlc-cs" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In high-speed electronics, maintaining a stable power supply requires a power distribution network (PDN) that exhibits low impedance across a vast range of frequencies. Because no single capacitor can perform effectively at both very low and very high fre" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-power-distribution-networks-combine-bulk-and-mlccs">Why
+Power Distribution Networks Combine Bulk and MLCCs</h1>
+<p>In high-speed electronics, maintaining a stable power supply requires
+a power distribution network (PDN) that exhibits low impedance across a
+vast range of frequencies. Because no single capacitor can perform
+effectively at both very low and very high frequencies due to inherent
+physical limitations, engineers combine bulk electrolytic capacitors
+with arrays of low-inductance multilayer ceramic capacitors (MLCCs).
+This strategic combination bridges the gap between different frequency
+domains, ensuring that slow, large current demands and ultra-fast
+transient switching currents are simultaneously satisfied without
+causing destructive voltage droops or electromagnetic interference.</p>
+<h2 id="the-goal-of-broadband-decoupling">The Goal of Broadband
+Decoupling</h2>
+<p>High-speed integrated circuits (ICs), such as processors and FPGAs,
+contain millions of transistors switching on and off in picoseconds.
+This rapid switching creates sudden, dynamic demands for current across
+a wide frequency spectrum—from near-DC up to several gigahertz.</p>
+<p>If the PDN has high impedance at any of these frequencies, the sudden
+draw of current will cause the supply voltage to drop, which can trigger
+logic errors or system crashes. Broadband decoupling aims to keep the
+PDN impedance below a specific target value across the entire
+operational bandwidth of the device by placing local charge reservoirs
+(capacitors) right next to the load.</p>
+<h2 id="the-physical-limitations-of-real-capacitors">The Physical
+Limitations of Real Capacitors</h2>
+<p>An ideal capacitor decreases its impedance infinitely as frequency
+rises. However, real-world capacitors possess parasitic elements:
+Equivalent Series Resistance (ESR) and Equivalent Series Inductance
+(ESL).</p>
+<p>Because of ESL, a capacitor only acts like a capacitor up to its
+Self-Resonant Frequency (SRF). Above the SRF, the parasitic inductance
+dominates, and the component begins to act like an inductor, causing its
+impedance to rise with frequency. Therefore, a capacitor is only
+effective at decoupling frequencies up to and slightly beyond its
+SRF.</p>
+<h2 id="the-role-of-bulk-electrolytic-capacitors">The Role of Bulk
+Electrolytic Capacitors</h2>
+<p>Bulk capacitors, typically aluminum electrolytic or tantalum, offer
+large capacitance values ranging from tens to thousands of microfarads.
+Their primary role is to handle low-frequency power demands, generally
+from DC up to a few hundred kilohertz.</p>
+<p>When a circuit powers up or shifts into a high-power processing
+state, it draws a massive amount of current. The distant voltage
+regulator module (VRM) cannot respond instantly due to the inductance of
+the circuit board traces. Bulk capacitors act as large energy reservoirs
+on the board, supplying this substantial charge until the VRM can
+adjust. However, because bulk capacitors are physically large, they have
+high ESL, making them completely ineffective at responding to
+high-frequency transients.</p>
+<h2 id="the-role-of-low-inductance-mlcc-arrays">The Role of
+Low-Inductance MLCC Arrays</h2>
+<p>To handle high-frequency transients—ranging from a few megahertz to
+several gigahertz—engineers use MLCCs. These capacitors have much
+smaller capacitance values (nanofarads to picofarads) and are housed in
+tiny surface-mount packages, which gives them extremely low ESL.</p>
+<p>Low ESL allows MLCCs to push their self-resonant frequencies into the
+megahertz and gigahertz ranges, providing a fast, low-impedance path for
+high-speed switching currents. Engineers use arrays of these MLCCs in
+parallel for two specific reasons:</p>
+<ol type="1">
+<li><strong>Lowering Total Inductance:</strong> Placing multiple MLCCs
+of the same value in parallel divides their collective ESL and ESR,
+driving the impedance floor even lower.</li>
+<li><strong>Expanding Frequency Coverage:</strong> Using an array of
+different capacitance values (e.g., 1 µF, 0.1 µF, and 0.01 µF) staggers
+their self-resonant frequencies. Each smaller value takes over as the
+larger value becomes inductive, creating a continuous, flat,
+low-impedance profile across a wide frequency band.</li>
+</ol>
+<h2 id="managing-anti-resonance">Managing Anti-Resonance</h2>
+<p>Combining bulk capacitors with MLCCs requires careful balance. When
+two different capacitor types are placed in parallel, there is a
+frequency zone where the larger capacitor acts inductively (above its
+SRF) while the smaller capacitor still acts capacitively (below its
+SRF).</p>
+<p>This creates a parallel LC tank circuit, resulting in a sharp
+impedance spike known as an anti-resonance peak. Engineers mitigate this
+by selecting bulk capacitors with a controlled amount of ESR, which
+dampens the resonance peak, and by using closely spaced capacitor values
+in the MLCC array to smooth out the impedance curve.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-power-distribution-networks-combine-bulk-and-mlc-cs';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

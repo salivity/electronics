@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Sequentially Laminated Buried Vias Increase PCB Costs - electronics</title>
+    <meta name="description" content="Sequentially laminated buried vias significantly drive up the fabrication costs of high-density interconnect (HDI) printed circuit boards (PCBs) primarily due to the need for multiple lamination cycles, repeated drilling and plating processes, and the res">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-sequentially-laminated-buried-vias-increase-pcb-costs">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Sequentially Laminated Buried Vias Increase PCB Costs - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-sequentially-laminated-buried-vias-increase-pcb-costs" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Sequentially laminated buried vias significantly drive up the fabrication costs of high-density interconnect (HDI) printed circuit boards (PCBs) primarily due to the need for multiple lamination cycles, repeated drilling and plating processes, and the res" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-sequentially-laminated-buried-vias-increase-pcb-costs">Why
+Sequentially Laminated Buried Vias Increase PCB Costs</h1>
+<p>Sequentially laminated buried vias significantly drive up the
+fabrication costs of high-density interconnect (HDI) printed circuit
+boards (PCBs) primarily due to the need for multiple lamination cycles,
+repeated drilling and plating processes, and the resulting decline in
+manufacturing yields. This article provides a comprehensive breakdown of
+these specific manufacturing challenges, explaining how additional
+production time, specialized materials, strict registration tolerances,
+and rigorous inspection requirements directly translate to higher
+expenses for complex electronics.</p>
+<h3 id="multiple-lamination-cycles">Multiple Lamination Cycles</h3>
+<p>Standard multilayer PCBs are manufactured using a single lamination
+cycle, where all copper and prepreg layers are pressed together at once.
+However, when a design incorporates buried vias across different layer
+pairs, the manufacturer must use sequential lamination.</p>
+<p>Each sequence requires building a sub-composite board, laminating it
+under high heat and pressure, and then repeating the process to add more
+layers. Because lamination presses run for hours at a time, every
+additional lamination cycle exponentially increases the machine time,
+energy consumption, and labor required to finish a single board.</p>
+<h3 id="repeated-drilling-and-plating-steps">Repeated Drilling and
+Plating Steps</h3>
+<p>Buried vias connect internal layers without reaching the outer
+surfaces, meaning they must be formed before the outer layers are added.
+In a sequentially laminated HDI board, each sub-assembly must be treated
+like an individual PCB.</p>
+<p>For every lamination sequence, the manufacturer must perform a
+complete set of fabrication steps:</p>
+<ul>
+<li>Mechanical or laser drilling of the vias.</li>
+<li>Desmearing and cleaning the holes.</li>
+<li>Electroless copper deposition followed by electroplating.</li>
+<li>Imaging and etching the circuit patterns.</li>
+</ul>
+<p>Repeating these chemical and mechanical processes multiple times for
+a single final product drastically increases both material consumption
+and factory floor bottlenecks.</p>
+<h3 id="tight-registration-tolerances-and-material-movement">Tight
+Registration Tolerances and Material Movement</h3>
+<p>Every time a PCB undergoes a lamination cycle, the fiberglass and
+resin materials expand and contract due to intense heat and pressure. In
+HDI electronics, where trace widths and via pads are microscopic, this
+material instability makes layer-to-layer alignment—known as
+registration—extremely difficult.</p>
+<p>To combat this, manufacturers must use expensive, high-performance
+laminate materials with greater dimensional stability. Additionally,
+they must employ advanced X-ray alignment and optical registration
+systems to ensure that newly drilled vias align perfectly with the
+internal pads from previous lamination cycles.</p>
+<h3 id="via-plugging-and-planarization-requirements">Via Plugging and
+Planarization Requirements</h3>
+<p>When buried vias are created in a sub-composite layer, the resulting
+holes cannot simply be left empty before the next layers are pressed on
+top. Doing so would cause resin starvation or trapped air pockets
+(voids) during the next lamination cycle, leading to board failure.</p>
+<p>Therefore, these vias must be plugged with specialized conductive or
+non-conductive epoxy paste. After plugging, the board must be cured and
+mechanically planarized (sanded down) so the surface is completely flat
+for the next copper layer. This adds yet another specialized,
+time-consuming step to the fabrication process.</p>
+<h3 id="decreased-manufacturing-yields-and-scrapped-boards">Decreased
+Manufacturing Yields and Scrapped Boards</h3>
+<p>The cumulative effect of multiple processing steps is a higher
+probability of defects. A single misalignment, plating void, or etching
+error during the third lamination cycle ruins all the successful work
+completed in the first two cycles.</p>
+<p>Because internal buried vias cannot be reworked or repaired once
+laminated over, any defect found during intermediate Automated Optical
+Inspection (AOI) or final electrical testing results in the entire board
+being scrapped. Manufacturers must factor this lower yield rate into
+their pricing, passing the cost of the scrapped materials and lost time
+onto the customer to maintain profitability.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-sequentially-laminated-buried-vias-increase-pcb-costs';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

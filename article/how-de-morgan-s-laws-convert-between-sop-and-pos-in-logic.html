@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How De Morgan&#39;s Laws Convert Between SOP and POS in Logic - electronics</title>
+    <meta name="description" content="In digital electronics, engineers frequently need to translate boolean expressions between Sum-of-Products (SOP) and Product-of-Sums (POS) forms to optimize circuit design, reduce hardware costs, and adapt to available logic gates. This article provides a">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-de-morgan-s-laws-convert-between-sop-and-pos-in-logic">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How De Morgan&#39;s Laws Convert Between SOP and POS in Logic - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-de-morgan-s-laws-convert-between-sop-and-pos-in-logic" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In digital electronics, engineers frequently need to translate boolean expressions between Sum-of-Products (SOP) and Product-of-Sums (POS) forms to optimize circuit design, reduce hardware costs, and adapt to available logic gates. This article provides a" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-de-morgans-laws-convert-between-sop-and-pos-in-logic">How De
+Morgan's Laws Convert Between SOP and POS in Logic</h1>
+<p>In digital electronics, engineers frequently need to translate
+boolean expressions between Sum-of-Products (SOP) and Product-of-Sums
+(POS) forms to optimize circuit design, reduce hardware costs, and adapt
+to available logic gates. This article provides a comprehensive overview
+of how De Morgan's laws serve as the mathematical bridge between these
+two standard forms. By applying the principles of negation and operator
+swapping, engineers can seamlessly transform AND-OR logic configurations
+into OR-AND configurations, and vice versa, ensuring maximum efficiency
+in digital system implementation.</p>
+<h2 id="understanding-sop-and-pos-forms">Understanding SOP and POS
+Forms</h2>
+<p>Before applying De Morgan's laws, it is necessary to define the two
+canonical forms of boolean expressions used in digital logic design:</p>
+<ul>
+<li><strong>Sum-of-Products (SOP):</strong> This form consists of two or
+more AND terms (products) that are ORed (summed) together. An example is
+<code>(A · B) + (C · D)</code>. SOP expressions are naturally
+implemented using AND gates feeding into a single OR gate, or entirely
+with NAND gates.</li>
+<li><strong>Product-of-Sums (POS):</strong> This form consists of two or
+more OR terms (sums) that are ANDed (multiplied) together. An example is
+<code>(A + B) · (C + D)</code>. POS expressions are naturally
+implemented using OR gates feeding into a single AND gate, or entirely
+with NOR gates.</li>
+</ul>
+<h2 id="the-mechanics-of-de-morgans-laws">The Mechanics of De Morgan's
+Laws</h2>
+<p>De Morgan's laws consist of two transformation rules that describe
+how the negation of a conjunction (AND) and the negation of a
+disjunction (OR) behave. In boolean algebra, where a prime
+(<code>'</code>) or an overbar represents inversion (NOT), the laws are
+stated as:</p>
+<ol type="1">
+<li><strong>(A · B)' = A' + B'</strong> (The complement of a product of
+variables is equal to the sum of the complements of the variables.)</li>
+<li><strong>(A + B)' = A' · B'</strong> (The complement of a sum of
+variables is equal to the product of the complements of the
+variables.)</li>
+</ol>
+<p>In simple terms, De Morgan's laws allow an engineer to "break the
+line, change the sign." When a negation bar over an expression is
+broken, the operator directly underneath it flips from AND to OR, or
+from OR to AND.</p>
+<h2 id="converting-sop-to-pos">Converting SOP to POS</h2>
+<p>To convert a standard SOP expression into a POS expression without
+changing the underlying logic of the circuit, engineers use the Law of
+Double Negation (<code>X = X''</code>) combined with De Morgan's
+laws.</p>
+<p>Here is the step-by-step process to convert the SOP expression
+<code>Y = (A · B) + (C · D)</code> into a POS format:</p>
+<ol type="1">
+<li><strong>Double Negate the Expression:</strong> Apply two negation
+bars over the entire expression. This does not change the truth value of
+the output. <code>Y = ((A · B) + (C · D))''</code></li>
+<li><strong>Apply De Morgan's Law to the Inner Negation:</strong> Break
+the bottom negation bar at the main OR (<code>+</code>) operator,
+changing it to an AND (<code>·</code>) operator.
+<code>Y = ((A · B)' · (C · D)')'</code></li>
+<li><strong>Apply De Morgan's Law to the Product Terms:</strong> Break
+the negation bars over the individual <code>(A · B)'</code> and
+<code>(C · D)'</code> terms. This changes their internal AND operators
+into OR operators. <code>Y = ((A' + B') · (C' + D'))'</code></li>
+</ol>
+<p>At this stage, the inner expression
+<code>(A' + B') · (C' + D')</code> is purely in Product-of-Sums (POS)
+form, with an overall inversion at the output. If an engineer needs a
+strict POS form without the final inversion, they can extract the
+complement of the function (<code>Y'</code>) from a truth table
+(grouping the 0s instead of the 1s) as an SOP, and apply De Morgan's law
+a single time to arrive directly at a pure POS expression.</p>
+<h2 id="converting-pos-to-sop">Converting POS to SOP</h2>
+<p>The reverse process—converting POS to SOP—follows the exact same
+logic, utilizing the second of De Morgan's laws.</p>
+<p>Here is how to convert the POS expression
+<code>Y = (A + B) · (C + D)</code>:</p>
+<ol type="1">
+<li><strong>Double Negate the Expression:</strong>
+<code>Y = ((A + B) · (C + D))''</code></li>
+<li><strong>Break the First Negation Bar:</strong> Change the central
+AND operator to an OR operator.
+<code>Y = ((A + B)' + (C + D)')'</code></li>
+<li><strong>Break the Term Negation Bars:</strong> Change the internal
+OR operators to AND operators.
+<code>Y = ((A' · B') + (C' · D'))'</code></li>
+</ol>
+<p>The internal structure is now in a Sum-of-Products format.
+Alternatively, multiplying out the terms using the distributive law
+after applying a single De Morgan transformation to a negated POS
+expression will also yield a standard SOP expression.</p>
+<h2 id="practical-application-in-hardware">Practical Application in
+Hardware</h2>
+<p>In physical circuit design, fabricating a chip with only one type of
+logic gate is significantly cheaper and more efficient than mixing AND,
+OR, and NOT gates. These are known as universal gates (NAND and
+NOR).</p>
+<p>De Morgan's laws are the exact mechanism that proves NAND and NOR
+gates are universal:</p>
+<ul>
+<li>By applying De Morgan's laws to an <strong>SOP</strong> expression,
+engineers convert standard AND-OR logic into <strong>NAND-NAND</strong>
+logic.</li>
+<li>By applying De Morgan's laws to a <strong>POS</strong> expression,
+engineers convert standard OR-AND logic into <strong>NOR-NOR</strong>
+logic.</li>
+</ul>
+<p>If an engineer derives a POS expression from a system's requirements,
+but the available Programmable Logic Array (PLA) or integrated circuit
+stock only utilizes NAND gates, they simply apply De Morgan's laws to
+translate the POS expression into an SOP structure suitable for the
+hardware.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-de-morgan-s-laws-convert-between-sop-and-pos-in-logic';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

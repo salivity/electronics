@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How CMOS AND Logic Gates Work in Digital Electronics - electronics</title>
+    <meta name="description" content="In digital electronics, a Complementary Metal-Oxide-Semiconductor (CMOS) AND logic gate evaluates logical conjunctions—producing a high output only when all inputs are high—by physically combining a CMOS NAND gate with a CMOS NOT gate (inverter). Because">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-cmos-and-logic-gates-work-in-digital-electronics">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How CMOS AND Logic Gates Work in Digital Electronics - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-cmos-and-logic-gates-work-in-digital-electronics" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In digital electronics, a Complementary Metal-Oxide-Semiconductor (CMOS) AND logic gate evaluates logical conjunctions—producing a high output only when all inputs are high—by physically combining a CMOS NAND gate with a CMOS NOT gate (inverter). Because" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-cmos-and-logic-gates-work-in-digital-electronics">How CMOS
+AND Logic Gates Work in Digital Electronics</h1>
+<p>In digital electronics, a Complementary Metal-Oxide-Semiconductor
+(CMOS) AND logic gate evaluates logical conjunctions—producing a high
+output only when all inputs are high—by physically combining a CMOS NAND
+gate with a CMOS NOT gate (inverter). Because standard CMOS transistor
+physics naturally inverts signal levels, engineers cannot build a
+single-stage AND gate efficiently. Instead, this article explains how a
+two-stage architecture uses four transistors to execute a NAND operation
+and two additional transistors to invert that result, yielding a true
+AND output with minimal power consumption and high noise immunity.</p>
+<h2 id="why-cmos-requires-a-two-stage-design">Why CMOS Requires a
+Two-Stage Design</h2>
+<p>A CMOS circuit relies on two types of transistors: PMOS (p-type) and
+NMOS (n-type). By nature, these transistors operate best as inverting
+switches:</p>
+<ul>
+<li><strong>PMOS transistors</strong> pass strong high signals (Logic 1)
+and are activated by a low gate voltage (Logic 0). They form the pull-up
+network connected to the voltage source (VDD).</li>
+<li><strong>NMOS transistors</strong> pass strong low signals (Logic 0)
+and are activated by a high gate voltage (Logic 1). They form the
+pull-down network connected to the ground (GND).</li>
+</ul>
+<p>If you attempt to build a single-stage AND gate by putting NMOS
+transistors in the pull-up network and PMOS in the pull-down network,
+the output voltage degrades significantly. Therefore, to maintain full
+voltage swings and crisp digital signals, CMOS logic must use inverting
+stages. To achieve a non-inverting AND function, two inverting stages
+are connected in series: a NAND stage followed immediately by an
+inverter stage.</p>
+<h2 id="stage-1-the-cmos-nand-gate">Stage 1: The CMOS NAND Gate</h2>
+<p>The first stage takes the initial inputs (Input A and Input B) and
+evaluates them using four transistors: two PMOS and two NMOS.</p>
+<ol type="1">
+<li><strong>The Pull-Up Network (PMOS in Parallel):</strong> Two PMOS
+transistors are connected in parallel between VDD and the stage's output
+node. If either Input A or Input B is low (Logic 0), at least one PMOS
+transistor turns on. This creates a direct path from VDD to the
+intermediate output, pulling the signal high (Logic 1).</li>
+<li><strong>The Pull-Down Network (NMOS in Series):</strong> Two NMOS
+transistors are connected in series between the intermediate output node
+and GND. For the output to be pulled low (Logic 0), both Input A and
+Input B must be high (Logic 1) simultaneously. This turns on both NMOS
+transistors, creating a continuous path to the ground while both PMOS
+transistors turn off.</li>
+</ol>
+<p>At the end of Stage 1, the circuit has evaluated the conjunction of
+inputs A and B, but the result is inverted. If both inputs are 1, the
+intermediate output is 0. In all other cases, the intermediate output is
+1.</p>
+<h2 id="stage-2-the-cmos-inverter-not-gate">Stage 2: The CMOS Inverter
+(NOT Gate)</h2>
+<p>To turn the NAND result into a true AND output, the intermediate
+signal is fed directly into the gates of a standard CMOS inverter, which
+consists of two transistors: one PMOS and one NMOS.</p>
+<ol type="1">
+<li><strong>When Stage 1 Output is Low (0):</strong> This occurs only
+when both original inputs (A and B) are high (1). The low intermediate
+signal turns on the inverter's PMOS transistor and turns off its NMOS
+transistor. This connects the final output to VDD, resulting in a final
+high output (Logic 1).</li>
+<li><strong>When Stage 1 Output is High (1):</strong> This occurs when
+one or both original inputs are low (0). The high intermediate signal
+turns off the inverter's PMOS transistor and turns on its NMOS
+transistor. This connects the final output to GND, resulting in a final
+low output (Logic 0).</li>
+</ol>
+<h2 id="complete-conjunction-evaluation">Complete Conjunction
+Evaluation</h2>
+<p>By cascading these two stages using a total of six transistors, the
+CMOS AND gate accurately evaluates logical conjunctions:</p>
+<ul>
+<li><strong>Inputs 0 and 0:</strong> NAND stage outputs 1 -&gt; Inverter
+outputs <strong>0</strong>.</li>
+<li><strong>Inputs 0 and 1:</strong> NAND stage outputs 1 -&gt; Inverter
+outputs <strong>0</strong>.</li>
+<li><strong>Inputs 1 and 0:</strong> NAND stage outputs 1 -&gt; Inverter
+outputs <strong>0</strong>.</li>
+<li><strong>Inputs 1 and 1:</strong> NAND stage outputs 0 -&gt; Inverter
+outputs <strong>1</strong>.</li>
+</ul>
+<p>This two-stage combination ensures that at any steady state, there is
+never a direct path between the power supply and the ground, allowing
+the CMOS AND gate to evaluate logic with near-zero static power
+dissipation.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-cmos-and-logic-gates-work-in-digital-electronics';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

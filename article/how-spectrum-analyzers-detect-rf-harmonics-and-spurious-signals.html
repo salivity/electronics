@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Spectrum Analyzers Detect RF Harmonics and Spurious Signals - electronics</title>
+    <meta name="description" content="This article explains how swept-tuned and real-time spectrum analyzers identify, measure, and display unwanted harmonics and spurious emissions in the frequency domain for radio frequency (RF) electronics. It covers the fundamental operational differences">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-spectrum-analyzers-detect-rf-harmonics-and-spurious-signals">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Spectrum Analyzers Detect RF Harmonics and Spurious Signals - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-spectrum-analyzers-detect-rf-harmonics-and-spurious-signals" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how swept-tuned and real-time spectrum analyzers identify, measure, and display unwanted harmonics and spurious emissions in the frequency domain for radio frequency (RF) electronics. It covers the fundamental operational differences" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="how-spectrum-analyzers-detect-rf-harmonics-and-spurious-signals">How
+Spectrum Analyzers Detect RF Harmonics and Spurious Signals</h1>
+<p>This article explains how swept-tuned and real-time spectrum
+analyzers identify, measure, and display unwanted harmonics and spurious
+emissions in the frequency domain for radio frequency (RF) electronics.
+It covers the fundamental operational differences between the two
+analyzer types, detailing how swept-tuned instruments excel at wide-band
+static measurements while real-time analyzers capture elusive, transient
+anomalies.</p>
+<h2 id="understanding-harmonics-and-spurious-emissions">Understanding
+Harmonics and Spurious Emissions</h2>
+<p>In RF electronics, non-linear components like amplifiers and mixers
+inevitably generate unwanted signals alongside the intended carrier
+frequency. These anomalies are categorized into two main types:</p>
+<ul>
+<li><strong>Harmonics:</strong> Signals that occur at integer multiples
+of the fundamental frequency (e.g., a 1 GHz signal producing harmonics
+at 2 GHz, 3 GHz, and 4 GHz). Because they are mathematically related to
+the fundamental signal, their locations in the frequency domain are
+predictable.</li>
+<li><strong>Spurious Emissions (Spurs):</strong> Unwanted signals that
+are not harmonically related to the fundamental frequency. They often
+result from internal clock leakage, power supply noise, or
+intermodulation products. Spurs can be continuous, drifting, or
+transient, making them much harder to locate.</li>
+</ul>
+<p>Spectrum analyzers translate time-domain RF signals into the
+frequency domain, plotting amplitude against frequency to make these
+anomalies visible.</p>
+<h2 id="how-swept-tuned-spectrum-analyzers-work">How Swept-Tuned
+Spectrum Analyzers Work</h2>
+<p>Traditional swept-tuned spectrum analyzers use a superheterodyne
+architecture. They operate by sweeping a local oscillator (LO) across a
+specified frequency range. As the LO sweeps, it mixes with the incoming
+RF signal, translating it to an intermediate frequency (IF) that passes
+through a Resolution Bandwidth (RBW) filter before reaching a
+detector.</p>
+<h3 id="revealing-harmonics-with-swept-tuned-analyzers">Revealing
+Harmonics with Swept-Tuned Analyzers</h3>
+<p>Swept-tuned analyzers are ideal for measuring continuous, stable
+signals like harmonics. Because harmonics are static in frequency, the
+analyzer can sweep across a massive frequency span (often up to tens of
+gigahertz) and capture each harmonic sequentially as the LO tunes past
+them.</p>
+<p>To reveal low-level harmonics and spurs using a swept-tuned analyzer,
+engineers adjust the RBW filter. Narrowing the RBW reduces the
+instrument's noise floor (Displayed Average Noise Level, or DANL),
+allowing weak spurious signals that were previously hidden in the noise
+to become visible.</p>
+<h3 id="the-limitation-blind-time">The Limitation: Blind Time</h3>
+<p>The primary drawback of a swept-tuned analyzer is that it can only
+look at one narrow slice of frequency at any given microsecond.
+Furthermore, narrowing the RBW to see weak signals drastically increases
+the sweep time. If a spurious emission is transient—meaning it hops
+frequencies or only appears for a fraction of a second—it is highly
+likely to occur at a frequency the analyzer is not currently sweeping,
+rendering the spur invisible.</p>
+<h2 id="how-real-time-spectrum-analyzers-rtsa-work">How Real-Time
+Spectrum Analyzers (RTSA) Work</h2>
+<p>Real-time spectrum analyzers solve the blind-time problem of
+swept-tuned architectures. Instead of sweeping a filter across a span,
+an RTSA digitizes a wide block of RF spectrum simultaneously using a
+high-speed Analog-to-Digital Converter (ADC).</p>
+<p>Once digitized, dedicated Digital Signal Processing (DSP) hardware
+performs millions of Fast Fourier Transforms (FFTs) per second. By
+overlapping these FFT calculations in memory, the RTSA processes the
+entire real-time bandwidth continuously with zero blind time.</p>
+<h3 id="revealing-transient-spurs-with-rtsas">Revealing Transient Spurs
+with RTSAs</h3>
+<p>Because the RTSA captures every event within its real-time bandwidth
+simultaneously, it excels at revealing intermittent spurious emissions,
+frequency-hopping interference, and short-duration switching transients.
+RTSAs use specialized display modes to show these events in the
+frequency domain:</p>
+<ul>
+<li><strong>Persistence Displays:</strong> Similar to a digital phosphor
+oscilloscope, a persistence display uses color-grading to show how often
+a signal occupies a specific frequency and amplitude. A continuous
+harmonic will appear bright red, while a brief, microsecond-long
+spurious burst will appear in cool blue. This allows engineers to see
+transient spurs hiding directly beneath or adjacent to a strong carrier
+signal.</li>
+<li><strong>Spectrograms:</strong> This mode plots frequency on the
+X-axis, time on the Y-axis, and amplitude as color. It creates a
+historical waterfall view, allowing engineers to see exactly when a
+spurious emission occurred and whether it is drifting in frequency over
+time due to thermal changes in the RF circuit.</li>
+<li><strong>Frequency Mask Triggering (FMT):</strong> Engineers can draw
+a mask in the frequency domain around a known signal. If an unexpected
+spurious emission breaches this mask for even a few nanoseconds, the
+RTSA triggers and captures the event into memory for deep analysis.</li>
+</ul>
+<h2 id="choosing-the-right-approach-for-rf-electronics">Choosing the
+Right Approach for RF Electronics</h2>
+<p>In practical RF testing, both methods are frequently combined. Many
+modern real-time spectrum analyzers include a swept-tuned mode.</p>
+<p>Engineers use the <strong>swept-tuned mode</strong> to perform
+wide-span regulatory compliance sweeps, measuring the exact amplitude of
+predictable 2nd, 3rd, and 4th harmonics across a broad spectrum with
+high dynamic range. They then switch to <strong>real-time mode</strong>,
+zooming in on specific frequency bands of interest to hunt down elusive,
+intermittent spurious emissions caused by digital control lines,
+phase-locked loop (PLL) settling times, or unstable amplification
+stages.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-spectrum-analyzers-detect-rf-harmonics-and-spurious-signals';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

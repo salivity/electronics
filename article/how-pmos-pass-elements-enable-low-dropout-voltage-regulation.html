@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How PMOS Pass Elements Enable Low-Dropout Voltage Regulation - electronics</title>
+    <meta name="description" content="This article explores how a P-channel Metal-Oxide-Semiconductor (PMOS) transistor functions as the primary pass element in low-dropout (LDO) voltage regulators, enabling them to maintain a stable output even when the input and output voltages are nearly i">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-pmos-pass-elements-enable-low-dropout-voltage-regulation">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How PMOS Pass Elements Enable Low-Dropout Voltage Regulation - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-pmos-pass-elements-enable-low-dropout-voltage-regulation" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explores how a P-channel Metal-Oxide-Semiconductor (PMOS) transistor functions as the primary pass element in low-dropout (LDO) voltage regulators, enabling them to maintain a stable output even when the input and output voltages are nearly i" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="how-pmos-pass-elements-enable-low-dropout-voltage-regulation">How
+PMOS Pass Elements Enable Low-Dropout Voltage Regulation</h1>
+<p>This article explores how a P-channel Metal-Oxide-Semiconductor
+(PMOS) transistor functions as the primary pass element in low-dropout
+(LDO) voltage regulators, enabling them to maintain a stable output even
+when the input and output voltages are nearly identical. We will examine
+the fundamental differences between PMOS and traditional NPN or NMOS
+architectures, focusing on gate drive requirements, on-resistance
+characteristics, and how pulling the gate voltage toward ground allows
+the PMOS to operate efficiently with minimal voltage headroom.</p>
+<h3 id="the-challenge-of-dropout-voltage">The Challenge of Dropout
+Voltage</h3>
+<p>In linear voltage regulators, the pass element acts as a variable
+resistor placed between the input voltage (<span
+class="math inline">\(V_{IN}\)</span>) and the output voltage (<span
+class="math inline">\(V_{OUT}\)</span>). The "dropout voltage" is the
+minimum difference between <span class="math inline">\(V_{IN}\)</span>
+and <span class="math inline">\(V_{OUT}\)</span> required for the
+regulator to maintain its specified output voltage.</p>
+<p>Traditional linear regulators use NPN bipolar junction transistors or
+NMOS transistors in a voltage-follower configuration. These components
+require a control voltage at the base or gate that is significantly
+higher than the output voltage to turn on fully. When <span
+class="math inline">\(V_{IN}\)</span> drops close to <span
+class="math inline">\(V_{OUT}\)</span>, there is no longer enough
+voltage available to drive the transistor, causing the regulator to fall
+out of regulation. Typical NPN regulators require a headroom of 1.5V to
+2V, making them inefficient for low-voltage or battery-powered
+electronics.</p>
+<h3 id="how-the-pmos-pass-element-solves-the-headroom-problem">How the
+PMOS Pass Element Solves the Headroom Problem</h3>
+<p>A PMOS pass element operates differently because of how it is
+oriented and driven within the LDO circuit. In a PMOS LDO, the source
+terminal is connected to <span class="math inline">\(V_{IN}\)</span>,
+and the drain terminal is connected to <span
+class="math inline">\(V_{OUT}\)</span>.</p>
+<p>To turn a PMOS transistor on, its gate voltage (<span
+class="math inline">\(V_G\)</span>) must be pulled <em>lower</em> than
+its source voltage (<span class="math inline">\(V_{IN}\)</span>) by at
+least the transistor's threshold voltage (<span
+class="math inline">\(V_{TH}\)</span>). Because the error amplifier
+inside the LDO can pull the gate all the way down to ground (0V), the
+PMOS does not require any voltage above <span
+class="math inline">\(V_{IN}\)</span> to activate.</p>
+<p>When <span class="math inline">\(V_{IN}\)</span> and <span
+class="math inline">\(V_{OUT}\)</span> are nearly equal, the error
+amplifier detects that the output voltage is starting to droop. In
+response, it pulls the PMOS gate closer to ground. This increases the
+gate-to-source voltage differential (<span
+class="math inline">\(V_{GS}\)</span>), turning the PMOS transistor on
+harder and allowing it to pass current without needing extra voltage
+headroom at the input.</p>
+<h3 id="operating-in-the-linear-ohmic-region">Operating in the Linear
+(Ohmic) Region</h3>
+<p>As <span class="math inline">\(V_{IN}\)</span> approaches <span
+class="math inline">\(V_{OUT}\)</span>, the drain-to-source voltage
+across the PMOS becomes very small. Under these conditions, the PMOS
+transistor transitions from the saturation region into the linear (or
+ohmic) region of operation.</p>
+<p>In the linear region, the PMOS acts purely like a low-value resistor.
+The minimum voltage difference required to maintain regulation is
+determined strictly by Ohm's Law:</p>
+<p><span class="math display">\[V_{DROPOUT} = I_{LOAD} \times
+R_{DS(on)}\]</span></p>
+<p>Where <span class="math inline">\(I_{LOAD}\)</span> is the current
+demanded by the load, and <span
+class="math inline">\(R_{DS(on)}\)</span> is the drain-to-source
+on-resistance of the PMOS transistor. Because modern PMOS transistors
+are engineered to have an extremely low <span
+class="math inline">\(R_{DS(on)}\)</span>—often just a few milliohms—the
+resulting dropout voltage can be less than 100 millivolts. As long as
+<span class="math inline">\(V_{IN}\)</span> remains above <span
+class="math inline">\(V_{OUT}\)</span> plus this tiny resistive drop,
+the LDO will maintain strict regulation.</p>
+<h3 id="voltage-driven-efficiency">Voltage-Driven Efficiency</h3>
+<p>Another reason the PMOS maintains regulation effectively at low
+headroom is that it is a voltage-driven device rather than a
+current-driven device (like PNP transistors, which are also used in some
+LDOs).</p>
+<p>When a PNP pass element approaches dropout, it requires a massive
+surge in base current to stay on, which gets wasted to ground and drains
+the power supply. A PMOS gate, however, is capacitive and requires
+almost zero steady-state current to remain open. Therefore, when input
+and output voltages are nearly equal, the PMOS can be driven fully on by
+the error amplifier without wasting power, ensuring maximum efficiency
+right up to the physical limits of its internal resistance.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-pmos-pass-elements-enable-low-dropout-voltage-regulation';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

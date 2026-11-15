@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Capacitive Reactance Decreases as Frequency Increases - electronics</title>
+    <meta name="description" content="This article provides a clear explanation of why capacitive reactance decreases as signal frequency increases in alternating current (AC) electronics. We will cover the definition of capacitive reactance, examine the mathematical formula that dictates thi">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-capacitive-reactance-decreases-as-frequency-increases">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Capacitive Reactance Decreases as Frequency Increases - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-capacitive-reactance-decreases-as-frequency-increases" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a clear explanation of why capacitive reactance decreases as signal frequency increases in alternating current (AC) electronics. We will cover the definition of capacitive reactance, examine the mathematical formula that dictates thi" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-capacitive-reactance-decreases-as-frequency-increases">Why
+Capacitive Reactance Decreases as Frequency Increases</h1>
+<p>This article provides a clear explanation of why capacitive reactance
+decreases as signal frequency increases in alternating current (AC)
+electronics. We will cover the definition of capacitive reactance,
+examine the mathematical formula that dictates this inverse
+relationship, and explore the physical behavior of electrons and
+electric fields within a capacitor during high-frequency AC cycles. By
+the end of this overview, you will understand both the theoretical and
+physical reasons why capacitors act as short circuits at high
+frequencies and open circuits at low frequencies.</p>
+<h2 id="what-is-capacitive-reactance">What is Capacitive Reactance?</h2>
+<p>Capacitive reactance is the opposition that a capacitor offers to
+alternating current due to its phase-shifted storage and release of
+energy in an electric field. Unlike standard resistance, which
+dissipates energy as heat, reactance stores energy and returns it to the
+circuit. Capacitive reactance is measured in ohms (<span
+class="math inline">\(\Omega\)</span>), just like resistance, and is
+denoted by the symbol <span class="math inline">\(X_C\)</span>. However,
+unlike a standard resistor whose resistance remains constant regardless
+of the signal, a capacitor's reactance is dynamic and changes based on
+the frequency of the AC signal passing through it.</p>
+<h2 id="the-mathematical-relationship">The Mathematical
+Relationship</h2>
+<p>The most direct way to understand why capacitive reactance drops as
+frequency rises is to look at the formula used to calculate it:</p>
+<p><span class="math display">\[X_C = \frac{1}{2 \pi f C}\]</span></p>
+<p>In this equation:</p>
+<ul>
+<li><strong><span class="math inline">\(X_C\)</span></strong> is the
+capacitive reactance in ohms (<span
+class="math inline">\(\Omega\)</span>).</li>
+<li><strong><span class="math inline">\(\pi\)</span></strong> (Pi) is
+the mathematical constant approximately equal to 3.14159.</li>
+<li><strong><span class="math inline">\(f\)</span></strong> is the
+frequency of the AC signal in hertz (Hz).</li>
+<li><strong><span class="math inline">\(C\)</span></strong> is the
+capacitance of the capacitor in farads (F).</li>
+</ul>
+<p>Because frequency (<span class="math inline">\(f\)</span>) is in the
+denominator of this fraction, it has an inverse relationship with
+capacitive reactance (<span class="math inline">\(X_C\)</span>).
+Mathematically, as the value of the denominator increases, the overall
+value of the fraction decreases. Therefore, if the capacitance (<span
+class="math inline">\(C\)</span>) remains constant and you double the
+frequency (<span class="math inline">\(f\)</span>), the capacitive
+reactance (<span class="math inline">\(X_C\)</span>) is cut in half. If
+you increase the frequency by a factor of ten, the reactance drops to
+one-tenth of its original value.</p>
+<h2 id="the-physical-explanation-charge-and-discharge-cycles">The
+Physical Explanation: Charge and Discharge Cycles</h2>
+<p>To understand what is physically happening inside the circuit, it
+helps to look at how a capacitor is constructed. A basic capacitor
+consists of two conductive metal plates separated by an insulating
+material called a dielectric. Because of this insulator, electrons
+cannot physically pass directly through the capacitor from one plate to
+the other.</p>
+<p>Instead, AC current appears to flow through a capacitor because of
+the alternating charging and discharging of its plates:</p>
+<ol type="1">
+<li><strong>At Zero Frequency (DC):</strong> When a direct current (DC)
+voltage is applied, electrons rush to one plate, and an equal number of
+electrons are repelled from the opposite plate. Once the voltage across
+the capacitor matches the supply voltage, the capacitor is fully
+charged. No more electrons can move, and the current stops completely.
+The capacitor acts as an open circuit, meaning its reactance is
+infinite.</li>
+<li><strong>At Low AC Frequencies:</strong> An AC signal constantly
+reverses its polarity. At a low frequency, the voltage changes direction
+slowly. The capacitor has plenty of time to fully charge up in one
+direction before the AC signal reverses. Once the capacitor approaches a
+full charge, the accumulated electrons on the plate repel new incoming
+electrons, creating a build-up of opposing voltage (counter-EMF). This
+opposition restricts the flow of current for a significant portion of
+the AC cycle, resulting in high capacitive reactance.</li>
+<li><strong>At High AC Frequencies:</strong> When the frequency is very
+high, the AC voltage reverses its polarity rapidly—often thousands or
+millions of times per second. Because the direction of the current
+changes so quickly, the capacitor only has a fraction of a second to
+charge before the voltage reverses and forces it to discharge.</li>
+</ol>
+<p>Because the capacitor never gets the chance to accumulate a
+significant charge on its plates, it never builds up enough opposing
+voltage to push back against the incoming current. Electrons are
+constantly rushing onto and off of the plates at a rapid pace. To the
+rest of the circuit, this continuous, rapid back-and-forth movement of
+electrons looks just like an uninhibited flow of current. Consequently,
+the opposition to current flow (capacitive reactance) is extremely
+low.</p>
+<h2 id="practical-summary-in-ac-electronics">Practical Summary in AC
+Electronics</h2>
+<p>In practical AC circuit design, this inverse relationship between
+frequency and capacitive reactance is used to filter signals:</p>
+<ul>
+<li><strong>Low-Frequency Signals:</strong> The capacitor charges up
+quickly and blocks the current for the rest of the cycle, resulting in
+<strong>high reactance</strong>.</li>
+<li><strong>High-Frequency Signals:</strong> The capacitor changes
+direction before it can build up a charge, allowing current to flow back
+and forth with ease, resulting in <strong>low reactance</strong>.</li>
+</ul>
+<p>At extremely high frequencies, capacitive reactance drops so close to
+zero ohms that the capacitor effectively acts as a plain piece of wire,
+or a short circuit, allowing high-frequency AC signals to pass through
+unimpeded.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-capacitive-reactance-decreases-as-frequency-increases';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

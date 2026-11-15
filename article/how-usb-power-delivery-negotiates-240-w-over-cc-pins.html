@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How USB Power Delivery Negotiates 240W Over CC Pins - electronics</title>
+    <meta name="description" content="This article explains the technical process of how USB Power Delivery (USB PD) source and sink controllers communicate over the Configuration Channel (CC) pins to safely negotiate up to 240 watts of power. It covers the initial physical connection detecti">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-usb-power-delivery-negotiates-240-w-over-cc-pins">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How USB Power Delivery Negotiates 240W Over CC Pins - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-usb-power-delivery-negotiates-240-w-over-cc-pins" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains the technical process of how USB Power Delivery (USB PD) source and sink controllers communicate over the Configuration Channel (CC) pins to safely negotiate up to 240 watts of power. It covers the initial physical connection detecti" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-usb-power-delivery-negotiates-240w-over-cc-pins">How USB
+Power Delivery Negotiates 240W Over CC Pins</h1>
+<p>This article explains the technical process of how USB Power Delivery
+(USB PD) source and sink controllers communicate over the Configuration
+Channel (CC) pins to safely negotiate up to 240 watts of power. It
+covers the initial physical connection detection, the Biphase Mark
+Coding (BMC) communication protocol, the step-by-step power negotiation
+handshake, and the specific requirements for Extended Power Range (EPR)
+operation, including the mandatory authentication of electronically
+marked cables.</p>
+<h2 id="the-role-of-configuration-channel-cc-pins">The Role of
+Configuration Channel (CC) Pins</h2>
+<p>In a USB Type-C connector, two pins—CC1 and CC2—serve as the
+dedicated communication lines for power negotiation. Before any
+high-power transfer occurs, the source (power provider) and the sink
+(power consumer) use these pins to detect a physical connection,
+determine cable orientation, and establish basic roles.</p>
+<p>The source controller applies pull-up resistors (Rp) to the CC pins,
+while the sink controller applies pull-down resistors (Rd). When a cable
+connects the two devices, a voltage divider is formed on one of the CC
+lines. The source controller monitors the resulting voltage drop to
+confirm a device is attached and to determine which pin (CC1 or CC2)
+will be used for active communication. Initially, the source provides a
+safe, default 5V over the VBUS pin.</p>
+<h2 id="biphase-mark-coding-bmc-signaling">Biphase Mark Coding (BMC)
+Signaling</h2>
+<p>Once the physical connection is established and the active CC pin is
+identified, the source and sink controllers begin digital communication.
+USB PD uses Biphase Mark Coding (BMC) to transmit data packets over the
+single active CC wire.</p>
+<p>BMC is a single-wire, half-duplex signaling scheme operating at 300
+kbps. In BMC, a transition occurs at the start of every bit period. A
+binary "1" is represented by an additional transition in the middle of
+the bit period, while a binary "0" has no mid-bit transition. This
+encoding allows the receiving controller to extract both the clock and
+the data from the same signal line. Every packet sent over the CC line
+includes a preamble for synchronization, a Sop (Start of Packet)
+delimiter, the payload (control or data messages), a 32-bit Cyclic
+Redundancy Check (CRC) to ensure data integrity, and an End of Packet
+(EOP) delimiter.</p>
+<h2 id="the-standard-power-negotiation-handshake">The Standard Power
+Negotiation Handshake</h2>
+<p>To move beyond the default 5V and negotiate higher power, the
+controllers execute a strict sequence of BMC-encoded messages over the
+CC line:</p>
+<ol type="1">
+<li><strong>Source_Capabilities:</strong> The source controller
+initiates the process by broadcasting a <code>Source_Capabilities</code>
+packet. This packet contains a list of Power Data Objects (PDOs), which
+define the specific voltages and maximum currents the source can
+provide.</li>
+<li><strong>GoodCRC:</strong> The sink controller receives the
+capabilities and immediately replies with a <code>GoodCRC</code> message
+to confirm the packet was received without errors. (Every successful
+message in USB PD is followed by a <code>GoodCRC</code> from the
+receiver).</li>
+<li><strong>Request:</strong> The sink controller evaluates the PDOs and
+sends a <code>Request</code> packet back to the source, specifying the
+exact PDO (voltage and current profile) it needs to operate.</li>
+<li><strong>Accept:</strong> If the source can fulfill the request, it
+sends an <code>Accept</code> packet.</li>
+<li><strong>PS_RDY:</strong> The source controller then adjusts its
+internal DC-DC converter to ramp the VBUS voltage to the newly
+negotiated level. Once the voltage is stable, the source sends a
+<code>PS_RDY</code> (Power Supply Ready) message to the sink, completing
+the contract. The sink may now safely draw the negotiated current.</li>
+</ol>
+<h2 id="scaling-to-240-watts-extended-power-range-epr">Scaling to 240
+Watts: Extended Power Range (EPR)</h2>
+<p>Prior to USB PD 3.1, the maximum power limit was 100W (20V at 5A),
+known as the Standard Power Range (SPR). To reach 240W, USB PD 3.1
+introduced the Extended Power Range (EPR), which keeps the maximum
+current at 5A to prevent overheating, but increases the maximum voltage
+steps to 28V (140W), 36V (180W), and 48V (240W).</p>
+<p>Negotiating 240W requires additional steps over the CC pin beyond the
+standard handshake to ensure safety at higher voltages:</p>
+<h3 id="1-cable-verification-e-marker-communication">1. Cable
+Verification (E-Marker Communication)</h3>
+<p>Standard USB-C cables cannot safely handle 240W. EPR requires a
+specialized cable containing an Electronically Marked (E-Marker) IC.
+This chip is powered by the VCONN pin (the unused CC pin in the
+plug).</p>
+<p>Before entering EPR mode, the source controller communicates directly
+with the cable's E-Marker over the active CC pin using a specific Start
+of Packet delimiter called <code>SOP'</code>. The source queries the
+cable to verify that it is rated for 50V and 5A (EPR-capable). If the
+cable only supports 20V (SPR) or lacks an E-Marker, the source
+controller will refuse to negotiate voltages above 20V.</p>
+<h3 id="2-entering-epr-mode">2. Entering EPR Mode</h3>
+<p>Once the cable is verified, the controllers must transition from the
+initial 20V SPR contract into EPR mode:</p>
+<ol type="1">
+<li>The sink sends an <code>EPR_Mode</code> (Enter) request over the CC
+pin.</li>
+<li>The source verifies the sink, source, and cable are all
+EPR-compliant, and replies with an <code>EPR_Mode</code> (Enter
+Acknowledged) message, followed by <code>EPR_Mode</code> (Enter
+Succeeded).</li>
+<li>The source then broadcasts a new
+<code>EPR_Source_Capabilities</code> message. This includes the standard
+PDOs plus the new EPR PDOs (up to 48V) and Adjustable Voltage Supply
+(AVS) options, which allow the sink to request fine-tuned voltage
+increments in 100mV steps.</li>
+<li>The sink sends an <code>EPR_Request</code> for the 48V/5A
+profile.</li>
+<li>The source replies with <code>Accept</code>, transitions the VBUS
+line to 48V, and sends <code>PS_RDY</code>.</li>
+</ol>
+<h3 id="3-keep-alive-watchdog">3. Keep-Alive Watchdog</h3>
+<p>Because 48V at 5A poses a higher arc and thermal risk, EPR mode
+requires continuous communication. The sink controller must periodically
+send an <code>EPR_KeepAlive</code> message over the CC pin, and the
+source must acknowledge it. If this communication stops due to a fault
+or sudden disconnection, a watchdog timer expires in the source
+controller, forcing it to immediately drop the VBUS voltage back down to
+a safe level.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-usb-power-delivery-negotiates-240-w-over-cc-pins';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

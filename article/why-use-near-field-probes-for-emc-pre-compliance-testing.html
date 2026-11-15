@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Use Near-Field Probes for EMC Pre-Compliance Testing? - electronics</title>
+    <meta name="description" content="This article explains why electronics engineers utilize near-field probes for pre-compliance scanning before paying for accredited electromagnetic compatibility (EMC) chamber testing. It covers the high financial risks of failing formal certification, how">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-use-near-field-probes-for-emc-pre-compliance-testing">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Use Near-Field Probes for EMC Pre-Compliance Testing? - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-use-near-field-probes-for-emc-pre-compliance-testing" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains why electronics engineers utilize near-field probes for pre-compliance scanning before paying for accredited electromagnetic compatibility (EMC) chamber testing. It covers the high financial risks of failing formal certification, how" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-use-near-field-probes-for-emc-pre-compliance-testing">Why
+Use Near-Field Probes for EMC Pre-Compliance Testing?</h1>
+<p>This article explains why electronics engineers utilize near-field
+probes for pre-compliance scanning before paying for accredited
+electromagnetic compatibility (EMC) chamber testing. It covers the high
+financial risks of failing formal certification, how near-field probes
+pinpoint exact sources of electromagnetic interference (EMI) on a
+circuit board, and how early in-house troubleshooting accelerates
+time-to-market while drastically reducing development costs.</p>
+<h3 id="the-high-cost-of-accredited-emc-chambers">The High Cost of
+Accredited EMC Chambers</h3>
+<p>Booking time in an accredited semi-anechoic chamber is one of the
+most expensive phases of hardware development. Certified test facilities
+charge thousands of dollars per day to verify that an electronic device
+meets legal emissions standards, such as FCC or CE regulations.
+Furthermore, approximately 50% of electronic products fail their first
+formal EMC test. When a device fails, the chamber test stops, the money
+is lost, and the project faces weeks or months of delays while engineers
+redesign the board and wait for a new testing slot.</p>
+<h3 id="pinpointing-exact-emission-sources">Pinpointing exact Emission
+Sources</h3>
+<p>Accredited chambers measure far-field emissions using antennas placed
+several meters away from the device under test. While a chamber can tell
+an engineer <em>that</em> a device is failing at a specific frequency,
+it cannot easily tell them <em>where</em> on the printed circuit board
+(PCB) that emission is originating.</p>
+<p>Near-field probes solve this problem. Used alongside a spectrum
+analyzer right on the engineer's workbench, these probes detect magnetic
+(H-field) and electric (E-field) radiation right at the surface of the
+PCB. By moving the probe over the board, engineers can isolate the exact
+component, integrated circuit, power supply, or copper trace that is
+radiating excess energy.</p>
+<h3 id="fast-iterative-troubleshooting">Fast, Iterative
+Troubleshooting</h3>
+<p>Fixing an EMI issue inside a rented chamber is inefficient and
+stressful. By performing pre-compliance scans in-house with near-field
+probes, engineers can test modifications in real time.</p>
+<p>If a probe reveals that a switching regulator or a high-speed clock
+line is emitting too much noise, the engineer can immediately apply a
+fix—such as adding a ferrite bead, changing a capacitor value, or
+applying copper tape shielding. They can then re-scan the exact spot
+with the near-field probe to see if the emission level dropped. This
+immediate feedback loop allows teams to verify fixes in minutes rather
+than days.</p>
+<h3 id="de-risking-final-certification">De-Risking Final
+Certification</h3>
+<p>While near-field probing does not directly replace far-field
+compliance measurements—because near-field results do not directly
+mathematically translate to far-field regulatory limits—it establishes a
+vital baseline. By identifying and suppressing the loudest radiating
+culprits on the bench, engineers vastly increase their confidence.
+Entering an accredited EMC chamber after thorough near-field
+pre-compliance scanning ensures the device has the highest possible
+chance of passing on the first attempt, keeping the project on schedule
+and within budget.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-use-near-field-probes-for-emc-pre-compliance-testing';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

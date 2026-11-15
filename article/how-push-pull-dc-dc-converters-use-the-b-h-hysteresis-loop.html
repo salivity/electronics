@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Push-Pull DC-DC Converters Use the B-H Hysteresis Loop - electronics</title>
+    <meta name="description" content="This article explains how center-tapped push-pull DC-DC converters maximize power efficiency in isolated electronics by utilizing both halves of the transformer core hysteresis loop. By alternating current flow through two primary winding sections, the pu">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-push-pull-dc-dc-converters-use-the-b-h-hysteresis-loop">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Push-Pull DC-DC Converters Use the B-H Hysteresis Loop - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-push-pull-dc-dc-converters-use-the-b-h-hysteresis-loop" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how center-tapped push-pull DC-DC converters maximize power efficiency in isolated electronics by utilizing both halves of the transformer core hysteresis loop. By alternating current flow through two primary winding sections, the pu" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-push-pull-dc-dc-converters-use-the-b-h-hysteresis-loop">How
+Push-Pull DC-DC Converters Use the B-H Hysteresis Loop</h1>
+<p>This article explains how center-tapped push-pull DC-DC converters
+maximize power efficiency in isolated electronics by utilizing both
+halves of the transformer core hysteresis loop. By alternating current
+flow through two primary winding sections, the push-pull topology drives
+the magnetic flux in both positive and negative directions. This
+bidirectional excitation doubles the effective flux swing compared to
+single-ended converters, allowing for smaller, more efficient
+transformers that avoid premature core saturation.</p>
+<h3 id="the-transformer-core-hysteresis-loop">The Transformer Core
+Hysteresis Loop</h3>
+<p>To understand the efficiency of a push-pull converter, it is
+necessary to understand the magnetic hysteresis loop, often referred to
+as the B-H curve. This curve plots the magnetic flux density (B) against
+the magnetizing force (H) of a transformer core.</p>
+<p>The B-H loop consists of four quadrants. Single-ended isolated
+topologies, such as flyback and forward converters, only push current
+through the transformer in one direction. Because of this, they only
+operate in the first quadrant of the B-H curve. The magnetic flux rises
+from zero to a positive peak and then resets back to zero. This leaves
+the negative half of the core's magnetic capability completely
+unused.</p>
+<h3 id="the-center-tapped-push-pull-architecture">The Center-Tapped
+Push-Pull Architecture</h3>
+<p>A center-tapped push-pull DC-DC converter is specifically designed to
+utilize the first and third quadrants of the B-H loop. The primary side
+of the transformer features a winding with a connection right in the
+middle, known as a center tap.</p>
+<p>The circuit relies on three main primary-side connections:</p>
+<ul>
+<li><strong>The Center Tap:</strong> Connected directly to the positive
+input voltage source.</li>
+<li><strong>Primary Winding A (Start):</strong> Connected to the ground
+via Switch 1 (typically a MOSFET).</li>
+<li><strong>Primary Winding B (End):</strong> Connected to the ground
+via Switch 2.</li>
+</ul>
+<p>The two primary windings have an equal number of turns and are wound
+in opposite magnetic directions relative to the center tap.</p>
+<h3 id="bidirectional-flux-excitation-push-and-pull">Bidirectional Flux
+Excitation (Push and Pull)</h3>
+<p>The utilization of the full hysteresis loop happens through the
+alternating operation of the two switches. They are driven by
+out-of-phase pulse-width modulation (PWM) signals and are never turned
+on at the exact same time.</p>
+<p><strong>1. The "Push" Phase (First Quadrant)</strong> When Switch 1
+turns on and Switch 2 remains off, current flows from the positive
+input, into the center tap, through Primary Winding A, and down to the
+ground. This current generates a magnetizing force (+H) that drives the
+magnetic flux density in the positive direction (+B). The transformer
+core is now operating in the first quadrant of the hysteresis loop,
+transferring energy to the secondary side.</p>
+<p><strong>2. The Dead Time</strong> Before the next switch activates,
+both switches are briefly turned off. This "dead time" prevents a short
+circuit condition known as shoot-through, which would destroy the
+switches.</p>
+<p><strong>3. The "Pull" Phase (Third Quadrant)</strong> Next, Switch 2
+turns on while Switch 1 remains off. Current now flows from the center
+tap through Primary Winding B in the opposite direction. Because the
+winding is oriented opposite to Winding A, this creates a negative
+magnetizing force (-H). The magnetic flux is actively pulled down
+through zero and into the negative region (-B), utilizing the third
+quadrant of the hysteresis loop.</p>
+<h3 id="benefits-of-full-hysteresis-loop-utilization">Benefits of Full
+Hysteresis Loop Utilization</h3>
+<p>By swinging the magnetic flux from a positive peak (+B) to a negative
+peak (-B), the push-pull converter achieves twice the total change in
+flux (<span class="math inline">\(\Delta\)</span>B) compared to a
+single-ended converter.</p>
+<p>This bidirectional utilization offers three distinct advantages for
+isolated electronics:</p>
+<ul>
+<li><strong>Reduced Core Size:</strong> Because the magnetic core is
+worked twice as hard per switching cycle, a physically smaller
+transformer can be used to transfer the same amount of power.</li>
+<li><strong>No Reset Winding Needed:</strong> Single-ended forward
+converters require extra circuitry just to reset the core's magnetic
+flux to zero. In a push-pull converter, the opposite switch naturally
+resets and reverses the flux while actively delivering power to the
+load.</li>
+<li><strong>Lower Copper Losses:</strong> Utilizing the full B-H loop
+requires fewer turns of wire on the transformer to achieve the necessary
+inductance, which reduces electrical resistance and heat
+generation.</li>
+</ul>
+<h3 id="the-risk-of-flux-walking">The Risk of Flux Walking</h3>
+<p>While using both halves of the hysteresis loop is highly efficient,
+it requires precise symmetry. If Switch 1 stays on slightly longer than
+Switch 2, or if one MOSFET has a higher resistance than the other, the
+positive and negative flux swings will be unequal.</p>
+<p>Over several cycles, the magnetic flux will creep toward one end of
+the B-H curve. This phenomenon is called "flux walking" or staircase
+saturation. If the flux walks too far, the core saturates, the
+transformer loses its inductance, and the resulting current spike will
+destroy the switches. To prevent this, modern push-pull DC-DC converters
+use current-mode control, which monitors the current in each switch
+cycle-by-cycle and automatically adjusts the PWM signals to keep the
+hysteresis loop perfectly centered.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-push-pull-dc-dc-converters-use-the-b-h-hysteresis-loop';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Reflection Coefficient Measures Signal Bounce in Electronics - electronics</title>
+    <meta name="description" content="This article explains how the reflection coefficient dictates the exact fraction of a high-speed electromagnetic wave that bounces back when encountering an impedance mismatch in transmission-line electronics. In high-frequency circuits, signals travel as">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-reflection-coefficient-measures-signal-bounce-in-electronics">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Reflection Coefficient Measures Signal Bounce in Electronics - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-reflection-coefficient-measures-signal-bounce-in-electronics" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how the reflection coefficient dictates the exact fraction of a high-speed electromagnetic wave that bounces back when encountering an impedance mismatch in transmission-line electronics. In high-frequency circuits, signals travel as" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="how-reflection-coefficient-measures-signal-bounce-in-electronics">How
+Reflection Coefficient Measures Signal Bounce in Electronics</h1>
+<p>This article explains how the reflection coefficient dictates the
+exact fraction of a high-speed electromagnetic wave that bounces back
+when encountering an impedance mismatch in transmission-line
+electronics. In high-frequency circuits, signals travel as waves that
+require a consistent electrical path to transfer energy efficiently.
+When the impedance of this path changes, the reflection coefficient
+provides a mathematical ratio based on the transmission line and load
+impedances to calculate the amplitude and polarity of the reflected
+signal. Understanding this value allows engineers to predict signal
+degradation, prevent data corruption, and design proper termination
+schemes.</p>
+<p>In high-speed electronics, circuit traces and cables act as
+transmission lines. As a high-frequency signal travels down a line, it
+experiences a specific characteristic impedance (<span
+class="math inline">\(Z_0\)</span>), which is determined by the physical
+geometry and materials of the line. When the signal reaches the end of
+the line or connects to a receiver, it encounters a load impedance
+(<span class="math inline">\(Z_L\)</span>).</p>
+<p>For all of the signal's energy to be absorbed by the load, <span
+class="math inline">\(Z_L\)</span> must equal <span
+class="math inline">\(Z_0\)</span>. If these two values are different,
+an impedance mismatch occurs. Because the laws of physics require both
+voltage and current to remain continuous at the boundary between the
+line and the load, the energy that cannot be absorbed by the load is
+forced to bounce back toward the source.</p>
+<p>The reflection coefficient, represented by the Greek letter Gamma
+(<span class="math inline">\(\Gamma\)</span>), directly calculates the
+fraction of the incident wave's voltage that reflects off this boundary.
+It is determined by comparing the difference between the two impedances
+to their sum. The formula is:</p>
+<p><span class="math display">\[\Gamma = \frac{Z_L - Z_0}{Z_L +
+Z_0}\]</span></p>
+<p>The resulting value of the reflection coefficient always ranges from
+-1 to +1, and it tells engineers two specific things about the bounced
+wave: its relative size (magnitude) and its phase (polarity).</p>
+<p><strong>1. Complete Absorption (<span class="math inline">\(\Gamma =
+0\)</span>)</strong> If a 50-ohm transmission line connects to a 50-ohm
+load, the equation becomes <span class="math inline">\((50 - 50) / (50 +
+50)\)</span>, which equals 0. A reflection coefficient of 0 means 0% of
+the wave bounces back. The impedances are matched, and 100% of the
+signal transfers into the load.</p>
+<p><strong>2. Total Positive Reflection (<span
+class="math inline">\(\Gamma = +1\)</span>)</strong> If the transmission
+line ends in an open circuit (an infinite load impedance, <span
+class="math inline">\(Z_L = \infty\)</span>), the formula yields a
+reflection coefficient of +1. This means 100% of the voltage wave
+bounces back toward the source. Because the value is positive, the
+reflected wave stays in phase with the incoming wave, causing the
+voltage at the open end to temporarily double.</p>
+<p><strong>3. Total Negative Reflection (<span
+class="math inline">\(\Gamma = -1\)</span>)</strong> If the transmission
+line is shorted to ground (<span class="math inline">\(Z_L =
+0\)</span>), the equation becomes <span class="math inline">\((0 - Z_0)
+/ (0 + Z_0)\)</span>, resulting in -1. Here, 100% of the wave still
+bounces back, but the negative sign indicates that the wave is inverted
+(shifted 180 degrees out of phase). When the inverted wave combines with
+the incoming wave at the boundary, they cancel each other out, resulting
+in zero voltage at the short circuit.</p>
+<p><strong>4. Partial Reflection (<span class="math inline">\(-1 &lt;
+\Gamma &lt; +1\)</span>)</strong> Most real-world mismatches fall
+somewhere in the middle. For example, if a signal on a 50-ohm line hits
+a 75-ohm load, the reflection coefficient is:</p>
+<p><span class="math display">\[\Gamma = \frac{75 - 50}{75 + 50} =
+\frac{25}{125} = +0.2\]</span></p>
+<p>A reflection coefficient of +0.2 means that 20% of the incoming
+voltage wave's amplitude bounces back in the same phase, while the
+remaining energy continues into the load. If the load were 25 ohms
+instead, <span class="math inline">\(\Gamma\)</span> would be -0.33,
+meaning 33.3% of the voltage wave would bounce back inverted.</p>
+<p>While the reflection coefficient measures the fraction of the
+<em>voltage</em> wave that bounces back, the fraction of <em>power</em>
+that reflects is found by squaring the reflection coefficient (<span
+class="math inline">\(\Gamma^2\)</span>). In the example where <span
+class="math inline">\(\Gamma = 0.2\)</span>, the reflected power is
+<span class="math inline">\((0.2)^2 = 0.04\)</span>, meaning 4% of the
+total signal power is rejected by the load, and 96% is successfully
+delivered.</p>
+<p>In high-speed digital systems, keeping the reflection coefficient as
+close to zero as possible is critical. Reflected waves travel backward
+and collide with new incoming signals, creating ringing, signal
+overshoot, and bit errors. By using the reflection coefficient, hardware
+designers can select the correct termination resistors to match
+impedances and eliminate destructive signal bounce.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-reflection-coefficient-measures-signal-bounce-in-electronics';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

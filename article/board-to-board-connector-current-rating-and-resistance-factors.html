@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board-to-Board Connector Current Rating and Resistance Factors - electronics</title>
+    <meta name="description" content="This article provides a comprehensive overview of the key engineering factors that determine the current rating and contact resistance of board-to-board connectors in electronic systems. You will learn how base materials, surface plating, contact geometry">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/board-to-board-connector-current-rating-and-resistance-factors">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Board-to-Board Connector Current Rating and Resistance Factors - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/board-to-board-connector-current-rating-and-resistance-factors" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a comprehensive overview of the key engineering factors that determine the current rating and contact resistance of board-to-board connectors in electronic systems. You will learn how base materials, surface plating, contact geometry" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="board-to-board-connector-current-rating-and-resistance-factors">Board-to-Board
+Connector Current Rating and Resistance Factors</h1>
+<p>This article provides a comprehensive overview of the key engineering
+factors that determine the current rating and contact resistance of
+board-to-board connectors in electronic systems. You will learn how base
+materials, surface plating, contact geometry, normal force, connector
+density, and environmental conditions directly impact electrical
+performance, thermal management, and signal integrity.</p>
+<h2 id="base-material-and-plating-selection">Base Material and Plating
+Selection</h2>
+<p>The metallic composition of a connector’s pins and sockets is the
+foundation of its electrical performance. Manufacturers typically use
+copper alloys, such as brass, phosphor bronze, or beryllium copper,
+because they offer a balance of electrical conductivity and mechanical
+spring properties.</p>
+<ul>
+<li><strong>Bulk Resistance:</strong> The inherent conductivity of the
+chosen copper alloy dictates the bulk resistance of the contact.
+Beryllium copper offers superior conductivity and mechanical strength
+compared to brass, resulting in lower resistance and a higher
+current-carrying capacity.</li>
+<li><strong>Surface Plating:</strong> Base metals oxidize quickly when
+exposed to air, which drastically increases resistance. Platings like
+gold, tin, or palladium-nickel are applied to protect the base metal.
+Gold offers exceptional conductivity and resists corrosion, maintaining
+low contact resistance over thousands of mating cycles. Tin is
+cost-effective and suitable for higher currents, though it is more prone
+to fretting corrosion.</li>
+</ul>
+<h2 id="contact-geometry-and-normal-force">Contact Geometry and Normal
+Force</h2>
+<p>At a microscopic level, the surfaces of mating contacts are rough and
+only touch at highest peaks, known as "asperities." The physical design
+of the contact dictates how well electricity flows across this
+interface.</p>
+<ul>
+<li><strong>Normal Force:</strong> This is the mechanical force exerted
+by the receptacle spring against the male pin. A higher normal force
+flattens the microscopic peaks, increasing the actual surface area of
+metal-to-metal contact. This directly reduces constricted resistance and
+allows higher currents to pass without generating excessive heat.</li>
+<li><strong>Multi-Point Contacts:</strong> Connectors designed with
+multiple contact beams (fingers) distribute the electrical load across
+several points. This redundancy lowers overall contact resistance and
+improves reliability under vibration.</li>
+<li><strong>Cross-Sectional Area:</strong> Simply put, larger and
+thicker pins can carry more current. A larger cross-sectional area
+reduces bulk resistance and provides more thermal mass to absorb and
+dissipate heat.</li>
+</ul>
+<h2 id="pitch-pin-count-and-thermal-derating">Pitch, Pin Count, and
+Thermal Derating</h2>
+<p>The current rating of a board-to-board connector is fundamentally a
+thermal rating. As current flows through a contact's resistance, it
+generates heat (<span class="math inline">\(I^2R\)</span> losses).
+Manufacturers typically define a connector's maximum current as the
+amperage that causes a 30°C temperature rise above the ambient
+environment.</p>
+<ul>
+<li><strong>Connector Pitch:</strong> High-density connectors with a
+fine pitch (the center-to-center distance between pins) pack contacts
+tightly together. While this saves board space, it traps heat. Wider
+pitches allow for better airflow and heat dissipation, enabling higher
+current ratings per pin.</li>
+<li><strong>Adjacent Powered Pins:</strong> A single pin tested in
+isolation can carry significantly more current than the same pin
+surrounded by other energized pins. Because neighboring contacts heat
+each other up, engineers must apply a "derating curve." For example, a
+contact rated for 3 Amps alone might be derated to 1.5 Amps when 20
+adjacent pins are simultaneously powered.</li>
+</ul>
+<h2 id="environmental-and-operational-conditions">Environmental and
+Operational Conditions</h2>
+<p>External factors alter both current rating and contact resistance
+over the lifespan of the electronic device.</p>
+<ul>
+<li><strong>Ambient Temperature:</strong> If a board-to-board connector
+operates in a high-temperature environment, its ability to dissipate
+self-generated heat is reduced. High ambient temperatures require the
+maximum current rating to be lowered to prevent melting the plastic
+housing or relaxing the metal springs.</li>
+<li><strong>Contamination and Oxidation:</strong> Exposure to dust,
+humidity, and corrosive gases creates insulating films on the contact
+surfaces. This film increases contact resistance, which in turn
+generates more heat and accelerates the degradation of the
+connector.</li>
+<li><strong>Mating Cycles and Wear:</strong> Repeatedly plugging and
+unplugging a connector wears away the protective plating and fatigues
+the contact springs. As the plating wears thin and normal force
+decreases, contact resistance steadily rises, lowering the safe
+operating current of the connector.</li>
+</ul></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/board-to-board-connector-current-rating-and-resistance-factors';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

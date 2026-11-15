@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How LLC Resonant Converters Achieve Zero-Voltage Switching - electronics</title>
+    <meta name="description" content="LLC resonant converters achieve zero-voltage switching (ZVS) by utilizing a specialized resonant tank circuit composed of two inductors and a capacitor to shape the current and voltage waveforms. By operating in the inductive region of this resonant tank,">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-llc-resonant-converters-achieve-zero-voltage-switching">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How LLC Resonant Converters Achieve Zero-Voltage Switching - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-llc-resonant-converters-achieve-zero-voltage-switching" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="LLC resonant converters achieve zero-voltage switching (ZVS) by utilizing a specialized resonant tank circuit composed of two inductors and a capacitor to shape the current and voltage waveforms. By operating in the inductive region of this resonant tank," />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-llc-resonant-converters-achieve-zero-voltage-switching">How
+LLC Resonant Converters Achieve Zero-Voltage Switching</h1>
+<p>LLC resonant converters achieve zero-voltage switching (ZVS) by
+utilizing a specialized resonant tank circuit composed of two inductors
+and a capacitor to shape the current and voltage waveforms. By operating
+in the inductive region of this resonant tank, the current lags behind
+the applied voltage, creating a brief window during the dead time
+between switch transitions. During this dead time, the lagging current
+discharges the parasitic output capacitance of the switching MOSFETs
+before they are turned on. Because the voltage across the switch drops
+to zero prior to conduction, the overlap of high voltage and high
+current is eliminated, drastically minimizing switching losses in
+high-efficiency power electronics.</p>
+<h2 id="the-role-of-the-llc-resonant-tank">The Role of the LLC Resonant
+Tank</h2>
+<p>At the heart of the LLC converter is the resonant tank, which
+consists of three main reactive components:</p>
+<ul>
+<li><strong>Resonant Inductor (<span
+class="math inline">\(L_r\)</span>):</strong> Works in series with the
+capacitor to create the primary resonance.</li>
+<li><strong>Resonant Capacitor (<span
+class="math inline">\(C_r\)</span>):</strong> Blocks DC current and
+shapes the sinusoidal current waveform.</li>
+<li><strong>Magnetizing Inductor (<span
+class="math inline">\(L_m\)</span>):</strong> Built into the
+transformer, it acts as a shunt inductor and is crucial for achieving
+ZVS across a wide load range.</li>
+</ul>
+<p>In traditional Pulse Width Modulation (PWM) converters, switches are
+forced on and off while carrying high currents and voltages, known as
+"hard switching." This overlap causes significant energy dissipation as
+heat. The LLC tank solves this by converting the square-wave voltage
+from the primary switches into a smooth, sinusoidal current
+waveform.</p>
+<h2 id="operating-in-the-inductive-region">Operating in the Inductive
+Region</h2>
+<p>For ZVS to occur, the LLC converter must operate in the inductive
+region of its impedance curve. The LLC tank has two resonant
+frequencies: a higher frequency determined by <span
+class="math inline">\(L_r\)</span> and <span
+class="math inline">\(C_r\)</span>, and a lower frequency that includes
+<span class="math inline">\(L_m\)</span>.</p>
+<p>To maintain an inductive state, the switching frequency is kept above
+the lowest resonant frequency boundary. When the resonant tank is
+inductive, the resonant current lags behind the voltage applied by the
+switches. This phase lag is the fundamental requirement for zero-voltage
+switching. It ensures that when a switch turns off, the current is still
+flowing in a direction that will naturally prepare the opposing switch
+to turn on without voltage stress.</p>
+<h2 id="the-step-by-step-zvs-mechanism">The Step-by-Step ZVS
+Mechanism</h2>
+<p>In a typical half-bridge LLC configuration using two primary MOSFETs
+(let's call them <span class="math inline">\(Q_1\)</span> and <span
+class="math inline">\(Q_2\)</span>), ZVS is achieved through a precise
+sequence of events during the switching transition:</p>
+<ol type="1">
+<li><strong>Turn-Off Transition:</strong> Assume <span
+class="math inline">\(Q_1\)</span> is currently conducting and <span
+class="math inline">\(Q_2\)</span> is off. The controller turns <span
+class="math inline">\(Q_1\)</span> off.</li>
+<li><strong>The Dead Time Interval:</strong> Both <span
+class="math inline">\(Q_1\)</span> and <span
+class="math inline">\(Q_2\)</span> are kept off for a brief, precisely
+calculated period known as "dead time." This prevents shoot-through
+currents.</li>
+<li><strong>Discharging Parasitic Capacitance:</strong> Every MOSFET has
+an inherent parasitic output capacitance (<span
+class="math inline">\(C_{oss}\)</span>). Because the tank is operating
+in the inductive region, the magnetizing current (<span
+class="math inline">\(I_m\)</span>) continues to flow even after <span
+class="math inline">\(Q_1\)</span> turns off. This current is forced to
+flow through the parasitic capacitances of the MOSFETs. It charges the
+<span class="math inline">\(C_{oss}\)</span> of <span
+class="math inline">\(Q_1\)</span> up to the input voltage and
+simultaneously discharges the <span
+class="math inline">\(C_{oss}\)</span> of <span
+class="math inline">\(Q_2\)</span> down to zero volts.</li>
+<li><strong>Body Diode Conduction:</strong> Once the capacitor across
+<span class="math inline">\(Q_2\)</span> is fully discharged, the
+remaining inductive current forces the internal body diode of <span
+class="math inline">\(Q_2\)</span> to conduct. This clamps the voltage
+across <span class="math inline">\(Q_2\)</span> at practically zero
+volts.</li>
+<li><strong>Zero-Voltage Turn-On:</strong> While the body diode is
+conducting and holding the drain-to-source voltage at zero, the gate
+signal is applied to turn <span class="math inline">\(Q_2\)</span> on.
+Because there is no voltage across the switch when the gate turns on,
+the switching loss (<span class="math inline">\(P = V \times I\)</span>)
+is virtually zero.</li>
+</ol>
+<h2 id="bonus-secondary-side-zero-current-switching-zcs">Bonus:
+Secondary Side Zero-Current Switching (ZCS)</h2>
+<p>In addition to primary-side ZVS, LLC converters can simultaneously
+achieve Zero-Current Switching (ZCS) on the secondary side rectifiers.
+When the converter operates at or below the primary resonant frequency,
+the secondary rectifier current naturally resonates back to zero before
+the switches change state. This eliminates the reverse recovery losses
+typically associated with output diodes, further boosting overall system
+efficiency.</p>
+<h2 id="impact-on-power-electronics">Impact on Power Electronics</h2>
+<p>By eliminating turn-on switching losses via ZVS and reducing
+rectifier losses via ZCS, LLC resonant converters routinely achieve
+efficiencies exceeding 95%. Furthermore, because switching losses are no
+longer a major thermal bottleneck, engineers can design these converters
+to operate at much higher switching frequencies. Higher frequencies
+allow for the use of significantly smaller transformers and capacitors,
+resulting in the high power density required for modern EV chargers,
+server power supplies, and renewable energy inverters.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-llc-resonant-converters-achieve-zero-voltage-switching';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

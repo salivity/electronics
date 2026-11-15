@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Cascode Amplifiers Eliminate the Miller Effect - electronics</title>
+    <meta name="description" content="This article provides a concise explanation of how a cascode amplifier stage eliminates the Miller effect to significantly extend bandwidth in high-frequency analog electronics. By pairing a common-emitter (or common-source) input stage with a common-base">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-cascode-amplifiers-eliminate-the-miller-effect">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Cascode Amplifiers Eliminate the Miller Effect - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-cascode-amplifiers-eliminate-the-miller-effect" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a concise explanation of how a cascode amplifier stage eliminates the Miller effect to significantly extend bandwidth in high-frequency analog electronics. By pairing a common-emitter (or common-source) input stage with a common-base" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-cascode-amplifiers-eliminate-the-miller-effect">How Cascode
+Amplifiers Eliminate the Miller Effect</h1>
+<p>This article provides a concise explanation of how a cascode
+amplifier stage eliminates the Miller effect to significantly extend
+bandwidth in high-frequency analog electronics. By pairing a
+common-emitter (or common-source) input stage with a common-base (or
+common-gate) output stage, the cascode configuration isolates the input
+from the output. This structural layout drops the voltage gain of the
+input transistor to nearly unity, preventing the multiplication of
+parasitic feedback capacitance and preserving high-frequency signal
+integrity.</p>
+<h3 id="understanding-the-miller-effect">Understanding the Miller
+Effect</h3>
+<p>In a standard single-transistor amplifier, such as a common-source
+MOSFET or a common-emitter BJT, there is an inherent parasitic
+capacitance between the input and output terminals (gate-to-drain or
+base-to-collector).</p>
+<p>According to the Miller theorem, this parasitic capacitance appears
+at the input of the amplifier multiplied by a factor equal to one plus
+the inverted voltage gain of the stage (<span
+class="math inline">\(C_{Miller} = C_{parasitic} \times (1 +
+|A_v|)\)</span>). When the amplifier has a high voltage gain, this
+multiplied capacitance becomes massive. At high frequencies, this large
+equivalent input capacitance acts as a low-pass filter alongside the
+input source resistance, drastically reducing the amplifier's
+bandwidth.</p>
+<h3 id="the-cascode-architecture">The Cascode Architecture</h3>
+<p>A cascode amplifier solves this limitation by stacking two
+transistors in series:</p>
+<ol type="1">
+<li><strong>The Input Stage:</strong> A common-source (FET) or
+common-emitter (BJT) transistor that receives the input voltage and
+converts it into a proportional current.</li>
+<li><strong>The Output Stage:</strong> A common-gate (FET) or
+common-base (BJT) transistor stacked directly on top of the input
+transistor, which routes the current to the output load resistor.</li>
+</ol>
+<h3 id="how-the-miller-effect-is-eliminated">How the Miller Effect is
+Eliminated</h3>
+<p>To eliminate the Miller effect, the voltage gain across the input
+transistor's parasitic feedback capacitor must be minimized. The cascode
+configuration achieves this through impedance mismatching between the
+two stacked transistors.</p>
+<p>The output terminal of the bottom (input) transistor is connected
+directly to the input terminal (source or emitter) of the top
+transistor. Looking into the source of a common-gate transistor (or
+emitter of a common-base transistor), the input impedance is extremely
+low—approximately equal to <span class="math inline">\(1/g_m\)</span>,
+where <span class="math inline">\(g_m\)</span> is the transconductance
+of the top transistor.</p>
+<p>Because the bottom transistor drives this very low impedance load
+(<span class="math inline">\(1/g_m\)</span>) instead of a large load
+resistor, the voltage gain of the bottom transistor drops to roughly
+<span class="math inline">\(-1\)</span> (<span class="math inline">\(A_v
+\approx -g_m \times (1/g_m) = -1\)</span>).</p>
+<p>When you apply the Miller equation with a voltage gain of <span
+class="math inline">\(-1\)</span>: <span
+class="math inline">\(C_{Miller} = C_{parasitic} \times (1 + |-1|) =
+2C_{parasitic}\)</span></p>
+<p>Instead of the parasitic capacitance being multiplied by a massive
+voltage gain factor (such as 50 or 100), it is merely doubled. This
+drastic reduction in total input capacitance pushes the input pole to a
+much higher frequency.</p>
+<h3 id="achieving-high-gain-and-wide-bandwidth">Achieving High Gain and
+Wide Bandwidth</h3>
+<p>Even though the bottom transistor has almost no voltage gain, the
+overall cascode amplifier still achieves high amplification. The bottom
+transistor acts as a transconductance amplifier, converting the input
+voltage into a signal current.</p>
+<p>The top transistor acts as a current buffer. It accepts the signal
+current from the bottom transistor with almost no loss and passes it
+directly to the high-impedance load resistor at the final output node.
+Therefore, the high voltage gain takes place exclusively across the top
+transistor.</p>
+<p>Because the gate (or base) of the top transistor is tied to a fixed
+DC bias voltage (acting as an AC ground), its own parasitic capacitance
+does not feed back into the input signal path. By separating the
+transconductance generation from the voltage amplification, the cascode
+stage successfully delivers both high voltage gain and exceptional
+high-frequency bandwidth.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-cascode-amplifiers-eliminate-the-miller-effect';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

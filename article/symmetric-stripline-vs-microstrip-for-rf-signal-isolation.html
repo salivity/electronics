@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symmetric Stripline vs Microstrip for RF Signal Isolation - electronics</title>
+    <meta name="description" content="Symmetric buried stripline routing is preferred over microstrip for isolating sensitive radio frequency (RF) signals because it completely encloses the signal trace between two solid reference ground planes within a Homogeneous dielectric material. This p">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/symmetric-stripline-vs-microstrip-for-rf-signal-isolation">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Symmetric Stripline vs Microstrip for RF Signal Isolation - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/symmetric-stripline-vs-microstrip-for-rf-signal-isolation" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Symmetric buried stripline routing is preferred over microstrip for isolating sensitive radio frequency (RF) signals because it completely encloses the signal trace between two solid reference ground planes within a Homogeneous dielectric material. This p" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="symmetric-stripline-vs-microstrip-for-rf-signal-isolation">Symmetric
+Stripline vs Microstrip for RF Signal Isolation</h1>
+<p>Symmetric buried stripline routing is preferred over microstrip for
+isolating sensitive radio frequency (RF) signals because it completely
+encloses the signal trace between two solid reference ground planes
+within a Homogeneous dielectric material. This physical structure acts
+as an integrated Faraday cage, containing electromagnetic fields,
+drastically reducing crosstalk, and blocking external electromagnetic
+interference (EMI). While microstrip routing places traces on the outer
+layers of a printed circuit board (PCB) leaving them exposed to air and
+external radiation, symmetric stripline provides a uniform, shielded
+environment essential for maintaining high-frequency signal integrity in
+complex multilayer electronics.</p>
+<h3 id="superior-shielding-against-external-emi">Superior Shielding
+Against External EMI</h3>
+<p>The primary reason engineers choose symmetric buried stripline for
+sensitive RF signals is its physical isolation.</p>
+<ul>
+<li><strong>Microstrip Vulnerability:</strong> A microstrip trace sits
+on the top or bottom surface of a PCB, referenced to a single ground
+plane below it. Because the top of the trace is exposed to air (and
+solder mask), it acts like a miniature antenna. It easily radiates its
+own energy outward and absorbs ambient electromagnetic noise from
+neighboring components or external sources.</li>
+<li><strong>Stripline Containment:</strong> A symmetric buried stripline
+is sandwiched directly in the middle of the PCB stackup, positioned at
+an equal distance between a top and bottom ground plane. These two
+planes capture the electromagnetic fields generated by the RF signal,
+preventing them from escaping. Conversely, incoming radiation hits the
+outer ground planes and is safely shunted away before it can couple onto
+the inner RF trace.</li>
+</ul>
+<h3 id="true-tem-wave-propagation">True TEM Wave Propagation</h3>
+<p>Signal integrity at radio frequencies depends heavily on how the
+electromagnetic wave travels down the transmission line.</p>
+<p>In a symmetric stripline, the signal trace is completely surrounded
+by a single type of dielectric material (the PCB substrate/prepreg).
+Because the environment is uniform, the signal travels in a true
+Transverse Electromagnetic (TEM) mode. All parts of the electromagnetic
+wave travel at the exact same phase velocity, which minimizes signal
+dispersion and phase distortion at high frequencies.</p>
+<p>In contrast, a microstrip trace has the PCB dielectric beneath it and
+air above it. Because signals travel faster in air than in PCB
+substrate, the wave propagates in a "quasi-TEM" mode. This velocity
+mismatch causes phase distortion, reduces signal quality at
+millimeter-wave frequencies, and increases radiative losses.</p>
+<h3 id="drastic-reduction-in-crosstalk">Drastic Reduction in
+Crosstalk</h3>
+<p>In high-density multilayer electronics, traces must often be routed
+close together.</p>
+<p>With microstrip routing, electric and magnetic fields fringe widely
+through the air above the board, easily coupling into adjacent traces
+and causing high levels of forward and backward crosstalk.</p>
+<p>With symmetric buried stripline, the equal proximity to both the
+upper and lower ground planes tightly binds the electric and magnetic
+fields to the reference planes rather than allowing them to spread
+horizontally. Furthermore, because the propagation velocity is uniform
+(true TEM), far-end crosstalk (FEXT) is theoretically eliminated in a
+perfectly homogeneous stripline environment, allowing engineers to pack
+RF traces closer together without sacrificing isolation.</p>
+<h3 id="why-symmetry-matters">Why Symmetry Matters</h3>
+<p>Striplines can be designed as either asymmetric (closer to one ground
+plane than the other) or symmetric (equidistant to both). Symmetric
+routing is specifically preferred for the most sensitive RF paths for
+two reasons:</p>
+<ol type="1">
+<li><strong>Balanced Return Currents:</strong> Having the trace centered
+between the two planes ensures that the return current divides equally
+between the top and bottom reference planes. This balance maximizes the
+shielding efficiency and prevents unwanted slotline modes from
+developing.</li>
+<li><strong>Predictable Impedance:</strong> Manufacturing tolerances are
+easier to manage when the dielectric thickness above and below the trace
+is identical. This ensures consistent characteristic impedance
+(typically 50 Ohms for RF) across the entire length of the trace,
+preventing signal reflections.</li>
+</ol>
+<h3 id="the-trade-offs-to-consider">The Trade-offs to Consider</h3>
+<p>While symmetric buried stripline is vastly superior for RF isolation,
+it requires careful engineering to implement. Because the trace is
+buried, it must transition to the surface layers using vias to connect
+to components. At RF frequencies, vias introduce parasitic capacitance
+and inductance, and unused via barrels (stubs) act as resonant antennas
+that degrade the signal. Therefore, using symmetric stripline
+effectively requires advanced fabrication techniques like back-drilling
+or the use of blind and buried vias, as well as stitching vias around
+the trace perimeter to tie the top and bottom ground planes
+together.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/symmetric-stripline-vs-microstrip-for-rf-signal-isolation';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Digital Multiplexers Route Multiple Inputs to One Output - electronics</title>
+    <meta name="description" content="A digital multiplexer, commonly known as a MUX, is a fundamental electronic component that selects one of several input data streams and forwards it to a single output line. This article provides a comprehensive breakdown of how multiplexers achieve this">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-digital-multiplexers-route-multiple-inputs-to-one-output">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Digital Multiplexers Route Multiple Inputs to One Output - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-digital-multiplexers-route-multiple-inputs-to-one-output" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="A digital multiplexer, commonly known as a MUX, is a fundamental electronic component that selects one of several input data streams and forwards it to a single output line. This article provides a comprehensive breakdown of how multiplexers achieve this" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="how-digital-multiplexers-route-multiple-inputs-to-one-output">How
+Digital Multiplexers Route Multiple Inputs to One Output</h1>
+<p>A digital multiplexer, commonly known as a MUX, is a fundamental
+electronic component that selects one of several input data streams and
+forwards it to a single output line. This article provides a
+comprehensive breakdown of how multiplexers achieve this data routing
+using internal logic gates, binary select lines, and address decoding.
+By understanding the relationship between data inputs, control signals,
+and Boolean logic, you will learn the exact mechanism behind how routing
+electronics manage and consolidate multiple digital signals
+efficiently.</p>
+<h3 id="the-core-components-of-a-multiplexer">The Core Components of a
+Multiplexer</h3>
+<p>To understand how a multiplexer routes data, you must first
+understand its three primary interfaces:</p>
+<ul>
+<li><strong>Data Inputs (<span
+class="math inline">\(D\)</span>):</strong> The multiple lines carrying
+incoming digital signals (streams of 1s and 0s). The number of inputs is
+usually a power of two (2, 4, 8, 16, etc.).</li>
+<li><strong>Select Lines (<span
+class="math inline">\(S\)</span>):</strong> The control pins used to
+choose which data input is allowed to pass through.</li>
+<li><strong>Output Line (<span
+class="math inline">\(Y\)</span>):</strong> The single pathway out of
+the multiplexer that carries the selected input data stream.</li>
+</ul>
+<p>A mathematical rule governs the relationship between the inputs and
+the select lines: <strong><span class="math inline">\(2^n =
+N\)</span></strong>, where <strong><span
+class="math inline">\(n\)</span></strong> is the number of select lines
+and <strong><span class="math inline">\(N\)</span></strong> is the
+number of data inputs. For example, a 4-to-1 multiplexer has 4 data
+inputs and requires 2 select lines (<span class="math inline">\(2^2 =
+4\)</span>). An 8-to-1 multiplexer requires 3 select lines (<span
+class="math inline">\(2^3 = 8\)</span>).</p>
+<h3 id="the-routing-mechanism-logic-gates-in-action">The Routing
+Mechanism: Logic Gates in Action</h3>
+<p>Inside the multiplexer, routing is not done by moving physical
+switches. Instead, it is achieved through a network of digital logic
+gates—specifically <strong>NOT gates</strong> (inverters), <strong>AND
+gates</strong>, and a final <strong>OR gate</strong>.</p>
+<h4 id="1-address-decoding-with-select-lines">1. Address Decoding with
+Select Lines</h4>
+<p>The routing process begins at the select lines. A binary code is
+applied to these lines by an external controller, such as a
+microprocessor. Using NOT gates, the multiplexer generates both the
+original select signals and their inverted opposites. This creates a
+unique internal binary "address" for every possible combination of
+select line states.</p>
+<h4 id="2-gating-the-inputs-with-and-gates">2. Gating the Inputs with
+AND Gates</h4>
+<p>Every individual data input line is connected to its own dedicated
+AND gate. Along with the data input, each AND gate also receives a
+specific combination of the select line signals.</p>
+<p>An AND gate only outputs a "1" (High) if <em>all</em> of its inputs
+are "1". The multiplexer is wired so that for any given binary code on
+the select lines, only <strong>one</strong> AND gate receives all "1s"
+from the select logic.</p>
+<ul>
+<li><strong>Unselected Gates:</strong> All other AND gates receive at
+least one "0" from the select lines. Because of this, these gates are
+effectively "closed" or disabled. Whatever data is streaming into them
+is blocked, and their output remains a constant "0".</li>
+<li><strong>The Selected Gate:</strong> The single AND gate that
+receives all "1s" from the select lines is "opened" or enabled. Now, its
+output depends entirely on its data input stream. If the data stream is
+"1", the gate outputs "1". If the data stream is "0", the gate outputs
+"0".</li>
+</ul>
+<h4 id="3-combining-into-one-output-with-an-or-gate">3. Combining into
+One Output with an OR Gate</h4>
+<p>The outputs of all the internal AND gates feed into a single,
+multi-input OR gate. An OR gate outputs a "1" if <em>any</em> of its
+inputs are "1", and a "0" only if <em>all</em> inputs are "0".</p>
+<p>Since all the unselected AND gates are outputting a constant "0",
+they have no effect on the OR gate. The OR gate simply reacts to the
+single enabled AND gate. Consequently, the exact data stream from the
+chosen input passes through the enabled AND gate, through the OR gate,
+and out the single output line.</p>
+<h3 id="step-by-step-example-a-4-to-1-multiplexer">Step-by-Step Example:
+A 4-to-1 Multiplexer</h3>
+<p>To see this clearly, consider a 4-to-1 MUX with inputs <strong><span
+class="math inline">\(D_0, D_1, D_2, D_3\)</span></strong>, select lines
+<strong><span class="math inline">\(S_1, S_0\)</span></strong>, and
+output <strong><span class="math inline">\(Y\)</span></strong>.</p>
+<p>Suppose you want to route the data stream on <strong><span
+class="math inline">\(D_2\)</span></strong> to the output <strong><span
+class="math inline">\(Y\)</span></strong>:</p>
+<ol type="1">
+<li><strong>Apply the Select Code:</strong> The binary representation
+for the number 2 is <code>10</code>. You apply a High signal (1) to
+<strong><span class="math inline">\(S_1\)</span></strong> and a Low
+signal (0) to <strong><span
+class="math inline">\(S_0\)</span></strong>.</li>
+<li><strong>Internal Inversion:</strong> Inside the MUX, a NOT gate
+inverts the <strong><span class="math inline">\(S_0\)</span></strong>
+signal from a <code>0</code> to a <code>1</code>.</li>
+<li><strong>Enabling the Target Gate:</strong> The AND gate connected to
+<strong><span class="math inline">\(D_2\)</span></strong> is
+specifically wired to receive <strong><span
+class="math inline">\(S_1\)</span></strong> (which is <code>1</code>)
+and the inverted <strong><span
+class="math inline">\(S_0\)</span></strong> (which is now
+<code>1</code>). Because both control inputs are <code>1</code>, the
+<strong><span class="math inline">\(D_2\)</span></strong> AND gate is
+unlocked.</li>
+<li><strong>Blocking Other Gates:</strong> The AND gates for
+<strong><span class="math inline">\(D_0\)</span></strong>, <strong><span
+class="math inline">\(D_1\)</span></strong>, and <strong><span
+class="math inline">\(D_3\)</span></strong> receive at least one
+<code>0</code> from the <code>10</code> select combination. Their
+outputs are forced to <code>0</code>.</li>
+<li><strong>Final Output:</strong> As the data stream on <strong><span
+class="math inline">\(D_2\)</span></strong> fluctuates between
+<code>1</code> and <code>0</code>, the unlocked AND gate mirrors this
+exact pattern. The final OR gate reads the <code>0</code>s from the
+blocked gates and the active stream from the <strong><span
+class="math inline">\(D_2\)</span></strong> gate, routing the
+<strong><span class="math inline">\(D_2\)</span></strong> stream
+directly to output <strong><span
+class="math inline">\(Y\)</span></strong>.</li>
+</ol>
+<h3 id="time-division-multiplexing-tdm">Time-Division Multiplexing
+(TDM)</h3>
+<p>In practical routing electronics, multiplexers rarely stay locked on
+a single input. By rapidly cycling through the binary codes on the
+select lines using a high-speed clock, a multiplexer can sample small
+pieces of data from each input in a continuous loop. This technique,
+known as Time-Division Multiplexing, allows multiple devices to share a
+single communication medium—such as a single copper wire or fiber-optic
+cable—by taking turns transmitting their data streams in fractions of a
+second.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-digital-multiplexers-route-multiple-inputs-to-one-output';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

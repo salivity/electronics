@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Source Series vs Parallel Thevenin Termination in PCB Design - electronics</title>
+    <meta name="description" content="In high-speed digital electronics, choosing between source series termination and parallel Thevenin termination is critical for damping signal reflections and maintaining signal integrity. A high-speed designer should choose source series termination over">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/source-series-vs-parallel-thevenin-termination-in-pcb-design">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Source Series vs Parallel Thevenin Termination in PCB Design - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/source-series-vs-parallel-thevenin-termination-in-pcb-design" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In high-speed digital electronics, choosing between source series termination and parallel Thevenin termination is critical for damping signal reflections and maintaining signal integrity. A high-speed designer should choose source series termination over" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="source-series-vs-parallel-thevenin-termination-in-pcb-design">Source
+Series vs Parallel Thevenin Termination in PCB Design</h1>
+<p>In high-speed digital electronics, choosing between source series
+termination and parallel Thevenin termination is critical for damping
+signal reflections and maintaining signal integrity. A high-speed
+designer should choose source series termination over parallel Thevenin
+termination primarily when designing point-to-point topologies,
+minimizing DC power consumption, reducing component count, and
+conserving valuable printed circuit board (PCB) routing space. This
+article breaks down the exact conditions and trade-offs that make source
+series termination the superior choice over Thevenin termination in
+high-speed digital layouts.</p>
+<h2 id="point-to-point-topologies">Point-to-Point Topologies</h2>
+<p>Source series termination is the ideal choice when the signal path is
+a strict point-to-point connection—meaning one driver is connected to a
+single receiver.</p>
+<p>In a source series configuration, a resistor is placed right at the
+output of the driver so that the sum of the driver's output impedance
+(<span class="math inline">\(Z_0\)</span> of the driver) and the
+resistor equals the characteristic impedance of the transmission line.
+The signal travels down the line at half amplitude, hits the
+high-impedance receiver, and doubles in voltage due to positive
+reflection. The reflected wave travels back to the source, where it is
+absorbed by the series resistor and driver impedance.</p>
+<p>Because points along the transmission line temporarily see a
+half-amplitude wave until the reflection returns, source series
+termination cannot be used effectively if multiple loads are
+daisy-chained along the middle of the trace. Parallel Thevenin
+termination, placed at the end of the line, maintains full signal
+amplitude all the way down the trace and is therefore required for
+multi-drop busses. However, if you only have a single receiver at the
+very end of the line, source series is the most efficient choice.</p>
+<h2 id="low-power-consumption-requirements">Low Power Consumption
+Requirements</h2>
+<p>High-speed designers must choose source series termination when power
+budgets are tight, especially in battery-operated or thermally
+constrained devices.</p>
+<p>Parallel Thevenin termination uses two resistors at the load end—one
+connected to the power rail (<span
+class="math inline">\(V_{CC}\)</span>) and one connected to ground—to
+match the trace impedance. Because there is a direct path from power to
+ground through these two resistors, Thevenin termination constantly
+draws DC current, even when the signal line is idle. Furthermore, the
+driver must continuously source or sink current into this termination
+network to hold a logic high or low state.</p>
+<p>Source series termination consumes zero static DC power. Because the
+receiver input in modern CMOS devices acts as an open circuit (high
+impedance) at DC, current only flows through the series resistor during
+the brief moments when the logic state transitions (charging and
+discharging the trace capacitance).</p>
+<h2 id="component-count-and-pcb-space-constraints">Component Count and
+PCB Space Constraints</h2>
+<p>When routing high-density interconnects (HDI) or working with large
+data busses, board space is at a premium. Source series termination
+should be selected to minimize the bill of materials (BOM) and simplify
+PCB layout.</p>
+<ul>
+<li><strong>Source Series Termination:</strong> Requires only
+<strong>one</strong> resistor per trace, placed directly at the driver
+pin. It requires no connections to power or ground planes, reducing the
+number of vias needed.</li>
+<li><strong>Parallel Thevenin Termination:</strong> Requires
+<strong>two</strong> resistors per trace, placed at the receiver pin. It
+also requires connections to both the <span
+class="math inline">\(V_{CC}\)</span> plane and the ground plane, which
+drastically increases via count, routing congestion, and the risk of
+creating return-path discontinuities.</li>
+</ul>
+<h2 id="avoiding-voltage-margin-degradation">Avoiding Voltage Margin
+Degradation</h2>
+<p>Source series termination preserves the full logic voltage swing at
+the receiver. Because there is no DC current flowing once the line
+settles, the receiver sees the full <span
+class="math inline">\(V_{CC}\)</span> for a logic high and 0V for a
+logic low.</p>
+<p>In contrast, parallel Thevenin termination creates a voltage divider
+between the driver's internal output impedance and the termination
+resistors at the load. This slightly reduces the maximum high-level
+voltage and raises the minimum low-level voltage, eating into the
+system's noise margin. If the driver cannot source or sink enough
+current, Thevenin termination can cause false triggering or require the
+designer to switch to a more expensive, higher-drive-strength IC.</p>
+<h2 id="summary-decision-checklist">Summary Decision Checklist</h2>
+<p>A high-speed digital designer should choose <strong>source series
+termination</strong> over parallel Thevenin termination when:</p>
+<ol type="1">
+<li>The trace is a <strong>point-to-point</strong> connection (one
+driver, one receiver) or has tightly clustered loads at the very end of
+the trace.</li>
+<li><strong>Power consumption</strong> must be minimized, eliminating
+constant DC current draw.</li>
+<li><strong>PCB real estate</strong> is limited, and the layout cannot
+accommodate double the resistors and extra power/ground vias.</li>
+<li>The <strong>driver strength</strong> is weak and cannot drive heavy
+DC loads without degrading logic voltage levels.</li>
+<li>A slight delay in propagation time (waiting for the reflection to
+double the voltage at the receiver) is acceptable within the timing
+budget.</li>
+</ol></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/source-series-vs-parallel-thevenin-termination-in-pcb-design';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

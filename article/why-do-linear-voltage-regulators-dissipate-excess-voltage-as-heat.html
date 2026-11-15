@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Do Linear Voltage Regulators Dissipate Excess Voltage as Heat? - electronics</title>
+    <meta name="description" content="This article explains the fundamental physics and circuit design behind why classic three-terminal linear voltage regulators convert excess input voltage directly into waste heat. We will explore the internal mechanics of the series pass transistor, the c">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/why-do-linear-voltage-regulators-dissipate-excess-voltage-as-heat">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Do Linear Voltage Regulators Dissipate Excess Voltage as Heat? - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/why-do-linear-voltage-regulators-dissipate-excess-voltage-as-heat" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains the fundamental physics and circuit design behind why classic three-terminal linear voltage regulators convert excess input voltage directly into waste heat. We will explore the internal mechanics of the series pass transistor, the c" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1
+id="why-do-linear-voltage-regulators-dissipate-excess-voltage-as-heat">Why
+Do Linear Voltage Regulators Dissipate Excess Voltage as Heat?</h1>
+<p>This article explains the fundamental physics and circuit design
+behind why classic three-terminal linear voltage regulators convert
+excess input voltage directly into waste heat. We will explore the
+internal mechanics of the series pass transistor, the conservation of
+energy in series circuits, and the exact mathematical formula that
+dictates this thermal dissipation in power electronics.</p>
+<h2 id="the-role-of-the-series-pass-transistor">The Role of the Series
+Pass Transistor</h2>
+<p>At the core of every classic three-terminal linear voltage
+regulator—such as the widely used 7805—is an internal component known as
+a pass element, which is typically a Bipolar Junction Transistor (BJT)
+or a MOSFET.</p>
+<p>To maintain a steady, regulated output voltage, this transistor
+operates in its "linear" or "active" region. Instead of rapidly turning
+on and off like a modern switching regulator, the pass transistor acts
+as a continuously variable resistor positioned directly in series
+between the input power source and the output load.</p>
+<h2 id="how-voltage-is-dropped">How Voltage is Dropped</h2>
+<p>A linear regulator continuously compares its output voltage against
+an internal, stable reference voltage. If the input voltage increases or
+the load current changes, an internal error amplifier adjusts the
+resistance of the pass transistor in real time.</p>
+<p>To turn a high input voltage into a lower output voltage, the
+regulator must "drop" the difference across this variable resistor. For
+example, if you feed 12 volts into a 5-volt linear regulator, the
+internal pass transistor adjusts its resistance to force a 7-volt drop
+across itself, leaving the desired 5 volts for the output load.</p>
+<h2 id="the-physics-of-heat-dissipation">The Physics of Heat
+Dissipation</h2>
+<p>Because the linear regulator operates as a simple series circuit, the
+electrical current flowing into the regulator is essentially equal to
+the current flowing out to the load (minus a negligible ground pin
+current used to power the internal circuitry).</p>
+<p>According to the law of conservation of energy, the electrical energy
+associated with the dropped voltage cannot simply vanish. When
+electrical current flows through a resistance, electrical energy is
+converted directly into thermal energy (Joule heating). Because the pass
+transistor is absorbing the excess voltage while passing the full load
+current, it must shed that unused power as heat.</p>
+<h2 id="the-power-dissipation-formula">The Power Dissipation
+Formula</h2>
+<p>The exact amount of heat generated by a linear regulator is governed
+by Joule’s Law, which states that power equals voltage multiplied by
+current. For a linear regulator, the wasted power (<span
+class="math inline">\(P_{heat}\)</span>) is calculated as:</p>
+<p><span class="math inline">\(P_{heat} = (V_{in} - V_{out}) \times
+I_{load}\)</span></p>
+<p>To understand how quickly heat builds up, consider a circuit with the
+following parameters:</p>
+<ul>
+<li><strong>Input Voltage (<span
+class="math inline">\(V_{in}\)</span>):</strong> 12V</li>
+<li><strong>Output Voltage (<span
+class="math inline">\(V_{out}\)</span>):</strong> 5V</li>
+<li><strong>Load Current (<span
+class="math inline">\(I_{load}\)</span>):</strong> 1A</li>
+</ul>
+<p>Using the formula, the regulator must drop 7 volts (12V - 5V) at 1
+amp of current.</p>
+<p><span class="math inline">\(P_{heat} = (12V - 5V) \times 1A = 7
+\text{ Watts}\)</span></p>
+<p>While the load is only consuming 5 Watts of useful power (5V x 1A),
+the linear regulator is burning off 7 Watts of wasted power purely as
+heat. This makes the circuit less than 42% efficient, requiring a
+substantial heatsink to prevent the regulator from destroying
+itself.</p>
+<h2 id="why-linear-regulators-cannot-store-energy">Why Linear Regulators
+Cannot Store Energy</h2>
+<p>Unlike switching regulators (buck converters), linear regulators lack
+energy-storage components like inductors or high-capacity switching
+capacitors. A switching regulator chops the input voltage at a high
+frequency and uses an inductor's magnetic field to store and release
+only the exact amount of energy the load requires, resulting in very
+little heat loss.</p>
+<p>A classic three-terminal linear regulator has no mechanism to store
+and step-down energy efficiently. It can only obstruct the flow of
+electricity to force a voltage drop. Consequently, burning off the
+excess voltage as heat is not a design flaw of the linear regulator, but
+rather the exact physical mechanism by which it achieves stable,
+noise-free voltage regulation.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/why-do-linear-voltage-regulators-dissipate-excess-voltage-as-heat';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

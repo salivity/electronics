@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Ohm&#39;s Law Defines Voltage, Current, and Resistance - electronics</title>
+    <meta name="description" content="This article explores the foundational concept of Ohm&#39;s law, explaining how voltage, current, and resistance interact within an electrical circuit. We will break down each of the three components, look at the exact mathematical equations used to calculate">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/how-ohm-s-law-defines-voltage-current-and-resistance">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Ohm&#39;s Law Defines Voltage, Current, and Resistance - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/how-ohm-s-law-defines-voltage-current-and-resistance" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explores the foundational concept of Ohm&#39;s law, explaining how voltage, current, and resistance interact within an electrical circuit. We will break down each of the three components, look at the exact mathematical equations used to calculate" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-ohms-law-defines-voltage-current-and-resistance">How Ohm's
+Law Defines Voltage, Current, and Resistance</h1>
+<p>This article explores the foundational concept of Ohm's law,
+explaining how voltage, current, and resistance interact within an
+electrical circuit. We will break down each of the three components,
+look at the exact mathematical equations used to calculate them, and
+demonstrate how changing one variable directly impacts the others in
+electronics.</p>
+<h2 id="the-three-pillars-of-ohms-law">The Three Pillars of Ohm's
+Law</h2>
+<p>To understand how Ohm's law works, you must first understand the
+three properties it measures.</p>
+<ul>
+<li><strong>Voltage (V):</strong> Measured in volts (V), voltage is the
+electrical pressure or potential difference between two points in a
+circuit. It is the force that pushes electrical charges through a
+wire.</li>
+<li><strong>Current (I):</strong> Measured in amperes or amps (A),
+current is the actual flow rate of the electric charge. It represents
+the volume of electrons moving past a specific point in a circuit per
+second.</li>
+<li><strong>Resistance (R):</strong> Measured in ohms (<span
+class="math inline">\(\Omega\)</span>), resistance is the opposition to
+the flow of current. Components and wires naturally restrict the flow of
+electrons, converting some electrical energy into heat.</li>
+</ul>
+<h2 id="the-mathematical-relationship">The Mathematical
+Relationship</h2>
+<p>Discovered by German physicist Georg Simon Ohm, Ohm's law states that
+the electrical current flowing through a conductor is directly
+proportional to the voltage applied to it and inversely proportional to
+its resistance.</p>
+<p>This relationship is universally expressed with a simple algebraic
+formula:</p>
+<p><strong>V = I × R</strong></p>
+<p>By rearranging this single equation, you can solve for any of the
+three variables as long as you know the values of the other two:</p>
+<ul>
+<li><strong>To find Voltage:</strong> Multiply current by resistance
+(<span class="math inline">\(V = I \times R\)</span>).</li>
+<li><strong>To find Current:</strong> Divide voltage by resistance
+(<span class="math inline">\(I = V / R\)</span>).</li>
+<li><strong>To find Resistance:</strong> Divide voltage by current
+(<span class="math inline">\(R = V / I\)</span>).</li>
+</ul>
+<h2 id="how-the-variables-interact-in-a-circuit">How the Variables
+Interact in a Circuit</h2>
+<p>Ohm's law dictates that a change in one variable forces a predictable
+change in the others. This dynamic can be observed in two primary
+ways:</p>
+<h3 id="1-constant-resistance">1. Constant Resistance</h3>
+<p>If the resistance in a circuit remains the same, current and voltage
+move together. If you increase the voltage (pressure), the current
+(flow) will increase at the exact same rate. Conversely, if you drop the
+voltage, the current drops.</p>
+<p><em>Example:</em> A circuit has a 10-ohm resistor and a 10-volt
+battery. The current is 1 amp (<span class="math inline">\(10V /
+10\Omega = 1A\)</span>). If you swap the battery for a 20-volt battery,
+the current doubles to 2 amps (<span class="math inline">\(20V /
+10\Omega = 2A\)</span>).</p>
+<h3 id="2-constant-voltage">2. Constant Voltage</h3>
+<p>Most electronic devices run on a constant voltage source, such as a
+standard battery or wall outlet. When voltage is fixed, current and
+resistance have an inverse relationship. If you increase the resistance,
+the current decreases. If you decrease the resistance, the current
+increases.</p>
+<p><em>Example:</em> Using a constant 12-volt battery and a 4-ohm
+resistor, the circuit draws 3 amps of current (<span
+class="math inline">\(12V / 4\Omega = 3A\)</span>). If you increase the
+resistance to 6 ohms, the current drops to 2 amps (<span
+class="math inline">\(12V / 6\Omega = 2A\)</span>).</p>
+<h2 id="practical-application-in-electronics">Practical Application in
+Electronics</h2>
+<p>Engineers and hobbyists use Ohm's law to design safe and functional
+circuits. Its primary use is preventing component failure.</p>
+<p>For instance, a standard LED (Light Emitting Diode) requires about
+0.02 amps of current to light up, and it cannot handle much more without
+burning out. If you connect that LED directly to a 9-volt battery, the
+lack of resistance will cause a massive surge of current, destroying the
+LED instantly. By using Ohm's law, you can calculate the exact resistor
+needed to limit the current to a safe 0.02 amps, ensuring the circuit
+operates safely.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/how-ohm-s-law-defines-voltage-current-and-resistance';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Happens to Circuit Impedance at LC Resonance? - electronics</title>
+    <meta name="description" content="In electronics, LC resonance occurs at a specific frequency where a circuit&#39;s inductive reactance and capacitive reactance become equal in magnitude and cancel each other out. This article provides a clear breakdown of how this cancellation directly affec">
+    <link rel="canonical" href="https://salivity.github.io/electronics/article/what-happens-to-circuit-impedance-at-lc-resonance">
+    <link rel="search" type="application/opensearchdescription+xml" title="electronics" href="/electronics/opensearch.xml">
+    <link rel="icon" href="/electronics/favicon.ico">
+    <link rel="stylesheet" href="/electronics/css/style.css">
+    <link media="print" rel="stylesheet" href="/electronics/css/print.css">
+    <script src="/electronics/js/fuse.min.js"></script>
+    <script src="/electronics/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Happens to Circuit Impedance at LC Resonance? - electronics" />
+    <meta property="og:url" content="https://salivity.github.io/electronics/article/what-happens-to-circuit-impedance-at-lc-resonance" />
+    <meta property="og:image" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/electronics/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In electronics, LC resonance occurs at a specific frequency where a circuit&#39;s inductive reactance and capacitive reactance become equal in magnitude and cancel each other out. This article provides a clear breakdown of how this cancellation directly affec" />
+    <link rel="manifest" href="/electronics/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/electronics/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>electronics</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/electronics/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="what-happens-to-circuit-impedance-at-lc-resonance">What Happens
+to Circuit Impedance at LC Resonance?</h1>
+<p>In electronics, LC resonance occurs at a specific frequency where a
+circuit's inductive reactance and capacitive reactance become equal in
+magnitude and cancel each other out. This article provides a clear
+breakdown of how this cancellation directly affects circuit impedance,
+explaining why impedance drops to an absolute minimum in series LC
+circuits and rises to an absolute maximum in parallel LC circuits,
+leaving the circuit to behave purely resistively.</p>
+<h3 id="the-cancelation-of-reactances">The Cancelation of
+Reactances</h3>
+<p>Impedance (<span class="math inline">\(Z\)</span>) is the total
+opposition a circuit presents to alternating current (AC). It is made up
+of two parts: real resistance (<span class="math inline">\(R\)</span>)
+and reactance (<span class="math inline">\(X\)</span>). Reactance comes
+in two forms:</p>
+<ul>
+<li><strong>Inductive Reactance (<span
+class="math inline">\(X_L\)</span>):</strong> Increases as the AC
+frequency increases.</li>
+<li><strong>Capacitive Reactance (<span
+class="math inline">\(X_C\)</span>):</strong> Decreases as the AC
+frequency increases.</li>
+</ul>
+<p>Because these two reactances behave in opposite ways and are 180
+degrees out of phase with one another, there is a specific
+frequency—known as the resonant frequency—where <span
+class="math inline">\(X_L\)</span> and <span
+class="math inline">\(X_C\)</span> are identical in value. At this exact
+point, they completely cancel each other out. However, what happens to
+the total impedance of the circuit depends entirely on whether the
+inductor and capacitor are wired in series or in parallel.</p>
+<h3 id="impedance-in-a-series-lc-circuit">Impedance in a Series LC
+Circuit</h3>
+<p>In a series LC circuit, the inductor and capacitor are connected
+end-to-end along the same path. The formula for total impedance in a
+series circuit is:</p>
+<p><span class="math inline">\(Z = \sqrt{R^2 + (X_L -
+X_C)^2}\)</span></p>
+<p>At resonance, because <span class="math inline">\(X_L\)</span> equals
+<span class="math inline">\(X_C\)</span>, subtracting one from the other
+results in zero total reactance.</p>
+<ul>
+<li><strong>Ideal Circuit:</strong> If there were zero resistance in the
+wires, the total impedance would drop to <strong>zero (<span
+class="math inline">\(0\ \Omega\)</span>)</strong>. The circuit would
+act like a complete short circuit at the resonant frequency.</li>
+<li><strong>Real-World Circuit:</strong> Because all physical components
+and wires have some inherent resistance, the impedance simply drops to
+its <strong>minimum possible value</strong>, which is equal to the
+circuit's pure DC resistance (<span class="math inline">\(Z =
+R\)</span>).</li>
+</ul>
+<p>With impedance at its lowest point, the circuit allows the maximum
+possible amount of current to flow at the resonant frequency.</p>
+<h3 id="impedance-in-a-parallel-lc-circuit">Impedance in a Parallel LC
+Circuit</h3>
+<p>In a parallel LC circuit (often called a "tank circuit"), the
+inductor and capacitor are connected in parallel branches. The behavior
+of impedance at resonance here is the exact opposite of a series
+circuit.</p>
+<p>At the resonant frequency, energy continuously bounces back and forth
+between the magnetic field of the inductor and the electric field of the
+capacitor. Because the currents in the two branches are equal and
+opposite, they cancel each other out from the perspective of the main
+power source.</p>
+<ul>
+<li><strong>Ideal Circuit:</strong> With no energy lost to resistance,
+no current needs to enter or leave the parallel loop from the main
+source to keep the oscillation going. Since zero current is drawn from
+the source, the impedance of the parallel loop appears to be
+<strong>infinite (<span class="math inline">\(\infty\
+\Omega\)</span>)</strong>. It acts like an open circuit.</li>
+<li><strong>Real-World Circuit:</strong> Small resistances within the
+inductor's coils and the capacitor's leads cause some energy loss.
+Therefore, the circuit draws a tiny amount of current from the source to
+replenish this lost energy. As a result, the impedance does not reach
+infinity, but instead reaches its <strong>maximum possible
+value</strong>.</li>
+</ul>
+<p>With impedance at its highest point, a parallel LC circuit blocks
+current at the resonant frequency while allowing other frequencies to
+pass.</p>
+<h3 id="phase-angle-and-pure-resistance">Phase Angle and Pure
+Resistance</h3>
+<p>Regardless of whether the circuit is in series or parallel, the
+cancellation of inductive and capacitive reactances alters the phase
+angle of the circuit. Outside of resonance, the voltage and current are
+out of phase. At resonance, because the reactive components are gone,
+the circuit becomes purely resistive. This causes the voltage and
+current to align, putting them completely in phase with a phase angle of
+zero degrees.</p></article>
+        <div id='disqus_thread'></div>
+        <script>
+
+            var disqus_config = function () {
+                this.page.url =         'https://salivity.github.io/electronics/article/what-happens-to-circuit-impedance-at-lc-resonance';  
+                //this.page.identifier =  PAGE_IDENTIFIER; 
+            };
+            
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://salivity-github-io.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="https://smvc.dev/contact">Contact</a></li>
+                <li><a href="/electronics/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/electronics/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>
